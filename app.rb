@@ -11,9 +11,33 @@ end
 class Property
 	include DataMapper::Resource
 	
-	property :id,		Serial
-	property :title,	String
-	property :desc,		String
+	property :id,				Serial
+	property :title,			String
+	property :desc,				String
+	property :location,			String
+	property :area,				String
+	property :price,			Integer
+	property :sanad,			Boolean
+	property :area,				String
+	property :area_built,		String
+	property :type,				Integer
+	
+	property :viewcount,		Integer
+	
+	has n, :images
+	
+end
+
+class Image
+	include DataMapper::Resource
+	
+	property :id,			Serial
+	property :product_id,	Integer
+	property :url, 			String
+	
+	belongs_to :product
+	
+	
 end
 
 DataMapper.auto_upgrade!
