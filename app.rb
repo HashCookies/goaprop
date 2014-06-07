@@ -21,6 +21,8 @@ class Property
 	property :area,				String
 	property :area_built,		String
 	property :type,				Integer
+	property :for_buy,			Boolean
+	property :for_rent,			Boolean
 	
 	property :viewcount,		Integer
 	
@@ -84,4 +86,8 @@ end
 get '/property/:id' do
 	@property = Property.get params[:id]
 	erb :property
+end
+
+get '/properties' do
+	@properties = Property.all
 end
