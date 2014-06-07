@@ -14,7 +14,7 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	property :desc,				String
-	property :location,			Integer
+	property :location,			Integer # This ties in with the locations Model written out below. So Location == 1 would find and get "Panaji"
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
 	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
