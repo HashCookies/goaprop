@@ -15,14 +15,18 @@ class Property
 	property :title,			String
 	property :desc,				String
 	property :location,			Integer
-	property :area,				String
+	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
+										# This value will not be shown to the user. Used for sorting.
+	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
 	property :price,			Integer
-	property :sanad,			Boolean
+	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 	property :area,				String
 	property :area_built,		String
-	property :type,				Integer
+	property :type,				Integer # Implies property type like "Apartment", House, "Property", "Villa"
 	property :for_buy,			Boolean
 	property :for_rent,			Boolean
+	property :is_commercial,	Boolean # This and the next option allows property to have both booleans to be true.
+	property :is_residential,	Boolean
 	
 	property :viewcount,		Integer
 	
