@@ -59,7 +59,6 @@ before do
 end
 
 get '/' do
-	@property = Property.get(1)
 	erb :home
 end
 
