@@ -3,6 +3,12 @@ require 'sinatra'
 require 'data_mapper'
 require 'sass'
 
+
+get '/css/style.css' do
+	content_type 'text/css', :charset => 'utf-8'
+	scss(:"css/style")
+end
+
 configure :development do
 	require 'dm-sqlite-adapter'
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/products.db")
