@@ -1,0 +1,13 @@
+<ul id="property-grid">
+<% @properties.each do |property| %>
+	<li class="col-md-4 col-sm-6 col-xs-12">
+		<div class="col-md-12 inner">
+			<div class="img-block">
+				<a href="/properties/<%= property.id %>"><img src="/properties/images" alt="" /></a>
+			</div>
+			<h3><a href="/properties/<%= property.id %>"><%= property.title %></a></h3>
+			<p><%= property.desc %></p>
+		</div>
+	</li>
+<% end %>
+</ul>

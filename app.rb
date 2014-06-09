@@ -107,6 +107,7 @@ get '/' do
 end
 
 get '/properties' do
+	@properties = Property.all
 	erb :home
 end
 

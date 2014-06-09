@@ -1,13 +1,15 @@
-<div class="row property-main">
-	<%= @property.title %>
-	<%= @property.desc %>
-	
-	<% @images.each do |image| %>
-		<li class="gallery-item">
-			<img src="/properties/images/<%= image.url %>" alt="" width="200" />
-		</li>
-	<% end %>
-	
-	<img src="/properties/images/<%= @property.featured_img.url %>" alt="" width="200" />
-	</ul>
+<div class="container">
+	<div class="row property-main">
+		<%= @property.title %>
+		<%= @property.desc %>
+		
+		<% @images.each do |image| %>
+			<li class="gallery-item">
+				<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+			</li>
+		<% end %>
+		
+		<img src="/properties/images/<%= @property.featured_img.url %>" alt="" width="200" />
+		</ul>
+	</div>
 </div>
