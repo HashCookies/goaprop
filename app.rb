@@ -59,9 +59,11 @@ end
 class Location
 	include DataMapper::Resource
 	
-	property :id,		Serial
-	property :name,		String
+	property :id,			Serial
+	property :name,			String
+	property :region_id,	Integer
 	
+	belongs_to :region
 	has n, :properties
 end
 
@@ -70,6 +72,8 @@ class Region
 	
 	property :id,		Serial
 	property :name,		String
+	
+	has n, :properties
 end
 
 class Type
