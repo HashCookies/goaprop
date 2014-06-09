@@ -19,8 +19,8 @@ class Property
 	
 	property :id,				Serial
 	property :title,			String
+	
 	property :desc,				String
-	property :location,			Integer # This ties in with the locations Model written out below. So Location == 1 would find and get "Panaji"
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
 	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
@@ -28,16 +28,22 @@ class Property
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 	property :area,				String
 	property :area_built,		String
-	property :type,				Integer # Implies property type like "Apartment", House, "Property", "Villa"
+	
 	property :for_buy,			Boolean
 	property :for_rent,			Boolean
 	property :is_commercial,	Boolean # This and the next option allows property to have both booleans to be true.
 	property :is_residential,	Boolean
 	
-	property :viewcount,		Integer
+	property :location_id,		Integer # This ties in with the locations Model written out below. 
+										# So Location == 1 would find and get "Panaji"
+	property :type_id,			Integer # Implies property type from Model "Type" like "Apartment", House, "Property", "Villa"
+	property :region_id,		Integer # Similar to above, refers to model Region
+	
+	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	
 	has n, :images
-	
+	belongs_to :location
+	belongs_to :type
 end
 
 class Image
@@ -55,6 +61,15 @@ class Location
 	
 	property :id,		Serial
 	property :name,		String
+	
+	has n, :properties
+end
+
+class Region
+	include DataMapper::Resource
+	
+	property :id,		Serial
+	property :name,		String
 end
 
 class Type
@@ -62,6 +77,9 @@ class Type
 	
 	property :id,		Serial
 	property :name,		String
+	
+	has n, :properties
+	
 end
 
 DataMapper.auto_upgrade!
