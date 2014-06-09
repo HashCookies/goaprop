@@ -100,7 +100,7 @@ get '/properties' do
 	erb :home
 end
 
-get '/property/new' do
+get '/properties/new' do
 	
 	@page_title += " | New Property"
 	erb :new
@@ -109,13 +109,13 @@ end
 post '/create' do
 	@property = Property.new(params[:property])
 	if @property.save
-		redirect "/property/#{@property.id}"
+		redirect "/properties/#{@property.id}"
 	else
 		redirect '/'
 	end
 end
 
-get '/property/:id' do
+get '/properties/:id' do
 	@property = Property.get params[:id]
 	erb :property
 end
