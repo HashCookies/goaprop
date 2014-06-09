@@ -44,6 +44,16 @@ class Property
 	has n, :images
 	belongs_to :location
 	belongs_to :type
+	
+	
+	def handle_upload(file)
+		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
+		File.open(path, "wb") do |f|
+			f.write(file[:tempfile].read)
+		end	
+		
+	end
+	
 end
 
 class Image
@@ -109,6 +119,10 @@ end
 post '/create' do
 	@property = Property.new(params[:property])
 	if @property.save
+		params[:images].each do |image|
+			@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
+			@property.handle_upload(image)
+		end
 		redirect "/properties/#{@property.id}"
 	else
 		redirect '/'
@@ -117,6 +131,7 @@ end
 
 get '/properties/:id' do
 	@property = Property.get params[:id]
+	@images = @property.images
 	erb :property
 end
 
