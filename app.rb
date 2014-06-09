@@ -26,8 +26,8 @@ class Property
 	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
 	property :price,			Integer
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
-	property :area,				String
 	property :area_built,		String
+	property :featured_img,		Integer
 	
 	property :for_buy,			Boolean
 	property :for_rent,			Boolean
@@ -132,6 +132,7 @@ end
 get '/properties/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images
+	@property.featured_img = Image.get(1) #temporary
 	erb :property
 end
 

@@ -1,8 +1,29 @@
 body {
 	font-family: "Brandon Grotesque", sans-serif;
+	color: #333;
 }
 
 h2 {
 	text-transform: uppercase;
-	color: red;
+}
+
+.navbar {
+	background: white;
+	padding-top: 20px;
+	border: none;
+	.navbar-brand {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.nav {
+		li {
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+	}
+}
+
+.cover {
+	background: url('../images/dots-pattern.jpg') no-repeat left top;
+	width: 100%;
 }
