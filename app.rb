@@ -14,6 +14,8 @@ configure :development do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/products.db")
 end
 
+DataMapper::Property::String.length(255)
+
 class Property
 	include DataMapper::Resource
 	
@@ -28,6 +30,7 @@ class Property
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 	property :area_built,		String
 	property :featured_img,		Integer
+	property :slug,				String
 	
 	property :for_buy,			Boolean
 	property :for_rent,			Boolean
@@ -44,6 +47,7 @@ class Property
 	has n, :images
 	belongs_to :location
 	belongs_to :type
+	belongs_to :region
 	
 	
 	def handle_upload(file)
@@ -53,6 +57,8 @@ class Property
 		end	
 		
 	end
+	
+	
 	
 end
 
@@ -66,6 +72,16 @@ class Image
 	belongs_to :property
 end
 
+class Type
+	include DataMapper::Resource
+	
+	property :id,		Serial
+	property :title,	String
+	
+	has n, :propertys
+	
+end
+
 class Location
 	include DataMapper::Resource
 	
@@ -74,7 +90,7 @@ class Location
 	property :region_id,	Integer
 	
 	belongs_to :region
-	has n, :properties
+	has n, :propertys
 end
 
 class Region
@@ -83,18 +99,11 @@ class Region
 	property :id,		Serial
 	property :name,		String
 	
-	has n, :properties
+	has n, :propertys
+	has n, :locations
 end
 
-class Type
-	include DataMapper::Resource
-	
-	property :id,		Serial
-	property :name,		String
-	
-	has n, :properties
-	
-end
+
 
 DataMapper.auto_upgrade!
 
@@ -103,11 +112,18 @@ before do
 end
 
 get '/' do
+	@properties = Property.all
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+	end
 	erb :home
 end
 
 get '/properties' do
 	@properties = Property.all
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+	end
 	erb :home
 end
 
@@ -119,24 +135,49 @@ end
 
 post '/create' do
 	@property = Property.new(params[:property])
-	if @property.save
+	@property.slug = @property.title.downcase.gsub(" ", "-")
+	@featured_img = params[:featured]
+	
+	if @property.save	
+		
 		params[:images].each do |image|
 			@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
 			@property.handle_upload(image)
 		end
+		
+		if !params[:featured].nil?
+			@featured = @property.images.create({ :property_id => @property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
+			@property.handle_upload(params[:featured])
+			@property.update({ :featured_img => @featured.id })
+		end
+		
 		redirect "/properties/#{@property.id}"
 	else
-		redirect '/'
+		redirect '/properties'
 	end
 end
 
 get '/properties/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images
-	@property.featured_img = Image.get(1) #temporary
+	@property.featured_img = Image.get(@property.featured_img).url
 	erb :property
 end
 
 get '/properties' do
 	@properties = Property.all
+end
+
+
+get '/region/new' do
+	erb :new_region
+end
+
+post '/region/create' do
+	@region = Region.new(params[:region])
+	if @region.save
+		redirect '/properties'
+	else
+		redirect '/'
+	end
 end

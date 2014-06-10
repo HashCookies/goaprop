@@ -14,30 +14,30 @@
 		
 		<div class="form-group">
 				<label>Description:</label><br />
-				<input type="text" name="property[desc]" id="title" class="form-control" />	
+				<input type="text" name="property[desc]" id="desc" class="form-control" />	
 		</div>
 		
 		<div class="form-group">
-				<label>Area:</label><br />
-				<input type="text" name="property[area]" id="title" class="form-control" />	
+				<label>Area in sq mts:</label><br />
+				<input type="text" name="property[area]" id="area" class="form-control" value="0" />	
 		</div>
 		
 		
 		<div class="form-group">
 				<label>Area Detail:</label><br />
-				<input type="text" name="property[area_detail]" id="title" class="form-control" />	
+				<input type="text" name="property[area_detail]" id="area_detail" class="form-control" />	
 		</div>
 		
 		
 		<div class="form-group">
 				<label>price:</label><br />
-				<input type="text" name="property[price]" id="title" class="form-control" />	
+				<input type="text" name="property[price]" id="price" class="form-control" value="200" />	
 		</div>
 		
 		
 		<div class="form-group">
 				<label>Area built:</label><br />
-				<input type="text" name="property[area_built]" id="title" class="form-control" />	
+				<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
 		</div>
 		
 					
@@ -45,6 +45,9 @@
 			<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 		</div>
 		
+		<div class="file-input-wrap">
+			<input type="file" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
+		</div>
 
 		<div class="form-group">
 				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Property">
