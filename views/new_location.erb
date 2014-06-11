@@ -1,0 +1,20 @@
+<div class="container">
+	<form role="form" action="/location/create" method="post" id="location" enctype="multipart/form-data">
+		
+		<div class="form-group">
+				<label>Location Name:</label><br />
+				<input type="text" name="location[name]" id="name" class="form-control" />	
+		</div>
+		
+		<label for="Region">Regions</label>
+		
+			<% @regions.each do |region| %>
+				<label class="checkbox-inline">
+					<input type="checkbox" id="region[<%= region.id %>]" value="<%= region.id %>"><%= region.name %>
+				</label>
+			<% end %>
+		<div class="form-group">
+				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Region">
+		</div>
+	</form>
+</div>

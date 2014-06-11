@@ -1,58 +1,106 @@
-<div class="col-md-12 edit-intro">
-	<h3 class="title">Create A New Property</h3>
-</div>
 
 
-<form role="form" action="/create" method="post" id="property" enctype="multipart/form-data">
-	
-	<div class="col-md-8">
-		<div class="form-group">
-				<label>Property Name:</label><br />
-				<input type="text" name="property[title]" id="title" class="form-control" />	
-		</div>
-		
-		
-		<div class="form-group">
-				<label>Description:</label><br />
-				<input type="text" name="property[desc]" id="desc" class="form-control" />	
-		</div>
-		
-		<div class="form-group">
-				<label>Area in sq mts:</label><br />
-				<input type="text" name="property[area]" id="area" class="form-control" value="0" />	
-		</div>
-		
-		
-		<div class="form-group">
-				<label>Area Detail:</label><br />
-				<input type="text" name="property[area_detail]" id="area_detail" class="form-control" />	
-		</div>
-		
-		
-		<div class="form-group">
-				<label>price:</label><br />
-				<input type="text" name="property[price]" id="price" class="form-control" value="200" />	
-		</div>
-		
-		
-		<div class="form-group">
-				<label>Area built:</label><br />
-				<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
-		</div>
-		
-					
-		<div class="file-input-wrap">
-			<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
-		</div>
-		
-		<div class="file-input-wrap">
-			<input type="file" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
-		</div>
+<div class="container">
 
-		<div class="form-group">
-				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Property">
-			</div>
+	<div class="col-md-12 edit-intro">
+		<h3 class="title">Create A New Property</h3>
 	</div>
-
 	
-</form>
+	<form role="form" action="/create" method="post" id="property" enctype="multipart/form-data">
+		
+		<div class="col-md-8">
+			<div class="form-group">
+					
+					<select name="property[type_id]" id="type_id">
+						<% @types.each do |type| %>
+							<option value="<%= type.id %>"><%= type.title %></option>
+						<% end %>
+					</select>
+					
+					in
+					
+					<select name="property[location_id]" id="location_id">
+						<% @locations.each do |location| %>
+							<option value="<%= location.id %>"><%= location.name %></option>
+						<% end %>
+					</select>
+					for
+					
+						<label class="checkbox-inline">
+							<input type="checkbox" id="property[for_buy">Sale
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" id="property[for_rent]">Rent
+						</label>
+			</div>
+			
+			
+			<div class="form-group">
+					<label>Description:</label><br />
+					<input type="text" name="property[desc]" id="desc" class="form-control" />	
+			</div>
+			
+			<div class="form-group">
+				<label for="Region">Region</label>
+				
+				<select name="property[region_id]" id="region_id">
+					<% @regions.each do |region| %>
+						<option value="<%= region.id %>"><%= region.name %></option>
+					<% end %>
+				</select>
+			</div>
+			
+			
+			
+			<div class="form-group">
+				<label for="Region">Type</label>
+				
+				<select name="property[type_id]" id="type_id">
+					<% @types.each do |type| %>
+						<option value="<%= type.id %>"><%= type.title %></option>
+					<% end %>
+				</select>
+			</div>
+			
+			
+			<div class="form-group">
+					<label>Area in sq mts:</label><br />
+					<input type="text" name="property[area]" id="area" class="form-control" value="0" />	
+			</div>
+			
+			
+			<div class="form-group">
+					<label>Area Detail:</label><br />
+					<input type="text" name="property[area_detail]" id="area_detail" class="form-control" />	
+			</div>
+			
+			
+			<div class="form-group">
+					<label>price:</label><br />
+					<input type="text" name="property[price]" id="price" class="form-control" value="200" />	
+			</div>
+			
+			
+			<div class="form-group">
+					<label>Area built:</label><br />
+					<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
+			</div>
+			
+						
+			<div class="file-input-wrap">
+				<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+			</div>
+			
+			<div class="file-input-wrap">
+				<input type="file" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
+			</div>
+	
+			<div class="form-group">
+					<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Property">
+				</div>
+		</div>
+	
+		
+	</form>
+
+</div>

@@ -87,7 +87,6 @@ class Location
 	
 	property :id,			Serial
 	property :name,			String
-	property :region_id,	Integer
 	
 	belongs_to :region
 	has n, :propertys
@@ -102,8 +101,6 @@ class Region
 	has n, :propertys
 	has n, :locations
 end
-
-
 
 DataMapper.auto_upgrade!
 
@@ -124,11 +121,13 @@ get '/properties' do
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
-	erb :home
+	erb :properties
 end
 
-get '/properties/new' do
-	
+get '/property/new' do
+	@regions = Region.all
+	@locations = Location.all
+	@types = Type.all
 	@page_title += " | New Property"
 	erb :new
 end
@@ -151,13 +150,13 @@ post '/create' do
 			@property.update({ :featured_img => @featured.id })
 		end
 		
-		redirect "/properties/#{@property.id}"
+		redirect "/property/#{@property.id}"
 	else
 		redirect '/properties'
 	end
 end
 
-get '/properties/:id' do
+get '/property/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images
 	@property.featured_img = Image.get(@property.featured_img).url
@@ -176,7 +175,7 @@ end
 post '/region/create' do
 	@region = Region.new(params[:region])
 	if @region.save
-		redirect '/properties'
+		redirect '/region/new'
 	else
 		redirect '/'
 	end
