@@ -44,6 +44,10 @@ class Property
 	
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	
+	# extra properties
+	property :type,				String
+	property :location,			String
+	
 	has n, :images
 	belongs_to :location
 	belongs_to :type
@@ -120,6 +124,8 @@ get '/properties' do
 	@properties = Property.all
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		property.type = Type.get(1).title
+		property.location = Location.get(18).name
 	end
 	erb :properties
 end
