@@ -49,7 +49,6 @@ class Property
 	property :location,			String
 	
 	has n, :images
-	belongs_to :location
 	belongs_to :type
 	belongs_to :region
 	
@@ -122,10 +121,11 @@ end
 
 get '/properties' do
 	@properties = Property.all
+	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 		property.type = Type.get(1).title
-		property.location = Location.get(18).name
+		property.location = Location.get(1).name
 	end
 	erb :properties
 end
@@ -139,15 +139,19 @@ get '/property/new' do
 end
 
 post '/create' do
-	@property = Property.new(params[:property])
-	@property.slug = @property.title.downcase.gsub(" ", "-")
-	@featured_img = params[:featured]
+	@location = Location.get(params[:property][:location_id])
+	@property = @location.propertys.new(params[:property])	
+	
+	@property.for_buy = params[:property][:for_buy] == 'on' ? true : false
+	@property.for_rent = params[:property][:for_rent] == 'on' ? true : false
 	
 	if @property.save	
 		
-		params[:images].each do |image|
-			@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
-			@property.handle_upload(image)
+		if !params[:images].nil?
+			params[:images].each do |image|
+				@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
+				@property.handle_upload(image)
+			end
 		end
 		
 		if !params[:featured].nil?

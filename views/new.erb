@@ -10,6 +10,7 @@
 		
 		<div class="col-md-8">
 			<div class="form-group">
+					<input type="text" name="property[title]" id="title" class="form-control" />	
 					
 					<select name="property[type_id]" id="type_id">
 						<% @types.each do |type| %>
@@ -26,43 +27,14 @@
 					</select>
 					for
 					
-						<label class="checkbox-inline">
-							<input type="checkbox" id="property[for_buy">Sale
-						</label>
-						<label class="checkbox-inline">
-							<input type="checkbox" id="property[for_rent]">Rent
-						</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" name="property[for_buy]">Sale
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" name="property[for_rent]">Rent
+					</label>
 			</div>
-			
-			
-			<div class="form-group">
-					<label>Description:</label><br />
-					<input type="text" name="property[desc]" id="desc" class="form-control" />	
-			</div>
-			
-			<div class="form-group">
-				<label for="Region">Region</label>
-				
-				<select name="property[region_id]" id="region_id">
-					<% @regions.each do |region| %>
-						<option value="<%= region.id %>"><%= region.name %></option>
-					<% end %>
-				</select>
-			</div>
-			
-			
-			
-			<div class="form-group">
-				<label for="Region">Type</label>
-				
-				<select name="property[type_id]" id="type_id">
-					<% @types.each do |type| %>
-						<option value="<%= type.id %>"><%= type.title %></option>
-					<% end %>
-				</select>
-			</div>
-			
-			
+						
 			<div class="form-group">
 					<label>Area in sq mts:</label><br />
 					<input type="text" name="property[area]" id="area" class="form-control" value="0" />	

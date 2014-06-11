@@ -10,12 +10,11 @@
 					<a href="/property/<%= property.id %>">
 						<%= property.title %> 
 						<%= property.type %> in
-						<%= property.location %> for
-						<%= "Sale" if property.for_buy == true %>
-						<%= "Rent" if property.for_rent == true %>
+						<%= property.location %>
+						<%= "for Sale" if property.for_buy == true %>
+						<%= "for Rent" if property.for_rent == true %>
 					</a>
 					</h3>
-				<span class="prop-type">Apartment</span> in <span class="prop-location">Anjuna</span>
 				<ul>
 					<li>3200 Sq Mt</li>
 					<li>Specs: Bathroom, 3BHK, Parking</li>
