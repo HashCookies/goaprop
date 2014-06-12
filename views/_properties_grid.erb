@@ -9,8 +9,8 @@
 				<h3 class="prop-title">
 					<a href="/property/<%= property.id %>">
 						<%= property.title %> 
-						<%= property.type %> in
-						<%= property.location %>
+						<%= property.type %> 
+						<%= "in " + property.location %>
 						<%= "for Sale" if property.for_buy == true %>
 						<%= "for Rent" if property.for_rent == true %>
 					</a>

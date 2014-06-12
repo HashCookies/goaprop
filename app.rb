@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/support/numeric'
 require 'data_mapper'
 require 'sass'
 
@@ -15,6 +16,10 @@ configure :development do
 end
 
 DataMapper::Property::String.length(255)
+
+class Main < Sinatra::Base
+  register Sinatra::Numeric
+end
 
 class Property
 	include DataMapper::Resource
@@ -107,8 +112,11 @@ end
 
 get '/' do
 	@properties = Property.all
+	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		property.type = Type.get(property.type_id).title
+		property.location = Location.get(property.location_id).name
 	end
 	erb :home
 end
