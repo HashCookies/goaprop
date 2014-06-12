@@ -118,8 +118,8 @@ get '/properties' do
 	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.type = Type.get(1).title
-		property.location = Location.get(1).name
+		property.type = Type.get(property.type_id).title
+		property.location = Location.get(property.location_id).name
 	end
 	erb :properties
 end

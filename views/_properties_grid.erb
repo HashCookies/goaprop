@@ -2,7 +2,7 @@
 <% @properties.each do |property| %>
 	<li class="col-md-4 col-sm-6 col-xs-12 property-item">
 			<div class="img-block col-md-12">
-				<span class="prop-price">32,000</span>
+				<span class="prop-price"><%= property.price %></span>
 				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
 			</div>
 			<div class="col-md-12">
