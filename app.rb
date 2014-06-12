@@ -49,15 +49,14 @@ class Property
 	property :location,			String
 	
 	has n, :images
-	belongs_to :type
-	belongs_to :region
+	
 	
 	
 	def handle_upload(file)
 		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
 		File.open(path, "wb") do |f|
 			f.write(file[:tempfile].read)
-		end	
+		end
 		
 	end
 	
@@ -81,7 +80,6 @@ class Type
 	property :id,		Serial
 	property :title,	String
 	
-	has n, :propertys
 	
 end
 
@@ -91,8 +89,6 @@ class Location
 	property :id,			Serial
 	property :name,			String
 	
-	belongs_to :region
-	has n, :propertys
 end
 
 class Region
@@ -101,8 +97,6 @@ class Region
 	property :id,		Serial
 	property :name,		String
 	
-	has n, :propertys
-	has n, :locations
 end
 
 DataMapper.auto_upgrade!
@@ -139,9 +133,7 @@ get '/property/new' do
 end
 
 post '/create' do
-	@location = Location.get(params[:property][:location_id])
-	@property = @location.propertys.new(params[:property])	
-	
+	@property = Property.new(params[:property])
 	@property.for_buy = params[:property][:for_buy] == 'on' ? true : false
 	@property.for_rent = params[:property][:for_rent] == 'on' ? true : false
 	
