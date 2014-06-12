@@ -8,16 +8,24 @@
 			<div class="col-md-12">
 				<h3 class="prop-title">
 					<a href="/property/<%= property.id %>">
-						<%= property.title %> 
+						<span><%= property.title %> </span>
 						<%= property.type %> 
 						<%= "in " + property.location %>
 						<%= "for Sale" if property.for_buy == true %>
 						<%= "for Rent" if property.for_rent == true %>
 					</a>
-					</h3>
-				<ul>
-					<li>3200 Sq Mt</li>
-					<li>Specs: Bathroom, 3BHK, Parking</li>
+				</h3>
+				<ul class="clearfix">
+					<li class="clearfix">
+						<div class="block"><span class="label">Area</span></div>
+						<div class="block">
+							<%= property.area_detail %> <span class="prop-area-built">(Built Area: <%= property.area_built %>)</span>
+						</div>
+					</li>
+					<li class="clearfix">
+						<div class="block"><span class="label">Facilities</span> </div>
+						<div class="block">Bathroom, 3BHK, Parking</div>
+					</li>
 				</ul>
 			</div>
 	</li>

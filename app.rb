@@ -16,6 +16,7 @@ configure :development do
 end
 
 DataMapper::Property::String.length(255)
+DataMapper::Model.raise_on_save_failure = true 
 
 class Main < Sinatra::Base
   register Sinatra::Numeric
@@ -27,7 +28,6 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	
-	property :desc,				String
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
 	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
@@ -169,7 +169,17 @@ end
 get '/property/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images
-	@property.featured_img = Image.get(@property.featured_img).url
+	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
+	@property.type = Type.get(@property.type_id).title
+	@property.location = Location.get(@property.location_id).name
+	
+	
+	@properties = Property.all
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		property.type = Type.get(property.type_id).title
+		property.location = Location.get(property.location_id).name
+	end
 	erb :property
 end
 
@@ -177,16 +187,4 @@ get '/properties' do
 	@properties = Property.all
 end
 
-
-get '/region/new' do
-	erb :new_region
-end
-
-post '/region/create' do
-	@region = Region.new(params[:region])
-	if @region.save
-		redirect '/region/new'
-	else
-		redirect '/'
-	end
-end
+load 'actions/route_region.rb'
