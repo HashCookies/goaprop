@@ -21,6 +21,12 @@ h2 {
 	text-transform: uppercase;
 }
 
+.label {
+	color: #333;
+	text-transform: uppercase;
+	padding-left: 0;
+}
+
 .section-title {
 	font-weight: 100;
 	font-size: 32px;
@@ -42,6 +48,7 @@ h2 {
 	padding-bottom: 10px;
 	margin-bottom: 0;
 	border: none;
+	border-bottom: 1px solid #ddd;
 	.navbar-brand {
 		font-weight: bold;
 		text-transform: uppercase;
@@ -55,9 +62,8 @@ h2 {
 }
 
 .cover {
-	background: url('../images/dots-pattern.jpg') no-repeat left top;
-	background-size: cover;
 	width: 100%;
+	height: 200px;
 }
 
 img {
@@ -74,6 +80,9 @@ img {
 	.property-item {
 		margin-bottom: 35px;
 	}
+	.data-block {
+		
+	}
 	h3 {
 		font-size: 18px;
 		margin-top: 0;
@@ -84,16 +93,6 @@ img {
 			color: inherit;
 		}
 	}
-/*	.prop-title {
-		position: absolute;
-		left: 15px;
-		right: 15px;
-		top: 0px;
-		padding: 15px;
-		color: white;
-		font-weight: bold;
-		
-	}*/
 	.prop-type, .prop-location  {
 		display: inline-block;
 		border-bottom: 1px solid #333;
@@ -190,7 +189,14 @@ img {
 }*/
 
 .property-main {
-	
+	margin-top: 100px;
+	.prop-specs {
+		li {
+			margin-bottom: 5px;
+			border-bottom: 1px solid #ddd;
+			padding-bottom: 5px;
+		}
+	}
 	.gallery-block {
 		width: 100%;
 		overflow: auto;
@@ -200,6 +206,82 @@ img {
 		li {
 			height: 200px;
 			overflow: hidden;
+		}
+	}
+}
+
+.property-intro {
+	background: linear-gradient(to bottom, #f3f2f2 0%, #e7e5e5 100%);
+	padding-top: 50px;
+	border-bottom: 1px solid #ddd;
+	img {
+		width: 100%;
+	}
+	.large {
+		width: 74.5%;
+		margin-right: 5px;
+		height: 490px;
+		border-bottom: 0 !important;
+	}
+	.small {
+		width: 25%;
+		height: 160px;
+		overflow: hidden;
+		margin-bottom: 5px;
+		&:last-child {
+			margin-bottom: 0;
+			border-bottom: 0;
+		}
+	}
+	.img-block {
+		float: left;	
+		border: 1px solid #000;
+	}
+}
+
+.anystretch {
+	z-index: 0 !important;
+}
+
+.property-data {
+	z-index: 5;
+	position: absolute;
+	margin-top: -50px;
+	border-radius: 5px;
+	background: white;
+	height: 100px;
+	width: 990px;
+	margin-left: 90px;
+	border: 1px solid #ddd;
+	padding: 10px 1.5%;
+	box-shadow: 0 -3px 4px transparentize(black, 0.8);
+	.prop-title {
+		font-weight: 100;
+		font-size: 32px;
+		margin-bottom: 0;
+		margin-top: 15px;
+		a {
+			color: inherit;
+	
+		}
+	}
+	.prop-price {
+		font-size: 28px;
+		font-family: $serif;
+		display: block;
+		line-height: 28px;
+	}
+	.prop-price-label {
+		text-transform: uppercase;
+		display: inline-block;
+		padding-bottom: 0;
+		margin-top: 15px;
+	}
+	.prop-area {
+		font-size: 16px;
+		span {
+			font-family: $serif;
+			font-style: italic;
 		}
 	}
 }

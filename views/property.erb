@@ -1,9 +1,19 @@
-<div class="container content">
-	<div class="row property-main">
-		<div class="col-md-8">
-			<img src="/properties/images/<%= @property.featured_img %>" alt="" />
+<div class="property-intro">
+	<div class="container">
+		<div class="large img-block anystretch" data-stretch="/properties/images/<%= @property.featured_img %>">
+
 		</div>
-		<div class="col-md-4">
+		<% @images.each do |image| %>
+			<div class="small img-block anystretch" data-stretch="/properties/images/<%= image.url %>">
+			</div>
+		<% end %>
+		
+	</div>
+</div>
+
+<div class="container">
+	<div class="property-data">
+		<div class="col-md-8">
 			<h3 class="prop-title">
 				<a href="/property/<%= @property.id %>">
 					<span><%= @property.title %> </span>
@@ -13,7 +23,23 @@
 					<%= "for Rent" if @property.for_rent == true %>
 				</a>
 			</h3>
-			<ul class="clearfix">
+			<p class="prop-area"><%= @property.area_detail %></p>
+		</div>
+		<div class="col-md-4 pull-right text-right">
+			<span class="prop-price-label label">Price</span>
+			<span class="prop-price"><%= @property.price %></span>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row property-main">
+		<div class="col-md-8">
+			<p class="lead">In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est.</p>
+		</div>
+		<div class="col-md-4">
+			
+			<ul class="clearfix prop-specs">
 				<li class="clearfix">
 					<div class="block"><span class="label">Area</span></div>
 					<div class="block">

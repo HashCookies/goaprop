@@ -1,11 +1,11 @@
-<ul id="property-grid">
+<ul id="property-grid" class="row">
 <% @properties.each do |property| %>
 	<li class="col-md-4 col-sm-6 col-xs-12 property-item">
 			<div class="img-block col-md-12">
 				<span class="prop-price"><%= property.price %></span>
 				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 data-block">
 				<h3 class="prop-title">
 					<a href="/property/<%= property.id %>">
 						<span><%= property.title %> </span>

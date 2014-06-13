@@ -168,7 +168,7 @@ end
 
 get '/property/:id' do
 	@property = Property.get params[:id]
-	@images = @property.images
+	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@property.type = Type.get(@property.type_id).title
 	@property.location = Location.get(@property.location_id).name
