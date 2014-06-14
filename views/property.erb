@@ -11,63 +11,82 @@
 	</div>
 </div>
 
-<div class="container">
-	<div class="property-data">
-		<div class="col-md-8">
-			<h3 class="prop-title">
-				<a href="/property/<%= @property.id %>">
-					<span><%= @property.title %> </span>
-					<%= @property.type %> 
-					<%= "in " + @property.location %>
-					<%= "for Sale" if @property.for_buy == true %>
-					<%= "for Rent" if @property.for_rent == true %>
-				</a>
-			</h3>
-			<p class="prop-area"><%= @property.area_detail %></p>
-		</div>
-		<div class="col-md-4 pull-right text-right">
-			<span class="prop-price-label label">Price</span>
-			<span class="prop-price"><%= @property.price %></span>
+<div id="property-content">
+	<div class="container">
+		<div class="property-data row">
+			<div class="col-md-10">
+				<h3 class="prop-title">
+					<a href="/property/<%= @property.id %>">
+						<span><%= @property.title %> </span>
+						<%= @property.type %> 
+						<%= "in " + @property.location %>
+						<%= "for Sale" if @property.for_buy == true %>
+						<%= "for Rent" if @property.for_rent == true %>
+					</a>
+				</h3>
+				<p class="prop-area"><%= @property.area_detail %></p>
+			</div>
+			<div class="col-md-2 prop-price-wrap pull-right text-right">
+				<span class="prop-price-label label">Price</span>
+				<span class="prop-price"><%= @property.price %></span>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div class="container">
-	<div class="row property-main">
-		<div class="col-md-8">
-			<p class="lead">In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est.</p>
-		</div>
-		<div class="col-md-4">
-			
-			<ul class="clearfix prop-specs">
-				<li class="clearfix">
-					<div class="block"><span class="label">Area</span></div>
-					<div class="block">
-						<%= @property.area_detail %> <span class="prop-area-built">(Built Area: <%= @property.area_built %>)</span>
-					</div>
-				</li>
-				<li class="clearfix">
-					<div class="block"><span class="label">Facilities</span> </div>
-					<div class="block">Bathroom, 3BHK, Parking</div>
-				</li>
-			</ul>
-			<span class="btn btn-large btn-primary">Send Inquiry</span>
-		</div>
-		
-		<div class="clearfix"></div>
-		
-		<ul class="content gallery-block">
-			<h3 class=" col-md-12 section-title">In Pictures</h3>
-		<% @images.each do |image| %>
-			<li class="gallery-item col-md-4">
-				<img src="/properties/images/<%= image.url %>" alt="" width="200" />
-			</li>
-		<% end %>
-		</ul>
+	
+	<div class="container">
+		<div class="row property-main">
+			<div class="col-md-8">
+				<p class="lead">In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</p>
+				<span class="small-title">In Pictures</span>
+				<ul class="gallery-block row">
+				<% @images.each do |image| %>
+					<li class="gallery-item col-md-4">
+						<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+					</li>
+				<% end %>
+				</ul>
+			</div>
+			<div class="col-md-4">
 				
-	</div>
-	<div class="content">
-		<h3 class="section-title col-md-12">Recently Viewed / Similar Properties</h3>
-		<%= erb :_properties_grid %>
+				<ul class="clearfix prop-specs text-right">
+					<li class="clearfix">
+						<div class="block"><span class="label">Area</span></div>
+						<div class="block">
+							<%= @property.area_detail %>
+						</div>
+					</li>
+					<li>
+						<div class="block"><span class="label">Built Area</span></div>
+						<div class="block"><%= @property.area_built %>)</div>
+					</li>
+					<li>
+						<div class="block"><span class="label">Location</span></div>
+						<div class="block"><%= @property.location %>)</div>
+					</li>
+					<li class="clearfix">
+						<div class="block"><span class="label">Facilities</span> </div>
+						<div class="block">Bathroom, 3BHK, Parking</div>
+					</li>
+					<li>
+						<div class="block"><span class="prop-price-label label">Price</span></div>
+						<span class="prop-price"><%= @property.price %></span>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<div class="clearfix"></div>
+			<!--
+			
+			
+			<div class="col-md-12 text-center">
+				<button class="btn btn-large btn-primary">Send Inquiry</button>
+			</div>-->
+					
+		</div>
+		<div class="content">
+			<h3 class="section-title">Recently Viewed / Similar Properties</h3>
+			<%= erb :_properties_grid %>
+		</div>
 	</div>
 </div>

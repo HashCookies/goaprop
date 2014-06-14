@@ -1,12 +1,12 @@
 <ul id="property-grid" class="row">
 <% @properties.each do |property| %>
 	<li class="col-md-4 col-sm-6 col-xs-12 property-item">
-			<div class="img-block col-md-12">
+			<div class="img-block">
 				<span class="prop-price"><%= property.price %></span>
 				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
 			</div>
-			<div class="col-md-12 data-block">
-				<h3 class="prop-title">
+			<div class="k">
+				<div class="data-block"><h3 class="prop-title">
 					<a href="/property/<%= property.id %>">
 						<span><%= property.title %> </span>
 						<%= property.type %> 
@@ -26,7 +26,7 @@
 						<div class="block"><span class="label">Facilities</span> </div>
 						<div class="block">Bathroom, 3BHK, Parking</div>
 					</li>
-				</ul>
+				</ul></div>
 			</div>
 	</li>
 <% end %>

@@ -111,6 +111,8 @@ before do
 end
 
 get '/' do
+	@types = Type.all
+	@regions = Region.all
 	@properties = Property.all
 	@region = Region.first
 	@properties.each do |property|
@@ -185,6 +187,18 @@ end
 
 get '/properties' do
 	@properties = Property.all
+end
+
+get '/search' do
+	search = params[:search]
+	
+	@properties = Property.all(search[:buysell] => true, :location_id => search[:location_id], :region_id => search[:region_id])
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		property.type = Type.get(property.type_id).title
+		property.location = Location.get(property.location_id).name
+	end
+	erb :search
 end
 
 load 'actions/route_region.rb'

@@ -1,5 +1,24 @@
-<div class="cover">
-
+<div class="cover anystretch" data-stretch="images/dots-pattern.jpg">
+	<div id="search-bar">
+		<form method="get" action="/search" id="search">
+			I'd like to
+			<select name="search[buysell]">
+				<option value="for_buy">Buy</option>
+				<option value="for_rent">Rent</option>
+			</select>
+			<select name="search[type_id]" id="type_id">
+				<% @types.each do |type| %>
+					<option value="<%= type.id %>"><%= type.title %></option>
+				<% end %>
+			</select>
+			<select name="search[region_id]" id="region_id">
+				<% @regions.each do |region| %>
+					<option value="<%= region.id %>"><%= region.name %></option>
+				<% end %>
+			</select>
+			<input type="submit" name="" value="Find Property" class="btn btn-large" />
+		</form>
+	</div>
 </div>
 
 <div class="container content">
