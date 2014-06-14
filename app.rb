@@ -192,7 +192,7 @@ end
 get '/search' do
 	search = params[:search]
 	
-	@properties = Property.all(search[:buysell] => true, :location_id => search[:location_id], :region_id => search[:region_id])
+	@properties = Property.all(search[:buysell] => true, :type_id => search[:type_id], :region_id => search[:region_id])
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 		property.type = Type.get(property.type_id).title
