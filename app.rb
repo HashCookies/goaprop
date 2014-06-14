@@ -94,6 +94,8 @@ class Location
 	property :id,			Serial
 	property :name,			String
 	
+	has n, :regions, :through => Resource
+	
 end
 
 class Region
@@ -101,6 +103,8 @@ class Region
 	
 	property :id,		Serial
 	property :name,		String
+	
+	has n, :locations, :through => Resource
 	
 end
 
@@ -202,3 +206,4 @@ get '/search' do
 end
 
 load 'actions/route_region.rb'
+load 'actions/route_location.rb'
