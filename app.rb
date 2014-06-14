@@ -12,7 +12,7 @@ end
 
 configure :development do
 	require 'dm-sqlite-adapter'
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/products.db")
+	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/database.db")
 end
 
 DataMapper::Property::String.length(255)
@@ -115,6 +115,8 @@ before do
 end
 
 get '/' do
+	
+	
 	@types = Type.all
 	@regions = Region.all
 	@properties = Property.all

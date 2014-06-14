@@ -5,9 +5,12 @@ get '/location/new' do
 end
 
 post '/location/create' do
-	location = Location.create(params[:location])
-	region = Region.create
-	LocationRegion.create(:location => location, :region => region)
+	location  = Location.create(params[:location])
+	region = Region.get(1)
+	
+	location.regions << region
+	location.save
+
 	
 	if location.save
 		redirect '/location/new'
