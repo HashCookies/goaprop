@@ -6,11 +6,10 @@ end
 
 post '/location/create' do
 	location  = Location.create(params[:location])
-	region = Region.get(1)
-	
-	location.regions << region
-	location.save
-
+	params[:region].each_value do |v|
+		region = Region.get(v)
+		location.regions << region
+	end
 	
 	if location.save
 		redirect '/location/new'

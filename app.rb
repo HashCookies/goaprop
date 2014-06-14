@@ -41,21 +41,17 @@ class Property
 	property :for_rent,			Boolean
 	property :is_commercial,	Boolean # This and the next option allows property to have both booleans to be true.
 	property :is_residential,	Boolean
-	
-	property :location_id,		Integer # This ties in with the locations Model written out below. 
-										# So Location == 1 would find and get "Panaji"
-	property :type_id,			Integer # Implies property type from Model "Type" like "Apartment", House, "Property", "Villa"
-	property :region_id,		Integer # Similar to above, refers to model Region
-	
+		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
-	
+	property :type_id,			Integer
+	property :region_id,		Integer
 	# extra properties
 	property :type,				String
 	property :location,			String
 	
 	has n, :images
-	
-	
+	has n, :regions, :through => Resource
+	belongs_to :location
 	
 	def handle_upload(file)
 		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
@@ -85,7 +81,6 @@ class Type
 	property :id,		Serial
 	property :title,	String
 	
-	
 end
 
 class Location
@@ -95,6 +90,7 @@ class Location
 	property :name,			String
 	
 	has n, :regions, :through => Resource
+	has n, :propertys
 	
 end
 
@@ -105,6 +101,7 @@ class Region
 	property :name,		String
 	
 	has n, :locations, :through => Resource
+	has n, :propertys, :through => Resource
 	
 end
 
@@ -115,8 +112,6 @@ before do
 end
 
 get '/' do
-	
-	
 	@types = Type.all
 	@regions = Region.all
 	@properties = Property.all
@@ -149,26 +144,29 @@ get '/property/new' do
 end
 
 post '/create' do
-	@property = Property.new(params[:property])
-	@property.for_buy = params[:property][:for_buy] == 'on' ? true : false
-	@property.for_rent = params[:property][:for_rent] == 'on' ? true : false
+	location = Location.get(params[:location][:id])
+	update_params = params[:property]
+	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
+	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
 	
-	if @property.save	
+	location.propertys.create(update_params)
+	
+	if property.save	
 		
 		if !params[:images].nil?
 			params[:images].each do |image|
-				@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
-				@property.handle_upload(image)
+				property.images.create({ :property_id => property.id, :url => image[:filename].downcase.gsub(" ", "-") })
+				property.handle_upload(image)
 			end
 		end
 		
 		if !params[:featured].nil?
-			@featured = @property.images.create({ :property_id => @property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
-			@property.handle_upload(params[:featured])
-			@property.update({ :featured_img => @featured.id })
+			@featured = @property.images.create({ :property_id => property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
+			property.handle_upload(params[:featured])
+			property.update({ :featured_img => @featured.id })
 		end
 		
-		redirect "/property/#{@property.id}"
+		redirect "/property/#{property.id}"
 	else
 		redirect '/properties'
 	end
