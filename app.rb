@@ -149,7 +149,7 @@ post '/create' do
 	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
 	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
 	
-	location.propertys.create(update_params)
+	new_property = location.propertys.create(update_params)
 	
 	if property.save	
 		
