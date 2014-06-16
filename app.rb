@@ -43,14 +43,12 @@ class Property
 	property :is_residential,	Boolean
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
-	property :type_id,			Integer
 	property :region_id,		Integer
-	# extra properties
-	property :texttype,				String, :default => 1
 	
 	has n, :images
 #	has n, :regions, :through => Resource
 	belongs_to :location
+	belongs_to :type
 	
 	def handle_upload(file)
 		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
@@ -78,7 +76,9 @@ class Type
 	include DataMapper::Resource
 	
 	property :id,		Serial
-	property :title,	String
+	property :name,		String
+	
+	has n, :propertys
 	
 end
 
@@ -105,6 +105,9 @@ class Region
 end
 
 DataMapper.auto_upgrade!
+
+tt = Type.first_or_create(:name => "Apartment")
+rr = Region.first_or_create(:name => "North Goa")
 
 before do
 	@page_title = "GoaPropertyCo"
@@ -142,12 +145,15 @@ end
 
 post '/create' do
 	location = Location.get(params[:location][:id])
+	type = Type.get(params[:type][:id])
+	
 	update_params = params[:property]
 	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
 	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
 	property = Property.new(update_params)
 	
 	location.propertys << property
+	type.propertys << property
 	
 	if property.save	
 		
@@ -174,12 +180,10 @@ get '/property/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@property.texttype = Type.get(@property.type_id).title
 	
 	@properties = Property.all
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.texttype = Type.get(1).title
 	end
 	erb :property
 end

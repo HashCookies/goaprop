@@ -12,9 +12,9 @@
 			<div class="form-group">
 					<input type="text" name="property[title]" id="title" class="form-control" />	
 					
-					<select name="property[type_id]" id="type_id">
+					<select name="type[id]" id="type_id">
 						<% @types.each do |type| %>
-							<option value="<%= type.id %>"><%= type.title %></option>
+							<option value="<%= type.id %>"><%= type.name %></option>
 						<% end %>
 					</select>
 					

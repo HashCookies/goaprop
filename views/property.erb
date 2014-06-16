@@ -18,7 +18,7 @@
 				<h3 class="prop-title">
 					<a href="/property/<%= @property.id %>">
 						<span><%= @property.title %> </span>
-						<%= @property.texttype %> 
+						<%= @property.type.name %> 
 						<%= "in " + @property.location.name %>
 						<%= "for Sale" if @property.for_buy == true %>
 						<%= "for Rent" if @property.for_rent == true %>
