@@ -55,7 +55,6 @@ class Property
 		File.open(path, "wb") do |f|
 			f.write(file[:tempfile].read)
 		end
-		
 	end
 	
 	
@@ -120,7 +119,6 @@ get '/' do
 	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.texttype = Type.get(property.type_id).title
 	end
 	erb :home
 end
@@ -130,7 +128,6 @@ get '/properties' do
 	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.texttype = Type.get(property.type_id).title
 	end
 	erb :properties
 end
@@ -196,9 +193,9 @@ get '/search' do
 	search = params[:search]
 	
 	@properties = Property.all(search[:buysell] => true, :type_id => search[:type_id], :region_id => search[:region_id])
+	
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.texttype = Type.get(property.type_id).title
 	end
 	erb :search
 end

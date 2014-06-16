@@ -8,7 +8,7 @@
 			</select>
 			<select name="search[type_id]" id="type_id">
 				<% @types.each do |type| %>
-					<option value="<%= type.id %>"><%= type.title %></option>
+					<option value="<%= type.id %>"><%= type.name %></option>
 				<% end %>
 			</select>
 			<select name="search[region_id]" id="region_id">
