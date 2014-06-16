@@ -1,22 +1,29 @@
-<div class="cover anystretch" data-stretch="images/dots-pattern.jpg">
+<div class="cover">
 	<div id="search-bar">
 		<form method="get" action="/search" id="search">
-			I'd like to
-			<select name="search[buysell]">
-				<option value="for_buy">Buy</option>
-				<option value="for_rent">Rent</option>
-			</select>
-			<select name="search[type_id]" id="type_id">
+			<p id="select-buysell">
+				I'd like to
+				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">Buy</span>
+				<input type="hidden" name="" value="for_buy" />
+			</p>
+			
+			<p id="select-type">a 
+				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">Commercial</span>
+	
+				<!--<select name="search[type_id]" id="type_id">			
 				<% @types.each do |type| %>
 					<option value="<%= type.id %>"><%= type.name %></option>
 				<% end %>
-			</select>
-			<select name="search[region_id]" id="region_id">
+			</select>--> property</p>
+			
+			<p id="select-region">in 
+				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">North Goa</span>
+			<!--<select name="search[region_id]" id="region_id">
 				<% @regions.each do |region| %>
 					<option value="<%= region.id %>"><%= region.name %></option>
 				<% end %>
-			</select>
-			<input type="submit" name="" value="Find Property" class="btn btn-large" />
+			</select>--></p>
+			<input type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large" />
 		</form>
 	</div>
 </div>

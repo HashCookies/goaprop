@@ -329,16 +329,46 @@ img {
 
 #search-bar {
 	position: absolute;
-	z-index: 200;
-	bottom: 50px;
+	font-weight: 100;
+	bottom: 15%;
 	text-align: center;
-	background: transparentize($vib, 0.2);
 	width: 100%;
 	padding: 30px 0;
-	color: white;
+	color: black;
+	font-style: italic;
 	font-size: 24px;
-	font-family: "Tisa OT";
+	font-family: $serif;
 	input {
 		color: $vib;
+		font-family: $sans;
+		margin: 0 10px;
+		
+	}
+	select {
+		margin: 0 10px;
+	}
+	#select-type {
+		margin-left: 252px;
+	}
+	#select-region {
+		margin-left: 143px;
+	}
+	#find-prop {
+		background: none;
+		font-weight: bold;
+		font-style: normal;
+		text-transform: uppercase;
+		margin-left: 180px;
+		margin-top: 50px;
+		border: 1px solid $vib;
+	}
+	.select-label {
+		font-family: $sans;
+		font-weight: bold;
+		font-style: normal;
+		color: $vib;
+		text-transform: uppercase;
+		display: inline-block;
+		margin: 0 10px;
 	}
 }

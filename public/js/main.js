@@ -43,4 +43,9 @@ $(document).ready(function() {
 			}
 
 		});
+		
+		$('#select-buysell-label').popover({
+			placement: 'bottom',
+			html: true	
+		});
 });
