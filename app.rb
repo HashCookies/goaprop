@@ -12,7 +12,7 @@ end
 
 configure :development do
 	require 'dm-sqlite-adapter'
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/database.db")
+	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
 end
 
 DataMapper::Property::String.length(255)
@@ -46,11 +46,11 @@ class Property
 	property :type_id,			Integer
 	property :region_id,		Integer
 	# extra properties
-	property :type,				String
-	property :location,			String
+	property :texttype,				String
+	property :textlocation,			String
 	
 	has n, :images
-	has n, :regions, :through => Resource
+#	has n, :regions, :through => Resource
 	belongs_to :location
 	
 	def handle_upload(file)
@@ -101,7 +101,7 @@ class Region
 	property :name,		String
 	
 	has n, :locations, :through => Resource
-	has n, :propertys, :through => Resource
+#	has n, :propertys, :through => Resource
 	
 end
 
@@ -148,8 +148,9 @@ post '/create' do
 	update_params = params[:property]
 	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
 	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
+	property = Property.new(update_params)
 	
-	new_property = location.propertys.create(update_params)
+	location.propertys << property
 	
 	if property.save	
 		
