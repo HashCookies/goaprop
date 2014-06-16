@@ -18,8 +18,8 @@
 				<h3 class="prop-title">
 					<a href="/property/<%= @property.id %>">
 						<span><%= @property.title %> </span>
-						<%= @property.type %> 
-						<%= "in " + @property.location %>
+						<%= @property.texttype %> 
+						<%= "in " + @property.location.name %>
 						<%= "for Sale" if @property.for_buy == true %>
 						<%= "for Rent" if @property.for_rent == true %>
 					</a>
@@ -57,11 +57,11 @@
 					</li>
 					<li>
 						<div class="block"><span class="label">Built Area</span></div>
-						<div class="block"><%= @property.area_built %>)</div>
+						<div class="block"><%= @property.area_built %></div>
 					</li>
 					<li>
 						<div class="block"><span class="label">Location</span></div>
-						<div class="block"><%= @property.location %>)</div>
+						<div class="block"><%= @property.location.name %></div>
 					</li>
 					<li class="clearfix">
 						<div class="block"><span class="label">Facilities</span> </div>

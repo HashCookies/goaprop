@@ -46,8 +46,7 @@ class Property
 	property :type_id,			Integer
 	property :region_id,		Integer
 	# extra properties
-	property :texttype,				String
-	property :textlocation,			String
+	property :texttype,				String, :default => 1
 	
 	has n, :images
 #	has n, :regions, :through => Resource
@@ -118,8 +117,7 @@ get '/' do
 	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.type = Type.get(property.type_id).title
-		property.location = Location.get(property.location_id).name
+		property.texttype = Type.get(property.type_id).title
 	end
 	erb :home
 end
@@ -129,8 +127,7 @@ get '/properties' do
 	@region = Region.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.type = Type.get(property.type_id).title
-		property.location = Location.get(property.location_id).name
+		property.texttype = Type.get(property.type_id).title
 	end
 	erb :properties
 end
@@ -162,7 +159,7 @@ post '/create' do
 		end
 		
 		if !params[:featured].nil?
-			@featured = @property.images.create({ :property_id => property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
+			@featured = property.images.create({ :property_id => property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
 			property.handle_upload(params[:featured])
 			property.update({ :featured_img => @featured.id })
 		end
@@ -177,15 +174,12 @@ get '/property/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@property.type = Type.get(@property.type_id).title
-	@property.location = Location.get(@property.location_id).name
-	
+	@property.texttype = Type.get(@property.type_id).title
 	
 	@properties = Property.all
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.type = Type.get(property.type_id).title
-		property.location = Location.get(property.location_id).name
+		property.texttype = Type.get(1).title
 	end
 	erb :property
 end
@@ -200,8 +194,7 @@ get '/search' do
 	@properties = Property.all(search[:buysell] => true, :type_id => search[:type_id], :region_id => search[:region_id])
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		property.type = Type.get(property.type_id).title
-		property.location = Location.get(property.location_id).name
+		property.texttype = Type.get(property.type_id).title
 	end
 	erb :search
 end
