@@ -344,9 +344,24 @@ img {
 		margin: 0 10px;
 		
 	}
-	select {
-		margin: 0 10px;
+	.select-label {
+		text-decoration: none;
+		font-family: $sans;
+		font-weight: bold;
+		font-style: normal;
+		color: $vib;
+		text-transform: uppercase;
+		display: inline-block;
+		margin: 0 10px 0 20px;
+		.caret {
+			opacity: 0;
+			-webkit-transition-duration: 400ms;
+		}
+		&:hover .caret {
+			opacity: 1;
+		}
 	}
+	
 	#select-category {
 		margin-left: 77px;
 	}
@@ -358,22 +373,17 @@ img {
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 90px;
+		margin-left: 92px;
 		margin-top: 50px;
+		font-size: 18px;
+		font-family: $sans;
+		color: $vib;
+		padding: 10px 15px 7px;
 		border: 1px solid $vib;
 		&:after {
 			content: " \00BB";
 			color: red;
 		}
-	}
-	.select-label {
-		font-family: $sans;
-		font-weight: bold;
-		font-style: normal;
-		color: $vib;
-		text-transform: uppercase;
-		display: inline-block;
-		margin: 0 10px;
 	}
 	
 }

@@ -46,7 +46,7 @@ $(document).ready(function() {
 		
 		$('.select-label').popover({
 			placement: 'bottom',
-			html: true	
+			html: true
 		});
 		
 		$b.on('click', '.popover-btn', function() {
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 			
 			$(elem).find('.hidden-field').val(value);
-			$(elem).find('span.select-label').text(title).popover('hide');
+			$(elem).find('.select-label').text(title).popover('hide');
 			
 		});
 });
