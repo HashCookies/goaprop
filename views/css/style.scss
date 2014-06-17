@@ -331,13 +331,13 @@ img {
 	position: absolute;
 	font-weight: 100;
 	bottom: 15%;
-	text-align: center;
 	padding: 30px 0;
 	color: black;
 	font-style: italic;
-	font-size: 24px;
+	font-size: 28px;
 	font-family: $serif;
-	right: 15%;
+	text-align: left;
+	left: 50%;
 	input {
 		color: $vib;
 		font-family: $sans;
@@ -348,17 +348,17 @@ img {
 		margin: 0 10px;
 	}
 	#select-category {
-		margin-left: 165px;
+		margin-left: 77px;
 	}
 	#select-region {
-		margin-left: 150px;
+		margin-left: 70px;
 	}
 	#find-prop {
 		background: none;
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 180px;
+		margin-left: 90px;
 		margin-top: 50px;
 		border: 1px solid $vib;
 		&:after {

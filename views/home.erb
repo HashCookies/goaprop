@@ -1,37 +1,33 @@
 <div class="cover">
 	<div id="search-bar">
 		<form method="get" action="/search" id="search">
-			<p id="select-buysell">
+			<div id="select-buyrent">
 				I'd like to
 				<span id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
 					data-content="
-					<button class='popover-btn' data-title='Buy' data-elem='input-buyrent' data-value='for_buy'>Buy</button> 
-					<button class='popover-btn' data-title='Rent' data-elem='input-buyrent' data-value='for_rent'>Rent</button>
+					<button class='popover-btn' data-title='Buy' data-elem='select-buyrent' data-value='for_buy'>Buy</button> 
+					<button class='popover-btn' data-title='Rent' data-elem='select-buyrent' data-value='for_rent'>Rent</button>
 					">Buy</span>
-				<input type="hidden" name="search[buyrent]" value="for_buy" id="input-buyrent" />
-			</p>
+				<input type="hidden" name="search[buyrent]" value="for_buy" id="input-buyrent" class="hidden-field" />
+			</div>
 			
-			<p id="select-category">a 
+			<div id="select-category">a 
 				<span id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='input-category' data-value='is_residential'>Residential</button> 
-					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='input-category' data-value='is_commercial'>Commercial</button>
-					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='input-category' data-value='is_undeveloped'>Undeveloped</button>
+					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='select-category' data-value='is_residential'>Residential</button> 
+					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='select-category' data-value='is_commercial'>Commercial</button>
+					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='select-category' data-value='is_undeveloped'>Undeveloped</button>
 				">Residential</span> property
-				<input type="hidden" name="search[category]" value="is_residential" id="input-category" />
-	
-<!--				<select name="search[category]" id="category">			
-					<option value="is_commercial">Commercial</option>
-					<option value="is_residential">Residential</option>
-					<option value="is_undeveloped">Undeveloped</option>
-				</select> property</p>-->
+				<input type="hidden" name="search[category]" value="is_residential" id="input-category" class="hidden-field" />
+			</div>
+
 			
-			<p id="select-region">in 
-				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">North Goa</span>
-<!--			<select name="search[region_id]" id="region_id">
-				<% @regions.each do |region| %>
-					<option value="<%= region.id %>"><%= region.name %></option>
-				<% end %>
-			</select>--></p>
+			<div id="select-region">in 
+				<span id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+					<%= erb :_region_loop %>
+				">North Goa</span>
+				
+				<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
+			</div>
 			<input type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large" />
 		</form>
 	</div>

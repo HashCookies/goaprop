@@ -55,8 +55,8 @@ $(document).ready(function() {
 			var title = $(this).attr('data-title');
 
 			
-			$(elem).val(value);
-			$('#select-buyrent-label').text(title).popover('hide');
+			$(elem).find('.hidden-field').val(value);
+			$(elem).find('span.select-label').text(title).popover('hide');
 			
 		});
 });
