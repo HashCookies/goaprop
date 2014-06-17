@@ -52,11 +52,11 @@ $(document).ready(function() {
 		$b.on('click', '.popover-btn', function() {
 			var value = $(this).attr('data-value');
 			var elem = '#' + $(this).attr('data-elem');
-			var title = $(this).attr('data-title');
+			var title = $(this).attr('data-title') + ' <span class="caret"></span>';
 
 			
 			$(elem).find('.hidden-field').val(value);
-			$(elem).find('.select-label').text(title).popover('hide');
+			$(elem).find('.select-label').html(title).popover('hide');
 			
 		});
 });
