@@ -3,22 +3,31 @@
 		<form method="get" action="/search" id="search">
 			<p id="select-buysell">
 				I'd like to
-				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<button class='popover-btn' data-elem='input-forbuy' data-value='for_buy'>Buy</button> <button data-value='for_sell'>SELL</button>">Buy</span>
-				<input type="hidden" name="for_buy" value="for_buy" id="input-forbuy" />
+				<span id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
+					data-content="
+					<button class='popover-btn' data-title='Buy' data-elem='input-buyrent' data-value='for_buy'>Buy</button> 
+					<button class='popover-btn' data-title='Rent' data-elem='input-buyrent' data-value='for_rent'>Rent</button>
+					">Buy</span>
+				<input type="hidden" name="search[buyrent]" value="for_buy" id="input-buyrent" />
 			</p>
 			
-			<p id="select-type">a 
-				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">Commercial</span>
+			<p id="select-category">a 
+				<span id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='input-category' data-value='is_residential'>Residential</button> 
+					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='input-category' data-value='is_commercial'>Commercial</button>
+					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='input-category' data-value='is_undeveloped'>Undeveloped</button>
+				">Residential</span> property
+				<input type="hidden" name="search[category]" value="is_residential" id="input-category" />
 	
-				<!--<select name="search[type_id]" id="type_id">			
-				<% @types.each do |type| %>
-					<option value="<%= type.id %>"><%= type.name %></option>
-				<% end %>
-			</select>--> property</p>
+<!--				<select name="search[category]" id="category">			
+					<option value="is_commercial">Commercial</option>
+					<option value="is_residential">Residential</option>
+					<option value="is_undeveloped">Undeveloped</option>
+				</select> property</p>-->
 			
 			<p id="select-region">in 
 				<span id="select-buysell-label" class="select-label" data-container="body" data-toggle="popover" data-content="<h2>Buy</h2> | SELL">North Goa</span>
-			<!--<select name="search[region_id]" id="region_id">
+<!--			<select name="search[region_id]" id="region_id">
 				<% @regions.each do |region| %>
 					<option value="<%= region.id %>"><%= region.name %></option>
 				<% end %>

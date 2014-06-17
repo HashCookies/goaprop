@@ -46,7 +46,7 @@ h2 {
 }
 
 .main {
-	background: white;
+	background: #fff;
 }
 
 .header {
@@ -332,12 +332,12 @@ img {
 	font-weight: 100;
 	bottom: 15%;
 	text-align: center;
-	width: 100%;
 	padding: 30px 0;
 	color: black;
 	font-style: italic;
 	font-size: 24px;
 	font-family: $serif;
+	right: 15%;
 	input {
 		color: $vib;
 		font-family: $sans;
@@ -347,8 +347,8 @@ img {
 	select {
 		margin: 0 10px;
 	}
-	#select-type {
-		margin-left: 255px;
+	#select-category {
+		margin-left: 165px;
 	}
 	#select-region {
 		margin-left: 150px;
@@ -375,6 +375,7 @@ img {
 		display: inline-block;
 		margin: 0 10px;
 	}
+	
 }
 
 .popover-content {
@@ -386,5 +387,9 @@ img {
 		display: inline-block;
 		margin: 3px 2px 0;
 	}
-	
+	.select-btn-category {
+		display: block;
+		width: 100%;
+		text-align: left;
+	}	
 }

@@ -44,18 +44,19 @@ $(document).ready(function() {
 
 		});
 		
-		$('#select-buysell-label').popover({
+		$('.select-label').popover({
 			placement: 'bottom',
 			html: true	
 		});
 		
-		$('.popover-btn').on('click', function() {
+		$b.on('click', '.popover-btn', function() {
 			var value = $(this).attr('data-value');
-			var elem = $(this).attr('data-elem');
+			var elem = '#' + $(this).attr('data-elem');
+			var title = $(this).attr('data-title');
+
 			
-			console.log('hey');
-			
-			$('#input-forbuy').value(2);
+			$(elem).val(value);
+			$('#select-buyrent-label').text(title).popover('hide');
 			
 		});
 });

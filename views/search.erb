@@ -1,3 +1,9 @@
 <div class="container content">
+
+	<% @locations.each do |location| %>
+		<%= location.name %>
+		<%= location.propertys.count %>
+	<% end %>
+
 	<%= erb :_properties_grid %>
 </div>
