@@ -41,6 +41,7 @@ class Property
 	property :for_rent,			Boolean
 	property :is_commercial,	Boolean # This and the next option allows property to have both booleans to be true.
 	property :is_residential,	Boolean
+	property :is_undeveloped,	Boolean
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :region_id,		Integer
@@ -147,10 +148,20 @@ post '/create' do
 	update_params = params[:property]
 	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
 	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
+	
+	update_params[:is_commercial] = params[:property][:is_commercial] == 'on' ? true : false
+	update_params[:is_residential] = params[:property][:is_residential] == 'on' ? true : false
+	update_params[:is_undeveloped] = params[:property][:is_undeveloped] == 'on' ? true : false
+	
 	property = Property.new(update_params)
 	
 	location.propertys << property
 	type.propertys << property
+	
+	
+	
+	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
+	property.slug = property.slug.downcase.gsub(" ", "-")
 	
 	if property.save	
 		

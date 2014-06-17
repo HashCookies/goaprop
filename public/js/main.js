@@ -48,4 +48,14 @@ $(document).ready(function() {
 			placement: 'bottom',
 			html: true	
 		});
+		
+		$('.popover-btn').on('click', function() {
+			var value = $(this).attr('data-value');
+			var elem = $(this).attr('data-elem');
+			
+			console.log('hey');
+			
+			$('#input-forbuy').value(2);
+			
+		});
 });

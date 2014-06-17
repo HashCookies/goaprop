@@ -9,9 +9,12 @@
 	<form role="form" action="/create" method="post" id="property" enctype="multipart/form-data">
 		
 		<div class="col-md-8">
+		
 			<div class="form-group">
-					<input type="text" name="property[title]" id="title" class="form-control" />	
-					
+				<input type="text" name="property[title]" id="title" class="form-control" />	
+			</div>
+			
+			<div class="form-group">					
 					<select name="type[id]" id="type_id">
 						<% @types.each do |type| %>
 							<option value="<%= type.id %>"><%= type.name %></option>
@@ -25,14 +28,30 @@
 							<option value="<%= location.id %>"><%= location.name %></option>
 						<% end %>
 					</select>
-					for
 					
-					<label class="checkbox-inline">
-						<input type="checkbox" name="property[for_buy]">Sale
-					</label>
-					<label class="checkbox-inline">
-						<input type="checkbox" name="property[for_rent]">Rent
-					</label>
+			</div>
+			
+			<div class="form-group">
+				<h4>Option</h4>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="property[for_buy]">Sale
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="property[for_rent]">Rent
+				</label>
+			</div>
+			
+			<div class="form-group">
+				<h4>Property Type</h4>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="property[is_commercial]">Commercial
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="property[is_residential]">Residential
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="property[is_undeveloped]">Undeveloped
+				</label>
 			</div>
 						
 			<div class="form-group">

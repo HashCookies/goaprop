@@ -161,7 +161,7 @@ img {
 		}
 	}
 	.data-block {
-		background: white;
+		background: #fefefe;
 
 		border-top: 0;
 		padding: 10px 15px;
@@ -348,10 +348,10 @@ img {
 		margin: 0 10px;
 	}
 	#select-type {
-		margin-left: 252px;
+		margin-left: 255px;
 	}
 	#select-region {
-		margin-left: 143px;
+		margin-left: 150px;
 	}
 	#find-prop {
 		background: none;
@@ -361,6 +361,10 @@ img {
 		margin-left: 180px;
 		margin-top: 50px;
 		border: 1px solid $vib;
+		&:after {
+			content: " \00BB";
+			color: red;
+		}
 	}
 	.select-label {
 		font-family: $sans;
@@ -371,4 +375,16 @@ img {
 		display: inline-block;
 		margin: 0 10px;
 	}
+}
+
+.popover-content {
+	button {
+		font-weight: bold;
+		background: none;
+		border: none;
+		text-transform: uppercase;
+		display: inline-block;
+		margin: 3px 2px 0;
+	}
+	
 }
