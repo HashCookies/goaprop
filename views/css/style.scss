@@ -353,13 +353,6 @@ img {
 		text-transform: uppercase;
 		display: inline-block;
 		margin: 0 10px 0 20px;
-		.caret {
-			opacity: 0;
-			-webkit-transition-duration: 400ms;
-		}
-		&:hover .caret {
-			opacity: 1;
-		}
 	}
 	
 	#select-category {

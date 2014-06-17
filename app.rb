@@ -207,6 +207,7 @@ get '/search' do
 	
 	@properties = @locations.propertys(search[:buyrent] => true, search[:category] => true)
 	
+	@locations = @properties.locations
 	
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
