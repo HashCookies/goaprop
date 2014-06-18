@@ -203,9 +203,14 @@ end
 get '/search' do
 	search = params[:search]
 	
-	@locations = Region.get(search[:region_id]).locations
+	@region = Region.get(search[:region_id])
 	
-	@properties = @locations.propertys(search[:buyrent] => true, search[:category] => true)
+	@buyrent = search[:buyrent]
+	@category = search[:category]
+	
+	@locations = @region.locations
+	
+	@properties = @locations.propertys(@buyrent => true, @category => true)
 	
 	@locations = @properties.locations
 	

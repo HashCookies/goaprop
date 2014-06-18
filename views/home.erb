@@ -12,7 +12,7 @@
 			</div>
 			
 			<div id="select-category">a 
-				<a id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+				<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='select-category' data-value='is_residential'>Residential</button> 
 					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='select-category' data-value='is_commercial'>Commercial</button>
 					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='select-category' data-value='is_undeveloped'>Undeveloped</button>
@@ -22,7 +22,7 @@
 
 			
 			<div id="select-region">in 
-				<a id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+				<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 					<%= erb :_region_loop %>
 				">North Goa <span class="caret"></span></a>
 				
@@ -33,8 +33,10 @@
 	</div>
 </div>
 
-<div class="container content">
-	<%= erb :_properties_grid %>
+<div class="grid-wrap">
+	<div class="container content ">
+		<%= erb :_properties_grid %>
+	</div>
 </div>
 
 <div class="container">

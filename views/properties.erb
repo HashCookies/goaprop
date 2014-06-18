@@ -1,11 +1,5 @@
-<div class="container content">
-	<div class="col-md-12">
-		<h5 class="search-result-title">Found <span><%= @properties.count %> Properties</span> in <span><%= @region.name %></span></h5>
-	</div>
-<!--	<div class="col-md-2" id="filters-wrap">
-		<h3>Filters</h3>
-	</div>-->
-	<div class="row">
+<div class="grid-wrap">
+	<div class="container content">
 		<%= erb :_properties_grid %>
 	</div>
 </div>
