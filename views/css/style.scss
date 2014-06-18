@@ -102,16 +102,19 @@ h2 {
 	position: absolute;
 	right: 50px;
 	top: 0;
-	background: #fafaff;
+	/*background: #fafaff;*/
 	padding: 10px 0 5px 15px;
-	border: 1px solid darken($light, 5%);
+	/*border: 1px solid darken($light, 5%);*/
 	border-top: none;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	li {
 		float: left;
 		margin-right: 15px;
-		
+		.glyphicon {
+			font-size: 12px;
+			color: $vib;
+		}
 	}
 }
 
