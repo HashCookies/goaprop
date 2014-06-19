@@ -3,7 +3,7 @@
 		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 			<%= erb :_category_loop %>
 		"><%= @category.name %></a> properties &nbsp;
-		<input type="hidden" name="search[category]" value="1" id="input-category" class="hidden-field" />
+		<input type="hidden" name="search[category]" value="<%= @category.id %>" id="input-category" class="hidden-field" />
 	</div>
 	
 	
@@ -12,15 +12,15 @@
 			data-content="
 			<%= erb :_state_loop %>
 			"><%= @state.name %></a>
-		<input type="hidden" name="search[state]" value="1" id="input-state" class="hidden-field" />
+		<input type="hidden" name="search[state]" value="<%= @state.id %>" id="input-state" class="hidden-field" />
 	</div>
 	
 	<div id="select-region" class="select-label-wrap"> in
 		<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 			<%= erb :_region_loop %>
-		">North Goa</a>
+		"><%= @region.name %></a>
 		
-		<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
+		<input type="hidden" name="search[region_id]" value="<%= @region.id %>" class="hidden-field" />
 	</div>
 	
 	<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large btn-primary">Search Again</button>

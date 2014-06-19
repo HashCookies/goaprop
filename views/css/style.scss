@@ -385,13 +385,16 @@ img {
 	position: absolute;
 	font-weight: 100;
 	bottom: 50px;
-	padding: 30px 0;
+	z-index: 5000;
+	background: transparentize(white, 0.1);
+	padding: 50px;
 	color: black;
 	font-style: italic;
 	font-size: 28px;
 	font-family: $serif;
 	text-align: left;
 	left: 50%;
+	border: 1px solid transparentize($vib, 0.8);
 	input {
 		color: $vib;
 		font-family: $sans;
@@ -431,8 +434,8 @@ img {
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 92px;
-		margin-top: 50px;
+		margin-left: 112px;
+		margin-top: 20px;
 		font-size: 18px;
 		font-family: $sans;
 		color: $vib;
