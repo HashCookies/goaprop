@@ -455,9 +455,9 @@ img {
 .results-title {
 	width: 100%;
 	overflow: auto;
-	padding: 10px 2.5%;
-	background: white;
-	border-bottom: 1px solid darken($light, 20%);
+	padding: 25px 2.5% 0;
+	background: transparent;
+	border-top: 1px solid darken($light, 20%);
 	h3 {
 		font-size: 16px;
 		margin-top: 10px;

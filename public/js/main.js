@@ -16,16 +16,17 @@ $(document).ready(function() {
 			itemSelector: '.property-item',
 			getSortData: {
 				price:	'[data-price] parseInt',
-				area:	'[data-area] parseInt'
-			},
-			sortBy: ['area', 'price']
+				area:	'[data-area] parseInt',
+				date: function (itemElem) {
+							var date = $(itemElem).attr('data-date');
+				            return Date.parse(date);
+				        }
+			}
 		});
 		
 		
 		$('#sort-filter').on( 'click', 'a', function() {
 		  var sortValue = $(this).parent().attr('data-sort-value');
-		  // make an array of values
-		  sortValue = sortValue.split(',');
 		  $grid.isotope({ sortBy: sortValue });
 		  
 		  $('#sort-filter li.active').removeClass('active');
@@ -38,13 +39,13 @@ $(document).ready(function() {
 		$('#location-filter a').click(function(){
 		  $('#location-filter li.active').removeClass('active');
 		  var selector = $(this).attr('data-filter');
-		  console.log(selector);
 		  $grid.isotope({ filter: selector });
 		  $(this).parent().addClass('active');
 		  return false;
 		  
 		  
 		});
+		
 		
 		var $propD = $('.property-data');
 		var $propI = $('.property-intro');

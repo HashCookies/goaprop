@@ -1,39 +1,40 @@
 
-<div class="results-title">
-	<div class="container">
-		<form method="get" action="/search" id="search">
-			<div id="select-category" class="select-label-wrap">Searching 
-				<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='select-category' data-value='is_residential'>Residential</button> 
-					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='select-category' data-value='is_commercial'>Commercial</button>
-					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='select-category' data-value='is_undeveloped'>Undeveloped</button>
-				">Residential <span class="caret"></span></a> properties &nbsp;
-				<input type="hidden" name="search[category]" value="<%= @category %>" id="input-category" class="hidden-field" />
-			</div>
-			
-			
-			<div id="select-buyrent" class="select-label-wrap"> for 
-				<a href="#" id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
-					data-content="
-					<button class='popover-btn' data-title='Buy' data-elem='select-buyrent' data-value='for_buy'>Sale</button> 
-					<button class='popover-btn' data-title='Rent' data-elem='select-buyrent' data-value='for_rent'>Rent</button>
-					">Sale <span class="caret"></span></a>
-				<input type="hidden" name="search[buyrent]" value="<%= @buyrent %>" id="input-buyrent" class="hidden-field" />
-			</div>
-			
-			<div id="select-region" class="select-label-wrap"> in
-				<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<%= erb :_region_loop %>
-				">North Goa <span class="caret"></span></a>
-				
-				<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
-			</div>
-			
-			<button class="btn btn-large btn-primary">Search Again</button>
-		</form>
-	</div>
-</div>
 <div class="grid-wrap">
+	<div class="results-title">
+		<div class="container">
+			<form method="get" action="/search" id="search">
+				<div id="select-category" class="select-label-wrap">Searching 
+					<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+						<button class='popover-btn select-btn-category' data-title='Residential' data-elem='select-category' data-value='is_residential'>Residential</button> 
+						<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='select-category' data-value='is_commercial'>Commercial</button>
+						<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='select-category' data-value='is_undeveloped'>Undeveloped</button>
+					">Residential <span class="caret"></span></a> properties &nbsp;
+					<input type="hidden" name="search[category]" value="<%= @category %>" id="input-category" class="hidden-field" />
+				</div>
+				
+				
+				<div id="select-buyrent" class="select-label-wrap"> for 
+					<a href="#" id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
+						data-content="
+						<button class='popover-btn' data-title='Buy' data-elem='select-buyrent' data-value='for_buy'>Sale</button> 
+						<button class='popover-btn' data-title='Rent' data-elem='select-buyrent' data-value='for_rent'>Rent</button>
+						">Sale <span class="caret"></span></a>
+					<input type="hidden" name="search[buyrent]" value="<%= @buyrent %>" id="input-buyrent" class="hidden-field" />
+				</div>
+				
+				<div id="select-region" class="select-label-wrap"> in
+					<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+						<%= erb :_region_loop %>
+					">North Goa <span class="caret"></span></a>
+					
+					<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
+				</div>
+				
+				<button class="btn btn-large btn-primary">Search Again</button>
+			</form>
+		</div>
+	</div>
+	
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-2 filters">
@@ -53,9 +54,9 @@
 				
 				<span class="label">Sort by</span>
 				<ul class="list-group" id="sort-filter">
-					<li class="list-group-item active">Newest <span class="glyphicon glyphicon-ok-sign"></span></li>
-					<li class="list-group-item" data-sort-value="price,area"><a href="#">Price</a></li>
-					<li class="list-group-item" data-sort-value="area,price"><a href="#">Area</a></li>
+					<li class="list-group-item active" data-sort-value="date"><a href="#">Newest</a> <span class="glyphicon glyphicon-ok-sign"></span></li>
+					<li class="list-group-item" data-sort-value="price"><a href="#">Price</a></li>
+					<li class="list-group-item" data-sort-value="area"><a href="#">Area</a></li>
 				</ul>
 			</div>
 			<div class="col-md-10">

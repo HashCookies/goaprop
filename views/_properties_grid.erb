@@ -2,13 +2,14 @@
 <% @properties.each do |property| %>
 <li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %>" 
 	data-price="<%= property.price %>" 
-	data-area="<%= property.area %>">
+	data-area="<%= property.area %>"
+	data-date="<%= property.updated_at %>">
 		<div class="img-block">
 			<span class="prop-price sort-price"><%= property.price %></span>
 			<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
 		</div>
-		<div class="k">
-			<div class="data-block"><h3 class="prop-title">
+		<div class="data-block">
+			<h3 class="prop-title">
 				<a href="/property/<%= property.id %>">
 					<span><%= property.title %> </span>
 					<%= property.type.name %> 
@@ -27,8 +28,10 @@
 				<li class="clearfix">
 					<div class="block"><span class="label">Facilities</span> </div>
 					<div class="block">Bathroom, 3BHK, Parking</div>
+					
 				</li>
-			</ul></div>
+				<li><div class="date"><%= property.updated_at %></div></li>
+			</ul>
 		</div>
 </li>
 <% end %>
