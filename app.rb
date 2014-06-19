@@ -52,6 +52,8 @@ class Property
 #	has n, :regions, :through => Resource
 	belongs_to :location
 	belongs_to :type
+	belongs_to :state
+	belongs_to :category
 	
 	def handle_upload(file)
 		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
@@ -106,20 +108,55 @@ class Region
 	
 end
 
+class State
+	include DataMapper::Resource
+	
+	property :id,	Serial
+	property :name,	String
+	
+	has n, :propertys
+end
+
+class Category
+	include DataMapper::Resource
+	
+	property :id,	Serial
+	property :name,	String
+	
+	has n, :propertys
+end
+
 DataMapper.auto_upgrade!
 
-tt = Type.first_or_create(:name => "Apartment")
-rr = Region.first_or_create(:name => "North Goa")
+
 
 before do
 	@page_title = "GoaPropertyCo"
 end
 
+get '/reset' do
+	DataMapper.auto_migrate!
+	DataMapper.finalize
+	
+	tt = Type.first_or_create(:name => "Apartment")
+	rr = Region.create(:name => "North Goa")
+	rr = Region.create(:name => "South Goa")
+	ss = State.first_or_create(:name => "Sale")
+	ss = State.first_or_create(:name => "Rent")
+	
+	cc = Category.create(:name => "Residential")
+	cc = Category.create(:name => "Commercial")
+	cc = Category.create(:name => "Undeveloped")
+end
+
 get '/' do
 	@types = Type.all
 	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
 	@properties = Property.all
 	@region = Region.first
+	
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
@@ -139,6 +176,8 @@ get '/property/new' do
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
+	@states = State.all
+	@categories = Category.all
 	@page_title += " | New Property"
 	erb :new
 end
@@ -146,6 +185,8 @@ end
 post '/create' do
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])
+	state = State.get(params[:state][:id])
+	category = Category.get(params[:category][:id])
 	
 	update_params = params[:property]
 	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
@@ -159,7 +200,8 @@ post '/create' do
 	
 	location.propertys << property
 	type.propertys << property
-	
+	state.propertys << property
+	category.propertys << property
 	
 	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
@@ -214,7 +256,7 @@ get '/search' do
 	
 	@locations = @region.locations
 	
-	@properties = @locations.propertys(@buyrent => true, @category => true)
+	@properties = @locations.propertys(:state_id => @buyrent, :category_id => @category)
 	
 	@locations = @properties.locations
 	

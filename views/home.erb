@@ -1,23 +1,20 @@
 <div class="cover">
 	<div id="search-bar">
 		<form method="get" action="/search" id="search">
-			<div id="select-buyrent">
+			<div id="select-state">
 				I'd like to
 				<a href="#" id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
 					data-content="
-					<button class='popover-btn' data-title='Buy' data-elem='select-buyrent' data-value='for_buy'>Buy</button> 
-					<button class='popover-btn' data-title='Rent' data-elem='select-buyrent' data-value='for_rent'>Rent</button>
+					<%= erb :_state_loop %>
 					">Buy <span class="caret"></span></a>
-				<input type="hidden" name="search[buyrent]" value="for_buy" id="input-buyrent" class="hidden-field" />
+				<input type="hidden" name="search[buyrent]" value="1" id="input-buyrent" class="hidden-field" />
 			</div>
 			
 			<div id="select-category">a 
 				<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<button class='popover-btn select-btn-category' data-title='Residential' data-elem='select-category' data-value='is_residential'>Residential</button> 
-					<button class='popover-btn select-btn-category' data-title='Commercial' data-elem='select-category' data-value='is_commercial'>Commercial</button>
-					<button class='popover-btn select-btn-category' data-title='Undeveloped' data-elem='select-category' data-value='is_undeveloped'>Undeveloped</button>
+					<%= erb :_category_loop %>
 				">Residential <span class="caret"></span></a> property
-				<input type="hidden" name="search[category]" value="is_residential" id="input-category" class="hidden-field" />
+				<input type="hidden" name="search[category]" value="1" id="input-category" class="hidden-field" />
 			</div>
 
 			
