@@ -14,8 +14,7 @@
 					<span><%= property.title %> </span>
 					<%= property.type.name %> 
 					<%= "in " + property.location.name %>
-					<%= "for Sale" if property.for_buy == true %>
-					<%= "for Rent" if property.for_rent == true %>
+					<%= "for " + property.state.name %>
 				</a>
 			</h3>
 			<ul class="clearfix">
@@ -30,7 +29,6 @@
 					<div class="block">Bathroom, 3BHK, Parking</div>
 					
 				</li>
-				<li><div class="date"><%= property.updated_at %></div></li>
 			</ul>
 		</div>
 </li>

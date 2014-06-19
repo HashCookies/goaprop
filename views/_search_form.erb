@@ -1,0 +1,27 @@
+<form method="get" action="/search" id="search">
+	<div id="select-category" class="select-label-wrap">Searching 
+		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+			<%= erb :_category_loop %>
+		"><%= @category.name %></a> properties &nbsp;
+		<input type="hidden" name="search[category]" value="1" id="input-category" class="hidden-field" />
+	</div>
+	
+	
+	<div id="select-buyrent" class="select-label-wrap"> for 
+		<a href="#" id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
+			data-content="
+			<%= erb :_state_loop %>
+			"><%= @state.name %></a>
+		<input type="hidden" name="search[buyrent]" value="1" id="input-buyrent" class="hidden-field" />
+	</div>
+	
+	<div id="select-region" class="select-label-wrap"> in
+		<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
+			<%= erb :_region_loop %>
+		">North Goa</a>
+		
+		<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
+	</div>
+	
+	<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large">Find Properties</button>
+</form>

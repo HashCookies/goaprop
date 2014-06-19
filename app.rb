@@ -36,12 +36,6 @@ class Property
 	property :area_built,		String
 	property :featured_img,		Integer
 	property :slug,				String
-	
-	property :for_buy,			Boolean
-	property :for_rent,			Boolean
-	property :is_commercial,	Boolean # This and the next option allows property to have both booleans to be true.
-	property :is_residential,	Boolean
-	property :is_undeveloped,	Boolean
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :region_id,		Integer
@@ -187,16 +181,7 @@ post '/create' do
 	type = Type.get(params[:type][:id])
 	state = State.get(params[:state][:id])
 	category = Category.get(params[:category][:id])
-	
-	update_params = params[:property]
-	update_params[:for_buy] = params[:property][:for_buy] == 'on' ? true : false
-	update_params[:for_rent] = params[:property][:for_rent] == 'on' ? true : false
-	
-	update_params[:is_commercial] = params[:property][:is_commercial] == 'on' ? true : false
-	update_params[:is_residential] = params[:property][:is_residential] == 'on' ? true : false
-	update_params[:is_undeveloped] = params[:property][:is_undeveloped] == 'on' ? true : false
-	
-	property = Property.new(update_params)
+	property = Property.new(params[:property])
 	
 	location.propertys << property
 	type.propertys << property
@@ -245,19 +230,16 @@ get '/properties' do
 end
 
 get '/search' do
-	search = params[:search]
+	@categories = Category.all
+	@states = State.all
+	@regions = Region.all	
 	
-	@regions = Region.all
-	
-	@region = Region.get(search[:region_id])
-	
-	@buyrent = search[:buyrent]
-	@category = search[:category]
+	@region = Region.get(params[:search][:region_id])
+	@state = State.get(params[:search][:state])
+	@category = Category.get(params[:search][:category])
 	
 	@locations = @region.locations
-	
-	@properties = @locations.propertys(:state_id => @buyrent, :category_id => @category)
-	
+	@properties = @locations.propertys(:state_id => @state.id, :category_id => @category.id)
 	@locations = @properties.locations
 	
 	@properties.each do |property|

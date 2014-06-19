@@ -20,8 +20,7 @@
 						<span><%= @property.title %> </span>
 						<%= @property.type.name %> 
 						<%= "in " + @property.location.name %>
-						<%= "for Sale" if @property.for_buy == true %>
-						<%= "for Rent" if @property.for_rent == true %>
+						<%= "for " + @property.state.name %>
 					</a>
 				</h3>
 				<p class="prop-area"><%= @property.area_detail %></p>
