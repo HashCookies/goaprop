@@ -45,6 +45,8 @@ class Property
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :region_id,		Integer
+	property :created_at,		DateTime
+	property :updated_at,		DateTime
 	
 	has n, :images
 #	has n, :regions, :through => Resource

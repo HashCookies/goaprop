@@ -12,7 +12,27 @@ $(document).ready(function() {
 	
 		$grid = $('#property-grid');
 		
-		$grid.isotope();
+		$grid.isotope({
+			itemSelector: '.property-item',
+			getSortData: {
+				price:	'[data-price] parseInt',
+				area:	'[data-area] parseInt'
+			},
+			sortBy: ['area', 'price']
+		});
+		
+		
+		$('#sort-filter').on( 'click', 'a', function() {
+		  var sortValue = $(this).parent().attr('data-sort-value');
+		  // make an array of values
+		  sortValue = sortValue.split(',');
+		  $grid.isotope({ sortBy: sortValue });
+		  
+		  $('#sort-filter li.active').removeClass('active');
+		  $(this).parent().addClass('active');
+		  
+		  return false
+		});
 		
 		
 		$('#location-filter a').click(function(){
