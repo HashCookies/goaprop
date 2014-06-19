@@ -150,6 +150,7 @@ get '/' do
 	@categories = Category.all
 	@properties = Property.all
 	@region = Region.first
+	@states.first.name = "Buy"
 	
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
