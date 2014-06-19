@@ -407,6 +407,17 @@ img {
 		text-transform: uppercase;
 		display: inline-block;
 		margin: 0 10px 0 20px;
+		&:after {
+		   display: inline-block;
+		   	content: " ";
+		       width: 0;
+		       height: 0;
+		       margin-left: 5px;
+		       vertical-align: middle;
+		       border-top: 4px solid;
+		       border-right: 4px solid transparent;
+		       border-left: 4px solid transparent
+		}
 	}
 	
 	#select-category {
@@ -486,7 +497,19 @@ img {
 			font-weight: bold;
 			text-transform: uppercase;
 			color: $vib;
+			&:after {
+			   display: inline-block;
+			   	content: " ";
+			       width: 0;
+			       height: 0;
+			       margin-left: 5px;
+			       vertical-align: middle;
+			       border-top: 4px solid;
+			       border-right: 4px solid transparent;
+			       border-left: 4px solid transparent
+			}
 		}
+		
 	}
 	.btn {
 

@@ -3,17 +3,17 @@
 		<form method="get" action="/search" id="search">
 			<div id="select-state">
 				I'd like to
-				<a href="#" id="select-buyrent-label" class="select-label" data-container="body" data-toggle="popover" 
+				<a href="#" id="select-state-label" class="select-label" data-container="body" data-toggle="popover" 
 					data-content="
 					<%= erb :_state_loop %>
-					">Buy <span class="caret"></span></a>
-				<input type="hidden" name="search[state]" value="1" id="input-buyrent" class="hidden-field" />
+					">Buy</a>
+				<input type="hidden" name="search[state]" value="1" id="input-state" class="hidden-field" />
 			</div>
 			
 			<div id="select-category">a 
 				<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 					<%= erb :_category_loop %>
-				">Residential <span class="caret"></span></a> property
+				">Residential</a> property
 				<input type="hidden" name="search[category]" value="1" id="input-category" class="hidden-field" />
 			</div>
 
@@ -21,7 +21,7 @@
 			<div id="select-region">in 
 				<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 					<%= erb :_region_loop %>
-				">North Goa <span class="caret"></span></a>
+				">North Goa</a>
 				
 				<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
 			</div>

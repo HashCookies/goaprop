@@ -86,7 +86,7 @@ $(document).ready(function() {
 		$b.on('click', '.popover-btn', function() {
 			var value = $(this).attr('data-value');
 			var elem = '#' + $(this).attr('data-elem');
-			var title = $(this).attr('data-title') + ' <span class="caret"></span>';
+			var title = $(this).attr('data-title');
 
 			
 			$(elem).find('.hidden-field').val(value);
