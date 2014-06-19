@@ -10,8 +10,21 @@ $(document).ready(function() {
 		
 		$('.anystretch').anystretch();
 	
+		$grid = $('#property-grid');
 		
-		$('#property-grid').isotope();
+		$grid.isotope();
+		
+		
+		$('#location-filter a').click(function(){
+		  $('#location-filter li.active').removeClass('active');
+		  var selector = $(this).attr('data-filter');
+		  console.log(selector);
+		  $grid.isotope({ filter: selector });
+		  $(this).parent().addClass('active');
+		  return false;
+		  
+		  
+		});
 		
 		var $propD = $('.property-data');
 		var $propI = $('.property-intro');

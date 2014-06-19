@@ -1,33 +1,33 @@
 <ul id="property-grid" class="row">
 <% @properties.each do |property| %>
-	<li class="col-md-4 col-sm-6 col-xs-12 property-item">
-			<div class="img-block">
-				<span class="prop-price"><%= property.price %></span>
-				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
-			</div>
-			<div class="k">
-				<div class="data-block"><h3 class="prop-title">
-					<a href="/property/<%= property.id %>">
-						<span><%= property.title %> </span>
-						<%= property.type.name %> 
-						<%= "in " + property.location.name %>
-						<%= "for Sale" if property.for_buy == true %>
-						<%= "for Rent" if property.for_rent == true %>
-					</a>
-				</h3>
-				<ul class="clearfix">
-					<li class="clearfix">
-						<div class="block"><span class="label">Area</span></div>
-						<div class="block">
-							<%= property.area_detail %>
-						</div>
-					</li>
-					<li class="clearfix">
-						<div class="block"><span class="label">Facilities</span> </div>
-						<div class="block">Bathroom, 3BHK, Parking</div>
-					</li>
-				</ul></div>
-			</div>
-	</li>
+<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %>">
+		<div class="img-block">
+			<span class="prop-price sort-price"><%= property.price %></span>
+			<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
+		</div>
+		<div class="k">
+			<div class="data-block"><h3 class="prop-title">
+				<a href="/property/<%= property.id %>">
+					<span><%= property.title %> </span>
+					<%= property.type.name %> 
+					<%= "in " + property.location.name %>
+					<%= "for Sale" if property.for_buy == true %>
+					<%= "for Rent" if property.for_rent == true %>
+				</a>
+			</h3>
+			<ul class="clearfix">
+				<li class="clearfix">
+					<div class="block"><span class="label">Area</span></div>
+					<div class="block sort-area" data-sort="<%= property.area %>">
+						<%= property.area_detail %>
+					</div>
+				</li>
+				<li class="clearfix">
+					<div class="block"><span class="label">Facilities</span> </div>
+					<div class="block">Bathroom, 3BHK, Parking</div>
+				</li>
+			</ul></div>
+		</div>
+</li>
 <% end %>
 </ul>

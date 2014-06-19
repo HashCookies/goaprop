@@ -203,6 +203,8 @@ end
 get '/search' do
 	search = params[:search]
 	
+	@regions = Region.all
+	
 	@region = Region.get(search[:region_id])
 	
 	@buyrent = search[:buyrent]
