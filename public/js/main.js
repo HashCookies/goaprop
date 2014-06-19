@@ -25,9 +25,12 @@ $(document).ready(function() {
 		});
 		
 		
+		
 		$('#sort-filter').on( 'click', 'a', function() {
 		  var sortValue = $(this).parent().attr('data-sort-value');
-		  $grid.isotope({ sortBy: sortValue });
+		  $grid.isotope({ 
+		  	sortBy: sortValue
+		  });
 		  
 		  $('#sort-filter li.active').removeClass('active');
 		  $(this).parent().addClass('active');
@@ -35,17 +38,31 @@ $(document).ready(function() {
 		  return false
 		});
 		
+		var filters = {};
 		
-		$('#location-filter a').click(function(){
-		  $('#location-filter li.active').removeClass('active');
-		  var selector = $(this).attr('data-filter');
-		  $grid.isotope({ filter: selector });
-		  $(this).parent().addClass('active');
-		  return false;
-		  
-		  
+		$('#filters').on('click', 'a', function() {
+			var $this = $(this);
+			console.log($this);
+			
+			var $listGroup = $this.parents('.list-group');
+			var filterGroup = $listGroup.attr('data-filter-group');
+			
+			filters[ filterGroup ] = $this.attr('data-filter');
+			
+			var filterValue = '';
+			for (var prop in filters) {
+				filterValue += filters[prop];
+			}
+			$grid.isotope({filter: filterValue});
 		});
 		
+		$('.list-group').each( function( i, buttonGroup ) {
+		    var $buttonGroup = $( buttonGroup );
+		    $buttonGroup.on( 'click', 'a', function() {
+		      $buttonGroup.find('.active').removeClass('active');
+		      $( this ).parent().addClass('active');
+		    });
+		});
 		
 		var $propD = $('.property-data');
 		var $propI = $('.property-intro');
