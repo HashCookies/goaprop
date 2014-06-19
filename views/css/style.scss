@@ -478,6 +478,7 @@ img {
 		font-family: $serif;
 		font-style: italic;
 		font-size: 18px;
+		margin-top: 5px;
 		.select-label {
 			font-family: $sans;
 			font-style: normal;
@@ -488,9 +489,7 @@ img {
 		}
 	}
 	.btn {
-		padding: 0;
-		border: none;
-		display: none;
+
 	}
 	
 }
