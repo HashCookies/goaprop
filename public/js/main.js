@@ -42,7 +42,6 @@ $(document).ready(function() {
 		
 		$('#filters').on('click', 'a', function() {
 			var $this = $(this);
-			console.log($this);
 			
 			var $listGroup = $this.parents('.list-group');
 			var filterGroup = $listGroup.attr('data-filter-group');
@@ -63,7 +62,7 @@ $(document).ready(function() {
 		      $( this ).parent().addClass('active');
 		    });
 		});
-		
+				
 		var $propD = $('.property-data');
 		var $propI = $('.property-intro');
 		

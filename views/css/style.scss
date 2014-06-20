@@ -41,6 +41,11 @@ h2 {
 
 .badge {
 	font-family: Helvetica, Arial, sans-serif;
+	background: white;
+	padding: 3px 7px;
+	border-radius: 50px;
+	border: 1px solid darken($light, 20%);
+	color: $dark;
 }
 
 .label {
@@ -545,4 +550,3 @@ img {
 		display: none;
 	}
 }
-
