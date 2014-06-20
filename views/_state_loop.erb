@@ -1,3 +1,3 @@
-<% @states.each do |state| %>
-	<button class='popover-btn' data-title='<%= state.name %>' data-elem='select-state' data-value='<%= state.id %>'><%= state.name %></button>
+<% @states.each do |obj| %>
+	<button class='popover-btn <%= obj.class %>' data-title='<%= obj.name %>' data-elem='select-state' data-value='<%= obj.id %>'><%= obj.name %></button>
 <% end %>

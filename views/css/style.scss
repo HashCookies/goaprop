@@ -73,7 +73,7 @@ h2 {
 .header {
 	background: white;
 	width: 100%;
-	padding: 20px 0;
+	padding: 0px 0 15px;
 }
 
 .navbar {
@@ -89,11 +89,12 @@ h2 {
 		background: url('../images/logo.jpg') no-repeat left top;
 		width: 214px;
 		height: 71px;
+		margin-top: 20px;
 	}
-	.nav {
+	.main-nav {
 		background: lighten($light, 2%);
 		border: 1px solid darken($light, 5%);
-		margin-top: 15px;
+		margin-top: 40px;
 		padding: 0px 15px;
 		li {
 			text-transform: uppercase;
@@ -108,7 +109,7 @@ h2 {
 
 #contact-details {
 	position: absolute;
-	right: 50px;
+	right: 0px;
 	top: 0;
 	padding: 10px 0 5px 15px;
 	border-top: none;
@@ -389,7 +390,7 @@ img {
 #search-bar {
 	position: absolute;
 	font-weight: 100;
-	bottom: 50px;
+	bottom: 80px;
 	background: transparentize(white, 0.1);
 	padding: 50px;
 	color: black;
@@ -454,18 +455,26 @@ img {
 }
 
 .popover-content {
+	padding: 10px 15px 15px;
 	button {
 		font-weight: bold;
+		font-family: "Tisa OT";
+		font-style: italic;
 		background: none;
 		border: none;
-		text-transform: uppercase;
-		display: inline-block;
+		display: block;
 		margin: 3px 2px 0;
+
+		font-size: 18px;
+		color: desaturate(lighten($dark, 10%), 10%);
 	}
 	.select-btn-category {
 		display: block;
 		width: 100%;
 		text-align: left;
+	}
+	.State {
+		display: inline-block;
 	}	
 }
 
