@@ -53,6 +53,8 @@ $(document).ready(function() {
 				filterValue += filters[prop];
 			}
 			$grid.isotope({filter: filterValue});
+			
+			return false;
 		});
 		
 		$('.list-group').each( function( i, buttonGroup ) {
