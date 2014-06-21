@@ -246,7 +246,7 @@ get '/search' do
 	
 	@region = Region.get(params[:search][:region_id])
 	@state = State.get(params[:search][:state])
-	@category = Category.get(params[:search][:category]) if !params[:search][:category].nil?
+	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations
 	@properties = @locations.propertys(:state_id => @state.id)
