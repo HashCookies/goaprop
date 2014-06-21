@@ -1,4 +1,8 @@
+
 <div class="cover">
+	<div id="tree">
+	
+	</div>
 	<div id="search-bar">
 		<form method="get" action="/search" id="search">
 			<div id="select-state">
@@ -25,25 +29,59 @@
 				
 				<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
 			</div>
-			<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large">Find Properties</button>
+			<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large">Find Properties <span class="glyphicon glyphicon-chevron-right"></span></button>
 		</form>
 	</div>
 </div>
 
-<div class="grid-wrap">
-	<div class="container content ">
-		<%= erb :_properties_grid %>
-	</div>
-</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-8">
-			<h3>Test</h3>
-		</div>
-		
-		<div class="col-md-4">
-			<h4>Services</h4>
+<div class="info-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Your Hassle-free Real Estate agency</h3>
+			</div>
+			
+			<div class="col-md-4 block">
+				<div class="inner">
+					<h4>Buy/Rent</h4>
+					<img src="images/icon-1.png" alt="" class="service-icon" />
+					<div class="review-quote">
+						<p>Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque.</p>
+					</div>
+					<ul>
+						<li>Nulla facilisi</li>
+						<li>Curabitur vulputate, ligula lacinia</li>
+					</ul>
+					<button class="btn btn-large">More Info</button>
+				</div>
+			</div>
+			<div class="col-md-4 block">
+				<div class="inner">
+					<h4>Sell/Lease</h4>
+					<img src="images/icon-1.png" alt="" class="service-icon" />
+					<div class="review-quote"><p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum.</p>
+					</div>
+					<ul>
+						<li>Nulla facilisi</li>
+						<li>Curabitur vulputate, ligula lacinia</li>
+					</ul>
+					<button class="btn btn-large">More Info</button>
+				</div>
+			</div>
+			<div class="col-md-4 block">
+				<div class="inner">
+					<h4>Papers</h4>
+					<img src="images/icon-1.png" alt="" class="service-icon" />
+					<div class="review-quote"><p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra.</p>
+					</div>
+					<ul>
+						<li>Nulla facilisi</li>
+						<li>Curabitur vulputate, ligula lacinia</li>
+					</ul>
+					<div class="text-center"><button class="btn btn-large">More Info</button></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

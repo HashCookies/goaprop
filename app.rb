@@ -122,7 +122,11 @@ end
 
 DataMapper.auto_upgrade!
 
-
+helpers do
+	def partial template
+		erb template, :layout => false
+	end
+end
 
 before do
 	@page_title = "GoaPropertyCo"

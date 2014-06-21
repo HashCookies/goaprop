@@ -8,6 +8,7 @@ $light: #edf1f4;
 $blue: #35b6eb;
 $vib: #eb4b33;
 $label: #ccc;
+$offWhite: #fbfbf3;
 
 * {
 	-webkit-box-sizing: border-box;
@@ -92,7 +93,7 @@ h2 {
 		margin-top: 20px;
 	}
 	.main-nav {
-		background: lighten($light, 2%);
+		background: lighten(white, 2%);
 		border: 1px solid darken($light, 5%);
 		margin-top: 35px;
 		padding: 0px 15px;
@@ -128,8 +129,19 @@ h2 {
 .cover {
 	width: 100%;
 	height: 200px;
-	background: url(../images/bg-house.jpg) no-repeat;
-	background-size: cover;
+	background: url(../images/bg-house.jpg) no-repeat bottom left;
+	background-color: $offWhite;
+
+}
+
+#tree {
+	background: url('../images/tree.jpg') no-repeat left bottom;
+	width: 239px;
+	height: 479px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
 }
 
 img {
@@ -141,8 +153,9 @@ img {
 }
 
 .grid-wrap {
-	background: #fafafa;
+	background: $offWhite;
 	padding-top: 1px;
+	padding-bottom: 25px;
 }
 
 #property-grid {
@@ -390,16 +403,17 @@ img {
 #search-bar {
 	position: absolute;
 	font-weight: 100;
-	bottom: 80px;
-	background: transparentize(white, 0.1);
+	bottom: 100px;
+	/*background: transparentize(white, 0.1);*/
 	padding: 50px;
 	color: black;
 	font-style: italic;
-	font-size: 28px;
+	font-size: 36px;
 	font-family: $serif;
 	text-align: left;
-	left: 50%;
-	border: 1px solid transparentize($vib, 0.2);
+	left: 35%;
+	/*border: 1px solid transparentize($vib, 0.2);*/
+	text-shadow: 0px 1px #fff;
 	input {
 		color: $vib;
 		font-family: $sans;
@@ -429,26 +443,26 @@ img {
 	}
 	
 	#select-category {
-		margin-left: 77px;
+		margin-left: 100px;
 	}
 	#select-region {
-		margin-left: 70px;
+		margin-left: 91px;
 	}
 	#find-prop {
-		background: none;
+		background: white;
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 112px;
+		margin-left: 150px;
 		margin-top: 20px;
 		font-size: 18px;
 		font-family: $sans;
 		color: $vib;
 		padding: 10px 15px 7px;
 		border: 1px solid $vib;
-		&:after {
-			content: " \00BB";
-			color: red;
+		.glyphicon {
+			font-size: 12px;
+			-webkit-transform: translateY(-1px);
 		}
 	}
 	
@@ -557,5 +571,95 @@ img {
 	}
 	.glyphicon {
 		display: none;
+	}
+}
+
+#footer {
+	background: $vib;
+	color: white;
+	padding-bottom: 25px;
+	padding-top: 25px;
+	font-family: $serif;
+	h3 {
+		font-family: "Tisa OT";
+		font-weight: bold;
+		font-style: italic;
+		font-size: 30px;
+	}
+	p {
+		font-size: 18px;
+	}
+}
+
+#footer-form {
+	margin-top: 20px;
+	font-family: $sans;
+	.form-control {
+		border: 1px solid transparentize(white, 0.5);
+	}
+	.btn {
+		background: transparent;
+		color: white;
+		border: 1px solid white;
+	}
+}
+
+.info-block {
+	background: $offWhite;
+	padding: 50px 0;
+	.inner {
+		background: white;
+		border: 1px solid #ddd;
+		padding: 15px 25px;
+		border-radius: 5px;
+	}
+	h4 {
+		text-align: center;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 30px;
+		font-family: "Tisa OT";
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-style: italic;
+	}
+	.review-quote {
+		font-style: italic;
+		font-family: $serif;
+		font-size: 24px;
+		margin-bottom: 25px;
+		p {
+			&:after {
+				content: "\201D";
+			}
+			&:before {
+				content: "\201C";
+			}
+		}
+		
+	}
+	.btn {
+		background: $vib;
+		color: white;
+		border: none;
+		text-align: center;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin: 10px auto;
+	}
+	ul {
+		li {
+			font-size: 18px;
+			border-bottom: 1px solid #ddd;
+			margin-bottom: 10px;
+			padding-bottom: 5px;
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+	.service-icon {
+		margin: 15px auto 30px;
+		max-width: 275px;
 	}
 }

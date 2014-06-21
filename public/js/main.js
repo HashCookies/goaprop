@@ -4,7 +4,7 @@ var winH = $(window).height();
 var winW = $(window).width();
 
 $(document).ready(function() {
-		$('.cover').height(winH - 70).width(winW);
+		$('.cover').height(winH - 121).width(winW);
 		var $b = $('body');
 		
 		
