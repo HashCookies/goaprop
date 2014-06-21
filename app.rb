@@ -130,6 +130,7 @@ end
 
 before do
 	@page_title = "GoaPropertyCo"
+	@body_class = "page"
 end
 
 get '/reset' do
@@ -148,6 +149,8 @@ get '/reset' do
 end
 
 get '/' do
+	@body_class += " home"
+	@page_title += " | Hassle-free Real Estate in Goa"
 	@types = Type.all
 	@regions = Region.all
 	@states = State.all

@@ -6,7 +6,7 @@ $darkBlue: #323a45;
 $dark: #212830;
 $light: #edf1f4;
 $blue: #35b6eb;
-$vib: #eb4b33;
+$vib: #f66f61;
 $label: #ccc;
 $offWhite: #fbfbf3;
 
@@ -71,10 +71,14 @@ h2 {
 	background: #fff;
 }
 
+
 .header {
 	background: white;
 	width: 100%;
 	padding: 0px 0 15px;
+	.home & {
+		background: $offWhite;
+	}
 }
 
 .navbar {
@@ -87,10 +91,13 @@ h2 {
 		font-weight: bold;
 		text-transform: uppercase;
 		text-indent: -9999px;
-		background: url('../images/logo.jpg') no-repeat left top;
+		background: url('../images/logo-white.png') no-repeat left top;
 		width: 214px;
 		height: 71px;
 		margin-top: 20px;
+		.home & {
+			background-image: url('../images/logo.jpg');
+		}
 	}
 	.main-nav {
 		background: lighten(white, 2%);
@@ -144,9 +151,7 @@ h2 {
 	z-index: 0;
 }
 
-img {
-	width: 100%;
-}
+
 
 .content {
 	margin-top: 50px;
@@ -161,6 +166,9 @@ img {
 #property-grid {
 	overflow: auto;
 	width: 100%;
+	img {
+		width: 100%;
+	}
 	.property-item {
 		margin-bottom: 35px;
 	}
@@ -608,54 +616,84 @@ img {
 	background: white;
 	border-top: 1px solid darken($light, 10%);
 	padding: 50px 0;
+	.info-img {
+		img {
+			margin-top: 40px;
+		}
+		p {
+			text-transform: uppercase;
+		}
+	}
 	.info-intro {
 		margin-bottom: 35px;
 		p {
-			font-size: 20px;
+			font-size: 18px;
 			font-weight: 100;
-			max-width: 800px;
-			margin: 0 auto;
 			strong {
 				text-transform: uppercase;
+				/*color: $vib;*/
 			}
 		}
 		h3 {
-			text-align: center;
-			font-size: 48px;
+			font-size: 36px;
 			font-family: $serif;
 			font-style: italic;
+			color: $vib;
+			margin-top: 40px;
 			
 		}
 	}
+	.block {
+		/*border-right: 1px solid darken($light, 10%);*/
+	}
 	.inner {
-		background: white;
 		border: 1px solid darken($light, 10%);
+		
 		
 		padding: 15px 25px;
 		border-radius: 5px;
 	}
-
+	.block.last {
+		border-right: none;
+	}
 	h4 {
 		text-align: center;
 		font-weight: bold;
 		text-transform: uppercase;
-		font-size: 30px;
+		font-size: 24px;
 		font-family: "Tisa OT";
 		margin-top: 20px;
 		margin-bottom: 20px;
 		font-style: italic;
+		color: #414125;
 	}
 	.review-quote {
 		font-style: italic;
 		font-family: $serif;
-		font-size: 24px;
-		margin-bottom: 25px;
-		p {
+		font-size: 18px;
+		line-height: 28px;
+		margin-bottom: 15px;
+		background: #fafafa;
+		border: 1px solid $light;
+		padding: 10px 15px 0;
+		border-radius: 5px;
+		.quote {
 			&:after {
 				content: "\201D";
 			}
 			&:before {
 				content: "\201C";
+			}
+		}
+		.quoter {
+			text-align: right;
+			font-family: $sans;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: bold;
+			&:before {
+				content: "\2014 ";
 			}
 		}
 		
@@ -671,12 +709,16 @@ img {
 	}
 	ul {
 		li {
-			font-size: 18px;
-			border-bottom: 1px solid #ddd;
-			margin-bottom: 10px;
+			font-size: 16px;
+/*			border-bottom: 1px solid darken($light, 10%);*/
 			padding-bottom: 5px;
 			&:last-child {
 				border-bottom: none;
+			}
+			.glyphicon {
+				color: $vib;
+				font-size: 14px;
+				margin-right: 7px;
 			}
 		}
 	}
