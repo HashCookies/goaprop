@@ -3,7 +3,7 @@ $sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $green: #53c96a;
 
 $darkBlue: #323a45;
-$dark: #212830;
+$dark: #4b322f;
 $light: #edf1f4;
 $blue: #35b6eb;
 $vib: #f66f61;
@@ -107,12 +107,13 @@ h2 {
 		li {
 			text-transform: uppercase;
 			font-weight: bold;
-			color: $blue;
+			color: #503936;
 			a {
 				color: inherit;
 			}
 		}
 	}
+
 }
 
 #contact-details {
@@ -461,7 +462,7 @@ h2 {
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 150px;
+		margin-left: 145px;
 		margin-top: 20px;
 		font-size: 18px;
 		font-family: $sans;
@@ -511,8 +512,8 @@ h2 {
 		padding: 10px 25px;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
-		-moz-box-shadow: 0px 2px 2px darken($light, 20%);
-		box-shadow: 0px 2px 2px darken($light, 20%);
+		-moz-box-shadow: 0px 1px 2px darken($light, 20%);
+		box-shadow: 0px 1px 2px darken($light, 20%);
 	}
 	h3 {
 		font-size: 16px;
@@ -600,9 +601,49 @@ h2 {
 		font-weight: bold;
 		font-style: italic;
 		font-size: 30px;
+		margin-bottom: 10px;
 	}
 	p {
 		font-size: 18px;
+/*		font-style: italic;*/
+	}
+	.subtitle {
+		text-transform: uppercase;
+		font-family: $sans;
+		font-size: 14px;
+	}
+	.label {
+		padding: 0;
+		color: white;
+		font-family: $sans;
+	}
+	address {
+		font-size: 18px;
+		font-style: italic;
+		/*margin-top: 20px;*/
+	}
+	hr {
+		margin: 0px auto 20px;
+	}
+}
+
+#services-list {
+	margin-top: 5px;
+	li {
+		margin-bottom: 15px;
+	}
+	h4 {
+		font-family: $sans;
+		text-transform: uppercase;
+		font-size: 18px;
+		font-weight: bold;
+		margin-bottom: 0px;
+		.glyphicon {
+			font-size: 14px;
+		}
+	}
+	p {
+		font-size: 14px;
 	}
 }
 
@@ -616,6 +657,8 @@ h2 {
 		background: transparent;
 		color: white;
 		border: 1px solid white;
+		text-transform: uppercase;
+		font-weight: bold;
 	}
 }
 
@@ -626,6 +669,7 @@ h2 {
 	.info-img {
 		img {
 			margin-top: 40px;
+			/*-webkit-transform: scale(1.4);*/
 		}
 		p {
 			text-transform: uppercase;
@@ -668,11 +712,16 @@ h2 {
 		font-weight: bold;
 		text-transform: uppercase;
 		font-size: 24px;
-		font-family: "Tisa OT";
+		/*font-family: "Tisa OT";*/
 		margin-top: 20px;
 		margin-bottom: 20px;
-		font-style: italic;
+		/*font-style: italic;*/
 		color: #414125;
+		span {
+			color: #ddd;
+			display: inline-block;
+			margin: 0 5px;
+		}
 	}
 	.review-quote {
 		font-style: italic;
