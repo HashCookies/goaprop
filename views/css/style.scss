@@ -613,7 +613,7 @@ h2 {
 }
 
 .info-block {
-	background: white;
+	/*background: white;*/
 	border-top: 1px solid darken($light, 10%);
 	padding: 50px 0;
 	.info-img {
@@ -647,7 +647,7 @@ h2 {
 		/*border-right: 1px solid darken($light, 10%);*/
 	}
 	.inner {
-		border: 1px solid darken($light, 10%);
+		/*border: 1px solid darken($light, 10%);*/
 		
 		
 		padding: 15px 25px;
@@ -673,11 +673,12 @@ h2 {
 		font-size: 18px;
 		line-height: 28px;
 		margin-bottom: 15px;
-		background: $light;
-		border: 1px solid $light;
+		/*background: $light;*/
+		/*border: 1px solid $light;*/
 		padding: 10px 15px 0;
 		border-radius: 5px;
 		.quote {
+			margin-bottom: 0;
 			&:after {
 				content: "\201D";
 			}
@@ -726,4 +727,17 @@ h2 {
 		margin: 15px auto 30px;
 		max-width: 275px;
 	}
+}
+
+.info-block .inner {
+	-moz-box-shadow: 1px 1px 2px darken($light, 20%);
+	box-shadow: 0px 1px 2px darken($light, 20%);
+	background: white;
+}
+
+.info-block {
+	background-image: -webkit-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
+	background-image: -moz-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
+	background-image: -ms-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
+	background-image: linear-gradient(to bottom, #fdfdfb 0%, #fbfaf2 100%);
 }
