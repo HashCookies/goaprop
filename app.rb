@@ -242,12 +242,18 @@ get '/search' do
 	@states = State.all
 	@regions = Region.all	
 	
+	@category = Category.new(:name => "All")
+	
 	@region = Region.get(params[:search][:region_id])
 	@state = State.get(params[:search][:state])
-	@category = Category.get(params[:search][:category])
+	@category = Category.get(params[:search][:category]) if !params[:search][:category].nil?
 	
 	@locations = @region.locations
-	@properties = @locations.propertys(:state_id => @state.id, :category_id => @category.id)
+	@properties = @locations.propertys(:state_id => @state.id)
+	
+	if @category.name != "All"
+		@properties = @properties.all(:category_id => @category.id)
+	end
 	
 	@locations = @properties.locations
 	@types = @properties.types
