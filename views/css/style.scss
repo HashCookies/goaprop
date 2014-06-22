@@ -38,6 +38,10 @@ h2 {
 	color: $vib;
 	text-transform: uppercase;
 	font-weight: bold;
+	&:hover {
+		background: $vib;
+		color: white !important;
+	}
 }
 
 .badge {
@@ -607,6 +611,13 @@ h2 {
 		font-size: 18px;
 /*		font-style: italic;*/
 	}
+	.phone-large {
+		margin-top: 30px;
+		p {
+			font-size: 24px;
+			font-family: $sans;
+		}
+	}
 	.subtitle {
 		text-transform: uppercase;
 		font-family: $sans;
@@ -659,6 +670,7 @@ h2 {
 		border: 1px solid white;
 		text-transform: uppercase;
 		font-weight: bold;
+		margin-top: 10px;
 	}
 }
 
@@ -798,3 +810,4 @@ h2 {
 	background-image: -ms-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
 	background-image: linear-gradient(to bottom, #fdfdfb 0%, #fbfaf2 100%);
 }
+
