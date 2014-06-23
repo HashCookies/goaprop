@@ -474,20 +474,36 @@ h2 {
 		margin-left: 91px;
 	}
 	#find-prop {
-		background: white;
+		background: none;;
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
 		margin-left: 145px;
-		margin-top: 20px;
-		font-size: 18px;
+		margin-top: 40px;
+		font-size: 22px;
 		font-family: $sans;
 		color: $vib;
-		padding: 10px 15px 7px;
-		border: 1px solid $vib;
+		padding: 0;
+		border: 0px solid $vib;
 		.glyphicon {
-			font-size: 12px;
-			-webkit-transform: translateY(-1px);
+			font-size: 18px;
+			-webkit-transform: translateY(0px);
+			-webkit-transition-duration: 400ms;
+			margin-right: 5px;
+		}
+		&:hover {
+			color: darken($vib, 10%);
+			.glyphicon {
+				-webkit-transform: translateX(5px);
+			}
+		}
+		&:active {
+			box-shadow: none;
+			color: darken($vib, 10%);
+			.glyphicon {
+				-webkit-transform: translateX(25px);
+				opacity: 0;
+			}
 		}
 	}
 	
@@ -580,7 +596,25 @@ h2 {
 	.btn {
 		margin-left: 15px;
 		color: $vib;
-		border: 1px solid $vib;
+		border: none;
+		font-weight: bold;
+		background: transparent;
+		text-transform: uppercase;
+		.glyphicon {
+			-webkit-transition-duration: 400ms;
+		}
+		&:hover {
+			background: transparent;
+			color: darken($vib, 10%);
+			.glyphicon {
+				-webkit-transform: rotate(290deg);
+			}
+		}
+		&:active {
+			box-shadow: none;
+			color: darken($vib, 10%);
+			-webkit-transform: translateY(1px);
+		}
 	}
 	
 }
@@ -718,7 +752,7 @@ h2 {
 .info-block {
 	/*background: white;*/
 	border-top: 1px solid darken($light, 10%);
-	padding: 50px 0;
+	padding: 50px 0 70px;
 	.info-img {
 		img {
 			margin-top: 40px;
