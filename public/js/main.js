@@ -82,7 +82,6 @@ $(document).ready(function() {
 		
 		$(window).scroll(function() {
 			var st  = $(window).scrollTop();
-			console.log(propTop, st, winH)
 			
 			if (st < (760 - winH)) {
 				$b.removeClass('scrolled');
@@ -142,5 +141,20 @@ $(document).ready(function() {
 			var id = $(this).attr('data-demo');
 			
 			$(id).html(value);
+		});
+		
+		$('.demo-control').each(function() {
+			var value = $(this).val();
+			var id = $(this).attr('data-demo');
+			$(id).html(value);
+		});
+		
+		$('div.select2').each(function() {
+			var value = $(this).find('.select2-chosen').text();
+			console.log(value);
+			var id = $(this).next('select').attr('data-demo');
+			
+			$(id).text(value);
+			
 		});
 });

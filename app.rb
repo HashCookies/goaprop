@@ -186,6 +186,7 @@ get '/property/new' do
 	@states = State.all
 	@categories = Category.all
 	@page_title += " | New Property"
+	@body_class += " alt"
 	erb :new
 end
 

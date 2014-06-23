@@ -75,6 +75,10 @@ h2 {
 
 .main {
 	background: #fff;
+	.alt & {
+		background: $offWhite;
+		border-top: 1px solid $light;
+	}
 }
 
 
@@ -85,6 +89,7 @@ h2 {
 	.home & {
 		background: $offWhite;
 	}
+	
 }
 
 .navbar {
@@ -896,6 +901,9 @@ h2 {
 }
 
 form#property {
+	background: white;
+	padding: 25px;
+	border: 1px solid darken($light, 10%);
 	.mid-select {
 		font-family: $serif;
 		font-style: italic;
@@ -915,18 +923,40 @@ form#property {
 		}
 	}
 	.type-select {
-		width: 228px;
+		width: 210px;
 	}
 	.location-select {
-		width: 218px;
+		width: 200px;
 	}
 }
 
 #demo-property {
 	background: white;
-	border: 1px solid $light;
+	border: 1px solid darken($light, 10%);
 	padding: 15px;
 	img {
 		width: 100%;
+	}
+	.img-block {
+		position: relative;
+	}
+	#demo-price {
+		display: block;
+		position: absolute;
+		bottom: 0;
+		right: 30px;
+		background: $green;
+		padding: 3px 10px 2px;
+		font-size: 18px;
+		color: white;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		font-weight: bold;
+		text-shadow: 0px 1px darken($green, 30%);
+		border: 1px solid saturate(darken($green, 10%), 40%);
+		border-bottom: none;
+	}
+	.label {
+		padding: 0;
 	}
 }

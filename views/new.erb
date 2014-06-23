@@ -2,8 +2,11 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 edit-intro">
+		<div class="col-md-8 edit-intro">
 			<h3 class="title">Create A New Property</h3>
+		</div>
+		<div class="col-md-4">
+			<h3>Live view</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -54,7 +57,7 @@
 					
 					<div class="col-md-4">
 						<label>Price:</label><br />
-						<input type="text" name="property[price]" id="price" class="form-control" value="200" />
+						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." />
 					</div>
 				</div>
 				
@@ -85,7 +88,7 @@
 				
 				<div class="form-group">
 					<label for="specs">Specifications</label>
-					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="Parking Space, Swimming Pool, Field view" />	
+					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="Parking Space, Swimming Pool, Field view" />	
 				</div>
 				
 				<div class="form-group">
@@ -112,7 +115,6 @@
 		</div>
 		
 		<div class="col-md-4">
-			<h3>Demo Property</h3>
 			<div id="demo-property">
 					<div class="img-block">
 						<span class="prop-price sort-price" id="demo-price"></span>
@@ -121,9 +123,9 @@
 					<div class="data-block">
 						<h3 class="prop-title">
 								<span id="demo-title"></span>
-								<span id="demo-type-name">[Type]</span> in
-								<span id="demo-location">[Location]</span> for
-								<span id="demo-state">[Option]</span>
+								<span id="demo-type-name"></span> in
+								<span id="demo-location"></span> for
+								<span id="demo-state"></span>
 						</h3>
 						<ul class="clearfix">
 							<li class="clearfix">
