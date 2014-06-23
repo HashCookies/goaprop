@@ -313,9 +313,10 @@ h2 {
 	}
 }
 
-.property-intro {
-	border-bottom: 1px solid #ddd;
+.property-image-grid {
+	border-bottom: 1px solid darken($light, 10%);
 	background: desaturate(darken($offWhite, 10%), 0%);
+	border-top: 1px solid darken($light, 10%);
 	img {
 		width: 100%;
 	}
@@ -390,10 +391,16 @@ h2 {
 	}
 	.prop-area {
 		font-size: 16px;
-		span {
-			font-family: $serif;
-			font-style: italic;
+		margin-top: 5px;
+		.label {
+			background: darken($light, 5%);
+			padding-top: 5px;
+			-webkit-transform: translateY(-1px);
+			display: inline-block;
+			margin-right: 5px;
+			
 		}
+		
 	}
 	.price-block {
 		float: right;
@@ -590,10 +597,10 @@ h2 {
 }
 
 #footer {
-	background: $vib;
+	background: darken($vib, 5%);
 	color: white;
-	padding-bottom: 25px;
-	padding-top: 25px;
+	padding-bottom: 0;
+	padding-top: 20px;
 	font-family: $serif;
 	h3 {
 		font-family: "Tisa OT";
@@ -657,17 +664,30 @@ h2 {
 }
 
 #footer-form {
-	margin-top: 20px;
+	margin-top: 25px;
+	height: 370px;
 	font-family: $sans;
+	background: transparentize($offWhite, 0);
+	color: $dark;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	padding: 0 30px 10px;
+	h3 {
+		text-align: center;
+		color: $vib;
+	}
+	p {
+		font-size: 16px;
+	}
 	.form-control {
-		border: 1px solid transparentize(white, 0.5);
+		box-shadow: 1px 1px 0px darken($light, 20%);
+		border: none;
+		border-top: 1px solid $light;
+		border-left: 1px solid $light;
+		font-style: italic;
+		font-family: $serif;
 	}
 	.btn {
-		background: transparent;
-		color: white;
-		border: 1px solid white;
-		text-transform: uppercase;
-		font-weight: bold;
 		margin-top: 10px;
 	}
 }

@@ -1,4 +1,4 @@
-<div class="property-intro">
+<div class="property-image-grid">
 	<div class="container">
 		<div class="large img-block anystretch" data-stretch="/properties/images/<%= @property.featured_img %>">
 
@@ -23,7 +23,10 @@
 						<%= "for " + @property.state.name %>
 					</a>
 				</h3>
-				<p class="prop-area"><%= @property.area_detail %></p>
+				<p class="prop-area">
+					<span class="label">Specs</span>
+					<%= @property.area_detail %> • <%= @property.area_built %>
+				</p>
 			</div>
 			<div class="col-md-4 prop-price-wrap text-right">
 				<div class="call-to-action">
