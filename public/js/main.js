@@ -24,7 +24,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		$('.select2').select2();
+		
 		
 		$('#sort-filter').on( 'click', 'a', function() {
 		  var sortValue = $(this).parent().attr('data-sort-value');
@@ -108,5 +108,39 @@ $(document).ready(function() {
 			$(elem).find('.hidden-field').val(value);
 			$(elem).find('.select-label').html(title).popover('hide');
 			
+		});
+		
+		// file input display image
+		
+		function readURL(input) {
+		
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		
+		        reader.onload = function (e) {
+		            $('#demo-img').attr('src', e.target.result);
+		        }
+		
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+		
+		$("#featured-img-picker").change(function(){
+		    readURL(this);
+		});
+		
+		$('.demo-control').on('keyup', function() {
+			var value = $(this).val();
+			var id = $(this).attr('data-demo');
+			$(id).html(value);
+		});
+		
+		$('.select2').select2();
+		
+		$('.select2').on("change", function(e) {
+			var value = e.added['text']
+			var id = $(this).attr('data-demo');
+			
+			$(id).html(value);
 		});
 });

@@ -603,7 +603,7 @@ h2 {
 		background: transparent;
 		text-transform: uppercase;
 		.glyphicon {
-			-webkit-transition-duration: 400ms;
+			-webkit-transition-duration: 600ms;
 		}
 		&:hover {
 			background: transparent;
@@ -903,15 +903,30 @@ form#property {
 		margin: 0 10px;
 	}
 	.select2 {
-		min-width: 200px;
+		min-width: 150px;
 		.select2-choice {
 			padding: 3px 15px;
 			height: 33px;
 		}
 	}
-	.col-md-3 {
+	.col-md-4 {
 		.select2 {
 			width: 100%;
 		}
+	}
+	.type-select {
+		width: 228px;
+	}
+	.location-select {
+		width: 218px;
+	}
+}
+
+#demo-property {
+	background: white;
+	border: 1px solid $light;
+	padding: 15px;
+	img {
+		width: 100%;
 	}
 }
