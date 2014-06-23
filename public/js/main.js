@@ -24,7 +24,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		
+		$('.select2').select2();
 		
 		$('#sort-filter').on( 'click', 'a', function() {
 		  var sortValue = $(this).parent().attr('data-sort-value');

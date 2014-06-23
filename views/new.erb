@@ -1,91 +1,111 @@
 
 
 <div class="container">
-
-	<div class="col-md-12 edit-intro">
-		<h3 class="title">Create A New Property</h3>
+	<div class="row">
+		<div class="col-md-12 edit-intro">
+			<h3 class="title">Create A New Property</h3>
+		</div>
 	</div>
 	
 	<form role="form" action="/create" method="post" id="property" enctype="multipart/form-data">
 		
-		<div class="col-md-8">
-		
-			<div class="form-group">
-				<input type="text" name="property[title]" id="title" class="form-control" />	
+		<div class="row form-group">
+			<div class="col-md-4">
+				<input type="text" name="property[title]" id="title" class="form-control" placeholder='Eg. "Old Portuguese", "3BHK", "Spacious"' />	
 			</div>
 			
-			<div class="form-group">					
-					<select name="type[id]" id="type_id">
+			<div class="col-md-8">					
+					<select class="select2 type-select" name="type[id]" id="type_id">
 						<% @types.each do |type| %>
 							<option value="<%= type.id %>"><%= type.name %></option>
 						<% end %>
 					</select>
 					
-					in
+					<span class="mid-select">in</span>
 					
-					<select name="location[id]" id="location_id">
+					<select class="select2 location-select" name="location[id]" id="location_id">
+					
 						<% @locations.each do |location| %>
 							<option value="<%= location.id %>"><%= location.name %></option>
 						<% end %>
 					</select>
-					
 			</div>
-			
-			<div class="form-group">
-				<h4>Option</h4>
-				<select name="state[id]" id="state_id">
+		</div>
+		<div class="clearfix"></div>
+		<div class="row form-group">
+			<div class="col-md-3">
+				<label>Option</label>
+				<select class="select2" name="state[id]" id="state_id">
 					<% @states.each do |state| %>
 						<option value="<%= state.id %>"><%= state.name %></option>
 					<% end %>
 				</select>
 			</div>
 			
-			<div class="form-group">
-				<h4>Property Type</h4>
-				<select name="category[id]" id="category_id">
+			<div class="col-md-3">
+				<label>Property Type</label>
+				<select class="select2" name="category[id]" id="category_id">
 					<% @categories.each do |category| %>
 						<option value="<%= category.id %>"><%= category.name %></option>
 					<% end %>
 				</select>
 			</div>
-						
-			<div class="form-group">
-					<label>Area in sq mts:</label><br />
-					<input type="text" name="property[area]" id="area" class="form-control" value="0" />	
+			
+			<div class="col-md-3">
+				<label>Price:</label><br />
+				<input type="text" name="property[price]" id="price" class="form-control" value="200" />
+			</div>
+		</div>
+		
+		<div class="clearfix"></div>
+		
+		<div class="form-group">
+					
+		</div>
+				
+		<div class="row form-group">
+		
+			<div class="col-md-4">			
+				<label>Area in Sq Mts:</label><br />
+				<input type="text" name="property[area]" id="area" class="form-control" />	
 			</div>
 			
-			
-			<div class="form-group">
-					<label>Area Detail:</label><br />
-					<input type="text" name="property[area_detail]" id="area_detail" class="form-control" />	
+			<div class="col-md-4">			
+				<label>Area in Sq Ft:</label><br />
+				<input type="text" name="property[area_ft]" id="area_ft" class="form-control" />	
 			</div>
 			
-			
-			<div class="form-group">
-					<label>price:</label><br />
-					<input type="text" name="property[price]" id="price" class="form-control" value="200" />	
+			<div class="col-md-4">
+				<label>Area built (Sq Mts):</label><br />
+				<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
 			</div>
 			
-			
-			<div class="form-group">
-					<label>Area built:</label><br />
-					<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
-			</div>
-			
-						
-			<div class="file-input-wrap">
-				<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
-			</div>
-			
+		</div>
+		
+		<div class="form-group">
+			<label for="specs">Specifications</label>
+			<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." />	
+		</div>
+		
+		<div class="form-group">
+			<label for="featured">Featured Image</label>
 			<div class="file-input-wrap">
 				<input type="file" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
 			</div>
-	
-			<div class="form-group">
-					<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Property">
-				</div>
 		</div>
-	
+		
+		<div class="form-group">	
+			<label>Gallery Images</label>		
+			<div class="file-input-wrap">
+				<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+			</div>
+		</div>
+		
+		
+
+		<div class="form-group">
+				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Property">
+		</div>
 		
 	</form>
 

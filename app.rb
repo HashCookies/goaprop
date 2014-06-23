@@ -30,12 +30,13 @@ class Property
 	
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_detail,		String	# Written in natural language, like "2000 x 4200 sq ft"
+	property :area_ft,			Integer	# Written in natural language, like "2000 x 4200 sq ft"
 	property :price,			Integer
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 	property :area_built,		String
 	property :featured_img,		Integer
 	property :slug,				String
+	property :specs,			String
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :region_id,		Integer
@@ -203,9 +204,11 @@ post '/create' do
 	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
-	
-	if property.save	
-		
+	property.area = property.area.to_i
+	property.area_ft = property.area_ft.to_i
+	property.price = property.price.to_i
+
+	if property.save			
 		if !params[:images].nil?
 			params[:images].each do |image|
 				property.images.create({ :property_id => property.id, :url => image[:filename].downcase.gsub(" ", "-") })

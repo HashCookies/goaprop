@@ -101,7 +101,9 @@ h2 {
 		width: 214px;
 		height: 71px;
 		margin-top: 20px;
-		background-image: url('../images/logo.jpg');
+		.home & {
+			background-image: url('../images/logo.jpg');
+		}
 	}
 	.main-nav {
 		background: lighten(white, 2%);
@@ -891,4 +893,25 @@ h2 {
 .offwhite-block {
 	background: $offWhite;
 	border-top: 1px solid $light;
+}
+
+form#property {
+	.mid-select {
+		font-family: $serif;
+		font-style: italic;
+		display: inline-block;
+		margin: 0 10px;
+	}
+	.select2 {
+		min-width: 200px;
+		.select2-choice {
+			padding: 3px 15px;
+			height: 33px;
+		}
+	}
+	.col-md-3 {
+		.select2 {
+			width: 100%;
+		}
+	}
 }
