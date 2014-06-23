@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "sinatra"
-gem "sinatra-support", require: "sinatra/support"
+gem "sinatra-support"
 gem "shotgun"
 gem "data_mapper"
 gem "sass"

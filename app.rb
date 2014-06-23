@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/support/numeric'
+require 'sinatra/support'
 require 'data_mapper'
 require 'sass'
 
@@ -58,6 +58,10 @@ class Property
 	
 	
 	
+end
+
+def to_currency(price)
+	price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
 end
 
 class Image

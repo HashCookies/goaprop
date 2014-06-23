@@ -27,7 +27,7 @@
 			</div>
 			<div class="col-md-2 prop-price-wrap pull-right text-right">
 				<span class="prop-price-label label">Price</span>
-				<span class="prop-price"><%= @property.price %></span>
+				<span class="prop-price"><%= to_currency(@property.price) %></span>
 			</div>
 		</div>
 	</div>
