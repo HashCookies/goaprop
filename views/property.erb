@@ -11,10 +11,10 @@
 	</div>
 </div>
 
-<div id="property-content">
+<div class="property-data">
 	<div class="container">
-		<div class="property-data row">
-			<div class="col-md-10">
+		<div class="row">
+			<div class="col-md-8">
 				<h3 class="prop-title">
 					<a href="/property/<%= @property.id %>">
 						<span><%= @property.title %> </span>
@@ -25,13 +25,23 @@
 				</h3>
 				<p class="prop-area"><%= @property.area_detail %></p>
 			</div>
-			<div class="col-md-2 prop-price-wrap pull-right text-right">
-				<span class="prop-price-label label">Price</span>
-				<span class="prop-price"><%= to_currency(@property.price) %></span>
+			<div class="col-md-4 prop-price-wrap text-right">
+				<div class="call-to-action">
+					<a href="#" class="btn btn-large btn-primary">Send Inquiry</a>
+				</div>
+				<div class="price-block">
+					<span class="prop-price-label label">Price</span>
+					<span class="prop-price"><%= to_currency(@property.price) %></span>
+				</div>
+				
 			</div>
 		</div>
 	</div>
-	
+</div>
+
+
+<div id="property-content">
+		
 	<div class="container">
 		<div class="row property-main">
 			<div class="col-md-8">
@@ -68,21 +78,20 @@
 					</li>
 					<li>
 						<div class="block"><span class="prop-price-label label">Price</span></div>
-						<span class="prop-price"><%= @property.price %></span>
+						<span class="prop-price"><%= to_currency(@property.price) %></span>
 					</li>
 				</ul>
 			</div>
 			
 			
 			<div class="clearfix"></div>
-			<!--
-			
-			
-			<div class="col-md-12 text-center">
-				<button class="btn btn-large btn-primary">Send Inquiry</button>
-			</div>-->
 					
 		</div>
+		
+	</div>
+</div>
+<div class="offwhite-block">
+	<div class="container">
 		<div class="content">
 			<h3 class="section-title">Recently Viewed / Similar Properties</h3>
 			<%= erb :_properties_grid %>

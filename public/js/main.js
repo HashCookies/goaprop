@@ -66,31 +66,29 @@ $(document).ready(function() {
 		});
 				
 		var $propD = $('.property-data');
-		var $propI = $('.property-intro');
+		
+		
+		var propTop;
+		
+		if (winH < 760) {
+			propTop = winH - 95
+			$propD.css({ top: propTop });
+		} else {
+			propTop = 675;
+			$b.addClass('scrolled');
+		}
 		
 		
 		
 		$(window).scroll(function() {
 			var st  = $(window).scrollTop();
+			console.log(propTop, st, winH)
 			
-			
-			if (st < 350) {
-				$propD.css({
-					top: -50 + (st / 6)	
-				});
+			if (st < (760 - winH)) {
 				$b.removeClass('scrolled');
 			}
 			
-			if (st < 400) {
-				$propI.css({
-					top: 0 - (st / 2)
-				});
-			}
-			
-			if (st > 350) {
-				$propD.css({
-					top: 20
-				});
+			if (st > (760 - winH)) {
 				$b.addClass('scrolled');
 			}
 
