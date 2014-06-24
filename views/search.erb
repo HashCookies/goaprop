@@ -43,7 +43,7 @@
 						<% @types.each do |type| %>
 							<li class="list-group-item">
 								<span class="badge">
-									<%= type.propertys(:state_id => @state.id, :category_id => @category.id).count %>
+									<%= type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).count %>
 								</span>
 								<a href="#" data-filter=".<%= type.name.downcase %>"><%= type.name %></a>
 							</li>

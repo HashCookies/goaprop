@@ -257,13 +257,14 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations
-	@properties = @locations.propertys(:state_id => @state.id)
+	@properties = @locations.propertys(:state_id => @state.id) # with a sell or rent flag
 	
 	if @category.name != "All"
-		@properties = @properties.all(:category_id => @category.id)
+		@properties = @properties.all(:category_id => @category.id) # selecting "apartment", "House", etc
 	end
 	
 	@locations = @properties.locations
+	@location_ids = @locations.map(&:id)
 	@types = @properties.types
 	
 	@properties.each do |property|
