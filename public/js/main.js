@@ -157,4 +157,16 @@ $(document).ready(function() {
 			$(id).text(value);
 			
 		});
+		
+		$('.prop-price').each(function() {
+			var value = parseInt($(this).text());
+			if (value.length == 7) {
+				value = value.substring(0, 2)
+				$(this).text(value + ' lacs');
+			}
+			if (value.length == 8) {
+				value = value.substring(0, 2)
+				$(this).text(value + ' Crore');
+			}
+		});
 });
