@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/support'
+require 'sinatra/reloader'
 require 'data_mapper'
 require 'sass'
 
@@ -260,7 +261,8 @@ get '/search' do
 	@region = Region.get(params[:search][:region_id])
 	@state = State.get(params[:search][:state])
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
-	
+
+	raise params[:search][:category]
 	@locations = @region.locations
 	@properties = @locations.propertys(:state_id => @state.id) # with a sell or rent flag
 	
