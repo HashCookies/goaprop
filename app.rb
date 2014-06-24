@@ -234,7 +234,11 @@ get '/property/:id' do
 	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	
-	@properties = Property.all
+	@regions = @property.location.regions
+	@locations = @regions.locations
+	
+	
+	@properties = @locations.propertys(:type_id => @property.type_id)
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
