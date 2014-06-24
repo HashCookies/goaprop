@@ -76,7 +76,7 @@ class Image
 	belongs_to :property
 end
 
-class Type
+class Type # "Apartment", "House", "Villa", etc. Semi static.
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -97,7 +97,7 @@ class Location
 	
 end
 
-class Region
+class Region # Regions like "South Goa", North Goa. Static.
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -108,7 +108,7 @@ class Region
 	
 end
 
-class State
+class State # Model for "Buy", "Rent". Static.
 	include DataMapper::Resource
 	
 	property :id,	Serial
@@ -117,7 +117,7 @@ class State
 	has n, :propertys
 end
 
-class Category
+class Category # model for "Residential", "Commercial", "Undeveloped". Static.
 	include DataMapper::Resource
 	
 	property :id,	Serial
