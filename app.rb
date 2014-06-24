@@ -172,7 +172,12 @@ end
 
 get '/properties' do
 	@properties = Property.all
+	@regions = Region.all
 	@region = Region.first
+	@categories = Category.all
+	@category = Category.first
+	@states = State.all
+	@state = State.first
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
@@ -243,10 +248,6 @@ get '/property/:id' do
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 	erb :property
-end
-
-get '/properties' do
-	@properties = Property.all
 end
 
 get '/search' do

@@ -173,6 +173,7 @@ h2 {
 	background: $offWhite;
 	padding-top: 1px;
 	padding-bottom: 25px;
+	border-top: 1px solid darken($light, 10%);
 }
 
 #property-grid {
@@ -622,6 +623,13 @@ h2 {
 			color: darken($vib, 10%);
 			-webkit-transform: translateY(1px);
 		}
+	}
+	.search-label {
+		float: left;
+		font-family: $serif;
+		font-style: italic;
+		font-size: 18px;
+		margin-top: 5px;
 	}
 	
 }
