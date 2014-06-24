@@ -76,7 +76,7 @@ class Image
 	belongs_to :property
 end
 
-class Type # "Apartment", "House", "Villa", etc. Semi static.
+class Type
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -97,7 +97,7 @@ class Location
 	
 end
 
-class Region # Regions like "South Goa", North Goa. Static.
+class Region
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -108,7 +108,7 @@ class Region # Regions like "South Goa", North Goa. Static.
 	
 end
 
-class State # Model for "Buy", "Rent". Static.
+class State
 	include DataMapper::Resource
 	
 	property :id,	Serial
@@ -117,7 +117,7 @@ class State # Model for "Buy", "Rent". Static.
 	has n, :propertys
 end
 
-class Category # model for "Residential", "Commercial", "Undeveloped". Static.
+class Category
 	include DataMapper::Resource
 	
 	property :id,	Serial
@@ -196,6 +196,25 @@ get '/property/new' do
 	erb :new
 end
 
+get '/property/:id/edit' do
+	@property = Property.get(params[:id])
+	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
+	@images = @property.images[1..3]
+	@regions = Region.all
+	@locations = Location.all
+	@types = Type.all
+	@states = State.all
+	@categories = Category.all
+	@page_title += " | Edit Property"
+	@body_class += " alt"
+	erb :edit
+end
+
+get '/location/:id' do
+	@location = Location.get(params[:id])
+	erb :location
+end
+
 post '/create' do
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])
@@ -261,8 +280,7 @@ get '/search' do
 	@region = Region.get(params[:search][:region_id])
 	@state = State.get(params[:search][:state])
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
-
-	raise params[:search][:category]
+	
 	@locations = @region.locations
 	@properties = @locations.propertys(:state_id => @state.id) # with a sell or rent flag
 	

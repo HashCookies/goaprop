@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		<label class="col-md-4">Location Name:</label>
+		<label class="col-md-8"><%= @location.name %></label>
+		</div>
+		<div class="col-md-12">
+			<label class="col-md-4">Regions:</label>
+			<% @location.regions.each do |region| %>
+				<label class="col-md-8">
+					<%= region.name %>
+				</label><br />
+			<% end %>
+		</div>
+	</div>
+</div>
