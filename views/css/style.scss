@@ -351,11 +351,10 @@ h2 {
 		}
 	}
 	.gallery-block {
-		width: 100%;
-		overflow: auto;
 		background: $offWhite;
 		border: 1px solid darken($light, 10%);
 		padding-top: 15px;
+		overflow: auto;
 		li {
 			height: 120px;
 			
