@@ -1,4 +1,3 @@
-
 get '/location/new' do
 	@regions = Region.all
 	erb :new_location
@@ -16,4 +15,9 @@ post '/location/create' do
 	else
 		redirect '/'
 	end
+end
+
+get '/location/:id' do
+	@location = Location.get(params[:id])
+	erb :location
 end

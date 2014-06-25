@@ -1,5 +1,5 @@
-
-get '/resource/new' do
+get '/region/new' do
+	@locations = Location.all
 	erb :new_region
 end
 
@@ -10,4 +10,9 @@ post '/region/create' do
 	else
 		redirect '/'
 	end
+end
+
+get '/region/:id' do
+	@region = Region.get(params[:id])
+	erb :region
 end

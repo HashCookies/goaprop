@@ -1,7 +1,9 @@
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/support'
 require 'sinatra/reloader'
+require 'lib/authorization'
 require 'data_mapper'
 require 'sass'
 
@@ -131,6 +133,7 @@ end
 DataMapper.auto_upgrade!
 
 helpers do
+	include Sinatra::Authorization
 	def partial template
 		erb template, :layout => false
 	end
@@ -212,9 +215,10 @@ get '/property/:id/edit' do
 	erb :edit
 end
 
-get '/location/:id' do
-	@location = Location.get(params[:id])
-	erb :location
+get '/resource/new' do
+	@locations = Location.all
+	@regions = Region.all
+	erb :new_resource
 end
 
 post '/create' do
@@ -253,6 +257,43 @@ post '/create' do
 		redirect "/property/#{property.id}"
 	else
 		redirect '/properties'
+	end
+end
+
+post '/create/:newtype' do
+	require_admin
+
+	@create_type = params[:newtype]
+
+	@save_val = ""
+
+	case @create_type
+	when "location"
+		location = Location.create(params[:location])
+		if !params[:region].nil?
+			params[:region].each_value do |v|
+				region = Region.get(v)
+				location.regions << region
+			end
+		end
+		@save_val = location
+	when "region"
+		region = Region.create(params[:region])
+		if !params[:location].nil?
+			params[:location].each_value do |v|
+				location = Location.get(v)
+				region.locations << location
+			end
+		end
+		@save_val = region
+	else
+		raise "property"
+	end
+	
+	if @save_val.save
+		redirect '/resource/new'
+	else
+		redirect '/'
 	end
 end
 
