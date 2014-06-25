@@ -91,6 +91,8 @@ class Location
 	
 	property :id,			Serial
 	property :name,			String
+	property :desc,			Text
+	
 	
 	has n, :regions, :through => Resource
 	has n, :propertys

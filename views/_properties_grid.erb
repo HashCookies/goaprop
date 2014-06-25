@@ -6,7 +6,11 @@
 			data-date="<%= property.updated_at %>">
 			
 				<div class="img-block">
-					<span class="prop-price sort-price"><%= to_currency(property.price) %></span>
+					<% if property.state_id == 2 %>
+					<span class="prop-price sort-price"><%= to_currency(property.price) + " / mo" %></span>
+					<% else %>
+						<span class="prop-price sort-price"><%= to_currency(property.price) %></span>
+					<% end %>
 					<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
 				</div>
 				<div class="data-block">

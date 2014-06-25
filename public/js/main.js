@@ -159,14 +159,26 @@ $(document).ready(function() {
 		});
 		
 		$('.prop-price').each(function() {
-			var value = parseInt($(this).text());
+			var value = $(this).text();
+			value = value.replace(/,/g, '');
+			
+			console.log(value);
+			
 			if (value.length == 7) {
-				value = value.substring(0, 2)
+				value = value.substring(0, 2);
 				$(this).text(value + ' lacs');
-			}
-			if (value.length == 8) {
-				value = value.substring(0, 2)
+			} 
+			
+			else if (value.length == 8) {
+				value = value.substring(0, 1);
 				$(this).text(value + ' Crore');
+			} 
+			
+			else if (value.length == 6) {
+				value = value.substring(0, 1);
+				$(this).text(value + ' lacs');
+			} else if (value.length < 6) {
+				$(this).text("Rs. " + $(this).text());
 			}
 		});
 });
