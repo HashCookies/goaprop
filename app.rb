@@ -354,6 +354,27 @@ get '/search' do
 	erb :search
 end
 
+delete '/:delresource/destroy/:id' do
+	require_admin
+	@delresource = params[:delresource]
+	@delval = ""
+	case @delresource
+	when "property"
+		@delval = Property.get(params[:id])
+	when "location"
+		@delval = Location.get(params[:id])
+	when "region"
+		@delval = Region.get(params[:id])
+	else
+		raise "Nothing planned yet"
+	end
+
+	if @delval.destroy!
+		redirect '/admin'
+	else
+		redirect '/'
+	end
+end
 
 load 'actions/route_region.rb'
 load 'actions/route_location.rb'
