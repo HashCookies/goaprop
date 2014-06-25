@@ -1,34 +1,18 @@
 <div class="container">
-	<form role="form" action="/resource/create" method="post" id="property" enctype="multipart/form-data">
-		<input type="hidden" name="resource" value="Region" />
-		<div class="form-group">
-				<label>Region Name:</label><br />
-				<input type="text" name="region[name]" id="name" class="form-control" />	
-		</div>
-		
-		<div class="form-group">
-				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Region">
-		</div>
-	</form>
-	
 	<form role="form" action="/region/create" method="post" id="property" enctype="multipart/form-data">
-		
+		<!-- <input type="hidden" name="resource" value="Region" /> -->
 		<div class="form-group">
 				<label>Region Name:</label><br />
 				<input type="text" name="region[name]" id="name" class="form-control" />	
 		</div>
+
+		<label for="Region">Locations</label>
 		
-		<div class="form-group">
-				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Region">
-		</div>
-	</form>
-	
-	<form role="form" action="/region/create" method="post" id="property" enctype="multipart/form-data">
-		
-		<div class="form-group">
-				<label>Region Name:</label><br />
-				<input type="text" name="region[name]" id="name" class="form-control" />	
-		</div>
+			<% @locations.each do |location| %>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="location[<%= location.id %>]" id="location[<%= location.id %>]" value="<%= location.id %>"><%= location.name %>
+				</label>
+			<% end %>
 		
 		<div class="form-group">
 				<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Create New Region">
