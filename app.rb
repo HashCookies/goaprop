@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/support'
+require 'sinatra/reloader'
 require 'data_mapper'
 require 'sass'
 
@@ -74,7 +75,7 @@ class Image
 	belongs_to :property
 end
 
-class Type # "Apartment", "House", "Villa", etc. Semi static.
+class Type
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -97,7 +98,7 @@ class Location
 	
 end
 
-class Region # Regions like "South Goa", North Goa. Static.
+class Region
 	include DataMapper::Resource
 	
 	property :id,		Serial
@@ -108,7 +109,7 @@ class Region # Regions like "South Goa", North Goa. Static.
 	
 end
 
-class State # Model for "Buy", "Rent". Static.
+class State
 	include DataMapper::Resource
 	
 	property :id,	Serial
@@ -117,7 +118,7 @@ class State # Model for "Buy", "Rent". Static.
 	has n, :propertys
 end
 
-class Category # model for "Residential", "Commercial", "Undeveloped". Static.
+class Category
 	include DataMapper::Resource
 	
 	property :id,	Serial
@@ -194,6 +195,25 @@ get '/property/new' do
 	@page_title += " | New Property"
 	@body_class += " alt"
 	erb :new
+end
+
+get '/property/:id/edit' do
+	@property = Property.get(params[:id])
+	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
+	@images = @property.images[1..3]
+	@regions = Region.all
+	@locations = Location.all
+	@types = Type.all
+	@states = State.all
+	@categories = Category.all
+	@page_title += " | Edit Property"
+	@body_class += " alt"
+	erb :edit
+end
+
+get '/location/:id' do
+	@location = Location.get(params[:id])
+	erb :location
 end
 
 post '/create' do
