@@ -92,6 +92,13 @@ h2 {
 	
 }
 
+.home .header {
+	background-image: -webkit-linear-gradient(top, white 0%, #fbfaf2 100%);
+	background-image: -moz-linear-gradient(top, white 0%, #fbfaf2 100%);
+	background-image: -ms-linear-gradient(top, white 0%, #fbfaf2 100%);
+	background-image: linear-gradient(to bottom, white 0%, #fbfaf2 100%);
+}
+
 .navbar {
 	background: transparent;
 	padding-top: 5px;
@@ -447,6 +454,7 @@ h2 {
 	left: 35%;
 	/*border: 1px solid transparentize($vib, 0.2);*/
 	text-shadow: 0px 1px #fff;
+	/*-webkit-transform: scale(1.2) translateX(-50px);*/
 	input {
 		color: $vib;
 		font-family: $sans;
