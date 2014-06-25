@@ -1,0 +1,166 @@
+<div class="container">
+	<div class="row section">
+		<div class="col-md-12">
+			<h2>Hi Goa Property Co</h2>
+			<p class="lead">You can change pretty much anything from this admin page.</p>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">Properties</h3>
+			<a href="/property/new" class="btn btn-large btn-primary">Create New Property</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @properties.each do |property| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/property/<%= property.id %>"><%= property.title %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/property/<%= property.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= property.title %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">Locations</h3>
+			<a href="/location/new" class="btn btn-large btn-primary">Create New Location</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @locations.each do |location| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/location/<%= location.id %>"><%= location.name %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/location/<%= location.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= location.name %>" data-resource-id="<%= location.id %>" data-target=".delete-modal" data-type="location">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">Regions</h3>
+			<a href="/region/new" class="btn btn-large btn-primary">Create New Region</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @regions.each do |region| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/region/<%= region.id %>"><%= region.name %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/region/<%= region.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= region.name %>" data-resource-id="<%= region.id %>" data-target=".delete-modal" data-type="region">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">Category</h3>
+			<a href="/category/new" class="btn btn-large btn-primary">Create New Category</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @categories.each do |category| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/category/<%= category.id %>"><%= category.name %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/category/<%= category.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= category.name %>" data-resource-id="<%= category.id %>" data-target=".delete-modal" data-type="category">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">Types</h3>
+			<a href="/type/new" class="btn btn-large btn-primary">Create New Type</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @types.each do |type| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/type/<%= type.id %>"><%= type.name %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/type/<%= type.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= type.name %>" data-resource-id="<%= type.id %>" data-target=".delete-modal" data-type="type">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row section">
+		<div class="col-md-12">
+			<h3 class="title">States</h3>
+			<a href="/state/new" class="btn btn-large btn-primary">Create New State</a>
+		</div>
+		<div class="col-md-12">
+			<ul class="list-group">
+			  <% @states.each do |state| %>
+			  	<li class="list-group-item clearfix">
+			  			<div class="col-md-6">
+				  			<a href="/state/<%= state.id %>"><%= state.name %></a>
+			  			</div>
+			  			<div class="col-md-5 text-right">
+				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/state/<%= state.id %>/edit">Edit</a></span>
+				  			<span class="action">
+				  				<button class="delete-btn" data-resource-name="<%= state.name %>" data-resource-id="<%= state.id %>" data-target=".delete-modal" data-type="state">
+				  				  <span class="glyphicon glyphicon-remove"></span>  Delete
+				  				</button>
+				  			</span>
+			  			</div>
+			  	</li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
+
+</div>
+<%= erb :_modal %>

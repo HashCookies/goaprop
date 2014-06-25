@@ -1,0 +1,19 @@
+<div class="modal fade delete-modal" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title title">Are you sure you want to delete <span class="name"></span>?</h4>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <form action="/destroy/" method="post" class="delete-modal-form">
+        	<input type="hidden" name="_method" value="delete">
+          	<input type="submit" value="Yes, Delete!" class="btn btn-primary btn-large">
+        </form>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

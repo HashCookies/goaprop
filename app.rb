@@ -204,7 +204,7 @@ end
 get '/property/:id/edit' do
 	@property = Property.get(params[:id])
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@images = @property.images[1..3]
+	@images = @property.images.all
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
@@ -311,6 +311,19 @@ get '/property/:id' do
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 	erb :property
+end
+
+get '/admin' do
+	require_admin
+
+	@properties = Property.all
+	@regions = Region.all
+	@locations = Location.all
+	@types = Type.all
+	@states = State.all
+	@categories = Category.all
+
+	erb :admin
 end
 
 get '/search' do

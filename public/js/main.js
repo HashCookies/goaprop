@@ -108,6 +108,22 @@ $(document).ready(function() {
 			$(elem).find('.select-label').html(title).popover('hide');
 			
 		});
+
+		var $delBtn = $('.delete-btn');
+		var $delModal = $('.delete-modal');
+		
+		$delBtn.click(function() {
+			var prodID = $(this).attr('data-resource-id');
+			var prodName = $(this).attr('data-resource-name');
+			var dataType = $(this).attr('data-type');
+
+			$delModal.find('form').attr('action', dataType + '/destroy/' + prodID);
+			$delModal.find('h4.modal-title span').text(dataType + ": " +prodName);
+			
+			$delModal.modal();
+			
+			return false;
+		});
 		
 		// file input display image
 		
