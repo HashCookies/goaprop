@@ -47,38 +47,46 @@
 		
 	<div class="container">
 		<div class="row property-main">
-			<div class="col-md-8">
-				<p class="lead">In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate.</p>
-				<span class="small-title">In Pictures</span>
-				<ul class="gallery-block row">
-				<% @images.each do |image| %>
-					<li class="gallery-item col-md-4">
-						<img src="/properties/images/<%= image.url %>" alt="" width="200" />
-					</li>
-				<% end %>
-				</ul>
-			</div>
-			<div class="col-md-4">
-				
-				<ul class="clearfix prop-specs text-right">
+			<div class="col-md-8 prop-specs">
+				<ul class="clearfix ">
 					<li class="clearfix">
-						<div class="block"><span class="label">Area</span></div>
+						<span class="label">Area</span>
 						<div class="block">
 							<%= @property.area %> Sq Mts
 						</div>
 					</li>
-					<li>
-						<div class="block"><span class="label">Built Area</span></div>
+					<li class="clearfix">
+						<span class="label">Built Area</span>
 						<div class="block"><%= @property.area_built %> Sq Mts</div>
 					</li>
 					<li>
-						<div class="block"><span class="label">Location</span></div>
+						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>
 					</li>
 					<li class="clearfix">
-						<div class="block"><span class="label">Facilities</span> </div>
+						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
+					<li class="large">
+						<span class="label">Price</span>
+						<div class="pull-right">
+							
+							<div class="price"><span class="prop-price"><%= @property.price %></span></div>
+						</div>
+					</li>
+				</ul>
+				
+				
+				
+			</div>
+			<div class="col-md-4">
+				<!--<span class="small-title">In Pictures</span>-->
+				<ul class="gallery-block row">
+				<% @images.each do |image| %>
+					<li class="gallery-item col-md-6">
+						<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+					</li>
+				<% end %>
 				</ul>
 			</div>
 			
