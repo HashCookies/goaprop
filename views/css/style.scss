@@ -374,6 +374,8 @@ h2 {
 			right: 15px;
 			padding-top: 50px;
 			border-radius: 0;
+			color: lighten($vib, 10%);
+			border: 1px solid lighten($vib, 20%);
 		}
 	}
 }

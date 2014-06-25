@@ -7,6 +7,7 @@ require 'lib/authorization'
 require 'data_mapper'
 require 'sass'
 
+enable :sessions
 
 get '/css/style.css' do
 	content_type 'text/css', :charset => 'utf-8'
@@ -33,10 +34,10 @@ class Property
 	
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_ft,			Integer	# Written in natural language, like "2000 x 4200 sq ft"
+	property :area_built,		String	
 	property :price,			Integer
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
-	property :area_built,		String
+
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
@@ -141,6 +142,7 @@ end
 before do
 	@page_title = "GoaPropertyCo"
 	@body_class = "page"
+	session[:properties] ||= {}
 end
 
 get '/reset' do
@@ -236,7 +238,6 @@ post '/create' do
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
-	property.area_ft = property.area_ft.to_i
 	property.price = property.price.to_i
 
 	if property.save			
@@ -309,6 +310,10 @@ get '/property/:id' do
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
+	
+	session[:properties][@property.id] = @property.title
+	@session = session[:properties]
+	
 	erb :property
 end
 
