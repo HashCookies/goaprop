@@ -19,21 +19,22 @@
 						</a>
 					</h3>
 					<ul class="clearfix">
-						<li class="clearfix">
+						<li class="clearfix prop-price">
+							<span class="label">Price</span>
+							<% if property.state_id == 2 %>
+								<span class=" sort-price"><%= to_currency(property.price) + " / mo" %></span>
+							<% else %>
+								<span class=" sort-price"><%= to_currency(property.price) %></span>
+							<% end %>
+						</li>
+						<li class="clearfix prop-area">
+							<span class="label">Area</span>
 							<div class="block sort-area" data-sort="<%= property.area %>">
 								<%= property.area %> Sq Mts
 							</div>
 						</li>
-						<li class="clearfix prop-price">
-							<% if property.state_id == 2 %>
-								Rs. <span class=" sort-price"><%= to_currency(property.price) + " / mo" %></span>
-							<% else %>
-								Rs. <span class=" sort-price"><%= to_currency(property.price) %></span>
-							<% end %>
-						</li>
 					</ul>
 				</div>
-				
 		</li>
 	<% end %>
 </ul>

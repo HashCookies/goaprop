@@ -194,7 +194,7 @@ $(document).ready(function() {
 				value = value.substring(0, 1);
 				$(this).text(value + ' lacs');
 			} else if (value.length < 6) {
-				$(this).text("Rs. " + $(this).text());
+				$(this).text($(this).text());
 			}
 		});
 });
