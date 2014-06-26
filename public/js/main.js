@@ -174,7 +174,7 @@ $(document).ready(function() {
 			
 		});
 		
-		$('.prop-price').each(function() {
+		$('.prop-price .price').each(function() {
 			var value = $(this).text();
 			value = value.replace(/,/g, '');
 			
