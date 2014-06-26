@@ -312,7 +312,12 @@ get '/property/:id' do
 	end
 	
 	session[:properties][@property.id] = @property.title
-	@session = session[:properties]
+	
+	viewed = []
+	
+	session[:properties].each_key {|key| viewed << key }
+	
+	@viewed = Property.all(:id => viewed )
 	
 	erb :property
 end
