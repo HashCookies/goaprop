@@ -18,10 +18,19 @@
 			  			<div class="col-md-1">
 			  				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.images.get(property.featured_img).url %>" alt="" width="60" /></a>
 			  			</div>
-			  			<div class="col-md-6">
-				  			<a href="/property/<%= property.id %>"><%= property.title %></a>
+			  			<div class="col-md-5"><a href="/property/<%= property.id %>">
+							<span><%= property.title %> </span>
+							<%= property.type.name %> 
+							<%= "in " + property.location.name %>
+							<%= "for " + property.state.name %>
+						</a>
 			  			</div>
-			  			<div class="col-md-5 text-right">
+			  			<div class="col-md-2">
+				  			<span class="prop-price">
+				  				Rs: <%= to_currency(property.price) %>
+							</span>
+			  			</div>
+			  			<div class="col-md-4 text-right">
 				  			<span class="action"><span class="glyphicon glyphicon-pencil"></span> <a href="/property/<%= property.id %>/edit">Edit</a></span>
 				  			<span class="action">
 				  				<button class="delete-btn btn-primary btn-large" data-resource-name="<%= property.title %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
@@ -44,10 +53,10 @@
 			<ul class="list-group">
 			  <% @locations.each do |location| %>
 			  	<li class="list-group-item clearfix">
-			  			<div class="col-md-4">
+			  			<div class="col-md-2">
 				  			<a href="/location/<%= location.id %>"><%= location.name %></a>
 			  			</div>
-			  			<div class="col-md-4">
+			  			<div class="col-md-6">
 				  			<span class="label">
 				  				Regions: 
 				  				<% location.regions.each do |region| %>
