@@ -80,17 +80,28 @@
 				
 				
 			</div>
-			<div class="col-md-4">
-				<!--<span class="small-title">In Pictures</span>-->
-				<ul class="gallery-block">
-				<% @images.each do |image| %>
-					<li class="gallery-item col-md-6">
-						<img src="/properties/images/<%= image.url %>" alt="" width="200" />
-					</li>
-				<% end %>
-					<li class="gallery-link col-md-6"><a href="#" class="btn btn-large btn-primary">View Gallery</a></li>
-				</ul>
-			</div>
+			<div class="col-md-4 inquiry-block">
+				<form method="post" action="/send-inquiry">
+					<div class="form-group">
+						<label for="">Your name</label>
+						<input type="text" name="" value="" class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<label for="">Your email</label>
+						<input type="text" name="" value="" class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<label for="">Message</label>
+						<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
+					</div>
+					
+					<div class="form-group text-center">
+						<input type="button" name="" value="Send Inquiry" class="btn btn-large btn-primary" />
+					</div>
+				</form>
+			</div>	
 			
 			
 			<div class="clearfix"></div>
@@ -107,26 +118,7 @@
 				</div>
 				<div class="col-md-4">
 					
-					<form method="post" action="/send-inquiry">
-						<div class="form-group">
-							<label for="">Your name</label>
-							<input type="text" name="" value="" class="form-control" />
-						</div>
-						
-						<div class="form-group">
-							<label for="">Your email</label>
-							<input type="text" name="" value="" class="form-control" />
-						</div>
-						
-						<div class="form-group">
-							<label for="">Message</label>
-							<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
-						</div>
-						
-						<div class="form-group text-center">
-							<input type="button" name="" value="Send Inquiry" class="btn btn-large btn-primary" />
-						</div>
-					</form>
+					
 				</div>
 				<div class="col-md-8">
 					<h4 class="label">Recently Viewed</h4>				
