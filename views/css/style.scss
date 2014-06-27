@@ -1015,10 +1015,7 @@ form#property {
 }
 
 #inquiry-block {
-	border-top: 1px solid darken($light, 10%);
-	padding: 35px 0 0;
-	margin-top: 50px;
-	background: $offWhite;
+	
 	.section-title {
 		font-size: 36px;
 		margin-bottom: 25px;
@@ -1052,5 +1049,16 @@ form#property {
 	textarea {
 		height: 115px;	
 	}
+}
 
+.inquiry-block {
+	background: $offWhite;
+	border: 1px solid darken($light, 10%);
+	padding: 15px;
+	border-radius: 5px;
+	h3 {
+		font-size: 18px;
+		font-weight: bold;
+		margin-top: 10px;
+	}
 }
