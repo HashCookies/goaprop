@@ -1053,6 +1053,12 @@ form#property {
 
 .inquiry-block {
 	background: $offWhite;
-	border: 1px solid $light;
+	border: 1px solid darken($light, 10%);
 	padding: 15px;
+	border-radius: 5px;
+	h3 {
+		font-size: 18px;
+		font-weight: bold;
+		margin-top: 10px;
+	}
 }

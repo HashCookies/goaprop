@@ -81,19 +81,19 @@
 				
 			</div>
 			<div class="col-md-4 inquiry-block">
+				<h3>Interested? Let us show you around…</h3>
 				<form method="post" action="/send-inquiry">
 					<div class="form-group">
-						<label for="">Your name</label>
-						<input type="text" name="" value="" class="form-control" />
+						<label for="name" class="hidden">Your name</label>
+						<input type="text" name="name" placeholder="Your name" value="" class="form-control" />
 					</div>
 					
 					<div class="form-group">
-						<label for="">Your email</label>
-						<input type="text" name="" value="" class="form-control" />
+						<label for="email" class="hidden">Your email</label>
+						<input type="text" name="email" placeholder="Your email" value="" class="form-control" />
 					</div>
 					
 					<div class="form-group">
-						<label for="">Message</label>
 						<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
 					</div>
 					
@@ -114,13 +114,6 @@
 	<div class="container">
 		<div class="row">
 				<div class="col-md-12">
-					<h3 class="section-title">Interested? Let us show you around…</h3>
-				</div>
-				<div class="col-md-4">
-					
-					
-				</div>
-				<div class="col-md-8">
 					<h4 class="label">Recently Viewed</h4>				
 					<ul id="property-grid" class="row viewed">
 						<% @viewed.each do |property| %>
