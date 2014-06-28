@@ -20,7 +20,7 @@
 	</head>
 	<body class="<%= @body_class %>">
 		<div class="header">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="navbar navbar-default" role="navigation">
 				  <div class="navbar-header">
 				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,18 +31,14 @@
 				    </button>
 				    <a class="navbar-brand" href="/">Goa Property Co</a>
 				  </div>
-				  <div id="contact-details" class="navbar-collapse collapse">
-				  	<ul class="nav navbar-nav navbar-right">
-				  		<li><span class="glyphicon glyphicon-earphone"></span> +91 800 75 000 66</li>
-				  		<li><span class="glyphicon glyphicon-envelope"></span> mail@goapropertyco.com</li>
-				  	</ul>
-				  </div>
 				  <div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right main-nav">
+				    	<li class="selected"><a href="#">Home</a></li>
 				    	<li><a href="/properties">Properties</a></li>
 				    	<li><a href="#">About GPC</a></li>
 						<li><a href="#">Blog</a></li>
 						<li><a href="#">Contact</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-earphone"></span> +91 800 75 000 66</a></li>
 				    </ul>
 				  </div><!--/.nav-collapse -->
 				</div>

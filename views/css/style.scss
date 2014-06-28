@@ -85,18 +85,8 @@ h2 {
 .header {
 	background: white;
 	width: 100%;
-	padding: 0px 0 15px;
-	.home & {
-		background: $offWhite;
-	}
+	padding: 0px;
 	
-}
-
-.home .header {
-	background-image: -webkit-linear-gradient(top, white 0%, #fbfaf2 100%);
-	background-image: -moz-linear-gradient(top, white 0%, #fbfaf2 100%);
-	background-image: -ms-linear-gradient(top, white 0%, #fbfaf2 100%);
-	background-image: linear-gradient(to bottom, white 0%, #fbfaf2 100%);
 }
 
 .navbar {
@@ -112,23 +102,24 @@ h2 {
 		background: url('../images/logo-white.png') no-repeat left top;
 		width: 214px;
 		height: 71px;
-		margin-top: 20px;
-		.home & {
-			background-image: url('../images/logo.jpg');
-		}
+		margin-top: 7px;
+		margin-bottom: 7px;
 	}
 	.main-nav {
-		background: lighten(white, 2%);
-		border: 1px solid darken($light, 5%);
-		margin-top: 35px;
-		padding: 0px 15px;
+		margin-top: 20px;
+		padding: 0px 10px;
 		li {
 			text-transform: uppercase;
-			font-weight: bold;
 			color: #503936;
+			font-size: 14px;
+			font-family: "Meta";
+
 			a {
 				color: inherit;
 			}
+		}
+		.selected {
+			color: $vib;
 		}
 	}
 
@@ -152,24 +143,12 @@ h2 {
 	}
 }
 
-.cover {
-	width: 100%;
-	height: 200px;
-	background: url(../images/bg-house.jpg) no-repeat bottom left;
-	background-color: $offWhite;
-
-}
-
-#tree {
-	background: url('../images/tree.jpg') no-repeat left bottom;
-	width: 239px;
-	height: 479px;
+#cover {
 	position: absolute;
-	right: 0;
-	bottom: 0;
-	z-index: 0;
+	.anystretch {
+		z-index: -10 !important;
+	}
 }
-
 
 
 .content {
@@ -312,7 +291,7 @@ h2 {
 			font-size: 18px;
 			margin-bottom: 10px;
 			border-bottom: 1px solid darken($light, 10%);
-			padding-bottom: 7px;
+			padding-bottom: 15px;
 			padding-top: 10px;
 			overflow: auto;
 			.label {
@@ -322,6 +301,7 @@ h2 {
 			.block {
 				float: right;
 				font-weight: 100;
+				line-height: 18px;
 			}
 		}
 		li.large {
@@ -426,6 +406,9 @@ h2 {
 	.scrolled & {
 		position: relative;
 		top: 0 !important;
+		.call-to-action {
+			display: none;
+		}
 	}
 	.prop-title {
 		font-weight: 600;
@@ -478,23 +461,43 @@ h2 {
 #search-bar {
 	position: absolute;
 	font-weight: 100;
-	bottom: 100px;
+	top: 100px;
 	/*background: transparentize(white, 0.1);*/
 	padding: 50px;
 	color: black;
 	font-style: italic;
-	font-size: 36px;
 	font-family: $serif;
 	text-align: left;
-	left: 35%;
-	/*border: 1px solid transparentize($vib, 0.2);*/
-	text-shadow: 0px 1px #fff;
-	/*-webkit-transform: scale(1.2) translateX(-50px);*/
+	left: 5%;
+	h3 {
+		font-size: 60px;
+		color: white;
+		font-family: $sans;
+		font-style: normal;
+		margin-bottom: 35px;
+		span {
+			font-family: $serif;	
+			font-style: italic;
+		}
+	}
+	form {
+		background: white;
+		border-radius: 10px;
+		overflow: auto;
+		-webkit-box-shadow: 0px 0px 5px transparentize(black, 0.8);
+		padding-left: 15px;
+	}
 	input {
 		color: $vib;
 		font-family: $sans;
 		margin: 0 10px;
 		
+	}
+	.select-label-wrap {
+		float: left;
+		font-size: 22px;
+		padding-top: 15px;
+		padding-bottom: 10px;
 	}
 	.select-label {
 		text-decoration: none;
@@ -504,7 +507,8 @@ h2 {
 		color: $vib;
 		text-transform: uppercase;
 		display: inline-block;
-		margin: 0 10px 0 20px;
+		margin: 0 10px 0 10px;
+		
 		&:after {
 		   display: inline-block;
 		   	content: " ";
@@ -517,25 +521,20 @@ h2 {
 		       border-left: 4px solid transparent
 		}
 	}
-	
-	#select-category {
-		margin-left: 100px;
-	}
-	#select-region {
-		margin-left: 91px;
-	}
 	#find-prop {
-		background: none;;
+		background: $vib;
+		color: white;
+		float: left;
 		font-weight: bold;
 		font-style: normal;
 		text-transform: uppercase;
-		margin-left: 145px;
-		margin-top: 40px;
 		font-size: 22px;
 		font-family: $sans;
-		color: $vib;
-		padding: 0;
 		border: 0px solid $vib;
+		padding: 15px 25px 13px;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		margin-left: 15px;
 		.glyphicon {
 			font-size: 18px;
 			-webkit-transform: translateY(0px);
@@ -1060,5 +1059,8 @@ form#property {
 		font-size: 18px;
 		font-weight: bold;
 		margin-top: 10px;
+	}
+	.form-control {
+		margin: 10px auto;
 	}
 }

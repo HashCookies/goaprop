@@ -47,7 +47,7 @@
 		
 	<div class="container">
 		<div class="row property-main">
-			<div class="col-md-8 prop-specs">
+			<div class="col-md-6 prop-specs">
 				<ul class="clearfix ">
 					<!--<h3>Detailed Specs</h3>-->
 					<li class="clearfix">
@@ -80,7 +80,7 @@
 				
 				
 			</div>
-			<div class="col-md-4 inquiry-block">
+			<div class="col-md-6 inquiry-block">
 				<h3>Interested? Let us show you around…</h3>
 				<form method="post" action="/send-inquiry">
 					<div class="form-group">
@@ -106,22 +106,6 @@
 			
 			<div class="clearfix"></div>
 					
-		</div>		
-	</div>
-</div>
-
-<div id="inquiry-block">
-	<div class="container">
-		<div class="row">
-				<div class="col-md-12">
-					<h4 class="label">Recently Viewed</h4>				
-					<ul id="property-grid" class="row viewed">
-						<% @viewed.each do |property| %>
-							<%= erb :_property, :labout => false, :locals => {:property => property} %>
-						<% end %>
-					</ul>
-				</div>
-				
 		</div>		
 	</div>
 </div>
