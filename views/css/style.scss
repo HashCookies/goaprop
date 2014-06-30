@@ -112,8 +112,6 @@ h2 {
 			text-transform: uppercase;
 			color: #503936;
 			font-size: 14px;
-			font-family: "Meta";
-
 			a {
 				color: inherit;
 			}
@@ -461,14 +459,14 @@ h2 {
 #search-bar {
 	position: absolute;
 	font-weight: 100;
-	top: 100px;
+	bottom: 100px;
 	/*background: transparentize(white, 0.1);*/
 	padding: 50px;
 	color: black;
 	font-style: italic;
 	font-family: $serif;
 	text-align: left;
-	left: 5%;
+	left: 2.5%;
 	h3 {
 		font-size: 60px;
 		color: white;
