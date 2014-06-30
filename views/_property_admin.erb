@@ -5,14 +5,14 @@
 	
 		<div class="img-block">
 			
-			<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
+			<a href="/property/<%= property.id %>"><img src="/properties/images/<%= featured_img %>" alt="" /></a>
 		</div>
 		<div class="data-block">
 			<h3 class="prop-title">
 				<a href="/property/<%= property.id %>">
 					<span><%= property.title %> </span>
 					<%= property.type.name %> 
-					<%= "in " + property.location.name %>
+					<%#= "in " + property.location.name %>
 					<%= "for " + property.state.name %>
 				</a>
 			</h3>
