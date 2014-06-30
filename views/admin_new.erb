@@ -4,96 +4,26 @@
 			<h2>Hi Goa Property Co</h2>
 			<p class="lead">You can change pretty much anything from this admin page.</p>
 		</div>
-	</div>
-
-	<div class="row section">
 		<div class="col-md-12">
-			<h3 class="title">Properties</h3>
 			<a href="/property/new" class="btn btn-large btn-primary">Create New Property</a>
-		</div>
-		<div class="col-md-12">
-			<ul class="list-group">
-			  <% @properties.each do |property| %>
-			  	<li class="list-group-item clearfix">
-		  			<div class="col-md-1">
-		  				<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.images.get(property.featured_img).url %>" alt="" width="60" /></a>
-		  			</div>
-		  			<div class="col-md-5"><a href="/property/<%= property.id %>">
-						<span><%= property.title %> </span>
-						<%= property.type.name %> 
-						<%= "in " + property.location.name %>
-						<%= "for " + property.state.name %>
-					</a>
-		  			</div>
-		  			<div class="col-md-2">
-			  			<span class="prop-price">
-			  				Rs: <%= to_currency(property.price) %>
-						</span>
-		  			</div>
-		  			<div class="col-md-4 text-right">
-			  			<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%= property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
-			  			<span class="action">
-			  				<button class="btn btn-primary btn-sm" data-resource-name="<%= property.title %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
-			  				  <span class="glyphicon glyphicon-remove"></span>  Delete
-			  				</button>
-			  			</span>
-		  			</div>
-			  	</li>
-			  <% end %>
-			</ul>
-		</div>
-	</div>
-
-	<div class="row section">
-		<div class="col-md-12">
-			<h3 class="title">Locations</h3>
 			<a href="/location/new" class="btn btn-large btn-primary">Create New Location</a>
 		</div>
-		<div class="col-md-12">
-			<ul class="list-group">
-			  <% @locations.each do |location| %>
-			  	<li class="list-group-item clearfix">
-		  			<div class="col-md-2">
-			  			<a href="/location/<%= location.id %>"><%= location.name %></a>
-		  			</div>
-		  			<div class="col-md-6">
-			  			<span class="label">
-			  				Regions: 
-			  				<% location.regions.each do |region| %>
-			  				<%= region.name %>
-							<% end %>
-						</span>
-		  			</div>
-		  			<div class="col-md-4 text-right">
-			  			<span class="action"><a class="btn btn-primary btn-sm" href="/location/<%= location.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
-			  			<span class="action">
-			  				<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= location.name %>" data-resource-id="<%= location.id %>" data-target=".delete-modal" data-type="location">
-			  				  <span class="glyphicon glyphicon-remove"></span>  Delete
-			  				</button>
-			  			</span>
-		  			</div>
-			  	</li>
-			  <% end %>
-			</ul>
-		</div>
+	</div>
+
+	<div class="content">
+		<h3 class="title">Properties</h3>
+		<% @locations.each do |location| %>
+			<% unless location.propertys.count < 1 %>
+				<div class="col-md-2"><h3 class="title"><%= location.name %></h3></div>
+				<div class="col-md-10">
+					<ul id="property-grid" class="row">
+						<% location.propertys.each do |property| %>
+							<%= erb :_property_admin, :layout => false, :locals => {:property => property, :featured_img => property.images.get(property.featured_img).url} %>
+						<% end %>
+					</ul>
+				</div>
+			<% end%>
+		<% end %>
 	</div>
 </div>
-<div class="offwhite-block">
-		<div class="container">
-			<div class="content">
-				<h3 class="title">Properties</h3>
-				<% @locations.each do |location| %>
-					<div class="col-md-2"><%= location.name %></div>
-					<div class="col-md-10">
-						<ul id="property-grid" class="row">
-							<% location.propertys.each do |property| %>
-							test
-								<%= erb :_property_admin, :layout => false, :locals => {:property => property, :featured_img => property.images.get(property.featured_img).url} %>
-							<% end %>
-						</ul>
-					</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
 <%= erb :_modal %>

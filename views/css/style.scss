@@ -32,6 +32,22 @@ h2 {
 	text-transform: uppercase;
 }
 
+.delete-modal {
+	.modal-footer {
+		margin-top: 0;
+		border-top: 0;
+	}
+}
+
+.delete-modal-form {
+	float: right;
+	margin-left: 10px;
+	input {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+
 .btn-primary {
 	background: none;
 	border: 1px solid $vib;
