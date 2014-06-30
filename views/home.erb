@@ -1,36 +1,9 @@
 
-<div class="cover">
-	<div id="tree">
+<div id="cover" class="anystretch" data-stretch="images/gp-bg.jpg">
 	
-	</div>
 	<div id="search-bar">
-		<form method="get" action="/search" id="search">
-			<div id="select-state">
-				I'd like to
-				<a href="#" id="select-state-label" class="select-label" data-container="body" data-toggle="popover" 
-					data-content="
-					<%= erb :_state_loop %>
-					">Buy</a>
-				<input type="hidden" name="search[state]" value="1" id="input-state" class="hidden-field" />
-			</div>
-			
-			<div id="select-category">a 
-				<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<%= erb :_category_loop %>
-				">Residential</a> property
-				<input type="hidden" name="search[category]" value="1" id="input-category" class="hidden-field" />
-			</div>
-
-			
-			<div id="select-region">in 
-				<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-					<%= erb :_region_loop %>
-				">North Goa</a>
-				
-				<input type="hidden" name="search[region_id]" value="1" class="hidden-field" />
-			</div>
-			<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large">Find Properties <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-		</form>
+		<h3>Real Estate. <span>Simplified.</span></h3>
+		<%= erb :_search_form %>
 	</div>
 </div>
 

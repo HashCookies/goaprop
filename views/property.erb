@@ -109,21 +109,6 @@
 	</div>
 </div>
 
-<div id="inquiry-block">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h4 class="label">Recently Viewed</h4>				
-				<ul id="property-grid" class="row viewed">
-					<% @viewed.each do |property| %>
-						<%= erb :_property, :layout => false, :locals => {:property => property} %>
-					<% end %>
-				</ul>
-			</div>
-		</div>		
-	</div>
-</div>
-
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content">
