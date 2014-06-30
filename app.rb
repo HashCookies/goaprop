@@ -341,20 +341,6 @@ get '/admin' do
 	erb :admin
 end
 
-get '/newadmin' do
-	require_admin
-
-	@properties = Property.all
-	@sort_prop = @properties.all( :location => [:name => "Panaji"])
-	@regions = Region.all
-	@locations = Location.all
-	@types = Type.all
-	@states = State.all
-	@categories = Category.all
-
-	erb :admin_new
-end
-
 get '/search' do
 	@categories = Category.all
 	@states = State.all
