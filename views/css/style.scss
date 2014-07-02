@@ -473,16 +473,18 @@ h2 {
 }
 
 #search-bar {
-	position: absolute;
 	font-weight: 100;
-	bottom: 100px;
 	/*background: transparentize(white, 0.1);*/
 	padding: 50px;
 	color: black;
 	font-style: italic;
 	font-family: $serif;
 	text-align: left;
-	left: 2.5%;
+	.home &{
+		position: absolute;	
+		left: 2.5%;
+		bottom: 100px;
+	}
 	h3 {
 		font-size: 60px;
 		color: white;
@@ -556,7 +558,7 @@ h2 {
 			margin-right: 5px;
 		}
 		&:hover {
-			color: darken($vib, 10%);
+			color: darken($vib, 25%);
 			.glyphicon {
 				-webkit-transform: translateX(5px);
 			}
@@ -570,7 +572,6 @@ h2 {
 			}
 		}
 	}
-	
 }
 
 .popover-content {
@@ -595,99 +596,6 @@ h2 {
 	.State {
 		display: inline-block;
 	}	
-}
-
-
-.results-title {
-	width: 100%;
-	overflow: auto;
-	padding: 0 0 5px;
-	border-top: 1px solid darken($light, 20%);
-	.inner {
-		background: white;
-		padding: 10px 25px;
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-		-moz-box-shadow: 0px 1px 2px darken($light, 20%);
-		box-shadow: 0px 1px 2px darken($light, 20%);
-	}
-	h3 {
-		font-size: 16px;
-		margin-top: 10px;
-		margin-bottom: 0;
-		font-family: $serif;
-		font-style: italic;
-		float: left;
-		strong {
-			font-family: $sans;
-			font-style: normal;
-				text-transform: uppercase;
-				margin: 0 8px;
-				display: inline-block;
-		}
-	}
-	.select-label-wrap {
-		float: left;
-		font-family: $serif;
-		font-style: italic;
-		font-size: 18px;
-		margin-top: 5px;
-		.select-label {
-			font-family: $sans;
-			font-style: normal;
-			margin: 0 8px;
-			font-weight: bold;
-			text-transform: uppercase;
-			color: $vib;
-			text-decoration: none;
-			&:hover {
-				color: $vib;
-			}
-			&:after {
-			   display: inline-block;
-			   	content: " ";
-			       width: 0;
-			       height: 0;
-			       margin-left: 3px;
-			       vertical-align: middle;
-			       border-top: 4px solid;
-			       border-right: 4px solid transparent;
-			       border-left: 4px solid transparent
-			}
-		}
-		
-	}
-	.btn {
-		margin-left: 15px;
-		color: $vib;
-		border: none;
-		font-weight: bold;
-		background: transparent;
-		text-transform: uppercase;
-		.glyphicon {
-			-webkit-transition-duration: 600ms;
-		}
-		&:hover {
-			background: transparent;
-			color: darken($vib, 10%);
-			.glyphicon {
-				-webkit-transform: rotate(290deg);
-			}
-		}
-		&:active {
-			box-shadow: none;
-			color: darken($vib, 10%);
-			-webkit-transform: translateY(1px);
-		}
-	}
-	.search-label {
-		float: left;
-		font-family: $serif;
-		font-style: italic;
-		font-size: 18px;
-		margin-top: 5px;
-	}
-	
 }
 
 .filters {
