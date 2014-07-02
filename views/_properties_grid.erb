@@ -1,4 +1,4 @@
-<ul id="property-grid" class="row">
+<ul id="property-grid">
 	<% @properties.each do |property| %>
 		<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase %>" 
 			data-price="<%= property.price %>" 
