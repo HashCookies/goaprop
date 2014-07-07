@@ -1,5 +1,5 @@
 <form method="get" action="/search" id="search">
-	<div id="select-category" class="select-label-wrap">Searching 
+	<div id="select-category" class="select-label-wrap"> 
 		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 			<%= erb :_category_loop %>
 		"><%= @category.name %></a> properties &nbsp;
@@ -23,5 +23,5 @@
 		<input type="hidden" name="search[region_id]" value="<%= @region.id %>" class="hidden-field" />
 	</div>
 	
-	<button type="submit" name="submit" id="find-prop" value="Find Properties" class="btn btn-large btn-primary pull-right">Search Again</button>
+	<button type="submit" name="submit" id="find-prop" class="btn btn-large pull-right"><span class="glyphicon glyphicon-search"></span> Search</button>
 </form>

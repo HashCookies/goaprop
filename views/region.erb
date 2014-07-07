@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="col-md-4">
+				<%= @region.name %>
+			</h3>
+		</div>
+		<div class="col-md-12">
+			<span class="label">Locations:</span>
+			<ul>
+				<% @region.locations.each do |location| %>
+					<li>
+						<%= location.name %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<% if @authorised.nil? %>
+			<div class="col-md-4">
+				<a class="btn btn-primary btn-submit" href="/region/new">Add New Region</a>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,174 @@
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<h3 class="title">Edit Property</h3>
+			<form role="form" action="/update" method="post" id="property" enctype="multipart/form-data">
+				
+				<input type="hidden" value="<%= @property.id %>">
+				<div class="row form-group">
+					<div class="col-md-4">
+						<input type="text" name="property[title]" id="title" class="demo-control form-control" data-demo="#demo-title" placeholder='Eg. "Old Portuguese", "3BHK", "Spacious"' />	
+					</div>
+					
+					<div class="col-md-8">					
+							<select class="select2 type-select" data-demo="#demo-type-name" name="type[id]" id="type_id">
+								<% @types.each do |type| %>
+									<% if type.id == @property.type.id %>
+										<option value="<%= type.id %>" selected="selected"><%= type.name %></option>
+									<% else %>
+										<option value="<%= type.id %>"><%= type.name %></option>
+								<% end %>
+
+								<% end %>
+							</select>
+							
+							<span class="mid-select">in</span>
+							
+							<select class="select2 location-select" data-demo="#demo-location" name="location[id]" id="location_id">
+								
+								<% @locations.each do |location| %>
+									<% if location.id == @property.location.id %>
+										<option value="<%= location.id %>" selected="selected"><%= location.name %></option>
+									<% else %>
+										<option value="<%= location.id %>"><%= location.name %></option>
+									<% end %>
+								<% end %>
+							</select>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row form-group">
+					<div class="col-md-4">
+						<label>Option</label>
+						<select class="select2" data-demo="#demo-state" name="state[id]" id="state_id">
+							<% @states.each do |state| %>
+								<% if state.id == @property.state.id %>
+									<option value="<%= state.id %>" selected="selected"><%= state.name %></option>
+								<% else %>
+									<option value="<%= state.id %>"><%= state.name %></option>
+								<% end %>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Property Type</label>
+						<select class="select2" name="category[id]" id="category_id">
+							<% @categories.each do |category| %>
+								<% if category.id == @property.category.id %>
+									<option value="<%= category.id %>" selected="selected"><%= category.name %></option>
+								<% else %>
+									<option value="<%= category.id %>"><%= category.name %></option>
+								<% end %>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Price:</label><br />
+						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= @property.price %>" />
+					</div>
+				</div>
+				
+				<div class="clearfix"></div>
+				
+				<div class="form-group">
+							
+				</div>
+
+				<div class="form-group">
+					<label for="specs">Specifications</label>
+					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
+				</div>
+						
+				<div class="form-group">
+					
+					<div class="row">
+						<div class="col-md-11 col-md-offset-1">
+						<label>Area</label>	
+							<div class="row">
+								<div class="col-md-4">			
+									<label>Sq Mts:</label><br />
+									<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" value="<%= @property.area %>"/>	
+								</div>
+								
+								
+								<div class="col-md-4">
+									<label>Built (Sq Mts):</label><br />
+									<input type="text" name="property[area_built]" id="area_built" class="form-control" value="<%= @property.area_built %>" />	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group">
+					<label for="featured">Featured Image</label>
+					<div class="file-input-wrap">
+						<img src="/properties/images/<%= @property.featured_img %>" alt="" width="250">
+						<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
+					</div>
+				</div>
+				
+				<div class="form-group">	
+					<label>Gallery Images</label>		
+					<div class="file-input-wrap">
+						<ul class="gallery-block row">
+						<% @images.each do |image| %>
+							<li class="gallery-item col-md-4">
+								<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+							</li>
+						<% end %>
+						</ul>
+						<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+					</div>
+				</div>
+				
+				
+		
+				<div class="form-group">
+						<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Edit Property">
+				</div>
+				
+			</form>
+		</div>
+		
+		<div class="col-md-4">
+			<h3>Live Preview</h3>
+			<div id="demo-property">
+					<div class="img-block">
+						<span class="prop-price sort-price" id="demo-price"></span>
+						<img src="/properties/images/<%= @property.featured_img %>" alt="" id="demo-img" />
+					</div>
+					<div class="data-block">
+						<h3 class="prop-title">
+								<span id="demo-title"></span>
+								<span id="demo-type-name"></span> in
+								<span id="demo-location"></span> for
+								<span id="demo-state"></span>
+						</h3>
+						<ul class="clearfix">
+							<li class="clearfix">
+								<div class="block"><span class="label">Area</span></div>
+								<div class="block sort-area">
+									<span id="demo-area"></span> Sq Mts
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="block"><span class="label">Facilities</span> </div>
+								<div class="block"><span id="demo-specs"></span></div>
+								
+							</li>
+						</ul>
+					</div>
+			</div>
+		</div>
+		
+	</div>
+	
+
+</div>
