@@ -201,4 +201,9 @@ $(document).ready(function() {
 				$(this).text($(this).text());
 			}
 		});
+	
+	setTimeout(function() {
+		$b.addClass('loaded');
+	}, 2000)
+	
 });

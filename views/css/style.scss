@@ -200,7 +200,7 @@ h2 {
 		border-bottom: 1px solid #333;
 	}
 	.prop-price {
-		border-bottom: 1px solid darken($light, 10%);
+		/*border-bottom: 1px solid darken($light, 10%);*/
 		span.label {
 /*			display: block;
 			width: 100%;
@@ -226,7 +226,7 @@ h2 {
 		margin-top: 0px;
 		li {
 			margin-bottom: 4px;
-			padding-bottom: 4px;
+			padding-bottom: 0px;
 			font-size: 16px;
 			.block {
 				float: left;
@@ -236,7 +236,7 @@ h2 {
 			}
 			.label {
 				text-transform: uppercase;
-				color: darken($vib, 10%);
+				color: darken($blue, 20%);
 				padding-left: 0;
 				padding-right: 10px;
 				float: left;
@@ -494,10 +494,24 @@ h2 {
 	.properties & {
 		margin-bottom: 50px;
 	}
-	.home &{
+	.home & {
 		position: absolute;	
 		left: 2.5%;
 		bottom: 100px;
+		h3, form {
+			opacity: 0;
+			-webkit-transform: translateY(20px);
+			-webkit-transition-duration: 800ms;
+		}
+		form {
+			-webkit-transition-delay: 200ms;
+		}
+	}
+	.home.loaded & {
+		h3, form {
+			opacity: 1;
+			-webkit-transform: translateY(0);
+		}
 	}
 	.property & {
 		padding-top: 20px;
@@ -639,14 +653,14 @@ h2 {
 			height: 100%;
 		}
 		&:hover {
-			background-color: lighten($vib, 32%);
+			background-color: lighten($blue, 42%);
 		}
 	}
 	.active {
-		background: lighten($vib, 32%);
-		border-color: lighten($vib, 25%);
+		background: desaturate(lighten($blue, 42%), 50%);
+		border-color: lighten($blue, 35%);
 		font-weight: bold;
-		color: $vib;
+		color: $blue;
 		.glyphicon {
 			display: block;
 			position: absolute;
@@ -654,12 +668,13 @@ h2 {
 			top: 13px;
 		}
 		&:hover {
-			background: lighten($vib, 32%);
-			border-color: lighten($vib, 15%);
-			color: $vib;
+			background: lighten($blue, 42%);
+			border-color: lighten($blue, 30%);
+			color: $blue;
 		}
 		.badge {
-			color: $vib;
+			color: $blue;
+			border: 1px solid lighten($blue, 35%);
 		}
 	}
 	
@@ -669,7 +684,7 @@ h2 {
 }
 
 #footer {
-	background: darken($vib, 5%);
+	background: darken($blue, 5%);
 	color: white;
 	padding-bottom: 0;
 	padding-top: 10px;
@@ -751,7 +766,7 @@ h2 {
 	padding: 0 30px 10px;
 	h3 {
 		text-align: center;
-		color: $vib;
+		color: $blue;
 		margin-bottom: 10px ;
 	}
 	p {
@@ -764,9 +779,18 @@ h2 {
 		border-left: 1px solid $light;
 		font-style: italic;
 		font-family: $serif;
+		-webkit-transition-duration: 400ms;
+		&:focus {
+			box-shadow: 1px 1px 0px darken($blue, 0%);
+		}
 	}
 	.btn {
 		margin-top: 10px;
+		border-color: $blue;
+		color: $blue;
+		&:hover {
+			background-color: $blue;
+		}
 	}
 	.small {
 		font-size: 14px;

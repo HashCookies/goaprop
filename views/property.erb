@@ -112,7 +112,7 @@
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content">
-			<h3 class="section-title">More <%= @property.type.name %>s in <%= @property.location.name %></h3>
+			<h3 class="section-title">More <strong><%= @property.type.name %>s</strong> in <strong><%= @property.location.name %></strong></h3>
 			<ul id="property-grid" class="row">
 				<% @similar.each do |property| %>
 					<%= erb :_property, :layout => false, :locals => {:property => property} %>
