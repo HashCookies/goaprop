@@ -539,6 +539,7 @@ h2 {
 	}
 	#find-prop {
 		background: $vib;
+		
 		color: white;
 		float: left;
 		font-weight: bold;
@@ -546,28 +547,28 @@ h2 {
 		text-transform: uppercase;
 		font-size: 22px;
 		font-family: $sans;
-		border: 0px solid $vib;
+		border: 1px solid $vib;
 		padding: 15px 25px 13px;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 0;
 		margin-left: 15px;
+		-webkit-transition-duration: 400ms;
 		.glyphicon {
 			font-size: 18px;
-			-webkit-transform: translateY(0px);
+			-webkit-transform: scale(1);
 			-webkit-transition-duration: 400ms;
 			margin-right: 5px;
 		}
 		&:hover {
-			color: darken($vib, 25%);
+			background: darken($vib, 10%);
 			.glyphicon {
-				-webkit-transform: translateX(5px);
+				-webkit-transform: scale(1.1);
 			}
 		}
 		&:active {
-			box-shadow: none;
-			color: darken($vib, 10%);
+			
 			.glyphicon {
-				-webkit-transform: translateX(25px);
+				-webkit-transform: scale(2);
 				opacity: 0;
 			}
 		}
