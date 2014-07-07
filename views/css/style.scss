@@ -625,12 +625,25 @@ h2 {
 		}
 		a {
 			color: inherit;
+			text-decoration: none;
+			display: block;
+			width: 100%;
+			height: 100%;
 		}
 	}
 	.active {
-		background: $light;
+		background: $vib;
+		border: 1px solid $vib;
+		font-weight: bold;
 		.glyphicon {
 			display: block;
+			position: absolute;
+			right: 10px;
+			top: 13px;
+		}
+		&:hover {
+			background: darken($vib, 10%);
+			border-color: $vib;
 		}
 	}
 	.glyphicon {
