@@ -96,6 +96,8 @@ $(document).ready(function() {
 		$('.select-label').popover({
 			placement: 'bottom',
 			html: true
+		}).click(function() {
+			return false;
 		});
 		
 		$b.on('click', '.popover-btn', function() {
@@ -106,6 +108,8 @@ $(document).ready(function() {
 			
 			$(elem).find('.hidden-field').val(value);
 			$(elem).find('.select-label').html(title).popover('hide');
+			
+			return false;
 			
 		});
 

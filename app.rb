@@ -186,6 +186,7 @@ get '/properties' do
 	@category = Category.first
 	@states = State.all
 	@state = State.first
+	@body_class += " properties"
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end

@@ -17,22 +17,26 @@
 							<%= "in " + property.location.name %>
 							<%= "for " + property.state.name %>
 						</a>
-					</h3>
-					<ul class="clearfix">
-						<li class="clearfix prop-price">
+						
+					</h3> 
+					<ul class="clearfix ">
+						<li class=" prop-price">
 							<span class="label">Price</span>
-							<% if property.state_id == 2 %>
-								<span class="price sort-price"><%= to_currency(property.price) + " / mo" %></span>
-							<% else %>
-								<span class="price sort-price"><%= to_currency(property.price) %></span>
-							<% end %>
+							<span class="price sort-price">
+								<% if property.state_id == 2 %>
+									<%= to_currency(property.price) + " / mo" %>
+								<% else %>
+									<%= to_currency(property.price) %>
+								<% end %>
+							</span>
 						</li>
-						<li class="clearfix prop-area">
+						<li class=" prop-area">
 							<span class="label">Area</span>
 							<div class="block sort-area" data-sort="<%= property.area %>">
 								<%= property.area %> Sq Mts
 							</div>
 						</li>
+						
 					</ul>
 				</div>
 		</li>
