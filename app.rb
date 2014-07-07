@@ -300,6 +300,7 @@ post '/create/:newtype' do
 end
 
 get '/property/:id' do
+	@body_class += " property"
 	@property = Property.get params[:id]
 	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
@@ -325,6 +326,12 @@ get '/property/:id' do
 	@viewed.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
+	
+	@categories = Category.all
+	@category = Category.get(@property.category.id)
+	@states = State.all
+	@state = State.get(@property.state.id)
+	@region = Region.get(@property.location.regions.first.id)
 	
 	erb :property
 end

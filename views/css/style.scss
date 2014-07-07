@@ -219,8 +219,8 @@ h2 {
 		text-align: right;
 		position: absolute;
 		right: 30px;
-		bottom: 15px;
-		font-size: 12px;
+		bottom: 11px;
+		font-size: 11px;
 	}
 	ul {
 		margin-top: 0px;
@@ -499,6 +499,10 @@ h2 {
 		left: 2.5%;
 		bottom: 100px;
 	}
+	.property & {
+		padding-top: 20px;
+		padding-bottom: 70px;
+	}
 	h3 {
 		font-size: 60px;
 		color: white;
@@ -510,6 +514,10 @@ h2 {
 			font-style: italic;
 		}
 		.properties & {
+			color: $dark;
+			text-align: center;
+		}
+		.property & {
 			color: $dark;
 			text-align: center;
 		}
@@ -630,11 +638,15 @@ h2 {
 			width: 100%;
 			height: 100%;
 		}
+		&:hover {
+			background-color: lighten($vib, 32%);
+		}
 	}
 	.active {
-		background: $vib;
-		border: 1px solid $vib;
+		background: lighten($vib, 32%);
+		border-color: lighten($vib, 25%);
 		font-weight: bold;
+		color: $vib;
 		.glyphicon {
 			display: block;
 			position: absolute;
@@ -642,10 +654,15 @@ h2 {
 			top: 13px;
 		}
 		&:hover {
-			background: darken($vib, 10%);
-			border-color: $vib;
+			background: lighten($vib, 32%);
+			border-color: lighten($vib, 15%);
+			color: $vib;
+		}
+		.badge {
+			color: $vib;
 		}
 	}
+	
 	.glyphicon {
 		display: none;
 	}

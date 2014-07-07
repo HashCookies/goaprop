@@ -118,6 +118,12 @@
 					<%= erb :_property, :layout => false, :locals => {:property => property} %>
 				<% end %>
 			</ul>
+			<hr />
+			
+			<div id="search-bar" class="col-md-10 col-md-offset-1">
+				<h3 class="section-title">Search Again</h3>
+				<%= erb :_search_form %>
+			</div>
 		</div>
 	</div>
 </div>

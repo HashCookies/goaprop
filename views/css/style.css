@@ -164,8 +164,8 @@ h2 {
     text-align: right;
     position: absolute;
     right: 30px;
-    bottom: 15px;
-    font-size: 12px; }
+    bottom: 11px;
+    font-size: 11px; }
   #property-grid ul {
     margin-top: 0px; }
     #property-grid ul li {
@@ -387,6 +387,9 @@ h2 {
     position: absolute;
     left: 2.5%;
     bottom: 100px; }
+  .property #search-bar {
+    padding-top: 20px;
+    padding-bottom: 70px; }
   #search-bar h3 {
     font-size: 60px;
     color: white;
@@ -397,6 +400,9 @@ h2 {
       font-family: "FreightText", Garamond, Georgia, serif;
       font-style: italic; }
     .properties #search-bar h3 {
+      color: #4b322f;
+      text-align: center; }
+    .property #search-bar h3 {
       color: #4b322f;
       text-align: center; }
   #search-bar form {
@@ -490,18 +496,24 @@ h2 {
     display: block;
     width: 100%;
     height: 100%; }
+  .filters .list-group-item:hover {
+    background-color: #fffcfb; }
   .filters .active {
-    background: #f66f61;
-    border: 1px solid #f66f61;
-    font-weight: bold; }
+    background: #fffcfb;
+    border-color: #fdddda;
+    font-weight: bold;
+    color: #f66f61; }
     .filters .active .glyphicon {
       display: block;
       position: absolute;
       right: 10px;
       top: 13px; }
     .filters .active:hover {
-      background: #f34331;
-      border-color: #f66f61; }
+      background: #fffcfb;
+      border-color: #fab1a9;
+      color: #f66f61; }
+    .filters .active .badge {
+      color: #f66f61; }
   .filters .glyphicon {
     display: none; }
 
