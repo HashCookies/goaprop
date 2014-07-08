@@ -355,12 +355,20 @@ h2 {
 	padding-top: 0;
 	.data-block {
 		padding-right: 35px;
+		h4 {
+			font-weight: bold;
+			padding-bottom: 10px;
+			border-bottom: 1px solid darken($light, 20%);
+			margin-bottom: 5px;
+		}
+		.prop-code {
+			margin-top: 16px;
+			font-size: 12px;
+		}
 	}
 	.prop-specs {
-
-		padding-top: 5px;
 		ul {
-			margin-right: 15px;
+			margin-right: 0px;
 		}
 		li {
 			font-size: 16px;
@@ -376,9 +384,6 @@ h2 {
 
 				font-weight: 100;
 				line-height: 18px;
-			}
-			&:last-child {
-				border-bottom: none;
 			}
 		}
 		.label {
@@ -1114,5 +1119,17 @@ form#property {
 	}
 	a {
 		color: $dark;
+	}
+}
+
+.dynamic-string {
+	font-family: $serif;
+	font-style: italic;
+	span, strong {
+		font-weight: bold;
+		font-style: normal;
+		font-family: $sans;
+		display: inline-block;
+		margin: 0px 2px;
 	}
 }

@@ -279,26 +279,30 @@ h2 {
   padding-top: 0; }
   .property-main .data-block {
     padding-right: 35px; }
-  .property-main .prop-specs {
-    padding-top: 5px; }
-    .property-main .prop-specs ul {
-      margin-right: 15px; }
-    .property-main .prop-specs li {
-      font-size: 16px;
-      margin-bottom: 5px;
-      border-bottom: 1px solid #cdd8e1;
+    .property-main .data-block h4 {
+      font-weight: bold;
       padding-bottom: 10px;
-      padding-top: 5px;
-      overflow: auto; }
-      .property-main .prop-specs li .label {
-        font-size: 12px; }
-      .property-main .prop-specs li .block {
-        font-weight: 100;
-        line-height: 18px; }
-      .property-main .prop-specs li:last-child {
-        border-bottom: none; }
-    .property-main .prop-specs .label {
-      padding: 0; }
+      border-bottom: 1px solid #aec0cd;
+      margin-bottom: 5px; }
+    .property-main .data-block .prop-code {
+      margin-top: 16px;
+      font-size: 12px; }
+  .property-main .prop-specs ul {
+    margin-right: 0px; }
+  .property-main .prop-specs li {
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #cdd8e1;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    overflow: auto; }
+    .property-main .prop-specs li .label {
+      font-size: 12px; }
+    .property-main .prop-specs li .block {
+      font-weight: 100;
+      line-height: 18px; }
+  .property-main .prop-specs .label {
+    padding: 0; }
   .property-main .gallery-block {
     background: #fbfbf3;
     border: 1px solid #cdd8e1;
@@ -863,3 +867,13 @@ form#property {
     margin-bottom: 5px; }
   .recently-viewed a {
     color: #4b322f; }
+
+.dynamic-string {
+  font-family: "FreightText", Garamond, Georgia, serif;
+  font-style: italic; }
+  .dynamic-string span, .dynamic-string strong {
+    font-weight: bold;
+    font-style: normal;
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    margin: 0px 2px; }

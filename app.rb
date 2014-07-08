@@ -309,29 +309,30 @@ get '/property/:id' do
 	@locations = @regions.locations
 	
 	
-	@similar = @locations.propertys(:type_id => @property.type_id)
+	@similar = @locations.propertys(:type_id => @property.type_id, :location_id => @property.location_id, :state_id => @property.state_id, :id.not => @property.id)
 	@similar.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 	
-	session[:properties][@property.id] = @property.title
 	
-	viewed = []
-	
-	session[:properties].each_key {|key| viewed << key }
-	
-	@viewed = Property.all(:id => viewed )
-	@viewed = @viewed[1..3]
-	
-	@viewed.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
 	
 	@categories = Category.all
 	@category = Category.get(@property.category.id)
 	@states = State.all
 	@state = State.get(@property.state.id)
 	@region = Region.get(@property.location.regions.first.id)
+	
+	session[:properties][@property.id] = @property.title
+	
+	viewed = []
+	
+	session[:properties].each_key {|key| viewed << key }
+	@viewed = Property.all(:id => viewed)
+	@viewed = @viewed[1..3]
+	
+	@viewed.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+	end
 	
 	erb :property
 end

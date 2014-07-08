@@ -39,22 +39,21 @@
 <div class="container property-main">
 	<div class="row">
 		<div class="col-md-8 data-block">
-			
+			<!--<span class="prop-code pull-right">Code: GPC<%= @property.id %></span>-->
+			<h4>Property Details</h4>
 			<div class="prop-specs">
 				<ul class="clearfix row">
-					<li class="col-md-12">
+					<li class="col-md-4">
 						<span class="label">Area</span>
-						<div class="block">
-							<%= @property.area %> Sq Mts
-						</div>
+						<div class="block"><%= @property.area %> Sq Mts </div>
 					</li>
-					<li class="col-md-12">
+					<li class="col-md-4">
 						<span class="label">Built Area</span>
 						<div class="block"><%= @property.area_built %> Sq Mts</div>
 					</li>
-					<li class="col-md-12">
+					<li class="col-md-4">
 						<span class="label">Area in Ft</span>
-						<div class="block"><%= @property.area_built %> Sq Ft</div>
+						<div class="block"><%= @property.area * 10 %> Sq Ft</div>
 					</li>
 					<li class="col-md-12">
 						<span class="label">Location</span>
@@ -68,44 +67,48 @@
 			</div>
 		</div>
 		
-		<div class="col-md-4 inquiry-block">
-			<h3>Interested? Let us show you around…</h3>
-			<form method="post" action="/send-inquiry">
-				<div class="form-group">
-					<label for="name" class="hidden">Your name</label>
-					<input type="text" name="name" placeholder="Your name" value="" class="form-control" />
-				</div>
-				
-				<div class="form-group">
-					<label for="email" class="hidden">Your email</label>
-					<input type="text" name="email" placeholder="Your email" value="" class="form-control" />
-				</div>
-				
-				<div class="form-group">
-					<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
-				</div>
-				
-				<div class="form-group text-center">
-					<input type="button" name="" value="Send Inquiry" class="btn btn-large btn-primary" />
-				</div>
-			</form>
+		<div class="col-md-4">
+			<div class="inquiry-block">
+				<h3>Interested? Let us show you around…</h3>
+				<form method="post" action="/send-inquiry">
+					<div class="form-group">
+						<label for="name" class="hidden">Your name</label>
+						<input type="text" name="name" placeholder="Your name" value="" class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<label for="email" class="hidden">Your email</label>
+						<input type="text" name="email" placeholder="Your email" value="" class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
+					</div>
+					
+					<div class="form-group text-center">
+						<input type="button" name="" value="Send Inquiry" class="btn btn-large btn-primary" />
+					</div>
+				</form>
+			</div>
+			
+			<div class="recently-viewed">
+				<ul>
+					<h5 class="label">Recently Viewed Properties</h5>
+					<% @viewed.each do |property| %>
+						<li>
+							<a href="/property/<%= property.id %>">
+								<span><%= property.title %> </span>
+								<%= property.type.name %> 
+								<%= "in " + property.location.name %>
+								<%= "for " + property.state.name %>
+								<span class="badge pull-right">Code: GPC<%= property.id %></span>
+							</a>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			
 		</div>	
-		<div class="col-md-4 recently-viewed">
-			<ul class="row">
-				<h5 class="label">Recently Viewed Properties</h5>
-				<% @viewed.each do |property| %>
-					<li>
-						<a href="/property/<%= property.id %>">
-							<span><%= property.title %> </span>
-							<%= property.type.name %> 
-							<%= "in " + property.location.name %>
-							<%= "for " + property.state.name %>
-							<span class="badge pull-right">Code: GPC<%= property.id %></span>
-						</a>
-					</li>
-				<% end %>
-			</ul>
-		</div>
 	</div>
 </div>
 
@@ -121,7 +124,7 @@
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content">
-			<h3 class="section-title">More <strong><%= @property.type.name %>s</strong> in <strong><%= @property.location.name %></strong></h3>
+			<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
 			<ul id="property-grid" class="row">
 				<% @similar.each do |property| %>
 					<%= erb :_property, :layout => false, :locals => {:property => property} %>
