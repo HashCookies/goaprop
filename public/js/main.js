@@ -71,7 +71,7 @@ $(document).ready(function() {
 		var propTop;
 		
 		if (winH < 760) {
-			propTop = winH - 95
+			propTop = winH - 97
 			$propD.css({ top: propTop });
 		} else {
 			propTop = 675;

@@ -300,6 +300,7 @@ h2 {
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
 			
+			
 		}
 	}
 	.data-block {
@@ -459,7 +460,7 @@ h2 {
 
 
 .price-block {
-	margin-top: 10px;
+	margin-top: 20px;
 	width: 30%;
 	float: right;
 	text-align: right;
@@ -474,17 +475,15 @@ h2 {
 	}
 	.label {
 		text-transform: uppercase;
-		padding: 0;
-		font-size: 12px;
+		font-size: 14px;
 		text-align: right;
-		display: block;
-		margin-top: 0px;
 		margin-bottom: 3px;
+		margin-right: 7px;
 	}
 }
 
 
-.property-data{
+.property-data {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	position: fixed;
@@ -507,9 +506,10 @@ h2 {
 		}
 		.price-block {
 			margin-bottom: 10px;
+			margin-top: 10px;
 		}
 		.prop-title {
-			margin-top: 20px;
+			margin-top: 12px;
 		}
 	}
 	.prop-title {
