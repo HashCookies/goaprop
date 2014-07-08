@@ -136,31 +136,36 @@ h2 {
   border-top: 1px solid #cdd8e1; }
 
 .prop-title {
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 0;
   font-weight: 100 !important;
   font-family: "FreightText", Garamond, Georgia, serif;
   font-style: italic;
   margin-bottom: 5px;
-  line-height: 120%; }
+  line-height: 100%; }
   .prop-title a {
     color: inherit; }
-  .prop-title span {
+  .prop-title .prop-string {
     color: #655;
     font-weight: bold;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     display: inline-block;
     margin: 0px 2px; }
-    .prop-title span:first-child {
+    .prop-title .prop-string:first-child {
       margin-left: 0;
       margin-right: 0; }
+  .prop-title .smaller {
+    font-size: 16px; }
 
 #property-grid {
   overflow: auto;
   width: 100%; }
   #property-grid img {
     width: 100%; }
+  #property-grid .prop-title {
+    border-bottom: 1px solid #cdd8e1;
+    padding-bottom: 3px; }
   #property-grid .property-item {
     margin-bottom: 35px; }
   #property-grid .prop-type, #property-grid .prop-location {
@@ -177,18 +182,10 @@ h2 {
     text-shadow: 0px 1px #457210;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-    bottom: 15px;
+    bottom: 25px;
     border: 1px solid #68ac19;
     border-right-color: #6db51a;
-    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
-    /*		span.price {
-    	 		border-radius: 3px;
-    			color: white;
-    			font-size: 16px;
-    			font-weight: bold;
-    			background: $vib;
-    			padding: 4px 7px;
-    		}*/ }
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
     #property-grid .prop-price:after {
       content: " ";
       width: 7px;
@@ -197,10 +194,6 @@ h2 {
       background: url("../images/green-triangle.png") no-repeat left top;
       position: absolute;
       right: 0; }
-    #property-grid .prop-price span.label {
-      /*			display: block;
-      			width: 100%;
-      			text-align: left;*/ }
   #property-grid .prop-code {
     text-align: right;
     position: absolute;
@@ -211,7 +204,6 @@ h2 {
     margin-top: 0px; }
     #property-grid ul li {
       margin-bottom: 4px;
-      padding-bottom: 0px;
       font-size: 16px; }
       #property-grid ul li .block {
         float: left; }
@@ -224,6 +216,9 @@ h2 {
         padding-right: 10px;
         float: left;
         padding-top: 6px; }
+    #property-grid ul .sort-area span {
+      font-family: "FreightText", Garamond, Georgia, serif;
+      font-style: italic; }
   #property-grid .img-block {
     margin-bottom: 0px;
     position: relative;
@@ -241,6 +236,7 @@ h2 {
     border: 1px solid #dde5ea;
     border-top: 0;
     padding: 10px 15px 15px;
+    min-height: 85px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     -webkit-box-shadow: 0 1px 0px #a7adbb;

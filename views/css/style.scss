@@ -186,17 +186,17 @@ h2 {
 }
 
 .prop-title {
-	font-size: 18px;
+	font-size: 20px;
 	margin-top: 0;
 	font-weight: 100 !important;
 	font-family: $serif;
 	font-style: italic;
 	margin-bottom: 5px;
-	line-height: 120%;
+	line-height: 100%;
 	a {
 		color: inherit;
 	}
-	span {
+	.prop-string {
 		color: #655;
 		font-weight: bold;
 		font-family: $sans;
@@ -208,6 +208,9 @@ h2 {
 			margin-right: 0;
 		}
 	}
+	.smaller {
+		font-size: 16px;
+	}
 }
 
 #property-grid {
@@ -215,6 +218,10 @@ h2 {
 	width: 100%;
 	img {
 		width: 100%;
+	}
+	.prop-title {
+		border-bottom: 1px solid darken($light, 10%);
+		padding-bottom: 3px;
 	}
 	.property-item {
 		margin-bottom: 35px;
@@ -234,7 +241,7 @@ h2 {
 		text-shadow: 0px 1px darken($green, 20%);
 		border-top-left-radius: 4px;
 		border-bottom-left-radius: 4px;
-		bottom: 15px;
+		bottom: 25px;
 		border: 1px solid darken($green, 7%);
 		border-right-color: darken($green, 5%);
 		-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);
@@ -247,19 +254,6 @@ h2 {
 			position: absolute;
 			right: 0;
 		}
-		span.label {
-/*			display: block;
-			width: 100%;
-			text-align: left;*/
-		}
-/*		span.price {
-	 		border-radius: 3px;
-			color: white;
-			font-size: 16px;
-			font-weight: bold;
-			background: $vib;
-			padding: 4px 7px;
-		}*/
 	}
 	.prop-code {
 		text-align: right;
@@ -272,7 +266,6 @@ h2 {
 		margin-top: 0px;
 		li {
 			margin-bottom: 4px;
-			padding-bottom: 0px;
 			font-size: 16px;
 			.block {
 				float: left;
@@ -288,6 +281,10 @@ h2 {
 				float: left;
 				padding-top: 6px;
 			}
+		}
+		.sort-area span {
+			font-family: $serif;
+			font-style: italic;
 		}
 	}
 	.img-block {
@@ -310,6 +307,7 @@ h2 {
 		border: 1px solid darken($light, 5%);
 		border-top: 0;
 		padding: 10px 15px 15px;
+		min-height: 85px;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 		-webkit-box-shadow: 0 1px 0px #a7adbb;

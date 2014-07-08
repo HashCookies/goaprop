@@ -10,9 +10,9 @@
 		<div class="data-block">
 			<h3 class="prop-title">
 				<a href="/property/<%= property.id %>">
-					<span><%= property.title %> </span>
-					<%= "<span>#{property.type.name}</span>" %> <br />
-					<%= "in <span>#{property.location.name}</span>" %>
+					<span class='prop-string'><%= property.title %> </span>
+					<%= "<span class='prop-string'>#{property.type.name}</span>" %> <br />
+					<span class="smaller"><%= "in <span class='prop-string'>#{property.location.name}</span>" %></span>
 				</a>
 			</h3>
 			<div class="prop-price">
@@ -26,7 +26,6 @@
 			</div>
 			<ul class="clearfix">
 				<li class=" prop-area">
-					<span class="label">Area</span>
 					<div class="block sort-area" data-sort="<%= property.area %>">
 						<%= property.area %> Sq Mts
 					</div>

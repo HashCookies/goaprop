@@ -17,10 +17,10 @@
 			<div class="col-md-8">
 				<h3 class="prop-title"><div></div>
 					<a href="/property/<%= @property.id %>">
-						<span><%= @property.title %> </span>
-						<%= "<span>#{@property.type.name}</span>" %>
-						<%= "in <span>#{@property.location.name}</span>" %>
-						<%= "for <span>#{@property.state.name}</span>" %>
+						<span class='prop-string'><%= @property.title %> </span>
+						<%= "<span class='prop-string'>#{@property.type.name}</span>" %>
+						<%= "in <span class='prop-string'>#{@property.location.name}</span>" %>
+						<%= "for <span class='prop-string'>#{@property.state.name}</span>" %>
 					</a>
 				</h3>
 				<p class="prop-area">
