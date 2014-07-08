@@ -63,6 +63,19 @@
 						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
+					<li class="col-md-12 gallery-block">
+						<h5 class="label">Property Photos</h5>
+						<ul class="row">
+							<% @images.each do |image| %>
+								<li class="col-md-3">
+									<img src="/properties/images/<%= image.url %>" alt="" />
+								</li>
+							<% end %>
+							<li class="col-md-3 gallery-link">
+								<button class="btn btn-large btn-primary"><span class="glyphicon glyphicon-resize-full"></span><br /> View Fullscreen</button>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
