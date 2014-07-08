@@ -463,10 +463,14 @@ h2 {
 	width: 30%;
 	float: right;
 	text-align: right;
+	
 	.prop-price {
 		font-size: 24px;
-		color: darken($green, 10%);
-		
+		color: darken($green, 5%);
+		font-weight: bold;
+		border: 1px solid $green;
+		padding: 5px 10px;
+		border-radius: 5px;
 	}
 	.label {
 		text-transform: uppercase;
@@ -475,7 +479,7 @@ h2 {
 		text-align: right;
 		display: block;
 		margin-top: 0px;
-		
+		margin-bottom: 3px;
 	}
 }
 
@@ -493,6 +497,7 @@ h2 {
 	.scrolled & {
 		position: relative;
 		top: 0 !important;
+		padding-bottom: 10px;
 		-webkit-box-shadow: 0px 3px 5px transparentize(black, 0.9);
 		.call-to-action {
 			display: none;
@@ -500,12 +505,18 @@ h2 {
 		.prop-area {
 			display: none;
 		}
+		.price-block {
+			margin-bottom: 10px;
+		}
+		.prop-title {
+			margin-top: 20px;
+		}
 	}
 	.prop-title {
 		font-weight: 600;
 		font-size: 28px;
 		margin-bottom: 0;
-		margin-top: 12px;
+		margin-top: 10px;
 		a {
 			color: inherit;
 		}
