@@ -9,7 +9,23 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 filters">
+			<div class="col-md-2 filters" id="filters">
+				<span class="label">Type</span>
+				<ul class="list-group" id="type-filter" data-filter-group="type">
+					<li class="list-group-item active">
+						<span class="badge"><%= @properties.count %></span>
+						<a href="#" data-filter="">All</a>
+					</li>
+					<% @types.each do |type| %>
+						<li class="list-group-item">
+							<span class="badge">
+								<%= type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).count %>
+							</span>
+							<a href="#" data-filter=".<%= type.name.downcase %>"><%= type.name %></a>
+						</li>
+					<% end %>
+				</ul>
+				
 				<span class="label">Sort by</span>
 				<ul class="list-group" id="sort-filter">
 					<li class="list-group-item active" data-sort-value="date"><a href="#">Newest</a> <span class="glyphicon glyphicon-ok-sign"></span></li>
@@ -17,39 +33,20 @@
 					<li class="list-group-item" data-sort-value="area"><a href="#">Area</a> <span class="glyphicon glyphicon-chevron-down"></span></li>
 				</ul>
 
-				<div id="filters">	
 							
-					<span class="label">Locations</span>
-					<ul class="list-group" id="location-filter" data-filter-group="location">
-						<li class="list-group-item active">
-							<span class="badge"><%= @properties.count %></span>
-							<a href="#" data-filter="">All</a>
+				<span class="label">Locations</span>
+				<ul class="list-group" id="location-filter" data-filter-group="location">
+					<li class="list-group-item active">
+						<span class="badge"><%= @properties.count %></span>
+						<a href="#" data-filter="">All</a>
+					</li>
+					<% @locations.each do |location| %>
+						<li class="list-group-item">
+							<span class="badge"><%= location.propertys(:state_id => @state.id, :category_id => @category.id).count %></span>
+							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
 						</li>
-						<% @locations.each do |location| %>
-							<li class="list-group-item">
-								<span class="badge"><%= location.propertys(:state_id => @state.id, :category_id => @category.id).count %></span>
-								<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
-							</li>
-						<% end %>
-					</ul>
-				
-					<span class="label">Type</span>
-					<ul class="list-group" id="type-filter" data-filter-group="type">
-						<li class="list-group-item active">
-							<span class="badge"><%= @properties.count %></span>
-							<a href="#" data-filter="">All</a>
-						</li>
-						<% @types.each do |type| %>
-							<li class="list-group-item">
-								<span class="badge">
-									<%= type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).count %>
-								</span>
-								<a href="#" data-filter=".<%= type.name.downcase %>"><%= type.name %></a>
-							</li>
-						<% end %>
-					</ul>
-					
-				</div>
+					<% end %>
+				</ul>
 				
 			</div>
 			<div class="col-md-10">
