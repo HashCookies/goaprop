@@ -135,6 +135,27 @@ h2 {
   padding-bottom: 25px;
   border-top: 1px solid #cdd8e1; }
 
+.prop-title {
+  font-size: 18px;
+  margin-top: 0;
+  font-weight: 100 !important;
+  font-family: "FreightText", Garamond, Georgia, serif;
+  font-style: italic;
+  margin-bottom: 5px;
+  line-height: 120%; }
+  .prop-title a {
+    color: inherit; }
+  .prop-title span {
+    color: #655;
+    font-weight: bold;
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    display: inline-block;
+    margin: 0px 2px; }
+    .prop-title span:first-child {
+      margin-left: 0;
+      margin-right: 0; }
+
 #property-grid {
   overflow: auto;
   width: 100%; }
@@ -142,26 +163,6 @@ h2 {
     width: 100%; }
   #property-grid .property-item {
     margin-bottom: 35px; }
-  #property-grid h3 {
-    font-size: 18px;
-    margin-top: 0;
-    font-weight: 100;
-    font-family: "FreightText", Garamond, Georgia, serif;
-    font-style: italic;
-    margin-bottom: 5px;
-    line-height: 120%; }
-    #property-grid h3 a {
-      color: inherit; }
-    #property-grid h3 span {
-      color: #655;
-      font-weight: bold;
-      font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-style: normal;
-      display: inline-block;
-      margin: 0px 2px; }
-      #property-grid h3 span:first-child {
-        margin-left: 0;
-        margin-right: 0; }
   #property-grid .prop-type, #property-grid .prop-location {
     display: inline-block;
     border-bottom: 1px solid #333; }
@@ -274,37 +275,28 @@ h2 {
     margin: 0 5px; }
 
 .property-main {
-  padding-bottom: 50px; }
+  padding-bottom: 50px;
+  padding-top: 0; }
+  .property-main .data-block {
+    padding-right: 35px; }
   .property-main .prop-specs {
-    /*border-top: 1px solid darken($light, 10%);*/
     padding-top: 5px; }
     .property-main .prop-specs ul {
       margin-right: 15px; }
     .property-main .prop-specs li {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 16px;
+      margin-bottom: 5px;
       border-bottom: 1px solid #cdd8e1;
-      padding-bottom: 15px;
-      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-top: 5px;
       overflow: auto; }
       .property-main .prop-specs li .label {
-        display: block;
-        float: left; }
+        font-size: 12px; }
       .property-main .prop-specs li .block {
-        float: right;
         font-weight: 100;
         line-height: 18px; }
-    .property-main .prop-specs li.large {
-      font-size: 26px;
-      padding-bottom: 25px; }
-      .property-main .prop-specs li.large .label {
-        color: #f66f61; }
-      .property-main .prop-specs li.large .label {
-        margin-top: 15px;
-        margin-right: 15px; }
-      .property-main .prop-specs li.large .price {
-        margin-top: 7px;
-        float: right; }
+      .property-main .prop-specs li:last-child {
+        border-bottom: none; }
     .property-main .prop-specs .label {
       padding: 0; }
   .property-main .gallery-block {
@@ -362,20 +354,39 @@ h2 {
 .anystretch {
   z-index: 0 !important; }
 
+.price-block {
+  margin-top: 10px;
+  width: 30%;
+  float: right;
+  text-align: right; }
+  .price-block .prop-price {
+    font-size: 24px;
+    color: #609e17; }
+  .price-block .label {
+    text-transform: uppercase;
+    padding: 0;
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    margin-top: 0px; }
+
 .property-data {
   padding-top: 10px;
   padding-bottom: 10px;
-  border-top: 1px solid #edf1f4;
   position: fixed;
   background: rgba(255, 255, 255, 0.95);
   left: 0;
   right: 0;
   z-index: 5;
-  text-shadow: 0px 1px #fff; }
+  text-shadow: 0px 1px #fff;
+  margin-bottom: 25px; }
   .scrolled .property-data {
     position: relative;
-    top: 0 !important; }
+    top: 0 !important;
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); }
     .scrolled .property-data .call-to-action {
+      display: none; }
+    .scrolled .property-data .prop-area {
       display: none; }
   .property-data .prop-title {
     font-weight: 600;
@@ -394,24 +405,6 @@ h2 {
       display: inline-block;
       margin-right: 5px;
       color: #4b322f; }
-
-.prop-price-wrap .price-block {
-  float: right; }
-.prop-price-wrap .prop-price {
-  font-size: 24px;
-  /*font-family: $serif;*/
-  display: block;
-  line-height: 100%; }
-.prop-price-wrap .prop-price-label {
-  text-transform: uppercase;
-  display: inline-block;
-  padding-bottom: 0;
-  margin-top: 15px; }
-.prop-price-wrap .call-to-action {
-  float: right; }
-  .prop-price-wrap .call-to-action .btn {
-    margin-top: 20px;
-    margin-left: 25px; }
 
 #search-bar {
   font-weight: 100;
@@ -822,35 +815,51 @@ form#property {
   #demo-property .label {
     padding: 0; }
 
-#inquiry-block .section-title {
-  font-size: 36px;
-  margin-bottom: 25px; }
-#inquiry-block h4.label {
-  margin-top: 23px;
-  display: block;
-  text-align: left;
-  padding-left: 0; }
-#inquiry-block .property-item .img-block img {
-  height: 140px; }
-#inquiry-block .property-item h3 {
-  font-size: 16px; }
-#inquiry-block .property-item .prop-area {
-  display: none; }
-#inquiry-block .property-item .prop-price {
-  border-bottom: none; }
-  #inquiry-block .property-item .prop-price .label {
+#inquiry-block {
+  margin-left: 10px; }
+  #inquiry-block .section-title {
+    font-size: 36px;
+    margin-bottom: 25px; }
+  #inquiry-block h4.label {
+    margin-top: 23px;
+    display: block;
+    text-align: left;
+    padding-left: 0; }
+  #inquiry-block .property-item .img-block img {
+    height: 140px; }
+  #inquiry-block .property-item h3 {
+    font-size: 16px; }
+  #inquiry-block .property-item .prop-area {
     display: none; }
-#inquiry-block textarea {
-  height: 115px; }
+  #inquiry-block .property-item .prop-price {
+    border-bottom: none; }
+    #inquiry-block .property-item .prop-price .label {
+      display: none; }
+  #inquiry-block textarea {
+    height: 115px; }
 
 .inquiry-block {
   background: #fbfbf3;
   border: 1px solid #cdd8e1;
   padding: 15px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin-top: 15px; }
   .inquiry-block h3 {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px; }
   .inquiry-block .form-control {
     margin: 10px auto; }
+
+.recently-viewed {
+  margin-top: 15px; }
+  .recently-viewed h5.label {
+    padding-left: 0;
+    margin-bottom: 10px;
+    display: block;
+    text-align: left; }
+  .recently-viewed li {
+    width: 100%;
+    margin-bottom: 5px; }
+  .recently-viewed a {
+    color: #4b322f; }
