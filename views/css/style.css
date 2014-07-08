@@ -97,7 +97,14 @@ h2 {
       .navbar .main-nav li a {
         color: inherit; }
     .navbar .main-nav .selected {
-      color: #f66f61; }
+      /*color: $vib;*/ }
+    .navbar .main-nav #phone-number {
+      color: #c8665c;
+      font-weight: bold;
+      /*border: 1px solid $vib;*/ }
+      .navbar .main-nav #phone-number .glyphicon {
+        color: #71504d;
+        font-size: 12px; }
 
 #contact-details {
   position: absolute;
@@ -138,16 +145,41 @@ h2 {
   #property-grid h3 {
     font-size: 18px;
     margin-top: 0;
-    font-weight: bold;
+    font-weight: 100;
+    font-family: "FreightText", Garamond, Georgia, serif;
+    font-style: italic;
     margin-bottom: 5px;
     line-height: 120%; }
     #property-grid h3 a {
       color: inherit; }
+    #property-grid h3 span {
+      color: #655;
+      font-weight: bold;
+      font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-style: normal;
+      display: inline-block;
+      margin: 0px 2px; }
+      #property-grid h3 span:first-child {
+        margin-left: 0;
+        margin-right: 0; }
   #property-grid .prop-type, #property-grid .prop-location {
     display: inline-block;
     border-bottom: 1px solid #333; }
   #property-grid .prop-price {
-    /*border-bottom: 1px solid darken($light, 10%);*/
+    position: absolute;
+    right: 8px;
+    background: #7bcb1d;
+    padding: 3px 10px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 0px 1px #457210;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    bottom: 15px;
+    border: 1px solid #68ac19;
+    border-right-color: #6db51a;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
     /*		span.price {
     	 		border-radius: 3px;
     			color: white;
@@ -156,6 +188,14 @@ h2 {
     			background: $vib;
     			padding: 4px 7px;
     		}*/ }
+    #property-grid .prop-price:after {
+      content: " ";
+      width: 7px;
+      height: 6px;
+      display: block;
+      background: url("../images/green-triangle.png") no-repeat left top;
+      position: absolute;
+      right: 0; }
     #property-grid .prop-price span.label {
       /*			display: block;
       			width: 100%;
@@ -199,7 +239,7 @@ h2 {
     background: #fefefe;
     border: 1px solid #dde5ea;
     border-top: 0;
-    padding: 10px 15px;
+    padding: 10px 15px 15px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     -webkit-box-shadow: 0 1px 0px #a7adbb;
@@ -508,10 +548,10 @@ h2 {
   .filters .list-group-item:hover {
     background-color: #f8fcfe; }
   .filters .active {
-    background: #fafcfc;
-    border-color: #d7f1fb;
+    background: #f6f0ef;
+    border-color: #e8d7d5;
     font-weight: bold;
-    color: #35b6eb; }
+    color: #a85249; }
     .filters .active .glyphicon {
       display: block;
       position: absolute;
@@ -522,8 +562,8 @@ h2 {
       border-color: #c0e8f9;
       color: #35b6eb; }
     .filters .active .badge {
-      color: #35b6eb;
-      border: 1px solid #d7f1fb; }
+      color: #a85249;
+      border: 1px solid #e8d7d5; }
   .filters .glyphicon {
     display: none; }
 
@@ -769,15 +809,15 @@ form#property {
     position: absolute;
     bottom: 0;
     right: 30px;
-    background: #53c96a;
+    background: #7bcb1d;
     padding: 3px 10px 2px;
     font-size: 18px;
     color: white;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     font-weight: bold;
-    text-shadow: 0px 1px #1f642d;
-    border: 1px solid #09e033;
+    text-shadow: 0px 1px #2a450a;
+    border: 1px solid #62b500;
     border-bottom: none; }
   #demo-property .label {
     padding: 0; }

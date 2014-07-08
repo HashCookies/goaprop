@@ -1,6 +1,6 @@
 $serif: "FreightText", Garamond, Georgia, serif;
 $sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$green: #53c96a;
+$green: #7bcb1d;
 
 $darkBlue: #323a45;
 $dark: #4b322f;
@@ -133,7 +133,16 @@ h2 {
 			}
 		}
 		.selected {
-			color: $vib;
+			/*color: $vib;*/
+		}
+		#phone-number {
+			color: desaturate(darken($vib, 10%), 40%);
+			font-weight: bold;
+			/*border: 1px solid $vib;*/
+			.glyphicon {
+				color: desaturate(darken($vib, 30%), 70%);	
+				font-size: 12px;
+			}
 		}
 	}
 
@@ -188,11 +197,25 @@ h2 {
 	h3 {
 		font-size: 18px;
 		margin-top: 0;
-		font-weight: bold;
+		font-weight: 100;
+		font-family: $serif;
+		font-style: italic;
 		margin-bottom: 5px;
 		line-height: 120%;
 		a {
 			color: inherit;
+		}
+		span {
+			color: #655;
+			font-weight: bold;
+			font-family: $sans;
+			font-style: normal;
+			display: inline-block;
+			margin: 0px 2px;
+			&:first-child {
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 	}
 	.prop-type, .prop-location  {
@@ -200,7 +223,29 @@ h2 {
 		border-bottom: 1px solid #333;
 	}
 	.prop-price {
-		/*border-bottom: 1px solid darken($light, 10%);*/
+		position: absolute;
+		right: 8px;
+		background: $green;
+		padding: 3px 10px 0;
+		color: white;
+		font-weight: bold;
+		font-size: 18px;
+		text-shadow: 0px 1px darken($green, 20%);
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		bottom: 15px;
+		border: 1px solid darken($green, 7%);
+		border-right-color: darken($green, 5%);
+		-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);
+		&:after {
+			content: " ";
+			width: 7px;
+			height: 6px;
+			display: block;
+			background: url('../images/green-triangle.png') no-repeat left top;
+			position: absolute;
+			right: 0;
+		}
 		span.label {
 /*			display: block;
 			width: 100%;
@@ -263,7 +308,7 @@ h2 {
 		background: #fefefe;
 		border: 1px solid darken($light, 5%);
 		border-top: 0;
-		padding: 10px 15px;
+		padding: 10px 15px 15px;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 		-webkit-box-shadow: 0 1px 0px #a7adbb;
@@ -657,10 +702,10 @@ h2 {
 		}
 	}
 	.active {
-		background: desaturate(lighten($blue, 42%), 50%);
-		border-color: lighten($blue, 35%);
+		background: desaturate(lighten($vib, 28%), 60%);
+		border-color: desaturate(lighten($vib, 20%), 60%);
 		font-weight: bold;
-		color: $blue;
+		color: desaturate(darken($vib, 20%), 50%);
 		.glyphicon {
 			display: block;
 			position: absolute;
@@ -673,8 +718,8 @@ h2 {
 			color: $blue;
 		}
 		.badge {
-			color: $blue;
-			border: 1px solid lighten($blue, 35%);
+			color: desaturate(darken($vib, 20%), 50%);
+			border: 1px solid desaturate(lighten($vib, 20%), 60%);
 		}
 	}
 	

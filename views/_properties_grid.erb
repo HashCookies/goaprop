@@ -13,15 +13,13 @@
 					<h3 class="prop-title">
 						<a href="/property/<%= property.id %>">
 							<span><%= property.title %> </span>
-							<%= property.type.name %> 
-							<%= "in " + property.location.name %>
-							<%= "for " + property.state.name %>
+							<%= "<span>#{property.type.name}</span>" %> <br />
+							<%= "in <span>#{property.location.name}</span>" %>
 						</a>
 						
 					</h3> 
 					<ul class="clearfix ">
-						<li class=" prop-price">
-							<span class="label">Price</span>
+						<div class="prop-price">
 							<span class="price sort-price">
 								<% if property.state_id == 2 %>
 									<%= to_currency(property.price) + " / mo" %>
@@ -29,16 +27,16 @@
 									<%= to_currency(property.price) %>
 								<% end %>
 							</span>
-						</li>
+						</div>
 						<li class=" prop-area">
-							<span class="label">Area</span>
+							<!--<span class="label">Area</span>-->
 							<div class="block sort-area" data-sort="<%= property.area %>">
 								<%= property.area %> Sq Mts
 							</div>
 						</li>
 						
 					</ul>
-					<span class="prop-code">Code: GPC<%= property.id %></span>
+					<!--<span class="prop-code">Code: GPC<%= property.id %></span>-->
 				</div>
 		</li>
 	<% end %>
