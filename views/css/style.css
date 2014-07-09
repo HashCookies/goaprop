@@ -92,16 +92,15 @@ h2 {
     padding: 0px 10px; }
     .navbar .main-nav li {
       text-transform: uppercase;
-      color: #503936;
       font-size: 14px; }
       .navbar .main-nav li a {
-        color: inherit; }
-    .navbar .main-nav .selected {
-      /*color: $vib;*/ }
+        color: #4b322f; }
+        .navbar .main-nav li a:hover {
+          color: #c8665c; }
     .navbar .main-nav #phone-number {
-      color: #c8665c;
-      font-weight: bold;
-      /*border: 1px solid $vib;*/ }
+      font-weight: bold; }
+      .navbar .main-nav #phone-number a {
+        color: #c8665c; }
       .navbar .main-nav #phone-number .glyphicon {
         color: #71504d;
         font-size: 12px; }

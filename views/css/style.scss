@@ -126,19 +126,21 @@ h2 {
 		padding: 0px 10px;
 		li {
 			text-transform: uppercase;
-			color: #503936;
 			font-size: 14px;
 			a {
-				color: inherit;
+				color: $dark;
+				&:hover {
+					color: desaturate(darken($vib, 10%), 40%);
+				}
 			}
-		}
-		.selected {
-			/*color: $vib;*/
+			
 		}
 		#phone-number {
-			color: desaturate(darken($vib, 10%), 40%);
+			
 			font-weight: bold;
-			/*border: 1px solid $vib;*/
+			a {
+				color: desaturate(darken($vib, 10%), 40%);
+			}
 			.glyphicon {
 				color: desaturate(darken($vib, 30%), 70%);	
 				font-size: 12px;
