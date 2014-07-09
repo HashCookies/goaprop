@@ -516,11 +516,6 @@ h2 {
       margin-right: 5px; }
     #search-bar #find-prop:hover {
       background: #f34331; }
-      #search-bar #find-prop:hover .glyphicon {
-        -webkit-transform: scale(1.1); }
-    #search-bar #find-prop:active .glyphicon {
-      -webkit-transform: scale(2);
-      opacity: 0; }
 
 .popover-content {
   padding: 10px 15px 15px; }
@@ -590,7 +585,7 @@ h2 {
     font-size: 30px;
     margin-bottom: 5px; }
   #footer p {
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   #footer .phone-large {
     margin-top: 30px;
@@ -611,26 +606,23 @@ h2 {
     color: #f66f61;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   #footer address {
-    font-size: 16px;
+    font-size: 14px;
     /*margin-top: 20px;*/ }
   #footer hr {
     margin: 0px auto 20px; }
+  #footer .gpc-desc p {
+    font-size: 16px;
+    font-weight: 100; }
 
-#services-list {
-  margin-top: 35px; }
-  #services-list li {
-    margin-bottom: 15px; }
-  #services-list h4 {
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #f66f61; }
-    #services-list h4 .glyphicon {
-      font-size: 10px; }
-  #services-list p {
-    font-size: 14px; }
+#services-list li {
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 15px;
+  color: #4b322f; }
+  #services-list li a {
+    color: inherit; }
 
 #footer-form {
   margin-top: -35px;
