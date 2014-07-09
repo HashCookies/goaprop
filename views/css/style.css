@@ -144,9 +144,12 @@ h2 {
   margin-bottom: 5px;
   line-height: 100%; }
   .prop-title a {
-    color: inherit; }
-  .prop-title .prop-string {
     color: #655;
+    -webkit-transition-duration: 200ms; }
+    .prop-title a:hover {
+      color: #f66f61;
+      text-decoration: none; }
+  .prop-title .prop-string {
     font-weight: bold;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -549,8 +552,9 @@ h2 {
   .filters .list-group-item:hover {
     background-color: #f8fcfe; }
   .filters .list-group-item .badge {
-    border: 1px solid #c9ecfa;
-    color: #666; }
+    color: #333;
+    font-size: 11px;
+    padding: 3px 5px 2px; }
   .filters .active {
     background: #f8fcfe;
     border-color: #a9e0f6;
