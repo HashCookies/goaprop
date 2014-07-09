@@ -750,20 +750,19 @@ h2 {
 #footer {
 	background: white;
 	border-top: 1px solid darken($light, 10%);
-	color: $dark;
+	color: #444;
 	padding-bottom: 0;
 	padding-top: 10px;
-	font-family: $serif;
 	h3 {
 		font-family: "Tisa OT";
 		font-weight: bold;
 		font-style: italic;
 		font-size: 30px;
 		margin-bottom: 5px;
+		
 	}
 	p {
-		font-size: 18px;
-		/*font-style: italic;*/
+		font-size: 16px;
 		font-family: $sans;
 	}
 	.phone-large {
@@ -785,12 +784,11 @@ h2 {
 	}
 	.label {
 		padding: 0;
-		color: white;
+		color: $vib;
 		font-family: $sans;
 	}
 	address {
-		font-size: 18px;
-		font-style: italic;
+		font-size: 16px;
 		/*margin-top: 20px;*/
 	}
 	hr {
@@ -808,14 +806,14 @@ h2 {
 		text-transform: uppercase;
 		font-size: 18px;
 		font-weight: bold;
-		margin-bottom: 0px;
+		margin-bottom: 5px;
+		color: $vib;
 		.glyphicon {
-			font-size: 14px;
+			font-size: 10px;
 		}
 	}
 	p {
 		font-size: 14px;
-		
 	}
 }
 
