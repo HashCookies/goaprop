@@ -323,7 +323,7 @@ get '/property/:id' do
 	@locations = @regions.locations
 	
 	
-	@similar = @locations.propertys(:type_id => @property.type_id, :location_id => @property.location_id, :state_id => @property.state_id, :id.not => @property.id)
+	@similar = @locations.propertys(:type_id => @property.type_id, :location_id => @property.location_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
 	@similar.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
