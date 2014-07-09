@@ -388,40 +388,39 @@ h2 {
 		.label {
 			padding: 0;
 		}
-		.gallery-block {
-			padding-top: 15px;
-			overflow: auto;
-			li {
-				height: 120px;
-				overflow: hidden;
-				margin-bottom: 10px;
-				border-bottom: none;
-				img {
-					width: 100%;
-					height: 100%;
-				}
+		
+	}
+	.gallery-block {
+		padding-top: 15px;
+		overflow: auto;
+		border-bottom: none;
+		li {
+			height: 120px;
+			overflow: hidden;
+			margin-bottom: 10px;
+			border-bottom: none;
+			img {
+				width: 100%;
+				height: 100%;
 			}
-			.gallery-link .btn {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 15px;
-				right: 15px;
-				padding-top: 10px;
-				top: 5px;
-				bottom: 10px;
-				border-radius: 0;
-				color: lighten($vib, 10%);
-				border: 1px solid lighten($vib, 20%);
-				font-size: 12px;
-				.glyphicon {
-					font-size: 24px;
-					margin-bottom: 10px;
-				}
+		}
+		.gallery-link .btn {
+			position: absolute;;
+			left: 15px;
+			right: 15px;
+			padding-top: 10px;
+			top: 0px;
+			bottom: 0px;
+			border-radius: 0;
+			color: lighten($vib, 10%);
+			border: 1px solid lighten($vib, 20%);
+			font-size: 12px;
+			.glyphicon {
+				font-size: 24px;
+				margin-bottom: 10px;
 			}
 		}
 	}
-	
 }
 
 .property-image-grid {
@@ -715,12 +714,16 @@ h2 {
 		&:hover {
 			background-color: lighten($blue, 42%);
 		}
+		.badge {
+			border: 1px solid lighten($blue, 32%);
+			color: #666;
+		}
 	}
 	.active {
-		background: desaturate(lighten($vib, 28%), 60%);
-		border-color: desaturate(lighten($vib, 20%), 60%);
+		background: lighten($blue, 42%);
+		border-color: lighten($blue, 25%);
 		font-weight: bold;
-		color: desaturate(darken($vib, 20%), 50%);
+		color: darken($blue, 10%);
 		.glyphicon {
 			display: block;
 			position: absolute;
@@ -733,8 +736,9 @@ h2 {
 			color: $blue;
 		}
 		.badge {
-			color: desaturate(darken($vib, 20%), 50%);
-			border: 1px solid desaturate(lighten($vib, 20%), 60%);
+			color: white;
+			background: $blue;
+			border: 1px solid $blue;
 		}
 	}
 	
@@ -744,8 +748,9 @@ h2 {
 }
 
 #footer {
-	background: darken($blue, 5%);
-	color: white;
+	background: white;
+	border-top: 1px solid darken($light, 10%);
+	color: $dark;
 	padding-bottom: 0;
 	padding-top: 10px;
 	font-family: $serif;
@@ -826,7 +831,7 @@ h2 {
 	padding: 0 30px 10px;
 	h3 {
 		text-align: center;
-		color: $blue;
+		color: $vib;
 		margin-bottom: 10px ;
 	}
 	p {
@@ -846,11 +851,11 @@ h2 {
 	}
 	.btn {
 		margin-top: 10px;
-		border-color: $blue;
+/*		border-color: $blue;
 		color: $blue;
 		&:hover {
 			background-color: $blue;
-		}
+		}*/
 	}
 	.small {
 		font-size: 14px;

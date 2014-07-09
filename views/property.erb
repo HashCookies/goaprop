@@ -39,10 +39,27 @@
 <div class="container property-main">
 	<div class="row">
 		<div class="col-md-8 data-block">
-			<!--<span class="prop-code pull-right">Code: GPC<%= @property.id %></span>-->
+			<div class="row">
+				<div class="col-md-12 gallery-block">
+					<!--<h4>Property Photos</h4>-->
+					<ul class="row">
+						<% @images.each do |image| %>
+							<li class="col-md-3">
+								<img src="/properties/images/<%= image.url %>" alt="" />
+							</li>
+						<% end %>
+						<li class="col-md-3 gallery-link">
+							<button class="btn btn-large btn-primary"><span class="glyphicon glyphicon-resize-full"></span><br /> View Fullscreen</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
 			<h4>Property Details</h4>
 			<div class="prop-specs">
 				<ul class="clearfix row">
+					
+					
 					<li class="col-md-4">
 						<span class="label">Area</span>
 						<div class="block"><%= @property.area %> Sq Mts </div>
@@ -63,19 +80,7 @@
 						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
-					<li class="col-md-12 gallery-block">
-						<h5 class="label">Property Photos</h5>
-						<ul class="row">
-							<% @images.each do |image| %>
-								<li class="col-md-3">
-									<img src="/properties/images/<%= image.url %>" alt="" />
-								</li>
-							<% end %>
-							<li class="col-md-3 gallery-link">
-								<button class="btn btn-large btn-primary"><span class="glyphicon glyphicon-resize-full"></span><br /> View Fullscreen</button>
-							</li>
-						</ul>
-					</li>
+					
 				</ul>
 			</div>
 		</div>

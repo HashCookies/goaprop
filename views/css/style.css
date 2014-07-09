@@ -299,31 +299,30 @@ h2 {
       line-height: 18px; }
   .property-main .prop-specs .label {
     padding: 0; }
-  .property-main .prop-specs .gallery-block {
+  .property-main .gallery-block {
     padding-top: 15px;
-    overflow: auto; }
-    .property-main .prop-specs .gallery-block li {
+    overflow: auto;
+    border-bottom: none; }
+    .property-main .gallery-block li {
       height: 120px;
       overflow: hidden;
       margin-bottom: 10px;
       border-bottom: none; }
-      .property-main .prop-specs .gallery-block li img {
+      .property-main .gallery-block li img {
         width: 100%;
         height: 100%; }
-    .property-main .prop-specs .gallery-block .gallery-link .btn {
+    .property-main .gallery-block .gallery-link .btn {
       position: absolute;
-      top: 0;
-      bottom: 0;
       left: 15px;
       right: 15px;
       padding-top: 10px;
-      top: 5px;
-      bottom: 10px;
+      top: 0px;
+      bottom: 0px;
       border-radius: 0;
       color: #f99b91;
       border: 1px solid #fbc7c2;
       font-size: 12px; }
-      .property-main .prop-specs .gallery-block .gallery-link .btn .glyphicon {
+      .property-main .gallery-block .gallery-link .btn .glyphicon {
         font-size: 24px;
         margin-bottom: 10px; }
 
@@ -554,11 +553,14 @@ h2 {
     height: 100%; }
   .filters .list-group-item:hover {
     background-color: #f8fcfe; }
+  .filters .list-group-item .badge {
+    border: 1px solid #c9ecfa;
+    color: #666; }
   .filters .active {
-    background: #f6f0ef;
-    border-color: #e8d7d5;
+    background: #f8fcfe;
+    border-color: #a9e0f6;
     font-weight: bold;
-    color: #a85249; }
+    color: #159fd8; }
     .filters .active .glyphicon {
       display: block;
       position: absolute;
@@ -569,14 +571,16 @@ h2 {
       border-color: #c0e8f9;
       color: #35b6eb; }
     .filters .active .badge {
-      color: #a85249;
-      border: 1px solid #e8d7d5; }
+      color: white;
+      background: #35b6eb;
+      border: 1px solid #35b6eb; }
   .filters .glyphicon {
     display: none; }
 
 #footer {
-  background: #1eaee9;
-  color: white;
+  background: white;
+  border-top: 1px solid #cdd8e1;
+  color: #4b322f;
   padding-bottom: 0;
   padding-top: 10px;
   font-family: "FreightText", Garamond, Georgia, serif; }
@@ -642,7 +646,7 @@ h2 {
   padding: 0 30px 10px; }
   #footer-form h3 {
     text-align: center;
-    color: #35b6eb;
+    color: #f66f61;
     margin-bottom: 10px; }
   #footer-form p {
     font-size: 14px; }
@@ -658,10 +662,11 @@ h2 {
       box-shadow: 1px 1px 0px #35b6eb; }
   #footer-form .btn {
     margin-top: 10px;
-    border-color: #35b6eb;
-    color: #35b6eb; }
-    #footer-form .btn:hover {
-      background-color: #35b6eb; }
+    /*		border-color: $blue;
+    		color: $blue;
+    		&:hover {
+    			background-color: $blue;
+    		}*/ }
   #footer-form .small {
     font-size: 14px;
     font-family: "FreightText", Garamond, Georgia, serif;
