@@ -304,29 +304,45 @@ h2 {
   .property-main .gallery-block {
     padding-top: 15px;
     overflow: auto;
-    border-bottom: none; }
+    border-bottom: none;
+    margin-bottom: 15px; }
     .property-main .gallery-block li {
       height: 120px;
-      overflow: hidden;
+      overflow: visible;
       margin-bottom: 10px;
-      border-bottom: none; }
+      border-bottom: none;
+      border: 1px solid #edf1f4;
+      padding: 0;
+      width: 160px;
+      margin: 0 10px; }
       .property-main .gallery-block li img {
         width: 100%;
-        height: 100%; }
-    .property-main .gallery-block .gallery-link .btn {
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      padding-top: 10px;
-      top: 0px;
-      bottom: 0px;
-      border-radius: 0;
-      color: #f99b91;
-      border: 1px solid #fbc7c2;
-      font-size: 12px; }
-      .property-main .gallery-block .gallery-link .btn .glyphicon {
-        font-size: 24px;
-        margin-bottom: 10px; }
+        height: 100%;
+        border: 5px solid white;
+        border-radius: 3px; }
+    .property-main .gallery-block .gallery-link {
+      border: none; }
+      .property-main .gallery-block .gallery-link .btn {
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        padding-top: 10px;
+        top: 0px;
+        bottom: 0px;
+        border-radius: 0;
+        color: #f99b91;
+        border: none;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: none;
+        border: 1px solid #edf1f4; }
+        .property-main .gallery-block .gallery-link .btn .glyphicon {
+          font-size: 24px;
+          margin-bottom: 10px; }
+        .property-main .gallery-block .gallery-link .btn:hover {
+          color: #f66f61;
+          border-color: #fbc7c2; }
 
 .property-image-grid {
   border-bottom: 1px solid #cdd8e1;
