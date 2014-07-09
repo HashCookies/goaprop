@@ -6,36 +6,36 @@
 			<h3 class="title">Edit Property</h3>
 			<form role="form" action="/update" method="post" id="property" enctype="multipart/form-data">
 				
-				<input type="hidden" value="<%= @property.id %>">
+				<input name="property[id]" id="property_id" type="hidden" value="<%= @property.id %>">
 				<div class="row form-group">
 					<div class="col-md-4">
 						<input type="text" name="property[title]" id="title" class="demo-control form-control" data-demo="#demo-title" placeholder='Eg. "Old Portuguese", "3BHK", "Spacious"' />	
 					</div>
 					
 					<div class="col-md-8">					
-							<select class="select2 type-select" data-demo="#demo-type-name" name="type[id]" id="type_id">
-								<% @types.each do |type| %>
-									<% if type.id == @property.type.id %>
-										<option value="<%= type.id %>" selected="selected"><%= type.name %></option>
-									<% else %>
-										<option value="<%= type.id %>"><%= type.name %></option>
-								<% end %>
+						<select class="select2 type-select" data-demo="#demo-type-name" name="type[id]" id="type_id">
+							<% @types.each do |type| %>
+								<% if type.id == @property.type.id %>
+									<option value="<%= type.id %>" selected="selected"><%= type.name %></option>
+								<% else %>
+									<option value="<%= type.id %>"><%= type.name %></option>
+							<% end %>
 
-								<% end %>
-							</select>
+							<% end %>
+						</select>
+						
+						<span class="mid-select">in</span>
+						
+						<select class="select2 location-select" data-demo="#demo-location" name="location[id]" id="location_id">
 							
-							<span class="mid-select">in</span>
-							
-							<select class="select2 location-select" data-demo="#demo-location" name="location[id]" id="location_id">
-								
-								<% @locations.each do |location| %>
-									<% if location.id == @property.location.id %>
-										<option value="<%= location.id %>" selected="selected"><%= location.name %></option>
-									<% else %>
-										<option value="<%= location.id %>"><%= location.name %></option>
-									<% end %>
+							<% @locations.each do |location| %>
+								<% if location.id == @property.location.id %>
+									<option value="<%= location.id %>" selected="selected"><%= location.name %></option>
+								<% else %>
+									<option value="<%= location.id %>"><%= location.name %></option>
 								<% end %>
-							</select>
+							<% end %>
+						</select>
 					</div>
 				</div>
 				<div class="clearfix"></div>
