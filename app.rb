@@ -203,7 +203,7 @@ end
 
 get '/property/:id/edit' do
 	@property = Property.get(params[:id])
-	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
+	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@images = @property.images.all
 	@regions = Region.all
 	@locations = Location.all
@@ -226,14 +226,14 @@ post '/update' do
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
 	@featured = params[:featured_img]
-	@gallDelete = params[:image]
-	@gallUpload = params[:images]
+	@gallDelete = params[:gallDels]
+	@gallUpload = params[:gallUploads]
 
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
 	end
 
-	unless @imagesUpload.nil?
+	unless @gallUpload.nil?
 		params[:images].each do |image|
 			@property.images.create({ :product_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
 			@property.handle_upload(image)
@@ -245,8 +245,6 @@ post '/update' do
 		@image.update({ :url => @featured[:filename].downcase.gsub(" ", "-") })
 		@property.handle_upload(@featured)
 	end
-
-
 
 	if @property.update(@update_params)
 		redirect "/property/#{@property.id}"
