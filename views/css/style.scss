@@ -1168,3 +1168,20 @@ form#property {
 		margin: 0px 2px;
 	}
 }
+
+.pagination {
+	margin-top: 5px;
+	li {
+		a {
+			padding: 6px 12px 4px;
+			color: $dark;
+		}
+	}
+	.active a {
+		background: lighten($blue, 42%);
+		border-color: lighten($blue, 25%);
+		font-weight: bold;
+		color: darken($blue, 10%);
+	}
+	
+}
