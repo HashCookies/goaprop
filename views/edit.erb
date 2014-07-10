@@ -13,7 +13,7 @@
 					</div>
 					
 					<div class="col-md-8">					
-						<select class="select2 type-select" data-demo="#demo-type-name" name="type[id]" id="type_id">
+						<select class="select2 type-select" data-demo="#demo-type-name" name="property[type_id]" id="type_id">
 							<% @types.each do |type| %>
 								<% if type.id == @property.type.id %>
 									<option value="<%= type.id %>" selected="selected"><%= type.name %></option>
@@ -26,7 +26,7 @@
 						
 						<span class="mid-select">in</span>
 						
-						<select class="select2 location-select" data-demo="#demo-location" name="location[id]" id="location_id">
+						<select class="select2 location-select" data-demo="#demo-location" name="property[location_id]" id="location_id">
 							
 							<% @locations.each do |location| %>
 								<% if location.id == @property.location.id %>
@@ -42,7 +42,7 @@
 				<div class="row form-group">
 					<div class="col-md-4">
 						<label>Option</label>
-						<select class="select2" data-demo="#demo-state" name="state[id]" id="state_id">
+						<select class="select2" data-demo="#demo-state" name="property[state_id]" id="state_id">
 							<% @states.each do |state| %>
 								<% if state.id == @property.state.id %>
 									<option value="<%= state.id %>" selected="selected"><%= state.name %></option>
@@ -55,7 +55,7 @@
 					
 					<div class="col-md-4">
 						<label>Property Type</label>
-						<select class="select2" name="category[id]" id="category_id">
+						<select class="select2" name="property[category_id]" id="category_id">
 							<% @categories.each do |category| %>
 								<% if category.id == @property.category.id %>
 									<option value="<%= category.id %>" selected="selected"><%= category.name %></option>
@@ -109,8 +109,8 @@
 				<div class="form-group">
 					<label for="featured">Featured Image</label>
 					<div class="file-input-wrap">
-						<img src="/properties/images/<%= @property.featured_img %>" alt="" width="250">
-						<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
+						<img src="/properties/images/<%= @featured_img %>" alt="" width="250">
+						<input type="file" id="featured-img-picker" name="featured_img" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="Change Featured Image" />
 					</div>
 				</div>
 				
@@ -120,11 +120,15 @@
 						<ul class="gallery-block row">
 						<% @images.each do |image| %>
 							<li class="gallery-item col-md-4">
-								<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+								<% if image.id != @property.featured_img %>
+									<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+									<label for="checkbox">Delete?</label>
+									<input type="checkbox" name="gallDels[<%= image.id %>]" />
+								<% end %>
 							</li>
 						<% end %>
 						</ul>
-						<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+						<input type="file" name="gallUploads[]" title="+ Gallery Images" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 					</div>
 				</div>
 				
@@ -142,7 +146,7 @@
 			<div id="demo-property">
 					<div class="img-block">
 						<span class="prop-price sort-price" id="demo-price"></span>
-						<img src="/properties/images/<%= @property.featured_img %>" alt="" id="demo-img" />
+						<img src="/properties/images/<%= @featured_img %>" alt="" id="demo-img" />
 					</div>
 					<div class="data-block">
 						<h3 class="prop-title">
