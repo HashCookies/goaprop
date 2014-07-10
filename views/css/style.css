@@ -6005,7 +6005,7 @@ h2 {
   border: 1px solid #35b6eb;
   color: white;
   padding: 20px 25px 15px;
-  width: 500px;
+  max-width: 600px;
   position: absolute;
   bottom: 50px;
   left: 5%; }
