@@ -171,7 +171,7 @@ h2 {
 	}
 }
 
-#cover {
+.cover {
 	position: absolute;
 	.anystretch {
 		z-index: -10 !important;
@@ -895,10 +895,7 @@ h2 {
 	}
 }
 
-#info-intro {
-	background: url('../images/goaprop1.jpg') no-repeat left bottom;
-	background-size: cover;
-	padding: 350px 0 80px;
+.info-intro {
 	h3 {
 		margin-top: 0;
 		font-weight: bold;
@@ -911,16 +908,24 @@ h2 {
 	}
 	p {
 		font-size: 16px;
+		a {
+			color: white;
+		}
 	}
 	.inner {	
 		background: transparentize($blue, 0.05);
+		border: 1px solid $blue;
 		color: white;
-		padding: 15px 25px;
+		padding: 20px 25px 15px;
+		width: 500px;
+		position: absolute;
+		bottom: 50px;
+		left: 5%;
 	}
 }
 
 .info-block {	
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	margin-top: 100px;
 	img {
 		width: 100%;

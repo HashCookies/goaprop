@@ -4,11 +4,13 @@ var winH = $(window).height();
 var winW = $(window).width();
 
 $(document).ready(function() {
-		$('#cover').height(winH - 100).width(winW);
+		$('.cover').height(winH - 100).width(winW);
 		var $b = $('body');
 		
-		
-		$('.anystretch').anystretch();
+		$('#home-bg').anystretch();
+
+		var strUrl = $('.info-intro').attr('data-stretch');
+		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' })
 	
 		$grid = $('#property-grid');
 		

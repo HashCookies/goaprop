@@ -5414,9 +5414,9 @@ h2 {
       font-size: 12px;
       color: #f66f61; }
 
-#cover {
+.cover {
   position: absolute; }
-  #cover .anystretch {
+  .cover .anystretch {
     z-index: -10 !important; }
 
 .content {
@@ -5987,28 +5987,31 @@ h2 {
     padding-top: 10px;
     color: #888; }
 
-#info-intro {
-  background: url("../images/goaprop1.jpg") no-repeat left bottom;
-  background-size: cover;
-  padding: 350px 0 80px; }
-  #info-intro h3 {
-    margin-top: 0;
-    font-weight: bold;
-    font-size: 60px;
-    color: white;
-    font-family: "Tisa OT", serif;
-    font-style: italic;
-    margin-bottom: 25px;
-    text-shadow: 0px 1px #333; }
-  #info-intro p {
-    font-size: 16px; }
-  #info-intro .inner {
-    background: rgba(53, 182, 235, 0.95);
-    color: white;
-    padding: 15px 25px; }
+.info-intro h3 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 60px;
+  color: white;
+  font-family: "Tisa OT", serif;
+  font-style: italic;
+  margin-bottom: 25px;
+  text-shadow: 0px 1px #333; }
+.info-intro p {
+  font-size: 16px; }
+  .info-intro p a {
+    color: white; }
+.info-intro .inner {
+  background: rgba(53, 182, 235, 0.95);
+  border: 1px solid #35b6eb;
+  color: white;
+  padding: 20px 25px 15px;
+  width: 500px;
+  position: absolute;
+  bottom: 50px;
+  left: 5%; }
 
 .info-block {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   margin-top: 100px; }
   .info-block img {
     width: 100%; }
