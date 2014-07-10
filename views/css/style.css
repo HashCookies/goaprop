@@ -5988,12 +5988,18 @@ h2 {
     color: #888; }
 
 .info-block {
-  /*background: white;*/
-  border-top: 1px solid #cdd8e1;
-  padding: 50px 0 70px; }
+  background: url("../images/goaprop1.jpg") no-repeat left bottom;
+  background-size: cover;
+  padding: 350px 0 80px; }
+  .info-block h3 {
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 48px;
+    color: white;
+    text-align: center;
+    padding-top: 50px; }
   .info-block .info-img img {
-    margin-top: 40px;
-    /*-webkit-transform: scale(1.4);*/ }
+    margin-top: 40px; }
   .info-block .info-img p {
     text-transform: uppercase; }
   .info-block .info-intro {
@@ -6002,8 +6008,7 @@ h2 {
       font-size: 18px;
       font-weight: 100; }
       .info-block .info-intro p strong {
-        text-transform: uppercase;
-        /*color: $vib;*/ }
+        text-transform: uppercase; }
     .info-block .info-intro h3 {
       font-size: 42px;
       font-family: "FreightText", Garamond, Georgia, serif;
@@ -6013,14 +6018,9 @@ h2 {
       font-family: "Tisa OT";
       font-weight: bold;
       margin-bottom: 15px; }
-  .info-block .block {
-    /*border-right: 1px solid darken($light, 10%);*/ }
   .info-block .inner {
-    /*border: 1px solid darken($light, 10%);*/
-    padding: 15px 25px;
-    border-radius: 5px; }
-  .info-block .block.last {
-    border-right: none; }
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px; }
   .info-block h4 {
     text-align: center;
     font-weight: bold;
@@ -6081,18 +6081,6 @@ h2 {
   .info-block .service-icon {
     margin: 15px auto 30px;
     max-width: 275px; }
-
-.info-block .inner {
-  border-top: 1px solid #edf1f4;
-  -moz-box-shadow: 0px 2px 2px #aec0cd;
-  box-shadow: 0px 2px 2px #aec0cd;
-  background: white; }
-
-.info-block {
-  background-image: -webkit-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-  background-image: -moz-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-  background-image: -ms-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-  background-image: linear-gradient(to bottom, #fdfdfb 0%, #fbfaf2 100%); }
 
 .offwhite-block {
   background: #fbfbf3;

@@ -895,13 +895,20 @@ h2 {
 }
 
 .info-block {
-	/*background: white;*/
-	border-top: 1px solid darken($light, 10%);
-	padding: 50px 0 70px;
+	background: url('../images/goaprop1.jpg') no-repeat left bottom;
+	background-size: cover;
+	padding: 350px 0 80px;
+	h3 {
+		margin-top: 0;
+		font-weight: bold;
+		font-size: 48px;
+		color: white;
+		text-align: center;
+		padding-top: 50px;
+	}
 	.info-img {
 		img {
 			margin-top: 40px;
-			/*-webkit-transform: scale(1.4);*/
 		}
 		p {
 			text-transform: uppercase;
@@ -914,7 +921,6 @@ h2 {
 			font-weight: 100;
 			strong {
 				text-transform: uppercase;
-				/*color: $vib;*/
 			}
 		}
 		h3 {
@@ -928,18 +934,9 @@ h2 {
 			margin-bottom: 15px;
 		}
 	}
-	.block {
-		/*border-right: 1px solid darken($light, 10%);*/
-	}
-	.inner {
-		/*border: 1px solid darken($light, 10%);*/
-		
-		
+	.inner {	
+		background: transparentize(white, 0.05);
 		padding: 15px 25px;
-		border-radius: 5px;
-	}
-	.block.last {
-		border-right: none;
 	}
 	h4 {
 		text-align: center;
@@ -1017,20 +1014,6 @@ h2 {
 		margin: 15px auto 30px;
 		max-width: 275px;
 	}
-}
-
-.info-block .inner {
-	border-top: 1px solid $light;
-	-moz-box-shadow: 0px 2px 2px darken($light, 20%);
-	box-shadow: 0px 2px 2px darken($light, 20%);
-	background: white;
-}
-
-.info-block {
-	background-image: -webkit-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-	background-image: -moz-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-	background-image: -ms-linear-gradient(top, #fdfdfb 0%, #fbfaf2 100%);
-	background-image: linear-gradient(to bottom, #fdfdfb 0%, #fbfaf2 100%);
 }
 
 .offwhite-block {
