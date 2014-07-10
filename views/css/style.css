@@ -6027,6 +6027,11 @@ h2 {
     color: #35b6eb;
     font-size: 30px;
     margin-bottom: 5px; }
+  .info-block h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-top: 20px; }
   .info-block .review-quote {
     font-style: italic;
     font-family: "FreightText", Garamond, Georgia, serif;
@@ -6073,6 +6078,9 @@ h2 {
   .info-block .service-icon {
     margin: 15px auto 30px;
     max-width: 275px; }
+
+.property-resources {
+  margin-top: 50px; }
 
 .offwhite-block {
   background: #fbfbf3;
