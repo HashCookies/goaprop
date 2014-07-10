@@ -75,6 +75,7 @@ class Image
 	belongs_to :property
 end
 
+# Type class refers to "House", "Apartment", "Row Villa", etc.
 class Type
 	include DataMapper::Resource
 	
@@ -85,6 +86,7 @@ class Type
 	
 end
 
+# Location refers to places like Anjuna, Mapusa, Panjim. Locations have many properties and have many regions.
 class Location
 	include DataMapper::Resource
 	
@@ -98,6 +100,7 @@ class Location
 	
 end
 
+# Region is a broad category, like North Goa, Coastal Region, City, etc. Regions have many locations.
 class Region
 	include DataMapper::Resource
 	
@@ -105,10 +108,10 @@ class Region
 	property :name,		String
 	
 	has n, :locations, :through => Resource
-#	has n, :propertys, :through => Resource
 	
 end
 
+# Property can have one of two states: Sale or Rent
 class State
 	include DataMapper::Resource
 	
@@ -118,6 +121,7 @@ class State
 	has n, :propertys
 end
 
+# Category refers to Commercial or Residential or Undeveloped
 class Category
 	include DataMapper::Resource
 	
