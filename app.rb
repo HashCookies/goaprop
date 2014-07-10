@@ -179,6 +179,11 @@ get '/' do
 	erb :home
 end
 
+get '/about-gpc' do
+	
+	erb :about
+end
+
 get '/properties' do
 	@properties = Property.all
 	@regions = Region.all
