@@ -5987,54 +5987,46 @@ h2 {
     padding-top: 10px;
     color: #888; }
 
-.info-block {
+#info-intro {
   background: url("../images/goaprop1.jpg") no-repeat left bottom;
   background-size: cover;
   padding: 350px 0 80px; }
-  .info-block h3 {
+  #info-intro h3 {
     margin-top: 0;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 60px;
     color: white;
-    text-align: center;
-    padding-top: 50px; }
-  .info-block .info-img img {
-    margin-top: 40px; }
-  .info-block .info-img p {
-    text-transform: uppercase; }
-  .info-block .info-intro {
-    margin-bottom: 35px; }
-    .info-block .info-intro p {
-      font-size: 18px;
-      font-weight: 100; }
-      .info-block .info-intro p strong {
-        text-transform: uppercase; }
-    .info-block .info-intro h3 {
-      font-size: 42px;
-      font-family: "FreightText", Garamond, Georgia, serif;
-      font-style: italic;
-      color: #f66f61;
-      margin-top: 20px;
-      font-family: "Tisa OT";
-      font-weight: bold;
-      margin-bottom: 15px; }
-  .info-block .inner {
-    background: rgba(255, 255, 255, 0.95);
+    font-family: "Tisa OT", serif;
+    font-style: italic;
+    margin-bottom: 25px;
+    text-shadow: 0px 1px #333; }
+  #info-intro p {
+    font-size: 16px; }
+  #info-intro .inner {
+    background: rgba(53, 182, 235, 0.95);
+    color: white;
     padding: 15px 25px; }
-  .info-block h4 {
-    text-align: center;
+
+.info-block {
+  margin-bottom: 100px;
+  margin-top: 100px; }
+  .info-block img {
+    width: 100%; }
+  .info-block .row {
+    margin-bottom: 50px; }
+  .info-block p {
+    font-size: 16px; }
+  .info-block p.lead {
+    font-size: 18px;
+    font-family: "FreightText", Garamond, Georgia, serif;
+    font-style: italic;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd; }
+  .info-block h3 {
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 24px;
-    /*font-family: "Tisa OT";*/
-    margin-top: 20px;
-    margin-bottom: 20px;
-    /*font-style: italic;*/
-    color: #414125; }
-    .info-block h4 span {
-      color: #ddd;
-      display: inline-block;
-      margin: 0 5px; }
+    color: #35b6eb;
+    font-size: 30px;
+    margin-bottom: 5px; }
   .info-block .review-quote {
     font-style: italic;
     font-family: "FreightText", Garamond, Georgia, serif;

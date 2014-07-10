@@ -2,6 +2,7 @@
 
 $serif: "FreightText", Garamond, Georgia, serif;
 $sans: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifAlt: "Tisa OT", serif;
 $green: #7bcb1d;
 
 $darkBlue: #323a45;
@@ -894,65 +895,54 @@ h2 {
 	}
 }
 
-.info-block {
+#info-intro {
 	background: url('../images/goaprop1.jpg') no-repeat left bottom;
 	background-size: cover;
 	padding: 350px 0 80px;
 	h3 {
 		margin-top: 0;
 		font-weight: bold;
-		font-size: 48px;
+		font-size: 60px;
 		color: white;
-		text-align: center;
-		padding-top: 50px;
+		font-family: $serifAlt;
+		font-style: italic;
+		margin-bottom: 25px;
+		text-shadow: 0px 1px #333;
 	}
-	.info-img {
-		img {
-			margin-top: 40px;
-		}
-		p {
-			text-transform: uppercase;
-		}
-	}
-	.info-intro {
-		margin-bottom: 35px;
-		p {
-			font-size: 18px;
-			font-weight: 100;
-			strong {
-				text-transform: uppercase;
-			}
-		}
-		h3 {
-			font-size: 42px;
-			font-family: $serif;
-			font-style: italic;
-			color: $vib;
-			margin-top: 20px;
-			font-family: "Tisa OT";
-			font-weight: bold;
-			margin-bottom: 15px;
-		}
+	p {
+		font-size: 16px;
 	}
 	.inner {	
-		background: transparentize(white, 0.05);
+		background: transparentize($blue, 0.05);
+		color: white;
 		padding: 15px 25px;
 	}
-	h4 {
-		text-align: center;
+}
+
+.info-block {	
+	margin-bottom: 100px;
+	margin-top: 100px;
+	img {
+		width: 100%;
+	}
+	.row {
+		margin-bottom: 50px;
+	}
+	p {
+		font-size: 16px;
+	}
+	p.lead {
+		font-size: 18px;
+		font-family: $serif;
+		font-style: italic;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #ddd;
+	}
+	h3 {
 		font-weight: bold;
-		text-transform: uppercase;
-		font-size: 24px;
-		/*font-family: "Tisa OT";*/
-		margin-top: 20px;
-		margin-bottom: 20px;
-		/*font-style: italic;*/
-		color: #414125;
-		span {
-			color: #ddd;
-			display: inline-block;
-			margin: 0 5px;
-		}
+		color: $blue;
+		font-size: 30px;
+		margin-bottom: 5px;
 	}
 	.review-quote {
 		font-style: italic;
