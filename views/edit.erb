@@ -110,7 +110,7 @@
 					<label for="featured">Featured Image</label>
 					<div class="file-input-wrap">
 						<img src="/properties/images/<%= @property.featured_img %>" alt="" width="250">
-						<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="+ Featured Image" />
+						<input type="file" id="featured-img-picker" name="featured_img" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="Change Featured Image" />
 					</div>
 				</div>
 				
@@ -121,10 +121,12 @@
 						<% @images.each do |image| %>
 							<li class="gallery-item col-md-4">
 								<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+								<label for="checkbox">Delete?</label>
+								<input type="checkbox" name="image[<%= image.id %>]" />
 							</li>
 						<% end %>
 						</ul>
-						<input type="file" name="images[]" title="+ Gallery Images"  class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+						<input type="file" name="images[]" title="+ Gallery Images" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 					</div>
 				</div>
 				
