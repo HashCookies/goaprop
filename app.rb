@@ -225,12 +225,7 @@ post '/update' do
 	require_admin
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
-	#@property.location = Location.get(params[:location][:id])
 	
-	#@property.location = params[:property][:location]
-	#@property.state = params[:state][:id]
-	#@property.category = params[:category][:id]
-	#@property.type = params[:type][:id]
 	if @property.update(@update_params)
 		redirect "/property/#{@property.id}"
 	else
