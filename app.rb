@@ -179,7 +179,7 @@ get '/' do
 	erb :home
 end
 
-get '/about-gpc' do
+get '/about' do
 	
 	erb :about
 end
