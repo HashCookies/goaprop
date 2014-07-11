@@ -116,7 +116,8 @@
 									<span class="smaller"><%= "in <span id='demo-location' class='prop-string'></span>" %></span> <br />
 							</h3> 
 							<span id="demo-area" class='smaller prop-string'> </span><span> Sq Mts</span>
-							<div class="prop-price price sort-price" id="demo-price">
+							<div class="prop-price">
+								<span id="demo-price" class="price sort-price"></span>
 									<%# if @property.state_id == 2 %>
 										<%#= to_currency(@property.price) + " / mo" %>
 									<%# else %>

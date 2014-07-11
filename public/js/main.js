@@ -182,10 +182,8 @@ $(document).ready(function() {
 		
 		$('.prop-price .price').each(function() {
 			var value = $(this).text();
-			value = value.replace(/,/g, '');
+			value = (value.replace(/,/g, '')).trim();
 			
-			
-
 			console.log(value);
 			
 			if (value.length == 7) {
