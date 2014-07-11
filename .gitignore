@@ -1,3 +1,4 @@
 **.sass-cache**
 **/public/properties/**
 *.db
+views/css/style.css

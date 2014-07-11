@@ -856,6 +856,9 @@ h2 {
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 	padding: 0 30px 10px;
+	.home & {
+		margin-top: 15px;
+	}
 	h3 {
 		text-align: center;
 		color: $vib;
