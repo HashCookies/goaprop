@@ -182,7 +182,7 @@ $(document).ready(function() {
 		
 		$('.prop-price .price').each(function() {
 			var value = $(this).text();
-			value = value.replace(/,/g, '');
+			value = (value.replace(/,/g, '')).trim();
 			
 			console.log(value);
 			
@@ -199,7 +199,9 @@ $(document).ready(function() {
 			else if (value.length == 6) {
 				value = value.substring(0, 1);
 				$(this).text(value + ' lacs');
-			} else if (value.length < 6) {
+			}
+
+			else if (value.length < 6) {
 				$(this).text($(this).text());
 			}
 		});

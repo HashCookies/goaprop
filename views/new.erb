@@ -101,8 +101,36 @@
 				
 			</form>
 		</div>
+
+		<div class="col-md-4 col-sm-6 col-xs-12 ">
+			<h3>Live Preview</h3>
+			<div id="demo-property">
+				<ul>
+					<li class="property-item">
+						<div class="img-block"><img src="/properties/images/prop2.jpg" alt="" />
+						</div>
+						<div class="data-block">
+							<h3 class="prop-title">
+									<%= "<span id='demo-title' class='prop-string'></span>" %>
+									<%= "<span id='demo-type-name' class='prop-string'></span>" %> <br />
+									<span class="smaller"><%= "in <span id='demo-location' class='prop-string'></span>" %></span> <br />
+							</h3> 
+							<span id="demo-area" class='smaller prop-string'> </span><span> Sq Mts</span>
+							<div class="prop-price">
+								<span id="demo-price" class="price sort-price"></span>
+									<%# if @property.state_id == 2 %>
+										<%#= to_currency(@property.price) + " / mo" %>
+									<%# else %>
+										<%#= to_currency(@property.price) %>
+									<%# end %>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 		
-		<div class="col-md-4">
+		<!-- <div class="col-md-4">
 			<h3>Live Preview</h3>
 			<div id="demo-property">
 					<div class="img-block">
@@ -131,7 +159,7 @@
 						</ul>
 					</div>
 			</div>
-		</div>
+		</div> -->
 		
 	</div>
 	
