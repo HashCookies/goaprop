@@ -207,10 +207,8 @@ $(document).ready(function() {
 			else if (value.length == 6) {
 				decValue = '.' + value.substring(2, 1);
 				value = value.substring(0, 1);
-				if (value > 1)
-					$(this).text(value + decValue + ' lacs' + permo);
-				else 
-					$(this).text(value + decValue + ' lac' + permo);
+				var lac = (value > 1) ? ' lacs' : ' lac';
+				$(this).text(value + decValue + lac + permo);
 			}
 
 			else if (value.length < 6) {
