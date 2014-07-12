@@ -5454,20 +5454,20 @@ h2 {
   .prop-title .smaller {
     font-size: 16px; }
 
-#property-grid {
+#property-grid, #demo-property {
   overflow: auto;
   width: 100%; }
-  #property-grid img {
+  #property-grid img, #demo-property img {
     width: 100%; }
-  #property-grid .prop-title {
+  #property-grid .prop-title, #demo-property .prop-title {
     border-bottom: 1px solid #cdd8e1;
     padding-bottom: 3px; }
-  #property-grid .property-item {
+  #property-grid .property-item, #demo-property .property-item {
     margin-bottom: 35px; }
-  #property-grid .prop-type, #property-grid .prop-location {
+  #property-grid .prop-type, #demo-property .prop-type, #property-grid .prop-location, #demo-property .prop-location {
     display: inline-block;
     border-bottom: 1px solid #333; }
-  #property-grid .prop-price {
+  #property-grid .prop-price, #demo-property .prop-price {
     position: absolute;
     right: 8px;
     background: #7bcb1d;
@@ -5482,7 +5482,7 @@ h2 {
     border: 1px solid #68ac19;
     border-right-color: #6db51a;
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
-    #property-grid .prop-price:after {
+    #property-grid .prop-price:after, #demo-property .prop-price:after {
       content: " ";
       width: 7px;
       height: 6px;
@@ -5490,44 +5490,44 @@ h2 {
       background: url("../images/green-triangle.png") no-repeat left top;
       position: absolute;
       right: 0; }
-  #property-grid .prop-code {
+  #property-grid .prop-code, #demo-property .prop-code {
     text-align: right;
     position: absolute;
     right: 30px;
     bottom: 11px;
     font-size: 11px; }
-  #property-grid ul {
+  #property-grid ul, #demo-property ul {
     margin-top: 0px; }
-    #property-grid ul li {
+    #property-grid ul li, #demo-property ul li {
       margin-bottom: 4px;
       font-size: 16px; }
-      #property-grid ul li .block {
+      #property-grid ul li .block, #demo-property ul li .block {
         float: left; }
-      #property-grid ul li:last-child {
+      #property-grid ul li:last-child, #demo-property ul li:last-child {
         padding-bottom: 0; }
-      #property-grid ul li .label {
+      #property-grid ul li .label, #demo-property ul li .label {
         text-transform: uppercase;
         color: #117da9;
         padding-left: 0;
         padding-right: 10px;
         float: left;
         padding-top: 6px; }
-    #property-grid ul .sort-area span {
+    #property-grid ul .sort-area span, #demo-property ul .sort-area span {
       font-family: "FreightText", Garamond, Georgia, serif;
       font-style: italic; }
-  #property-grid .img-block {
+  #property-grid .img-block, #demo-property .img-block {
     margin-bottom: 0px;
     position: relative;
     border: 1px solid #dde5ea;
     border-bottom: none; }
-    #property-grid .img-block img {
+    #property-grid .img-block img, #demo-property .img-block img {
       height: 200px;
       border-radius: 3px;
       border: 10px solid #fff;
       border-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0; }
-  #property-grid .data-block {
+  #property-grid .data-block, #demo-property .data-block {
     background: #fefefe;
     border: 1px solid #dde5ea;
     border-top: 0;
@@ -5668,7 +5668,7 @@ h2 {
     margin-top: 0; }
 
 .anystretch {
-  z-index: 0 !important; }
+  z-index: 10 !important; }
 
 .price-block {
   margin-top: 20px;
@@ -6112,31 +6112,8 @@ form#property {
   form#property .location-select {
     width: 200px; }
 
-#demo-property {
-  background: white;
-  border: 1px solid #cdd8e1;
-  padding: 15px; }
-  #demo-property img {
-    width: 100%; }
-  #demo-property .img-block {
-    position: relative; }
-  #demo-property #demo-price {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    right: 30px;
-    background: #7bcb1d;
-    padding: 3px 10px 2px;
-    font-size: 18px;
-    color: white;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    font-weight: bold;
-    text-shadow: 0px 1px #2a450a;
-    border: 1px solid #62b500;
-    border-bottom: none; }
-  #demo-property .label {
-    padding: 0; }
+#demo-property .prop-price {
+  bottom: 65px; }
 
 #inquiry-block {
   margin-left: 10px; }

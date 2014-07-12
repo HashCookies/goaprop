@@ -10,7 +10,9 @@ $(document).ready(function() {
 		$('#home-bg').anystretch();
 
 		var strUrl = $('.info-intro').attr('data-stretch');
-		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' })
+		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' });
+		
+		$('.property-image-grid .anystretch').anystretch();
 	
 		$grid = $('#property-grid');
 		
