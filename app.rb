@@ -41,6 +41,7 @@ class Property
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
+	property :bhk_count,		Integer
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
