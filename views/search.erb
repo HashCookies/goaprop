@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-2 filters" id="filters">
 				<span class="label">Type</span>
-				<ul class="list-group" id="type-filter" data-filter-group="type">
+				<ul class="list-group filter-group" id="type-filter" data-filter-group="type">
 					<li class="list-group-item active">
 						<span class="badge"><%= @properties.count %></span>
 						<a href="#" data-filter="">All</a>
@@ -27,7 +27,7 @@
 				</ul>
 						
 				<span class="label">Locations</span>
-				<ul class="list-group" id="location-filter" data-filter-group="location">
+				<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
 					<li class="list-group-item active">
 						<span class="badge"><%= @properties.count %></span>
 						<a href="#" data-filter="">All</a>
@@ -41,11 +41,12 @@
 				</ul>
 				
 				<span class="label">Specs (BHK)</span>
-				<ul class="pagination">
-					<li class="active"><a href="#">All</a></li>
-					<li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3 +</a></li>
+				<div class="clearfix"></div>
+				<ul class="pagination filter-group" id="bhk-filter" data-filter-group="bhk">
+					<li class="active"><a href="#" data-filter="">All</a></li>
+					<li><a href="#" data-filter=".bhk-1">1</a></li>
+				    <li><a href="#" data-filter=".bhk-2">2</a></li>
+				    <li><a href="#" data-filter=".bhk-3">3+ BHK</a></li>
 				</ul>
 				
 				<span class="label">Sort by</span>

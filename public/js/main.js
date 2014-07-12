@@ -47,7 +47,7 @@ $(document).ready(function() {
 		$('#filters').on('click', 'a', function() {
 			var $this = $(this);
 			
-			var $listGroup = $this.parents('.list-group');
+			var $listGroup = $this.parents('.filter-group');
 			var filterGroup = $listGroup.attr('data-filter-group');
 			
 			filters[ filterGroup ] = $this.attr('data-filter');
@@ -61,7 +61,7 @@ $(document).ready(function() {
 			return false;
 		});
 		
-		$('.list-group').each( function( i, buttonGroup ) {
+		$('.filter-group').each( function( i, buttonGroup ) {
 		    var $buttonGroup = $( buttonGroup );
 		    $buttonGroup.on( 'click', 'a', function() {
 		      $buttonGroup.find('.active').removeClass('active');
