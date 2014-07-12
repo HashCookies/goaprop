@@ -44,10 +44,12 @@
 			<div class="row">
 				<div class="col-md-12 gallery-block">
 					<!--<h4>Property Photos</h4>-->
-					<ul class="row">
+					<ul class="row gallery-images">
 						<% @images.each do |image| %>
 							<li class="col-md-3">
-								<img src="/properties/images/<%= image.url %>" alt="" />
+								<a href="/properties/images/<%= image.url %>">
+									<img src="/properties/images/<%= image.url %>" alt="" />
+								</a>
 							</li>
 						<% end %>
 						<li class="col-md-3 gallery-link">
