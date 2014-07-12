@@ -182,23 +182,35 @@ $(document).ready(function() {
 		
 		$('.prop-price .price').each(function() {
 			var value = $(this).text();
-			value = (value.replace(/,/g, '')).trim();
+			value = value.trim();
+			var permo = value.substring(value.length - 5);
+			if (permo != ' / mo'){
+				permo = '';
+			}
+
+			value = value.replace(/,/g, '');
+			value = value.replace(/ \/ mo/, '');
 			
 			console.log(value);
+			//alert(value + ':' + permo + ':' + $(this).text());
 			
-			if (value.length == 7) {
-				value = value.substring(0, 2);
-				$(this).text(value + ' lacs');
-			} 
-			
-			else if (value.length == 8) {
+			if (value.length == 8) {
 				value = value.substring(0, 1);
-				$(this).text(value + ' Crore');
-			} 
+				$(this).text(value + ' Crore' + permo);
+			}
+
+			else  if (value.length == 7) {
+				value = value.substring(0, 2);
+				$(this).text(value + ' lacs' + permo);
+			}
 			
 			else if (value.length == 6) {
+				decValue = '.' + value.substring(2, 1);
 				value = value.substring(0, 1);
-				$(this).text(value + ' lacs');
+				if (value > 1)
+					$(this).text(value + decValue + ' lacs' + permo);
+				else 
+					$(this).text(value + decValue + ' lac' + permo);
 			}
 
 			else if (value.length < 6) {

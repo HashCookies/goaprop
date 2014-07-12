@@ -68,7 +68,7 @@
 					
 					<div class="col-md-4">
 						<label>Price:</label><br />
-						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= @property.price %>" />
+						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= to_currency(@property.price) %>" />
 					</div>
 				</div>
 				

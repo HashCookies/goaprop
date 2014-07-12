@@ -30,7 +30,9 @@
 			</div>
 			<div class="col-md-4 price-block">
 				<span class="label">Price</span>
-				<span class="prop-price"><%= to_currency(@property.price) %></span>
+				<span class="prop-price">
+					<span class="price sort-price"> <%= to_currency(@property.price) %></span>
+				</span>
 			</div>
 		</div>
 	</div>
