@@ -386,10 +386,6 @@ get '/property/:id' do
 	@viewed = Property.all(:id => viewed)
 	@viewed = @viewed[1..3]
 	
-	@viewed.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
-	
 	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 	
 	erb :property
