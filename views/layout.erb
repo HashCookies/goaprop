@@ -33,7 +33,7 @@
 				  </div>
 				  <div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right main-nav">
-				    	<li><a href="/">Find Properties</a></li>
+				    	<li id="search-link"><a href="/">Find Properties</a></li>
 				    	<li><a href="/about">Services</a></li>
 				    	<li><a href="/regional-plans">Region Plans</a></li>
 						<li><a href="#">Blog</a></li>
@@ -45,6 +45,15 @@
 			</div>
 		</div>
 		
+		<div id="hidden-form">
+			<div class="container">
+				<div class="row">
+					<div id="search-bar" class="col-md-10 col-md-offset-1">
+						<%= erb :_search_form %>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="main">
 		      <%if @error then %>

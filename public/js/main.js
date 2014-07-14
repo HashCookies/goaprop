@@ -256,5 +256,9 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('#search-link a').click(function() {
+		$('#hidden-form').slideToggle(500);
+		return false;
+	});
 	
 });

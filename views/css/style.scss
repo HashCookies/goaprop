@@ -1213,3 +1213,20 @@ form#property {
 		padding-bottom: 100px;
 	}
 }
+
+#hidden-form {
+	display: none;
+	background: $offWhite;
+	overflow: auto;
+	border-top: 1px solid darken($light, 10%);
+	position: absolute;
+	top: 90px;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	#search-bar {
+		margin-top: 0;
+		padding-bottom: 40px;
+		padding-top: 40px;
+	}
+}
