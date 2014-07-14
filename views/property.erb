@@ -17,10 +17,10 @@
 			<div class="col-md-8">
 				<h3 class="prop-title"><div></div>
 					<a href="/property/<%= @property.id %>">
-						<span><%= @property.title %> </span>
-						<%= @property.type.name %> 
-						<%= "in " + @property.location.name %>
-						<%= "for " + @property.state.name %>
+						<span class='prop-string'><%= @property.title %> </span>
+						<%= "<span class='prop-string'>#{@property.type.name}</span>" %>
+						<%= "in <span class='prop-string'>#{@property.location.name}</span>" %>
+						<%= "for <span class='prop-string'>#{@property.state.name}</span>" %>
 					</a>
 				</h3>
 				<p class="prop-area">
@@ -28,79 +28,120 @@
 					<%= @property.area %> Sq Mts • <%= @property.specs %>
 				</p>
 			</div>
-			<div class="col-md-4 prop-price-wrap text-right">
-				<div class="call-to-action">
-					<a href="#" class="btn btn-large btn-primary">Send Inquiry</a>
-				</div>
-				<div class="price-block">
-					<span class="prop-price-label label">Price</span>
-					<span class="prop-price"><%= to_currency(@property.price) %></span>
-				</div>
+			<div class="col-md-4 price-block">
+				<span class="label">Price</span>
+				<span class="prop-price">
+					<span class="price sort-price">
+						<% if @property.state_id == 2 %>
+							<%= to_currency(@property.price) + " / mo" %>
+						<% else %>
+							<%= to_currency(@property.price) %>
+						<% end %>
+					</span>
+				</span>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-<div id="property-content">
-		
-	<div class="container">
-		<div class="row property-main">
-			<div class="col-md-8 prop-specs">
-				<ul class="clearfix ">
-					<!--<h3>Detailed Specs</h3>-->
-					<li class="clearfix">
+<div class="container property-main">
+	<div class="row">
+		<div class="col-md-8 data-block">
+			<div class="row">
+				<div class="col-md-12 gallery-block">
+					<!--<h4>Property Photos</h4>-->
+					<ul class="row gallery-images">
+						<% @images.each do |image| %>
+							<li class="col-md-3">
+								<a href="/properties/images/<%= image.url %>">
+									<img src="/properties/images/<%= image.url %>" alt="" />
+								</a>
+							</li>
+						<% end %>
+						<li class="col-md-3 gallery-link">
+							<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> Slideshow</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<h4>Property Details</h4>
+			<div class="prop-specs">
+				<ul class="clearfix row">
+					
+					
+					<li class="col-md-4">
 						<span class="label">Area</span>
-						<div class="block">
-							<%= @property.area %> Sq Mts
-						</div>
+						<div class="block"><%= @property.area %> Sq Mts </div>
 					</li>
-					<li class="clearfix">
+					<li class="col-md-4">
 						<span class="label">Built Area</span>
-						<div class="block"><%= @property.area_built %> Sq Mts</div>
+						<div class="block"><%= @property.area_built %></div>
 					</li>
-					<li>
+					<li class="col-md-4">
+						<span class="label">Area in Sq Ft</span>
+						<div class="block"><%= (@property.area * 10.76).ceil %> Sq Ft</div>
+					</li>
+					<li class="col-md-12">
 						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>
 					</li>
-					<li class="clearfix">
+					<li class="col-md-12">
 						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
-					<li class="large">
-						<span class="label">Price</span>
-						<div class="pull-right">
-							
-							<div class="price"><span class="prop-price"><%= @property.price %></span></div>
-						</div>
-					</li>
+					
 				</ul>
-				
-				
-				
 			</div>
-			<div class="col-md-4 inquiry-block">
+		</div>
+		
+		<div class="col-md-4">
+			<div class="inquiry-block">
 				<h3>Interested? Let us show you around…</h3>
-				<form method="post" action="/send-inquiry">
+				<form method="post" action="/send-inquiry/inquiry">
 					<div class="form-group">
 						<label for="name" class="hidden">Your name</label>
-						<input type="text" name="name" placeholder="Your name" value="" class="form-control" />
+						<input type="text" name="inquiry[name]" placeholder="Your name" value="" class="form-control" />
 					</div>
 					
 					<div class="form-group">
 						<label for="email" class="hidden">Your email</label>
-						<input type="text" name="email" placeholder="Your email" value="" class="form-control" />
+						<input type="text" name="inquiry[email]" placeholder="Your email" value="" class="form-control" />
 					</div>
 					
 					<div class="form-group">
-						<textarea class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
+						<textarea name="inquiry[body]" class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
 					</div>
 					
 					<div class="form-group text-center">
-						<input type="button" name="" value="Send Inquiry" class="btn btn-large btn-primary" />
+						<input type="submit" name="submit" value="Send Inquiry" class="btn btn-large btn-primary" />
 					</div>
 				</form>
-			</div>	
+			</div>
+			
+			<% if @viewed.count > 0 %>
+				<div class="recently-viewed">
+					<ul>
+						<h5 class="label">Recently Viewed Properties</h5>
+						<% @viewed.each do |property| %>
+							<li>
+								<a href="/property/<%= property.id %>">
+									<span><%= property.title %> </span>
+									<%= property.type.name %> 
+									<%= "in " + property.location.name %>
+									<%= "for " + property.state.name %>
+									<span class="badge pull-right">Code: GPC<%= property.id %></span>
+								</a>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+		</div>	
+	</div>
+</div>
+
+			
 			
 			
 			<div class="clearfix"></div>
@@ -112,13 +153,15 @@
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content">
-			<h3 class="section-title">More <strong><%= @property.type.name %>s</strong> in <strong><%= @property.location.name %></strong></h3>
-			<ul id="property-grid" class="row">
-				<% @similar.each do |property| %>
-					<%= erb :_property, :layout => false, :locals => {:property => property} %>
-				<% end %>
-			</ul>
-			<hr />
+			<% if @similar.count > 0 %>
+				<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
+				<ul id="property-grid" class="row">
+					<% @similar.each do |property| %>
+						<%= erb :_property, :layout => false, :locals => {:property => property} %>
+					<% end %>
+				</ul>
+				<hr />
+			<% end %>
 			
 			<div id="search-bar" class="col-md-10 col-md-offset-1">
 				<h3 class="section-title">Search Again</h3>

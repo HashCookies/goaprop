@@ -4,11 +4,15 @@ var winH = $(window).height();
 var winW = $(window).width();
 
 $(document).ready(function() {
-		$('#cover').height(winH - 100).width(winW);
+		$('.cover').height(winH - 100).width(winW);
 		var $b = $('body');
 		
+		$('#home-bg').anystretch();
+
+		var strUrl = $('.info-intro').attr('data-stretch');
+		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' });
 		
-		$('.anystretch').anystretch();
+		$('.property-image-grid .anystretch').anystretch();
 	
 		$grid = $('#property-grid');
 		
@@ -43,7 +47,7 @@ $(document).ready(function() {
 		$('#filters').on('click', 'a', function() {
 			var $this = $(this);
 			
-			var $listGroup = $this.parents('.list-group');
+			var $listGroup = $this.parents('.filter-group');
 			var filterGroup = $listGroup.attr('data-filter-group');
 			
 			filters[ filterGroup ] = $this.attr('data-filter');
@@ -57,7 +61,7 @@ $(document).ready(function() {
 			return false;
 		});
 		
-		$('.list-group').each( function( i, buttonGroup ) {
+		$('.filter-group').each( function( i, buttonGroup ) {
 		    var $buttonGroup = $( buttonGroup );
 		    $buttonGroup.on( 'click', 'a', function() {
 		      $buttonGroup.find('.active').removeClass('active');
@@ -71,7 +75,7 @@ $(document).ready(function() {
 		var propTop;
 		
 		if (winH < 760) {
-			propTop = winH - 95
+			propTop = winH - 97
 			$propD.css({ top: propTop });
 		} else {
 			propTop = 675;
@@ -180,30 +184,70 @@ $(document).ready(function() {
 		
 		$('.prop-price .price').each(function() {
 			var value = $(this).text();
+			value = value.trim();
+			var permo = value.substring(value.length - 5);
+			if (permo != ' / mo'){
+				permo = '';
+			}
+
 			value = value.replace(/,/g, '');
+			value = value.replace(/ \/ mo/, '');
 			
 			console.log(value);
+			//alert(value + ':' + permo + ':' + $(this).text());
 			
-			if (value.length == 7) {
-				value = value.substring(0, 2);
-				$(this).text(value + ' lacs');
-			} 
-			
-			else if (value.length == 8) {
+			if (value.length == 8) {
+				decValue = '.' + value.substring(2, 1);
 				value = value.substring(0, 1);
-				$(this).text(value + ' Crore');
-			} 
+				$(this).text(value + ' Crore' + permo);
+			}
+
+			else  if (value.length == 7) {
+				value = value.substring(0, 2);
+				$(this).text(value + ' Lac' + permo);
+			}
 			
 			else if (value.length == 6) {
+				decValue = '.' + value.substring(2, 1);
 				value = value.substring(0, 1);
-				$(this).text(value + ' lacs');
-			} else if (value.length < 6) {
+				$(this).text(value + decValue + ' Lac' + permo);
+			}
+
+			else if (value.length < 6) {
 				$(this).text($(this).text());
 			}
 		});
 	
 	setTimeout(function() {
 		$b.addClass('loaded');
-	}, 2000)
+	}, 800)
 	
+	$('.gallery-images').magnificPopup({ 
+		delegate: 'a',
+		gallery: {
+		    // options for gallery
+		    enabled: true,
+		    preload: [0,2], // read about this option in next Lazy-loading section
+		  },
+		type: 'image',
+		 zoom: {
+		    enabled: true, // By default it's false, so don't forget to enable it
+		
+		    duration: 300, // duration of the effect, in milliseconds
+		    easing: 'ease-in-out', // CSS transition easing function 
+		
+		    // The "opener" function should return the element from which popup will be zoomed in
+		    // and to which popup will be scaled down
+		    // By defailt it looks for an image tag:
+		    opener: function(openerElement) {
+		      // openerElement is the element on which popup was initialized, in this case its <a> tag
+		      // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+		      return openerElement.is('img') ? openerElement : openerElement.find('img');
+		    }
+		  }
+	});
+	$('.gallery-link button').click(function() {
+		$('.gallery-images').magnificPopup('open');
+		return false;
+	});
 });

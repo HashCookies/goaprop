@@ -1,33 +1,12 @@
 <div id="footer">
 	<div class="container">
-		<div class="col-md-3">
-			<h3>Services</h3>
-			<ul id="services-list">
-				<li>
-					<h4>Buy / Rent <span class="glyphicon glyphicon-circle-arrow-right"></span></h4>
-					<p>Nullam in dui mauris. Vivamus hendrerit arcu sed.</p>
-				</li>
-				<li>
-					<h4>Sell / Lease <span class="glyphicon glyphicon-circle-arrow-right"></span></h4>
-					<p>Nullam in dui mauris. Vivamus hendrerit arcu sed. In dui.</p>
-				</li>
-				<li>
-					<h4>Documentation <span class="glyphicon glyphicon-circle-arrow-right"></span></h4>
-					<p>Nullam in dui mauris.</p>
-				</li>
-				<li>
-					<h4>Knowledge Blog <span class="glyphicon glyphicon-circle-arrow-right"></span></h4>
-					<p>Nullam in dui mauris. Vivamus hendrerit.</p>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-5">
+		
+		<div class="col-md-8 footer-info">
 			<div class="row">
-				<div class="col-md-7">
-					<h3>Goa Property Co</h3>
-					<p class="subtitle">Real Estate Consultants</p>
+				<div class="col-md-8">
+					<img src="/images/logo-white.png" alt="" />
 				</div>
-				<div class="col-md-5 phone-large text-right">
+				<div class="col-md-4 phone-large">
 					<span class="label">For inquiries, call:</span>
 					<p>+91 800 75 000 66</p>
 				</div>
@@ -36,11 +15,14 @@
 			<hr />
 			
 			<div class="row">
+				<div class="col-md-8 gpc-desc">
+					<p><strong>GOA PROPERTY CO</strong> is promoted by a dynamic father-son duo: two Goan entrepreneurs; one young man from the hospitality industry and an older warhorse who has in-depth knowledge of the business and a thorough understanding of the Goan real estate market.</p>
+					<p>Goa Property Company has wide range of property related services, all under one roof. We strive to ensure that you get prompt and professional service and the best deal to protect your interest and investment.</p>
+				</div>
 				
-				<div class="col-md-12">	
-					<span class="label">Phone</span>
-					<p>+91 9822 450 450<br />
-						+91 9823 451 451</p>
+					
+				<div class="col-md-4">	
+					
 					<span class="label">Email</span>
 					<p>mail@goapropertyco.com</p>
 					
@@ -49,15 +31,20 @@
 					497/GF-4 Chogum Road,
 					Porvorim, Goa.
 					</address>
+					
 				</div>
 				
-				
-				
 			</div>
-
 			
+			<hr />
 			
-			
+			<ul class="row" id="services-list">
+				<li><a href="/properties">Buy/Rent</a></li>
+				<li><a href="#">Sell/Lease</a></li>
+				<li><a href="#">Knowledge Blog</a></li>
+				<li><a href="#">Regional Plans</a></li>
+				<li><a href="#">Documentation</a></li>
+			</ul>
 			
 		</div>
 		
@@ -65,12 +52,12 @@
 		<div class="col-md-4"  id="footer-form">
 			<h3>Happy to Help!</h3>
 			<p>Can’t find the place you’re looking for? Just fill in your details and we’ll call you back.</p>
-			<form method="post" action="">
-				<div class="form-group"><input type="text" name="send[name]" value="" placeholder="your name" class="form-control" /></div>
-				<div class="form-group"><input type="tel" name="send[phone]" value="" placeholder="phone number" class="form-control" /></div>
-				<div class="form-group "><input type="text" name="send[timing]" value="" placeholder="call between 9-5" class="form-control" /></div>
+			<form method="post" action="/send-inquiry/callback">
+				<div class="form-group"><input type="text" name="inquiry[name]" value="" placeholder="your name" class="form-control" /></div>
+				<div class="form-group"><input type="tel" name="inquiry[phone]" value="" placeholder="phone number" class="form-control" /></div>
+				<div class="form-group "><input type="text" name="inquiry[timing]" value="" placeholder="call between 9-5" class="form-control" /></div>
 				<div class="form-group text-center">
-					<input type="submit" name="" value="Send Callback" class="btn btn-large btn-primary" />
+					<input type="submit" name="submit" value="Send Callback" class="btn btn-large btn-primary" />
 				</div>
 			</form>
 			<p class="small"><strong>Goa Property Co</strong> respects your privacy and will not add your contact to any mailing list without your permission.</p>
