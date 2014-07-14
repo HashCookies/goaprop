@@ -1,7 +1,9 @@
 <form method="get" action="/search" id="search">
 	<div class="select-label-wrap select-category"> 
 		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-			<%= erb :_category_loop %>
+			<% @categories.each do |obj| %>
+				<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
+			<% end %>
 		"><%= @category.name %></a> properties &nbsp;
 		<input type="hidden" name="search[category]" value="<%= @category.id %>" id="input-category" class="hidden-field" />
 	</div>
@@ -10,14 +12,18 @@
 	<div class="select-label-wrap select-state"> for 
 		<a href="#" id="select-state-label" class="select-label" data-container="body" data-toggle="popover" 
 			data-content="
-			<%= erb :_state_loop %>
+				<% @states.each do |obj| %>
+					<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
+				<% end %>
 			"><%= @state.name %></a>
 		<input type="hidden" name="search[state]" value="<%= @state.id %>" id="input-state" class="hidden-field" />
 	</div>
 	
 	<div class="select-label-wrap select-region"> in
 		<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-			<%= erb :_region_loop %>
+			<% @regions.each do |obj| %>
+				<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
+			<% end %>
 		"><%= @region.name %></a>
 		
 		<input type="hidden" name="search[region_id]" value="<%= @region.id %>" class="hidden-field" />
