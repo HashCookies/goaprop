@@ -34,7 +34,7 @@ class Property
 	
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_built,		String	
+	property :area_built,		Integer	
 	property :price,			Integer
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 
@@ -219,6 +219,7 @@ get '/property/new' do
 end
 
 get '/property/:id/edit' do
+	require_admin
 	@property = Property.get(params[:id])
 	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@images = @property.images.all
@@ -242,6 +243,8 @@ post '/update' do
 	require_admin
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
+	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "")
+	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
@@ -249,7 +252,7 @@ post '/update' do
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
 	end
-
+	
 	unless @gallUpload.nil?
 		params[:gallUploads].each do |image|
 			@property.images.create({ :product_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
@@ -263,10 +266,14 @@ post '/update' do
 		@property.handle_upload(@featured)
 	end
 
-	if @property.update(@update_params)
-		redirect "/property/#{@property.id}"
-	else
-		redirect "/property/#{@property.id}/edit"
+	begin
+		if @property.update(@update_params)
+			redirect "/property/#{@property.id}"
+		else
+			redirect "/property/#{@property.id}/edit"
+		end
+	rescue DataMapper::SaveFailureError => e
+		puts e.resource.errors.inspect
 	end
 end
 

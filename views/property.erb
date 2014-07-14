@@ -31,7 +31,13 @@
 			<div class="col-md-4 price-block">
 				<span class="label">Price</span>
 				<span class="prop-price">
-					<span class="price sort-price"> <%= to_currency(@property.price) %></span>
+					<span class="price sort-price">
+						<% if @property.state_id == 2 %>
+							<%= to_currency(@property.price) + " / mo" %>
+						<% else %>
+							<%= to_currency(@property.price) %>
+						<% end %>
+					</span>
 				</span>
 			</div>
 		</div>
