@@ -1,5 +1,5 @@
 <form method="get" action="/search" id="search">
-	<div id="select-category" class="select-label-wrap"> 
+	<div class="select-label-wrap select-category"> 
 		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 			<%= erb :_category_loop %>
 		"><%= @category.name %></a> properties &nbsp;
@@ -7,7 +7,7 @@
 	</div>
 	
 	
-	<div id="select-state" class="select-label-wrap"> for 
+	<div class="select-label-wrap select-state"> for 
 		<a href="#" id="select-state-label" class="select-label" data-container="body" data-toggle="popover" 
 			data-content="
 			<%= erb :_state_loop %>
@@ -15,7 +15,7 @@
 		<input type="hidden" name="search[state]" value="<%= @state.id %>" id="input-state" class="hidden-field" />
 	</div>
 	
-	<div id="select-region" class="select-label-wrap"> in
+	<div class="select-label-wrap select-region"> in
 		<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
 			<%= erb :_region_loop %>
 		"><%= @region.name %></a>
