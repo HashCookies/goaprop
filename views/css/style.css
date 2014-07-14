@@ -5772,6 +5772,8 @@ h2 {
     .property #search-bar h3 {
       color: #4b322f;
       text-align: center; }
+    .about #search-bar h3 {
+      color: #4b322f; }
   #search-bar form {
     background: white;
     border-radius: 10px;
@@ -6184,3 +6186,6 @@ form#property {
     border-color: #a9e0f6;
     font-weight: bold;
     color: #159fd8; }
+
+.about #search-bar {
+  padding-bottom: 100px; }

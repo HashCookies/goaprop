@@ -181,6 +181,7 @@ get '/' do
 end
 
 get '/about' do
+	@body_class += " about"
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
@@ -388,6 +389,8 @@ get '/property/:id' do
 	@viewed.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
+	
+	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 	
 	erb :property
 end
