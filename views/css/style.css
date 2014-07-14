@@ -5897,7 +5897,7 @@ h2 {
   background: white;
   border-top: 1px solid #cdd8e1;
   color: #444;
-  padding-bottom: 0;
+  padding-bottom: 0px;
   padding-top: 10px; }
   #footer h3 {
     font-family: "Tisa OT";
@@ -5956,9 +5956,10 @@ h2 {
   color: #4b322f;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  padding: 0 30px 10px; }
+  padding: 0 30px 50px; }
   .home #footer-form {
-    margin-top: 15px; }
+    margin-top: 15px;
+    padding-bottom: 15px; }
   #footer-form h3 {
     text-align: center;
     color: #f66f61;

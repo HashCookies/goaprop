@@ -152,13 +152,15 @@
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content">
-			<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
-			<ul id="property-grid" class="row">
-				<% @similar.each do |property| %>
-					<%= erb :_property, :layout => false, :locals => {:property => property} %>
-				<% end %>
-			</ul>
-			<hr />
+			<% if @similar.count > 0 %>
+				<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
+				<ul id="property-grid" class="row">
+					<% @similar.each do |property| %>
+						<%= erb :_property, :layout => false, :locals => {:property => property} %>
+					<% end %>
+				</ul>
+				<hr />
+			<% end %>
 			
 			<div id="search-bar" class="col-md-10 col-md-offset-1">
 				<h3 class="section-title">Search Again</h3>

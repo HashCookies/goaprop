@@ -783,7 +783,7 @@ h2 {
 	background: white;
 	border-top: 1px solid darken($light, 10%);
 	color: #444;
-	padding-bottom: 0;
+	padding-bottom: 0px;
 	padding-top: 10px;
 	h3 {
 		font-family: "Tisa OT";
@@ -858,9 +858,10 @@ h2 {
 	color: $dark;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
-	padding: 0 30px 10px;
+	padding: 0 30px 50px;
 	.home & {
 		margin-top: 15px;
+		padding-bottom: 15px;
 	}
 	h3 {
 		text-align: center;
