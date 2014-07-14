@@ -14,7 +14,7 @@
 <div class="property-data">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-8 data-block">
 				<h3 class="prop-title"><div></div>
 					<a href="/property/<%= @property.id %>">
 						<span class='prop-string'><%= @property.title %> </span>
@@ -28,8 +28,8 @@
 					<%= @property.area %> Sq Mts • <%= @property.specs %>
 				</p>
 			</div>
-			<div class="col-md-4 price-block">
-				<span class="label">Price</span>
+			<div class="price-block">
+				<span class="label">INR</span>
 				<span class="prop-price">
 					<span class="price sort-price">
 						<% if @property.state_id == 2 %>
