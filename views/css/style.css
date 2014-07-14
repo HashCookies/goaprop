@@ -5717,6 +5717,8 @@ h2 {
       padding: 15px 20px 12px 15px; }
       .scrolled .property-data .price-block .prop-price {
         font-size: 30px; }
+      .scrolled .property-data .price-block .label {
+        margin-top: 10px; }
     .scrolled .property-data .prop-title {
       margin-top: 12px; }
   .property-data .prop-title {
