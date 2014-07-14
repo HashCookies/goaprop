@@ -119,23 +119,24 @@
 				</form>
 			</div>
 			
-			<div class="recently-viewed">
-				<ul>
-					<h5 class="label">Recently Viewed Properties</h5>
-					<% @viewed.each do |property| %>
-						<li>
-							<a href="/property/<%= property.id %>">
-								<span><%= property.title %> </span>
-								<%= property.type.name %> 
-								<%= "in " + property.location.name %>
-								<%= "for " + property.state.name %>
-								<span class="badge pull-right">Code: GPC<%= property.id %></span>
-							</a>
-						</li>
-					<% end %>
-				</ul>
-			</div>
-			
+			<% if @viewed.count > 0 %>
+				<div class="recently-viewed">
+					<ul>
+						<h5 class="label">Recently Viewed Properties</h5>
+						<% @viewed.each do |property| %>
+							<li>
+								<a href="/property/<%= property.id %>">
+									<span><%= property.title %> </span>
+									<%= property.type.name %> 
+									<%= "in " + property.location.name %>
+									<%= "for " + property.state.name %>
+									<span class="badge pull-right">Code: GPC<%= property.id %></span>
+								</a>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
 		</div>	
 	</div>
 </div>

@@ -220,7 +220,7 @@ $(document).ready(function() {
 	
 	setTimeout(function() {
 		$b.addClass('loaded');
-	}, 2000)
+	}, 800)
 	
 	$('.gallery-images').magnificPopup({ 
 		delegate: 'a',
