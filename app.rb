@@ -377,6 +377,7 @@ get '/property/:id' do
 	@states = State.all
 	@state = State.get(@property.state.id)
 	@region = Region.get(@property.location.regions.first.id)
+	@regions = Region.all
 	
 	session[:properties][@property.id] = @property.title
 	
