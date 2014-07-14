@@ -181,7 +181,14 @@ get '/' do
 end
 
 get '/about' do
-	
+	@regions = Region.all
+	@locations = Location.all
+	@types = Type.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	erb :about
 end
 
@@ -244,7 +251,7 @@ post '/update' do
 	end
 
 	unless @gallUpload.nil?
-		params[:images].each do |image|
+		params[:gallUploads].each do |image|
 			@property.images.create({ :product_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
 			@property.handle_upload(image)
 		end
@@ -445,6 +452,36 @@ delete '/:delresource/destroy/:id' do
 	else
 		redirect '/'
 	end
+end
+
+post '/send-inquiry/:for' do
+	require 'pony'
+	@mailFor = params[:for]
+	@subject = ""
+	@body = ""
+	case @mailFor
+	when "inquiry"
+		@subject = "Inquiry for property"
+		@body = params[:inquiry][:body] << "</br>Inquiry Sent by: " << params[:inquiry][:email]
+	else
+		@subject = "Callback Request"
+		@body = "Callback Request Sent by: " << params[:inquiry][:name] << "</br>No: " << params[:inquiry][:phone] << "</br>Call Between: " << params[:inquiry][:timing]
+	end
+	Pony.mail(
+		:from => params[:inquiry][:name],
+		:to => 'alistair.rodrigues@gmail.com',
+		:subject => @subject,
+		:body => @body,
+		:via => :smtp,
+		:via_options => {
+			:address              => 'smtp.sendgrid.net', 
+	        :port                 => '587', 
+	        :user_name            => 'hashcookies', 
+	        :password             => 'Nor1nderchqMudi', 
+	        :authentication       => :plain
+		}
+	)
+	redirect '/'
 end
 
 load 'actions/route_region.rb'

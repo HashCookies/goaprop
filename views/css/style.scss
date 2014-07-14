@@ -580,7 +580,6 @@ h2 {
 	.properties & {
 		margin-bottom: 50px;
 	}
-	
 	.home & {
 		position: absolute;	
 		left: 2.5%;
@@ -621,6 +620,10 @@ h2 {
 		.property & {
 			color: $dark;
 			text-align: center;
+		}
+
+		.about & {
+			color: $dark;
 		}
 	}
 	form {

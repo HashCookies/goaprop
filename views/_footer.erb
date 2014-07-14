@@ -52,12 +52,12 @@
 		<div class="col-md-4"  id="footer-form">
 			<h3>Happy to Help!</h3>
 			<p>Can’t find the place you’re looking for? Just fill in your details and we’ll call you back.</p>
-			<form method="post" action="">
-				<div class="form-group"><input type="text" name="send[name]" value="" placeholder="your name" class="form-control" /></div>
-				<div class="form-group"><input type="tel" name="send[phone]" value="" placeholder="phone number" class="form-control" /></div>
-				<div class="form-group "><input type="text" name="send[timing]" value="" placeholder="call between 9-5" class="form-control" /></div>
+			<form method="post" action="/send-inquiry/callback">
+				<div class="form-group"><input type="text" name="inquiry[name]" value="" placeholder="your name" class="form-control" /></div>
+				<div class="form-group"><input type="tel" name="inquiry[phone]" value="" placeholder="phone number" class="form-control" /></div>
+				<div class="form-group "><input type="text" name="inquiry[timing]" value="" placeholder="call between 9-5" class="form-control" /></div>
 				<div class="form-group text-center">
-					<input type="submit" name="" value="Send Callback" class="btn btn-large btn-primary" />
+					<input type="submit" name="submit" value="Send Callback" class="btn btn-large btn-primary" />
 				</div>
 			</form>
 			<p class="small"><strong>Goa Property Co</strong> respects your privacy and will not add your contact to any mailing list without your permission.</p>
