@@ -250,4 +250,11 @@ $(document).ready(function() {
 		$('.gallery-images').magnificPopup('open');
 		return false;
 	});
+	
+	$('#contact-link a').click(function() {
+		$.scrollTo('#footer', 800);
+		return false;
+	});
+	
+	
 });
