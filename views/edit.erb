@@ -3,7 +3,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<h3 class="title">Edit Property</h3>
 			<form role="form" action="/update" method="post" id="property" enctype="multipart/form-data">
 				
 				<input name="property[id]" id="property_id" type="hidden" value="<%= @property.id %>">
@@ -73,10 +72,7 @@
 				</div>
 				
 				<div class="clearfix"></div>
-				
-				<div class="form-group">
-							
-				</div>
+			
 
 				<div class="form-group">
 					<label for="specs">Specifications</label>
@@ -84,27 +80,21 @@
 				</div>
 						
 				<div class="form-group">
-					
 					<div class="row">
-						<div class="col-md-11 col-md-offset-1">
-						<label>Area</label>	
-							<div class="row">
-								<div class="col-md-4">			
-									<label>Sq Mts:</label><br />
-									<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" value="<%= @property.area %>"/>	
-								</div>
-								
-								
-								<div class="col-md-4">
-									<label>Built (Sq Mts):</label><br />
-									<input type="text" name="property[area_built]" id="area_built" class="form-control" value="<%= @property.area_built %>" />	
-								</div>
-								
-								<div class="col-md-4">
-									<label>BHK</label><br />
-									<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" value="<%= @property.bhk_count %>" />	
-								</div>
-							</div>
+						<div class="col-md-4">			
+							<label>Area (Sq Mts):</label><br />
+							<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" value="<%= @property.area %>"/>	
+						</div>
+						
+						
+						<div class="col-md-4">
+							<label>Built (Sq Mts):</label><br />
+							<input type="text" name="property[area_built]" id="area_built" class="form-control" value="<%= @property.area_built %>" />	
+						</div>
+						
+						<div class="col-md-4">
+							<label>BHK</label><br />
+							<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" value="<%= @property.bhk_count %>" />	
 						</div>
 					</div>
 				</div>
