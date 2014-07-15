@@ -5,6 +5,7 @@ var winW = $(window).width();
 
 $(document).ready(function() {
 		$('.cover').height(winH - 100).width(winW);
+		$('.info-intro').height(winH - 200).width(winW);
 		var $b = $('body');
 		
 		$('#home-bg').anystretch();
