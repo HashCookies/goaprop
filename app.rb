@@ -165,11 +165,9 @@ end
 get '/' do
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
-	@types = Type.all
 	@regions = Region.all
 	@states = State.all
 	@categories = Category.all
-	@properties = Property.all
 	@region = Region.first
 	@category = Category.get 1
 	@state = State.get 2
@@ -491,6 +489,17 @@ post '/send-inquiry/:for' do
 		}
 	)
 	redirect '/'
+end
+
+get '/sell-lease' do
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
+	
+	erb :sell
 end
 
 load 'actions/route_region.rb'
