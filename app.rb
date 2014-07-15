@@ -172,9 +172,6 @@ get '/' do
 	@category = Category.get 1
 	@state = State.get 2
 	
-	@properties.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
 	erb :home
 end
 
