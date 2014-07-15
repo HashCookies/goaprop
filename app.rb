@@ -165,11 +165,9 @@ end
 get '/' do
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
-	@types = Type.all
 	@regions = Region.all
 	@states = State.all
 	@categories = Category.all
-	@properties = Property.all
 	@region = Region.first
 	@category = Category.get 1
 	@state = State.get 2
@@ -355,40 +353,39 @@ end
 
 get '/property/:id' do
 	@body_class += " property"
+	
+	
+	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
 	@images = @property.images[1..3]
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	
-	@regions = @property.location.regions
-	@locations = @regions.locations
+	
 	
 	
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
-	
-	@similar = @locations.propertys(:type_id => @property.type_id, :location_id => @property.location_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
+
+	@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
 	@similar.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 	
 	
 	
+	# Variables for the search bar
 	@categories = Category.all
 	@category = Category.get(@property.category.id)
 	@states = State.all
 	@state = State.get(@property.state.id)
 	@region = Region.get(@property.location.regions.first.id)
+	@regions = Region.all # reset the regions to ALL which are at the top only of the current location's regions.
 	
+	# For the recently viewed items, pulling from the sessions cookie.
 	session[:properties][@property.id] = @property.title
-	
 	viewed = []
-	
 	session[:properties].each_key {|key| viewed << key }
 	@viewed = Property.all(:id => viewed)
 	@viewed = @viewed[1..3]
-	
-	@viewed.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
 	
 	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 	
@@ -492,6 +489,17 @@ post '/send-inquiry/:for' do
 		}
 	)
 	redirect '/'
+end
+
+get '/sell-lease' do
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
+	
+	erb :sell
 end
 
 load 'actions/route_region.rb'
