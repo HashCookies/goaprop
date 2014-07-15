@@ -1,0 +1,29 @@
+<div class="cover anystretch info-intro" data-stretch="images/goaprop2.jpg">
+	<div class="content-block">
+		<div class="inner">
+			<h3>Sell/Lease your property</h3>
+			<p>Kindly give us a "brief description" of your property, house, apartment, etc. that you want to Sell/Lease, and we will get in touch with you.</p>
+			
+			<form method="post" action="/send-inquiry/inquiry">
+				<div class="form-group">
+					<label for="name" class="hidden">Your name</label>
+					<input type="text" name="inquiry[name]" placeholder="Your name" value="" class="form-control" />
+				</div>
+				
+				<div class="form-group">
+					<label for="email" class="hidden">Your email</label>
+					<input type="text" name="inquiry[email]" placeholder="Your email" value="" class="form-control" />
+				</div>
+				
+				<div class="form-group">
+					<textarea name="inquiry[body]" class="form-control"></textarea>
+				</div>
+				
+				<div class="form-group text-center">
+					<input type="submit" name="submit" value="Submit Property" class="btn btn-large btn-primary" />
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>

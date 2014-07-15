@@ -106,7 +106,7 @@ $(document).ready(function() {
 		
 		$b.on('click', '.popover-btn', function() {
 			var value = $(this).attr('data-value');
-			var elem = '#' + $(this).attr('data-elem');
+			var elem = $(this).attr('data-elem');
 			var title = $(this).attr('data-title');
 
 			
@@ -250,4 +250,15 @@ $(document).ready(function() {
 		$('.gallery-images').magnificPopup('open');
 		return false;
 	});
+	
+	$('#contact-link a').click(function() {
+		$.scrollTo('#footer', 800);
+		return false;
+	});
+	
+	$('#search-link a').click(function() {
+		$('#hidden-form').slideToggle(500);
+		return false;
+	});
+	
 });
