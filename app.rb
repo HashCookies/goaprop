@@ -19,6 +19,11 @@ configure :development do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
 end
 
+configure :production do
+        require 'dm-sqlite-adapter'
+        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
+end
+
 DataMapper::Property::String.length(255)
 DataMapper::Model.raise_on_save_failure = true 
 
