@@ -195,7 +195,7 @@ $(document).ready(function() {
 			value = value.replace(/,/g, '');
 			value = value.replace(/ \/ mo/, '');
 			
-			alert(value.length);
+			//alert(value.length);
 
 			console.log(value);
 			//alert(value + ':' + permo + ':' + $(this).text());
