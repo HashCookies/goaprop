@@ -211,6 +211,9 @@ get '/property/:id/edit' do
 	@categories = Category.all
 	@page_title += " | Edit Property"
 	@body_class += " alt"
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	erb :edit
 end
 
@@ -383,6 +386,9 @@ get '/admin' do
 	@types = Type.all
 	@states = State.all
 	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 
 	erb :admin
 end
