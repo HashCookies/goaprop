@@ -198,18 +198,19 @@ $(document).ready(function() {
 			//alert(value + ':' + permo + ':' + $(this).text());
 			
 			if (value.length == 8) {
-				decValue = '.' + value.substring(2, 1);
+				decValue = '.' + value.substr(1, 1);
 				value = value.substring(0, 1);
-				$(this).text(value + ' Crore' + permo);
+				$(this).text(value + decValue + ' Crore' + permo);
 			}
 
-			else  if (value.length == 7) {
+			else if (value.length == 7) {
+				decValue = '.' + value.substr(2, 1);
 				value = value.substring(0, 2);
-				$(this).text(value + ' Lac' + permo);
+				$(this).text(value + decValue + ' Lac' + permo);
 			}
 			
 			else if (value.length == 6) {
-				decValue = '.' + value.substring(2, 1);
+				decValue = '.' + value.substr(1, 1);
 				value = value.substring(0, 1);
 				$(this).text(value + decValue + ' Lac' + permo);
 			}
