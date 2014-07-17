@@ -309,4 +309,8 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('.info-intro .inner').css({
+		left: (winW - $('.info-intro .inner').width()) / 2
+	});
+	
 });
