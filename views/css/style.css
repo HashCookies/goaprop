@@ -6215,3 +6215,19 @@ form#property {
     margin-top: 0;
     padding-bottom: 50px;
     padding-top: 50px; }
+
+.company-profile {
+  margin-top: 60px; }
+  .company-profile .avatar {
+    float: left;
+    margin-right: 45px;
+    width: 160px;
+    text-align: center; }
+  .company-profile img {
+    width: 150px;
+    border-radius: 100px;
+    border: 1px solid #333; }
+  .company-profile span {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px; }

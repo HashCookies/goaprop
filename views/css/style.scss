@@ -1232,3 +1232,23 @@ form#property {
 		padding-top: 50px;
 	}
 }
+
+.company-profile {
+	margin-top: 60px;
+	.avatar {
+		float: left;
+		margin-right: 45px;
+		width: 160px;
+		text-align: center;
+	}
+	img {
+		width: 150px;
+		border-radius: 100px;
+		border: 1px solid #333;
+	}
+	span {
+		display: block;
+		font-weight: bold;
+		margin-top: 10px;
+	}
+}
