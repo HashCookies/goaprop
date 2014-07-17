@@ -199,6 +199,9 @@ get '/property/new' do
 	@types = Type.all
 	@states = State.all
 	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	@page_title += " | New Property"
 	@body_class += " alt"
 	erb :new
@@ -225,6 +228,9 @@ end
 get '/resource/new' do
 	@locations = Location.all
 	@regions = Region.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	erb :new_resource
 end
 
