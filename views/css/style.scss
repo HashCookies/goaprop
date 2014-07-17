@@ -925,20 +925,17 @@ h2 {
 		text-shadow: 0px 1px #333;
 	}
 	p {
-		font-size: 16px;
-		a {
-			color: white;
-		}
+		font-size: 36px;
+		text-shadow: 0px 1px #000;
+		font-family: $serifAlt;
 	}
 	.inner {	
-		background: transparentize($blue, 0.05);
-		border: 1px solid $blue;
 		color: white;
-		padding: 20px 25px 15px;
-		max-width: 600px;
+		width: 50%;
 		position: absolute;
-		bottom: 50px;
-		left: 5%;
+		left: 25%;
+		bottom: 70px;
+		text-align: center;
 	}
 }
 
