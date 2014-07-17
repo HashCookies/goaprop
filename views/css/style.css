@@ -6218,14 +6218,18 @@ form#property {
   margin-top: 60px; }
   .company-profile .avatar {
     float: left;
-    margin-right: 45px;
+    margin-right: 65px;
     width: 160px;
     text-align: center; }
   .company-profile img {
-    width: 150px;
+    width: 170px;
     border-radius: 100px;
     border: 1px solid #333; }
   .company-profile span {
     display: block;
     font-weight: bold;
     margin-top: 10px; }
+  .company-profile p {
+    font-size: 18px; }
+  .company-profile h3 {
+    margin-bottom: 15px; }
