@@ -19,7 +19,7 @@
 		
 	</head>
 	<body class="<%= @body_class %>">
-		<div class="header">
+		<div class="header" role="banner">
 			<div class="container-fluid">
 				<div class="navbar navbar-default" role="navigation">
 				  <div class="navbar-header">
@@ -29,13 +29,13 @@
 				      <span class="icon-bar"></span>
 				      <span class="icon-bar"></span>
 				    </button>
-				    <a class="navbar-brand" href="/">Goa Property Co</a>
+				    <a class="navbar-brand" href="/" role="heading">Goa Property Co</a>
 				  </div>
 				  <div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right main-nav">
 				    	<li id="search-link"><a href="/">Find Properties</a></li>
 				    	<li><a href="/about">Services</a></li>
-				    	<li><a href="/regional-plans">Sell / Lease</a></li>
+				    	<li><a href="/sell-lease">Sell / Lease</a></li>
 						<li><a href="#">Blog</a></li>
 						<li id="contact-link"><a href="/contact">Contact</a></li>
 						<li id="phone-number"><a href="#">+91 800 75 000 66</a></li>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		
-		<div id="hidden-form">
+		<div id="hidden-form" aria-hidden="true">
 			<div class="container">
 				<div class="row">
 					<div id="search-bar" class="col-md-10 col-md-offset-1">
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 
-		<div class="main">
+		<div class="main" role="main">
 		      <%if @error then %>
 		          <div class="alert alert-error"><%=@error%></div>
 		      <% end %>
