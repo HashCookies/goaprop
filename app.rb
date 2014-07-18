@@ -21,7 +21,7 @@ end
 
 configure :production do
         require 'dm-sqlite-adapter'
-        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
+        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
 end
 
 DataMapper::Property::String.length(255)
@@ -289,6 +289,7 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
+	property.bhk_count = property.bhk_count.to_i
 
 	if property.save			
 		if !params[:images].nil?
