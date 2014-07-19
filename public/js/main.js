@@ -212,14 +212,16 @@ $(document).ready(function() {
 			
 			if (value.length == 8 || value.length == 9) { // if value in Crore/Ten Crore
 				value = value.substr(0 , value.length - 6); // Strips the value into the required digits
-				$(id).text([value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') + ' Crore' + permo);
-				//adds a decimal at the position depending on value length and sets new demo price
+				value = (value.slice(value.length - 1) != '0') ? [value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') : value.slice(0, value.length - 1);
+				// adds decimal values and point at the position depending on value length if decimal value != '0'
+				$(id).text(value + ' Crore' + permo);// Sets new demo price
 			}
 
 			else if (value.length == 6 || value.length == 7) { // if value in Lac/Ten Lac
 				value = value.substr(0 , value.length - 4); // Strips the value into the required digits
-				$(id).text([value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') + ' Lac' + permo);
-				//adds a decimal at the position depending on value length and sets new demo price
+				value = (value.slice(value.length - 1) != '0') ? [value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') : value.slice(0, value.length - 1);
+				// adds decimal values and point at the position depending on value length if decimal value != '0'
+				$(id).text(value + ' Lac' + permo); // Sets new demo price
 			}
 
 			else if (value.length <= 5) { // if value less than lac
@@ -244,19 +246,19 @@ $(document).ready(function() {
 			console.log(value);
 			
 			if (value.length == 8) {
-				decValue = '.' + value.substr(1, 1); //add decimal and value after decimal
+				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
 				$(this).text(value + decValue + ' Crore' + permo);
 			}
 
 			else if (value.length == 7) {
-				decValue = '.' + value.substr(2, 1); //add decimal and value after decimal
+				decValue = (value.substr(2, 1) != '0') ? '.' + value.substr(2, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 2);
 				$(this).text(value + decValue + ' Lac' + permo);
 			}
 			
 			else if (value.length == 6) {
-				decValue = '.' + value.substr(1, 1); //add decimal and value after decimal
+				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
 				$(this).text(value + decValue + ' Lac' + permo);
 			}

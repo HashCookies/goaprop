@@ -20,8 +20,10 @@ configure :development do
 end
 
 configure :production do
-        require 'dm-sqlite-adapter'
-        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
+	require 'mysql'
+	require 'dm-mysql-adapter'
+    #require 'dm-sqlite-adapter'
+    DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop") # sqlite3://#{Dir.pwd}/db/db.db
 end
 
 DataMapper::Property::String.length(255)

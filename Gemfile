@@ -10,4 +10,13 @@ gem "pony"
 gem "carrierwave"
 gem "fog"
 gem 'carrierwave-datamapper'
-gem 'dm-sqlite-adapter'
+
+group :development do
+	gem 'sqlite3'
+	gem 'dm-sqlite-adapter'
+end
+
+group :production do
+	gem 'mysql'
+	gem 'dm-mysql-adapter'
+end
