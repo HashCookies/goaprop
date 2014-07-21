@@ -115,11 +115,9 @@
 						<ul class="gallery-block row">
 						<% @images.each do |image| %>
 							<li class="gallery-item col-md-4">
-								<% if image.id != @property.featured_img %>
 									<img src="/properties/images/<%= image.url %>" alt="" width="200" />
 									<label for="checkbox">Delete?</label>
 									<input type="checkbox" name="gallDels[<%= image.id %>]" />
-								<% end %>
 							</li>
 						<% end %>
 						</ul>
