@@ -1,5 +1,10 @@
 get '/location/new' do
 	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	erb :new_location
 end
 
@@ -11,9 +16,9 @@ post '/location/create' do
 	end
 	
 	if location.save
-		redirect '/location/new'
-	else
 		redirect '/'
+	else
+		redirect '/location/new'
 	end
 end
 

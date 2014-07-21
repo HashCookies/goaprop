@@ -20,9 +20,15 @@ configure :development do
 end
 
 configure :production do
-        require 'dm-sqlite-adapter'
-        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
+	require 'dm-sqlite-adapter'
+	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
 end
+
+# configure :production do
+# 	require 'mysql'
+# 	require 'dm-mysql-adapter'
+#   DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
+# end
 
 DataMapper::Property::String.length(255)
 DataMapper::Model.raise_on_save_failure = true 
@@ -211,7 +217,7 @@ get '/property/:id/edit' do
 	require_admin
 	@property = Property.get(params[:id])
 	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@images = @property.images.all
+	@images = @property.images.all(:id.not => @property.featured_img) # Gallery Images minus Featured Image
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
@@ -223,6 +229,40 @@ get '/property/:id/edit' do
 	@category = Category.get 1
 	@state = State.get 2
 	erb :edit
+end
+
+get '/property/:id' do
+	@body_class += " property"
+		
+	# Getting the Property from the params of ID and setting it up for the view
+	@property = Property.get params[:id]
+	@images = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
+		
+	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
+	@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
+	@similar.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+	end
+	
+	# Variables for the search bar
+	@categories = Category.all
+	@category = Category.get(@property.category.id)
+	@states = State.all
+	@state = State.get(@property.state.id)
+	@region = Region.get(@property.location.regions.first.id)
+	@regions = Region.all # reset the regions to ALL which are at the top only of the current location's regions.
+	
+	# For the recently viewed items, pulling from the sessions cookie.
+	session[:properties][@property.id] = @property.title
+	viewed = []
+	session[:properties].each_key {|key| viewed << key }
+	@viewed = Property.all(:id => viewed)
+	@viewed = @viewed[1..3]
+	
+	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
+	
+	erb :property
 end
 
 get '/resource/new' do
@@ -239,6 +279,7 @@ post '/update' do
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "")
+	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "")
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
@@ -250,8 +291,13 @@ post '/update' do
 	
 	unless @gallUpload.nil?
 		params[:gallUploads].each do |image|
-			@property.images.create({ :product_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
-			@property.handle_upload(image)
+			# begin
+				@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
+				@property.handle_upload(image)	
+			# rescue Exception => e
+			# 	puts e.resource.errors.inspect
+			# 	raise 'error raised'
+			# end
 		end
 	end
 
@@ -261,15 +307,15 @@ post '/update' do
 		@property.handle_upload(@featured)
 	end
 
-	begin
+	# begin
 		if @property.update(@update_params)
 			redirect "/property/#{@property.id}"
 		else
 			redirect "/property/#{@property.id}/edit"
 		end
-	rescue DataMapper::SaveFailureError => e
-		puts e.resource.errors.inspect
-	end
+	# rescue DataMapper::SaveFailureError => e
+	# 	puts e.resource.errors.inspect
+	# end
 end
 
 post '/create' do
@@ -289,6 +335,7 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
+	property.bhk_count = property.bhk_count.to_i
 
 	if property.save			
 		if !params[:images].nil?
@@ -347,46 +394,7 @@ post '/create/:newtype' do
 	end
 end
 
-get '/property/:id' do
-	@body_class += " property"
-	
-	
-	# Getting the Property from the params of ID and setting it up for the view
-	@property = Property.get params[:id]
-	@images = @property.images[1..3]
-	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	
-	
-	
-	
-	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
 
-	@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
-	@similar.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
-	
-	
-	
-	# Variables for the search bar
-	@categories = Category.all
-	@category = Category.get(@property.category.id)
-	@states = State.all
-	@state = State.get(@property.state.id)
-	@region = Region.get(@property.location.regions.first.id)
-	@regions = Region.all # reset the regions to ALL which are at the top only of the current location's regions.
-	
-	# For the recently viewed items, pulling from the sessions cookie.
-	session[:properties][@property.id] = @property.title
-	viewed = []
-	session[:properties].each_key {|key| viewed << key }
-	@viewed = Property.all(:id => viewed)
-	@viewed = @viewed[1..3]
-	
-	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
-	
-	erb :property
-end
 
 get '/admin' do
 	require_admin
