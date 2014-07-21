@@ -40,7 +40,7 @@
 				<div class="clearfix"></div>
 				<div class="row form-group">
 					<div class="col-md-4">
-						<label>Option</label>
+						<label>Mode</label>
 						<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id">
 							<% @states.each do |state| %>
 								<% if state.id == @property.state.id %>
@@ -76,7 +76,7 @@
 
 				<div class="form-group">
 					<label for="specs">Specifications</label>
-					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
+					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
 				</div>
 						
 				<div class="form-group">
@@ -116,7 +116,9 @@
 						<% @images.each do |image| %>
 							<li class="gallery-item col-md-4">
 								<% if image.id != @property.featured_img %>
-									<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+									<div class="img-wrap">
+										<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+									</div>
 									<label for="checkbox">Delete?</label>
 									<input type="checkbox" name="gallDels[<%= image.id %>]" />
 								<% end %>

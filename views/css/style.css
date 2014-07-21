@@ -6233,3 +6233,11 @@ form#property {
     font-size: 18px; }
   .company-profile h3 {
     margin-bottom: 15px; }
+
+.img-wrap {
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 5px; }
+  .img-wrap img {
+    height: 100%;
+    width: auto; }
