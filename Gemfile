@@ -11,7 +11,7 @@ gem "carrierwave"
 gem "fog"
 gem 'carrierwave-datamapper'
 
-group :development do
+group :development, :demo do
 	gem 'sqlite3'
 	gem 'dm-sqlite-adapter'
 end

@@ -19,11 +19,15 @@ configure :development do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
 end
 
+configure :demo do
+	require 'dm-sqlite-adapter'
+	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
+end
+
 configure :production do
 	require 'mysql'
 	require 'dm-mysql-adapter'
-    #require 'dm-sqlite-adapter'
-    DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop") # sqlite3://#{Dir.pwd}/db/db.db
+    DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
 end
 
 DataMapper::Property::String.length(255)
@@ -263,15 +267,15 @@ post '/update' do
 		@property.handle_upload(@featured)
 	end
 
-	begin
+	# begin
 		if @property.update(@update_params)
 			redirect "/property/#{@property.id}"
 		else
 			redirect "/property/#{@property.id}/edit"
 		end
-	rescue DataMapper::SaveFailureError => e
-		puts e.resource.errors.inspect
-	end
+	# rescue DataMapper::SaveFailureError => e
+	# 	puts e.resource.errors.inspect
+	# end
 end
 
 post '/create' do
@@ -360,16 +364,12 @@ get '/property/:id' do
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	
 	
-	
-	
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
 
 	@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
 	@similar.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
-	
-	
 	
 	# Variables for the search bar
 	@categories = Category.all
