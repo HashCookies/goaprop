@@ -1255,3 +1255,15 @@ form#property {
 		margin-bottom: 15px;
 	}
 }
+
+// Edit page stuff
+
+.img-wrap {
+	height: 150px;
+	overflow: hidden;
+	margin-bottom: 5px;
+	img {
+		height: 100%;
+		width: auto;
+	}
+}
