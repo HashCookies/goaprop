@@ -4,40 +4,19 @@
 			<h3>Sell/Lease your property</h3>
 			<p>Kindly give us a "brief description" of your property, house, apartment, etc. that you want to Sell/Lease, and we will get in touch with you.</p>
 			
-			<form method="post" action="/send-inquiry/leasesell">
-
-				<div class="form-group btn-group" data-toggle="buttons">
-					<label class="btn btn-primary active">
-						<input type="radio" name="inquiry[state]" id="lease" value="Lease" checked="checked" />Lease
-					</label>
-					<label class="btn btn-primary">
-						<input type="radio" name="inquiry[state]" id="sell" value="Sale" />Sell
-					</label>
-				</div>
-
-				<div class="form-group">
-					<label for="type" class="hidden">Property type</label>
-					<input type="text" name="inquiry[type]" placeholder="Property type" value="" class="form-control" />
-				</div>
-
+			<form method="post" action="/send-inquiry/inquiry">
 				<div class="form-group">
 					<label for="name" class="hidden">Your name</label>
 					<input type="text" name="inquiry[name]" placeholder="Your name" value="" class="form-control" />
 				</div>
 				
 				<div class="form-group">
-					<label for="phone" class="hidden">Your phone</label>
-					<input type="text" name="inquiry[phone]" placeholder="Your phone" value="" class="form-control" />
-				</div>
-
-				<div class="form-group">
 					<label for="email" class="hidden">Your email</label>
 					<input type="text" name="inquiry[email]" placeholder="Your email" value="" class="form-control" />
 				</div>
 				
 				<div class="form-group">
-					<label for="description" class="hidden">Description</label>
-					<textarea name="inquiry[description]"  placeholder="Describe your property" class="form-control" ></textarea>
+					<textarea name="inquiry[body]" class="form-control"></textarea>
 				</div>
 				
 				<div class="form-group text-center">
