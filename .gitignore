@@ -1,4 +1,5 @@
 **.sass-cache**
 **/public/properties/**
 *.db
+Gemfile.lock
 views/css/style.css
