@@ -18,7 +18,7 @@
 				<div class="col-md-10">
 					<ul id="property-grid" class="row">
 						<% location.propertys.each do |property| %>
-							<%= erb :_property_admin, :layout => false, :locals => {:property => property, :featured_img => property.images.get(property.featured_img).url} %>
+							<%= erb :_property_admin, :layout => false, :locals => {:property => property} %>
 						<% end %>
 					</ul>
 				</div>

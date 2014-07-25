@@ -398,8 +398,12 @@ end
 
 get '/admin' do
 	require_admin
+	@body_class += " admin"
 
 	@properties = Property.all
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+	end
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all

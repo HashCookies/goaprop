@@ -1,44 +1,48 @@
-<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase %>" 
-	data-price="<%= property.price %>" 
-	data-area="<%= property.area %>"
-	data-date="<%= property.updated_at %>">
-	
-		<div class="img-block">
+<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase %> bhk-<%= property.bhk_count %>" 
+			data-price="<%= property.price %>" 
+			data-area="<%= property.area %>"
+			data-date="<%= property.updated_at %>">
 			
-			<a href="/property/<%= property.id %>"><img src="/properties/images/<%= featured_img %>" alt="" /></a>
-		</div>
-		<div class="data-block">
-			<h3 class="prop-title">
-				<a href="/property/<%= property.id %>">
-					<span><%= property.title %> </span>
-					<%= property.type.name %> 
-					<%#= "in " + property.location.name %>
-					<%= "for " + property.state.name %>
-				</a>
-			</h3>
-			<ul class="clearfix">
-				<li class="clearfix prop-price">
-					<!-- <span class="label">Price</span> -->
-					<% if property.state_id == 2 %>
-						<span class="price sort-price"><%= to_currency(property.price) + " / mo" %></span>
-					<% else %>
-						<span class="price sort-price"><%= to_currency(property.price) %></span>
-					<% end %>
-				</li>
-				<li class="clearfix prop-area">
-					<span class="label">Area</span>
-					<div class="block sort-area" data-sort="<%= property.area %>">
-						<%= property.area %> Sq Mts
+				<div class="img-block">
+					
+					<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.images.get(property.featured_img).url %>" alt="" /></a>
+				</div>
+				<div class="data-block">
+					<h3 class="prop-title">
+						<a href="/property/<%= property.id %>">
+							<%= "<span class='prop-string'>#{property.title}</span>" %>
+							<%= "<span class='prop-string'>#{property.type.name}</span>" %> <br />
+							<span class="smaller"><%= "in <span class='prop-string'>#{property.location.name}</span>" %></span> <br />
+							
+						</a>
+						
+					</h3> 
+					<span class='smaller prop-string'><%= property.area %> <span>Sq Mts</span></span>
+					<div class="prop-price">
+						<span class="price sort-price">
+							<% if property.state_id == 2 %>
+								<%= to_currency(property.price) + " / mo" %>
+							<% else %>
+								<%= to_currency(property.price) %>
+							<% end %>
+						</span>
 					</div>
-				</li>
-			</ul>
-			<span class="prop-code">Code: GPC<%= property.id %></span>
+					<span class="prop-code">Code: GPC<%= property.id %></span>
+				<div>
+	<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
+	<span class="action">
+		<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= property.title + " " + property.type.name %><%= " in " + property.location.name %><%= " for " + property.state.name %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
+		  <span class="glyphicon glyphicon-remove"></span>  Delete
+		</button>
+	</span>
+</div>
+				</div>
 
-			<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%= property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
+				<!-- <span class="action"><a class="btn btn-primary btn-sm" href="/property/<%#=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
 			<span class="action">
-				<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= property.title + " " + property.type.name %><%= " in " + property.location.name %><%= " for " + property.state.name %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
+				<button class="delete-btn btn-primary btn-sm" data-resource-name="<%#= property.title + " " + property.type.name %><%#= " in " + property.location.name %><%#= " for " + property.state.name %>" data-resource-id="<%#= property.id %>" data-target=".delete-modal" data-type="property">
 				  <span class="glyphicon glyphicon-remove"></span>  Delete
 				</button>
-			</span>
-		</div>
-</li>
+			</span> -->
+		</li>
+
