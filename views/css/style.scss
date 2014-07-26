@@ -65,6 +65,17 @@ h2 {
 	}
 }
 
+.btn-danger {
+	text-transform: uppercase;
+	font-weight: bold;
+	&:hover {
+		background: $vib;
+		color: white !important;
+		border: 1px solid $vib;
+		text-shadow: none;
+	}
+}
+
 .badge {
 	font-family: Helvetica, Arial, sans-serif;
 	background: white;

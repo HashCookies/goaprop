@@ -122,12 +122,12 @@ $(document).ready(function() {
 		var $delModal = $('.delete-modal');
 		
 		$delBtn.click(function() {
-			var prodID = $(this).attr('data-resource-id');
-			var prodName = $(this).attr('data-resource-name');
+			var dataID = $(this).attr('data-resource-id');
+			var dataName = $(this).attr('data-resource-name');
 			var dataType = $(this).attr('data-type');
 
-			$delModal.find('form').attr('action', dataType + '/destroy/' + prodID);
-			$delModal.find('h4.modal-title span').text(dataType + ": " +prodName);
+			$delModal.find('form').attr('action', '/' + dataType + '/destroy/' + dataID);
+			$delModal.find('h4.modal-title span').text(dataType + ": " +dataName);
 			
 			$delModal.modal();
 			

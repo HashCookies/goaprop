@@ -131,6 +131,10 @@
 		
 				<div class="form-group">
 						<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Edit Property">
+						
+						<button class="btn delete-btn btn-danger btn-large" data-resource-name="<%= @property.title + " " + @property.type.name %><%= " in " + @property.location.name %><%= " for " + @property.state.name %>" data-resource-id="<%= @property.id %>" data-target=".delete-modal" data-type="property">
+						  <span class="glyphicon glyphicon-remove"></span>  Delete
+						</button>
 				</div>
 				
 			</form>
@@ -171,3 +175,4 @@
 	
 
 </div>
+<%= erb :_modal %>
