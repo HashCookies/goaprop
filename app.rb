@@ -480,9 +480,13 @@ post '/send-inquiry/:for' do
 	when "inquiry"
 		@subject = "Inquiry for property"
 		@body = params[:inquiry][:body] << "</br>Inquiry Sent by: " << params[:inquiry][:email]
-	else
-		@subject = "Callback Request"
-		@body = "Callback Request Sent by: " << params[:inquiry][:name] << "</br>No: " << params[:inquiry][:phone] << "</br>Call Between: " << params[:inquiry][:timing]
+	when "leasesell"
+		@subject = "Property for " << params[:inquiry][:state]
+		@description = params[:inquiry][:description] == "" ? "" : "<br />Property described as: " << params[:inquiry][:description]
+		@body = params[:inquiry][:name] << " has a property for " << params[:inquiry][:state] << "<br /> Who can be contacted on Phone: " << params[:inquiry][:phone] << " and Email: " << params[:inquiry][:email] << @description
+  	else
+  		@subject = "Callback Request"
+		@body = "Callback Request Sent by: " << params[:inquiry][:name] << "<br />No: " << params[:inquiry][:phone] << "<br />Call Between: " << params[:inquiry][:timing]
 	end
 	Pony.mail(
 		:from => params[:inquiry][:name],
