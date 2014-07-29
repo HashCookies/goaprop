@@ -474,22 +474,26 @@ end
 post '/send-inquiry/:for' do
 	require 'pony'
 	@mailFor = params[:for]
+	@name = ""
 	@subject = ""
 	@body = ""
 	case @mailFor
 	when "inquiry"
+		@name = params[:inquiry][:name]
 		@subject = "Inquiry for property"
 		@body = params[:inquiry][:body] << "</br>Inquiry Sent by: " << params[:inquiry][:email]
 	when "leasesell"
-		@subject = "Property for " << params[:inquiry][:state]
-		@description = params[:inquiry][:description] == "" ? "" : "<br />Property described as: " << params[:inquiry][:description]
-		@body = params[:inquiry][:name] << " has a property for " << params[:inquiry][:state] << "<br /> Who can be contacted on Phone: " << params[:inquiry][:phone] << " and Email: " << params[:inquiry][:email] << @description
+		@name = params[:leasesell][:name]
+		@subject = "Property for " << params[:leasesell][:state]
+		@description = params[:leasesell][:description] == "" ? "" : "<br />Property described as: " << params[:leasesell][:description]
+		@body = params[:leasesell][:name] << " has a property for " << params[:leasesell][:state] << "<br /> Who can be contacted on Phone: " << params[:leasesell][:phone] << " and Email: " << params[:leasesell][:email] << @description
   	else
+  		@name = params[:callback][:name]
   		@subject = "Callback Request"
-		@body = "Callback Request Sent by: " << params[:inquiry][:name] << "<br />No: " << params[:inquiry][:phone] << "<br />Call Between: " << params[:inquiry][:timing]
+		@body = "Callback Request Sent by: " << params[:callback][:name] << "<br />No: " << params[:callback][:phone] << "<br />Call Between: " << params[:callback][:timing]
 	end
 	Pony.mail(
-		:from => params[:inquiry][:name],
+		:from => @name,
 		:to => 'alistair.rodrigues@gmail.com',
 		:subject => @subject,
 		:body => @body,
