@@ -506,6 +506,7 @@ post '/send-inquiry/:for' do
 end
 
 get '/sell-lease' do
+	@body_class += " leasesell"
 	@regions = Region.all
 	@states = State.all
 	@categories = Category.all

@@ -952,6 +952,27 @@ h2 {
 		left: 25%;
 		bottom: 70px;
 		text-align: center;
+		.leasesell & {
+			//bottom: -20px;
+		}
+	}
+}
+
+#selllease {
+	margin-bottom: 50px;
+	margin-top: 30px;
+	p.lead {
+		font-size: 18px;
+		font-family: $serif;
+		font-style: italic;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #ddd;
+	}
+	h3 {
+		font-weight: bold;
+		color: $blue;
+		font-size: 30px;
+		margin-bottom: 5px;
 	}
 }
 
