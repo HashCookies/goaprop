@@ -163,8 +163,12 @@ get '/reset' do
 	DataMapper.finalize
 	
 	tt = Type.first_or_create(:name => "Apartment")
+	tt = Type.first_or_create(:name => "House")
+	tt = Type.first_or_create(:name => "Land")
+
 	rr = Region.create(:name => "North Goa")
 	rr = Region.create(:name => "South Goa")
+
 	ss = State.first_or_create(:name => "Sale")
 	ss = State.first_or_create(:name => "Rent")
 	
@@ -285,6 +289,20 @@ post '/update' do
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
 
+	if @update_params[:type_id] == "3"
+		@update_params[:bhk_count] = 0
+	else
+		@update_params[:bhk_count] = @update_params[:bhk_count].to_i
+	end
+
+	if @update_params[:area_built] == ''
+		@update_params[:area_built] = 0
+	else
+		@update_params[:area_built] = @update_params[:area_built].to_i
+	end
+
+	#raise params[:property][:area_built].to_s
+
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
 	end
@@ -335,7 +353,20 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
-	property.bhk_count = property.bhk_count.to_i
+	property.area_built = property.area_built.downcase.gsub(" sq mt", "")
+	property.area_built = property.area_built.downcase.gsub(" sq mts", "")
+	
+	if params[:type][:id] == "3"
+		property.bhk_count = 0
+	else
+		property.bhk_count = property.bhk_count.to_i
+	end
+	
+	if property.area_built == ''
+		property.area_built = 0
+	else
+		property.area_built = property.area_built.to_i
+	end	
 
 	if property.save			
 		if !params[:images].nil?
@@ -430,7 +461,7 @@ get '/search' do
 	@properties = @locations.propertys(:state_id => @state.id) # with a sell or rent flag
 	
 	if @category.name != "All"
-		@properties = @properties.all(:category_id => @category.id) # selecting "apartment", "House", etc
+		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
 	end
 	
 	@locations = @properties.locations
