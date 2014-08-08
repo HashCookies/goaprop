@@ -164,7 +164,7 @@ get '/reset' do
 	
 	tt = Type.first_or_create(:name => "Apartment")
 	tt = Type.first_or_create(:name => "House")
-	tt = Type.first_or_create(:name => "Land")
+	#tt = Type.first_or_create(:name => "Land")
 
 	rr = Region.create(:name => "North Goa")
 	rr = Region.create(:name => "South Goa")
@@ -174,7 +174,7 @@ get '/reset' do
 	
 	cc = Category.create(:name => "Residential")
 	cc = Category.create(:name => "Commercial")
-	cc = Category.create(:name => "Undeveloped")
+	cc = Category.create(:name => "Land")
 end
 
 get '/' do
@@ -289,7 +289,7 @@ post '/update' do
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
 
-	if @update_params[:type_id] == "3"
+	if @update_params[:category_id] == "3"
 		@update_params[:bhk_count] = 0
 	else
 		@update_params[:bhk_count] = @update_params[:bhk_count].to_i
@@ -356,7 +356,7 @@ post '/create' do
 	property.area_built = property.area_built.downcase.gsub(" sq mt", "")
 	property.area_built = property.area_built.downcase.gsub(" sq mts", "")
 	
-	if params[:type][:id] == "3"
+	if params[:category][:id] == "3"
 		property.bhk_count = 0
 	else
 		property.bhk_count = property.bhk_count.to_i
@@ -388,42 +388,45 @@ post '/create' do
 	end
 end
 
-post '/create/:newtype' do
-	require_admin
+# post '/create/:newtype' do
+# 	require_admin
 
-	@create_type = params[:newtype]
+# 	@create_type = params[:newtype]
 
-	@save_val = ""
+# 	@save_val = ""
 
-	case @create_type
-	when "location"
-		location = Location.create(params[:location])
-		if !params[:region].nil?
-			params[:region].each_value do |v|
-				region = Region.get(v)
-				location.regions << region
-			end
-		end
-		@save_val = location
-	when "region"
-		region = Region.create(params[:region])
-		if !params[:location].nil?
-			params[:location].each_value do |v|
-				location = Location.get(v)
-				region.locations << location
-			end
-		end
-		@save_val = region
-	else
-		raise "property"
-	end
+# 	case @create_type
+# 	when "location"
+# 		location = Location.create(params[:location])
+# 		if !params[:region].nil?
+# 			params[:region].each_value do |v|
+# 				region = Region.get(v)
+# 				location.regions << region
+# 			end
+# 		end
+# 		@save_val = location
+# 	when "region"
+# 		region = Region.create(params[:region])
+# 		if !params[:location].nil?
+# 			params[:location].each_value do |v|
+# 				location = Location.get(v)
+# 				region.locations << location
+# 			end
+# 		end
+# 		@save_val = region
+# 	when "type"
+# 		type = Type.create(params[:type])
+# 		@save_val = type
+# 	else
+# 		raise "property"
+# 	end
 	
-	if @save_val.save
-		redirect '/resource/new'
-	else
-		redirect '/'
-	end
-end
+# 	if @save_val.save
+# 		redirect '/admin'
+# 	else
+# 		redirect '/'
+# 	end
+# end
 
 get '/admin' do
 	require_admin
@@ -554,3 +557,4 @@ end
 
 load 'actions/route_region.rb'
 load 'actions/route_location.rb'
+load 'actions/route_type.rb'

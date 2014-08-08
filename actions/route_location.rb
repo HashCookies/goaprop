@@ -16,13 +16,19 @@ post '/location/create' do
 	end
 	
 	if location.save
-		redirect '/'
+		redirect '/admin'
 	else
 		redirect '/location/new'
 	end
 end
 
 get '/location/:id' do
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
 	@location = Location.get(params[:id])
 	erb :location
 end
