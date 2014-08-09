@@ -33,9 +33,7 @@
 				  </div>
 				  <div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right main-nav">
-				    	<% unless request.path_info == "/" # hides link on home page %>
-				    		<li id="search-link"><a href="/">Find Properties</a></li>
-				    	<% end %>
+			    		<li id="<%= "search-link" unless request.path_info == "/" %>"><a href="/search?search%5Bcategory%5D=1&search%5Bstate%5D=2&search%5Bregion_id%5D=1&submit=">Find Properties</a></li>
 				    	<li><a href="/about">Services</a></li>
 				    	<li><a href="/sell-lease">Sell / Lease</a></li>
 						<li><a href="#">Blog</a></li>
