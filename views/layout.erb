@@ -33,7 +33,9 @@
 				  </div>
 				  <div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right main-nav">
-				    	<li id="search-link"><a href="/">Find Properties</a></li>
+				    	<% if !@hide_link %>
+				    		<li id="search-link"><a href="/">Find Properties</a></li>
+				    	<% end %>
 				    	<li><a href="/about">Services</a></li>
 				    	<li><a href="/sell-lease">Sell / Lease</a></li>
 						<li><a href="#">Blog</a></li>
