@@ -134,6 +134,19 @@ $(document).ready(function() {
 			
 			return false;
 		});
+
+		// Email Modal
+		var $emailBtn = $('.email-btn');
+		var $emailModal = $('.email-modal');
+		
+		$emailBtn.click(function() {
+			var propID = $(this).attr('data-property-id');
+			$('#propID').val(propID);
+			
+			$emailModal.modal();
+			
+			return false;
+		});
 		
 		// file input display image
 		

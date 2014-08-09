@@ -51,6 +51,29 @@ h2 {
 	}
 }
 
+.email-friend-block {
+	margin-top: 25px;  
+	margin-bottom: 25px;  
+}
+
+.email-btn {
+	padding: 15px;
+}
+
+.email-modal {
+	.modal-footer {
+		margin-top: 0;
+		border-top: 0;
+	}
+}
+
+.email-modal-form {
+	input {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+
 .btn-primary {
 	background: none;
 	border: 1px solid $vib;

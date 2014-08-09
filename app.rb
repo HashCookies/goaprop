@@ -507,37 +507,44 @@ end
 
 post '/send-inquiry/:for' do
 	require 'pony'
+	@mailTo = "alistair.rodrigues@gmail.com"
 	@mailFor = params[:for]
-	@name = ""
+	@mailFrom = ""
 	@subject = ""
 	@body = ""
 	case @mailFor
 	when "inquiry"
-		@name = params[:inquiry][:name]
+		@mailFrom = params[:inquiry][:name]
 		@subject = "Inquiry for property"
 		@body = params[:inquiry][:body] << "</br>Inquiry Sent by: " << params[:inquiry][:email]
 	when "leasesell"
-		@name = params[:leasesell][:name]
+		@mailFrom = params[:leasesell][:name]
 		@subject = "Property for " << params[:leasesell][:state]
 		@description = params[:leasesell][:description] == "" ? "" : "<br />Property described as: " << params[:leasesell][:description]
 		@body = params[:leasesell][:name] << " has a property for " << params[:leasesell][:state] << "<br /> Who can be contacted on Phone: " << params[:leasesell][:phone] << " and Email: " << params[:leasesell][:email] << @description
+	when "friendmail"
+		@mailFrom = params[:friendmail][:frommail]
+		@mailTo = params[:friendmail][:tomail]
+		@subject = params[:friendmail][:name] + " looked up a property for you"
+		@body = params[:friendmail][:name] << " has a property for you at Goa Property Co<br /> Please check the following link: " << request.base_url << "/property/" << params[:friendmail][:propID] << "<br />Regards,<br />Goa Property Co. "
   	else
-  		@name = params[:callback][:name]
+  		@mailFrom = params[:callback][:name]
   		@subject = "Callback Request"
 		@body = "Callback Request Sent by: " << params[:callback][:name] << "<br />No: " << params[:callback][:phone] << "<br />Call Between: " << params[:callback][:timing]
 	end
 	Pony.mail(
-		:from => @name,
-		:to => 'alistair.rodrigues@gmail.com',
+		:from => @mailFrom,
+		:to => @mailTo,
 		:subject => @subject,
+		:headers => { 'Content-Type' => 'text/html' },
 		:body => @body,
 		:via => :smtp,
 		:via_options => {
 			:address              => 'smtp.sendgrid.net', 
-	        :port                 => '587', 
-	        :user_name            => 'hashcookies', 
-	        :password             => 'Nor1nderchqMudi', 
-	        :authentication       => :plain
+	    	:port                 => '587', 
+	    	:user_name            => 'hashcookies', 
+	    	:password             => 'Nor1nderchqMudi', 
+	    	:authentication       => :plain
 		}
 	)
 	redirect '/'
