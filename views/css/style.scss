@@ -52,8 +52,14 @@ h2 {
 }
 
 .email-friend-block {
-	margin-top: 25px;  
+	margin-top: 10px;  
 	margin-bottom: 25px;  
+	color: $light;
+	a {
+		display: inline-block;
+		margin: 0 5px;
+		color: $blue;
+	}
 }
 
 .email-btn {
