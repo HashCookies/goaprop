@@ -179,7 +179,6 @@ get '/reset' do
 end
 
 get '/' do
-	@hide_link = true
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
 	@regions = Region.all
