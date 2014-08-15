@@ -5,6 +5,8 @@ var winW = $(window).width();
 
 $(document).ready(function() {
 		$('.cover').height(winH - 100).width(winW);
+		$('.info-intro').height(winH - 200).width(winW);
+		//$('.leasesell .info-intro').height(winH - 100).width(winW); //to increase the anystretch image in sell-lease
 		var $b = $('body');
 		
 		$('#home-bg').anystretch();
@@ -121,14 +123,27 @@ $(document).ready(function() {
 		var $delModal = $('.delete-modal');
 		
 		$delBtn.click(function() {
-			var prodID = $(this).attr('data-resource-id');
-			var prodName = $(this).attr('data-resource-name');
+			var dataID = $(this).attr('data-resource-id');
+			var dataName = $(this).attr('data-resource-name');
 			var dataType = $(this).attr('data-type');
 
-			$delModal.find('form').attr('action', dataType + '/destroy/' + prodID);
-			$delModal.find('h4.modal-title span').text(dataType + ": " +prodName);
+			$delModal.find('form').attr('action', '/' + dataType + '/destroy/' + dataID);
+			$delModal.find('h4.modal-title span').text(dataType + ": " +dataName);
 			
 			$delModal.modal();
+			
+			return false;
+		});
+
+		// Email Modal
+		var $emailBtn = $('.email-btn');
+		var $emailModal = $('.email-modal');
+		
+		$emailBtn.click(function() {
+			var propID = $(this).attr('data-property-id');
+			$('#propID').val(propID);
+			
+			$emailModal.modal();
 			
 			return false;
 		});
@@ -170,7 +185,9 @@ $(document).ready(function() {
 		$('.demo-control').each(function() {
 			var value = $(this).val();
 			var id = $(this).attr('data-demo');
-			$(id).html(value);
+			if (id != '#demo-price'){ //stop the script from removing ' / mo' from price
+				$(id).html(value); //if id demo-price dont change value in demo block.
+			}
 		});
 		
 		$('div.select2').each(function() {
@@ -181,34 +198,81 @@ $(document).ready(function() {
 			$(id).text(value);
 			
 		});
+
+		//function to change the demo price state(rent or sale)
+		$('#state_id').on("change", function(e) {
+			var state = ($(this).find('option:selected').text()).toLowerCase(); //Find Sale or Rent
+			var value = ($('#demo-price').text()).replace(/ \/ mo/, ''); //Clean the text of ' / mo'
+
+			if (state == 'rent') {
+				value += ' / mo'; // if rent then add ' / mo' to value
+			}
+
+			$('#demo-price').text(value);
+		});
 		
+		//captures keyup event on price textbox in (edit and new)
+		$('#price').on('keyup', function() {
+			var value = $(this).val();
+			var id = $(this).attr('data-demo');
+			value = value.trim();
+
+			var state = ($('#state_id :selected').text()).toLowerCase(); //Find Sale or Rent
+			
+			permo = (state == 'sale') ? '' : ' / mo'; //if rent then add ' / mo'
+
+			value = value.replace(/,/g, '');
+			value = value.replace(/ \/ mo/, ''); //Clean the text of ' / mo'
+			
+			if (value.length == 8 || value.length == 9) { // if value in Crore/Ten Crore
+				value = value.substr(0 , value.length - 6); // Strips the value into the required digits
+				value = (value.slice(value.length - 1) != '0') ? [value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') : value.slice(0, value.length - 1);
+				// adds decimal values and point at the position depending on value length if decimal value != '0'
+				$(id).text(value + ' Crore' + permo);// Sets new demo price
+			}
+
+			else if (value.length == 6 || value.length == 7) { // if value in Lac/Ten Lac
+				value = value.substr(0 , value.length - 4); // Strips the value into the required digits
+				value = (value.slice(value.length - 1) != '0') ? [value.slice(0, value.length - 1), '.', value.slice(value.length - 1)].join('') : value.slice(0, value.length - 1);
+				// adds decimal values and point at the position depending on value length if decimal value != '0'
+				$(id).text(value + ' Lac' + permo); // Sets new demo price
+			}
+
+			else if (value.length <= 5) { // if value less than lac
+				value = (value.length > 3) ? [value.slice(0, value.length - 3), ',', value.slice(value.length - 3)].join('') : value;
+				//adds a comma after last 3 digits except if value length less than 3
+				$(id).text(value + permo);
+			}
+		});
+
 		$('.prop-price .price').each(function() {
 			var value = $(this).text();
 			value = value.trim();
-			var permo = value.substring(value.length - 5);
-			if (permo != ' / mo'){
-				permo = '';
-			}
 
-			value = value.replace(/,/g, '');
-			value = value.replace(/ \/ mo/, '');
+			var permo = value.substring(value.length - 5); // get the last 5 characters of the string
+			if (permo != ' / mo'){
+				permo = ''; // clear the value of permo if it doesnt contain ' / mo'
+			}
+			
+			value = value.replace(/,/g, ''); // strip all the ',' from value
+			value = value.replace(/ \/ mo/, ''); // strip ' / mo' from value if it exists
 			
 			console.log(value);
-			//alert(value + ':' + permo + ':' + $(this).text());
 			
 			if (value.length == 8) {
-				decValue = '.' + value.substring(2, 1);
+				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
-				$(this).text(value + ' Crore' + permo);
+				$(this).text(value + decValue + ' Crore' + permo);
 			}
 
-			else  if (value.length == 7) {
+			else if (value.length == 7) {
+				decValue = (value.substr(2, 1) != '0') ? '.' + value.substr(2, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 2);
-				$(this).text(value + ' Lac' + permo);
+				$(this).text(value + decValue + ' Lac' + permo);
 			}
 			
 			else if (value.length == 6) {
-				decValue = '.' + value.substring(2, 1);
+				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
 				$(this).text(value + decValue + ' Lac' + permo);
 			}
@@ -259,6 +323,10 @@ $(document).ready(function() {
 	$('#search-link a').click(function() {
 		$('#hidden-form').slideToggle(500);
 		return false;
+	});
+	
+	$('.info-intro .inner').css({
+		left: (winW - $('.info-intro .inner').width()) / 2
 	});
 	
 });

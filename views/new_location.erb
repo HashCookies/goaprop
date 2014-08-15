@@ -10,7 +10,11 @@
 		
 			<% @regions.each do |region| %>
 				<label class="checkbox-inline">
-					<input type="checkbox" name="region[<%= region.id %>]" id="region[<%= region.id %>]" value="<%= region.id %>"><%= region.name %>
+					<% if region.id == 1 %>
+						<input type="checkbox" checked="checked" name="region[<%= region.id %>]" id="region[<%= region.id %>]" value="<%= region.id %>"><%= region.name %>
+					<% else %>
+						<input type="checkbox" name="region[<%= region.id %>]" id="region[<%= region.id %>]" value="<%= region.id %>"><%= region.name %>
+					<% end %>
 				</label>
 			<% end %>
 		<div class="form-group">

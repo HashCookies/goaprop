@@ -5320,6 +5320,26 @@ h2 {
     font-weight: bold;
     text-transform: uppercase; }
 
+.email-friend-block {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: #edf1f4; }
+  .email-friend-block a {
+    display: inline-block;
+    margin: 0 5px;
+    color: #35b6eb; }
+
+.email-btn {
+  padding: 15px; }
+
+.email-modal .modal-footer {
+  margin-top: 0;
+  border-top: 0; }
+
+.email-modal-form input {
+  font-weight: bold;
+  text-transform: uppercase; }
+
 .btn-primary {
   background: none;
   border: 1px solid #f66f61;
@@ -5327,6 +5347,15 @@ h2 {
   text-transform: uppercase;
   font-weight: bold; }
   .btn-primary:hover {
+    background: #f66f61;
+    color: white !important;
+    border: 1px solid #f66f61;
+    text-shadow: none; }
+
+.btn-danger {
+  text-transform: uppercase;
+  font-weight: bold; }
+  .btn-danger:hover {
     background: #f66f61;
     color: white !important;
     border: 1px solid #f66f61;
@@ -5482,6 +5511,8 @@ h2 {
     border: 1px solid #68ac19;
     border-right-color: #6db51a;
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
+    .admin #property-grid .prop-price, .admin #demo-property .prop-price {
+      bottom: 60px; }
     #property-grid .prop-price:after, #demo-property .prop-price:after {
       content: " ";
       width: 7px;
@@ -6003,29 +6034,42 @@ h2 {
 .info-intro h3 {
   margin-top: 0;
   font-weight: bold;
-  font-size: 60px;
+  font-size: 48px;
   color: white;
-  font-family: "Tisa OT", serif;
-  font-style: italic;
-  margin-bottom: 25px;
+  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 15px;
   text-shadow: 0px 1px #333; }
 .info-intro p {
-  font-size: 16px; }
-  .info-intro p a {
-    color: white; }
+  font-size: 22px;
+  text-shadow: 0px 1px #000;
+  font-family: "Tisa OT", serif; }
 .info-intro .inner {
-  background: rgba(53, 182, 235, 0.95);
-  border: 1px solid #35b6eb;
   color: white;
-  padding: 20px 25px 15px;
-  max-width: 600px;
+  max-width: 700px;
   position: absolute;
-  bottom: 50px;
-  left: 5%; }
+  left: 25%;
+  bottom: 70px;
+  text-align: center; }
+
+#selllease {
+  margin-bottom: 50px;
+  margin-top: 30px; }
+  #selllease p.lead {
+    font-size: 18px;
+    font-family: "FreightText", Garamond, Georgia, serif;
+    font-style: italic;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd; }
+  #selllease h3 {
+    font-weight: bold;
+    color: #35b6eb;
+    font-size: 30px;
+    margin-bottom: 5px; }
 
 .info-block {
   margin-bottom: 50px;
-  margin-top: 100px; }
+  margin-top: 30px; }
   .info-block img {
     width: 100%; }
   .info-block .row {
@@ -6215,3 +6259,31 @@ form#property {
     margin-top: 0;
     padding-bottom: 50px;
     padding-top: 50px; }
+
+.company-profile {
+  margin-top: 60px; }
+  .company-profile .avatar {
+    float: left;
+    margin-right: 65px;
+    width: 160px;
+    text-align: center; }
+  .company-profile img {
+    width: 170px;
+    border-radius: 100px;
+    border: 1px solid #333; }
+  .company-profile span {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px; }
+  .company-profile p {
+    font-size: 18px; }
+  .company-profile h3 {
+    margin-bottom: 15px; }
+
+.img-wrap {
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 5px; }
+  .img-wrap img {
+    height: 100%;
+    width: auto; }

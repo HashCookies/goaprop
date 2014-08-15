@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="col-md-4">
+				<%= @type.name %>
+			</h3>
+		</div>
+		<% if !@authorised.nil? %>
+			<div class="col-md-4">
+				<a class="btn btn-primary btn-submit" href="/type/new">Add New Type</a>
+			</div>
+		<% end %>
+	</div>
+</div>

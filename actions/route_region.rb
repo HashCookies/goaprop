@@ -6,13 +6,19 @@ end
 post '/region/create' do
 	@region = Region.new(params[:region])
 	if @region.save
-		redirect '/region/new'
+		redirect '/admin'
 	else
-		redirect '/'
+		redirect '/region/new'
 	end
 end
 
 get '/region/:id' do
-	@region = Region.get(params[:id])
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
+	@thisregion = Region.get(params[:id])
 	erb :region
 end

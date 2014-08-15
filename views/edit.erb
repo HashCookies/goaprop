@@ -40,7 +40,7 @@
 				<div class="clearfix"></div>
 				<div class="row form-group">
 					<div class="col-md-4">
-						<label>Option</label>
+						<label>Mode</label>
 						<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id">
 							<% @states.each do |state| %>
 								<% if state.id == @property.state.id %>
@@ -76,7 +76,7 @@
 
 				<div class="form-group">
 					<label for="specs">Specifications</label>
-					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
+					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
 				</div>
 						
 				<div class="form-group">
@@ -105,7 +105,7 @@
 					<label for="featured">Featured Image</label>
 					<div class="file-input-wrap">
 						<img src="/properties/images/<%= @featured_img %>" alt="" width="250">
-						<input type="file" id="featured-img-picker" name="featured_img" class="file-picker file-inputs new-feature-file" data-filename-placement="inside" title="Change Featured Image" />
+						<input type="file" id="featured-img-picker" name="featured_img" class="file-picker file-inputs new-feature-file" data-demo="#demo-img" data-filename-placement="inside" title="Change Featured Image" />
 					</div>
 				</div>
 				
@@ -115,11 +115,11 @@
 						<ul class="gallery-block row">
 						<% @images.each do |image| %>
 							<li class="gallery-item col-md-4">
-								<% if image.id != @property.featured_img %>
-									<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+									<div class="img-wrap">
+										<img src="/properties/images/<%= image.url %>" alt="" width="200" />
+									</div>
 									<label for="checkbox">Delete?</label>
 									<input type="checkbox" name="gallDels[<%= image.id %>]" />
-								<% end %>
 							</li>
 						<% end %>
 						</ul>
@@ -131,6 +131,10 @@
 		
 				<div class="form-group">
 						<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Edit Property">
+						
+						<button class="btn delete-btn btn-danger btn-large" data-resource-name="<%= @property.title + " " + @property.type.name %><%= " in " + @property.location.name %><%= " for " + @property.state.name %>" data-resource-id="<%= @property.id %>" data-target=".delete-modal" data-type="property">
+						  <span class="glyphicon glyphicon-remove"></span>  Delete Property
+						</button>
 				</div>
 				
 			</form>
@@ -142,7 +146,7 @@
 				<ul>
 					<li class="property-item <%= @property.location.name.downcase %> <%= @property.type.name.downcase %>" data-price="<%= @property.price %>" data-area="<%= @property.area %>"	data-date="<%= @property.updated_at %>">
 						<div class="img-block">
-							<a href="/property/<%= @property.id %>"><img src="/properties/images/<%= @featured_img %>" alt="" /></a>
+							<a href="/property/<%= @property.id %>"><img src="/properties/images/<%= @featured_img %>" alt="" id="demo-img"/></a>
 						</div>
 						<div class="data-block">
 							<h3 class="prop-title">
@@ -171,3 +175,4 @@
 	
 
 </div>
+<%= erb :_modal %>

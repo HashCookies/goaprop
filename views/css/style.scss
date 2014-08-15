@@ -51,10 +51,50 @@ h2 {
 	}
 }
 
+.email-friend-block {
+	margin-top: 10px;  
+	margin-bottom: 25px;  
+	color: $light;
+	a {
+		display: inline-block;
+		margin: 0 5px;
+		color: $blue;
+	}
+}
+
+.email-btn {
+	padding: 15px;
+}
+
+.email-modal {
+	.modal-footer {
+		margin-top: 0;
+		border-top: 0;
+	}
+}
+
+.email-modal-form {
+	input {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+
 .btn-primary {
 	background: none;
 	border: 1px solid $vib;
 	color: $vib;
+	text-transform: uppercase;
+	font-weight: bold;
+	&:hover {
+		background: $vib;
+		color: white !important;
+		border: 1px solid $vib;
+		text-shadow: none;
+	}
+}
+
+.btn-danger {
 	text-transform: uppercase;
 	font-weight: bold;
 	&:hover {
@@ -228,6 +268,7 @@ h2 {
 	img {
 		width: 100%;
 	}
+
 	.prop-title {
 		border-bottom: 1px solid darken($light, 10%);
 		padding-bottom: 3px;
@@ -253,7 +294,10 @@ h2 {
 		bottom: 25px;
 		border: 1px solid darken($green, 7%);
 		border-right-color: darken($green, 5%);
-		-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);
+		-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);	
+		.admin & {
+			bottom: 60px;
+		}	
 		&:after {
 			content: " ";
 			width: 7px;
@@ -264,6 +308,7 @@ h2 {
 			right: 0;
 		}
 	}
+
 	.prop-code {
 		text-align: right;
 		position: absolute;
@@ -917,34 +962,52 @@ h2 {
 	h3 {
 		margin-top: 0;
 		font-weight: bold;
-		font-size: 60px;
+		font-size: 48px;
 		color: white;
-		font-family: $serifAlt;
-		font-style: italic;
-		margin-bottom: 25px;
+		font-family: $sans;
+		text-transform: uppercase;
+		margin-bottom: 15px;
 		text-shadow: 0px 1px #333;
 	}
 	p {
-		font-size: 16px;
-		a {
-			color: white;
-		}
+		font-size: 22px;
+		text-shadow: 0px 1px #000;
+		font-family: $serifAlt;
 	}
 	.inner {	
-		background: transparentize($blue, 0.05);
-		border: 1px solid $blue;
 		color: white;
-		padding: 20px 25px 15px;
-		max-width: 600px;
+		max-width: 700px;
 		position: absolute;
-		bottom: 50px;
-		left: 5%;
+		left: 25%;
+		bottom: 70px;
+		text-align: center;
+		.leasesell & {
+			//bottom: -20px;
+		}
+	}
+}
+
+#selllease {
+	margin-bottom: 50px;
+	margin-top: 30px;
+	p.lead {
+		font-size: 18px;
+		font-family: $serif;
+		font-style: italic;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #ddd;
+	}
+	h3 {
+		font-weight: bold;
+		color: $blue;
+		font-size: 30px;
+		margin-bottom: 5px;
 	}
 }
 
 .info-block {	
 	margin-bottom: 50px;
-	margin-top: 100px;
+	margin-top: 30px;
 	img {
 		width: 100%;
 	}
@@ -1230,5 +1293,43 @@ form#property {
 		margin-top: 0;
 		padding-bottom: 50px;
 		padding-top: 50px;
+	}
+}
+
+.company-profile {
+	margin-top: 60px;
+	.avatar {
+		float: left;
+		margin-right: 65px;
+		width: 160px;
+		text-align: center;
+	}
+	img {
+		width: 170px;
+		border-radius: 100px;
+		border: 1px solid #333;
+	}
+	span {
+		display: block;
+		font-weight: bold;
+		margin-top: 10px;
+	}
+	p {
+		font-size: 18px;
+	}
+	h3 {
+		margin-bottom: 15px;
+	}
+}
+
+// Edit page stuff
+
+.img-wrap {
+	height: 150px;
+	overflow: hidden;
+	margin-bottom: 5px;
+	img {
+		height: 100%;
+		width: auto;
 	}
 }

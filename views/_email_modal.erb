@@ -1,0 +1,30 @@
+<div class="modal fade email-modal" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title title">Email a friend </h4>
+      </div>
+      <div class="modal-footer">
+        <form id="friendmail" action="/send-inquiry/friendmail" method="post" class="email-modal-form">
+          <input type="hidden" id="propID" name="friendmail[propID]" value="" />
+          <div class="form-group">
+            <label for="name" class="hidden">Your Name</label>
+            <input type="text" name="friendmail[name]" placeholder="Your name" value="" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="frommail" class="hidden">Your Email</label>
+            <input type="text" name="friendmail[frommail]" placeholder="Your email" value="" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="tomail" class="hidden">Friend's Email</label>
+            <input type="text" name="friendmail[tomail]" placeholder="Friend's email" value="" class="form-control" />
+          </div>
+          <input type="hidden" name="_method" value="email">
+          <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Cancel</button>
+          <input type="submit" value="Send Mail" class="btn btn-primary btn-large">
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

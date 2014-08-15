@@ -2,13 +2,13 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3 class="col-md-4">
-				<%= @region.name %>
+				<%= @thisregion.name %>
 			</h3>
 		</div>
 		<div class="col-md-12">
 			<span class="label">Locations:</span>
 			<ul>
-				<% @region.locations.each do |location| %>
+				<% @thisregion.locations.each do |location| %>
 					<li>
 						<%= location.name %>
 					</li>
