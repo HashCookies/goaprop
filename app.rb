@@ -47,12 +47,29 @@ class Property
 										# This value will not be shown to the user. Used for sorting.
 	property :area_built,		Integer	
 	property :price,			Integer
+	property :area_rate,		Integer
 	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
 
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
 	property :bhk_count,		Integer
+	
+	property :toil_attached,	Integer # form field
+	property :toil_nattached,	Integer #form field
+	property :furnishing,		String	# Do a <select> dropdown menu for these multiple choice String of properties.
+										# Use the text string to add to database.
+										# Make it default to empty, so if they're not selected they're not entered in the db.
+										# We don't need to create separate models since we're not going to search based on these properties.
+										# Even if we do we can catch them using the text search.
+										
+	property :floor,			String	
+	property :lift,				Boolean	
+	property :water,			String
+	property :electricity,		String
+	property :zone,				String
+	property :view,				String
+	property :fsi,				Integer
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
