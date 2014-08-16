@@ -48,7 +48,7 @@ class Property
 	property :area_built,		Integer	
 	property :price,			Integer
 	property :area_rate,		Integer
-	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
+	property :sanad,			Boolean # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
 	property :slug,				String
@@ -70,6 +70,7 @@ class Property
 	property :zone,				String
 	property :view,				String
 	property :fsi,				String
+	property :field_notes,		Text
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
@@ -380,10 +381,14 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
+	
 	@area_built = params[:property][:area_built]
 	@area_built = @area_built.downcase.gsub(" sq mt", "")
 	@area_built = @area_built.downcase.gsub(" sq mts", "")
 	property.area_built = @area_built.to_i
+	
+	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
+																	# We're just setting it to true if ON, else false.
 
 	if params[:category][:id] == "3"
 		property.bhk_count = 0

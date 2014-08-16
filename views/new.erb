@@ -189,6 +189,10 @@
 					</div>
 				</div>
 				
+				<div class="form-group">
+					<label for="field_notes">Property Notes (Internal)</label>
+					<textarea name="property[field_notes]" class="form-control" id="field_notes"></textarea>
+				</div>
 				
 		
 				<div class="form-group">
@@ -214,48 +218,12 @@
 							<span id="demo-area" class='smaller prop-string'> </span><span> Sq Mts</span>
 							<div class="prop-price">
 								<span id="demo-price" class="price sort-price"></span>
-									<%# if @property.state_id == 2 %>
-										<%#= to_currency(@property.price) + " / mo" %>
-									<%# else %>
-										<%#= to_currency(@property.price) %>
-									<%# end %>
 							</div>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-		
-		<!-- <div class="col-md-4">
-			<h3>Live Preview</h3>
-			<div id="demo-property">
-					<div class="img-block">
-						<span class="prop-price sort-price" id="demo-price"></span>
-						<img src="/properties/images/prop2.jpg" alt="" id="demo-img" />
-					</div>
-					<div class="data-block">
-						<h3 class="prop-title">
-								<span id="demo-title"></span>
-								<span id="demo-type-name"></span> in
-								<span id="demo-location"></span> for
-								<span id="demo-state"></span>
-						</h3>
-						<ul class="clearfix">
-							<li class="clearfix">
-								<div class="block"><span class="label">Area</span></div>
-								<div class="block sort-area">
-									<span id="demo-area"></span> Sq Mts
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="block"><span class="label">Facilities</span> </div>
-								<div class="block"><span id="demo-specs"></span></div>
-								
-							</li>
-						</ul>
-					</div>
-			</div>
-		</div> -->
 		
 	</div>
 	

@@ -165,7 +165,7 @@
 					
 					<div class="col-md-4">
 						<label>FSI</label><br />
-						<input type="text" name="property[fsi]" id="fsi" class="form-control" />	
+						<input type="text" name="property[fsi]" id="fsi" class="form-control" value="<%= @property.fsi %>" />	
 					</div>
 				</div>
 
@@ -200,10 +200,13 @@
 					</div>
 				</div>
 				
-				
+				<div class="form-group">
+					<label for="field_notes">Property Notes (Internal)</label>
+					<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
+				</div>
 		
 				<div class="form-group">
-						<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Edit Property">
+						<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Update Property">
 						
 						<button class="btn delete-btn btn-danger btn-large" data-resource-name="<%= @property.title + " " + @property.type.name %><%= " in " + @property.location.name %><%= " for " + @property.state.name %>" data-resource-id="<%= @property.id %>" data-target=".delete-modal" data-type="property">
 						  <span class="glyphicon glyphicon-remove"></span>  Delete Property
