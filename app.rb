@@ -369,18 +369,12 @@ post '/create' do
 	type = Type.get(params[:type][:id])
 	state = State.get(params[:state][:id])
 	category = Category.get(params[:category][:id])
-	# furnishing = Furnishing.get(params[:furnishing][:id])
-	# watersupply = Watersupply.get(params[:watersupply][:id])
-	# zone = Zone.get(params[:zone][:id])
 	property = Property.new(params[:property])
 	
 	location.propertys << property
 	type.propertys << property
 	state.propertys << property
 	category.propertys << property
-	# furnishing.propertys << property
-	# watersupply.propertys << property
-	# zone.propertys << property
 	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
