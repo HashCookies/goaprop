@@ -74,14 +74,17 @@
 						<span class="label">Area</span>
 						<div class="block"><%= @property.area %> Sq Mts </div>
 					</li>
-					<li class="col-md-4">
-						<span class="label">Built Area</span>
-						<div class="block"><%= @property.area_built %></div>
-					</li>
+					<% if !@property.area_built.nil? %>
+						<li class="col-md-4">
+							<span class="label">Built Area</span>
+							<div class="block"><%= @property.area_built %></div>
+						</li>
+					<% end %>
 					<li class="col-md-4">
 						<span class="label">Area in Sq Ft</span>
 						<div class="block"><%= (@property.area * 10.76).ceil %> Sq Ft</div>
 					</li>
+					<div class="clearfix"></div>
 					<li class="col-md-12">
 						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>

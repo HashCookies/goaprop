@@ -45,7 +45,7 @@ class Property
 	
 	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_built,		Integer	
+	property :area_built,		Integer, :allow_nil => true
 	property :price,			Integer
 	property :area_rate,		Integer
 	property :sanad,			Boolean # Some kind of status when dealing with unbuilt LAND type properties.
@@ -381,11 +381,12 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
+	if params[:property][:area_built] == ''
+		property.area_built = nil
+	else
+		property.area_built = property.area_built.to_i
+	end	
 	
-	@area_built = params[:property][:area_built]
-	@area_built = @area_built.downcase.gsub(" sq mt", "")
-	@area_built = @area_built.downcase.gsub(" sq mts", "")
-	property.area_built = @area_built.to_i
 	
 	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
 																	# We're just setting it to true if ON, else false.
@@ -396,11 +397,8 @@ post '/create' do
 		property.bhk_count = property.bhk_count.to_i
 	end
 	
-	if property.area_built == ''
-		property.area_built = 0
-	else
-		property.area_built = property.area_built.to_i
-	end	
+	
+	
 
 	if property.save			
 		if !params[:images].nil?
