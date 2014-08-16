@@ -43,9 +43,9 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	
-	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
+	property :area,				Integer, :default => 0	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_built,		Integer, :allow_nil => true
+	property :area_built,		Integer
 	property :price,			Integer
 	property :area_rate,		Integer
 	property :sanad,			Boolean # Some kind of status when dealing with unbuilt LAND type properties.
@@ -55,8 +55,8 @@ class Property
 	property :specs,			String
 	property :bhk_count,		Integer
 	
-	property :toil_attached,	Integer # form field
-	property :toil_nattached,	Integer #form field
+	property :toil_attached,	Integer
+	property :toil_nattached,	Integer
 	property :furnishing,		String	# Do a <select> dropdown menu for these multiple choice String of properties.
 										# Use the text string to add to database.
 										# Make it default to empty, so if they're not selected they're not entered in the db.
@@ -69,7 +69,7 @@ class Property
 	property :electricity,		String
 	property :zone,				String
 	property :view,				String
-	property :fsi,				String
+	property :fsi,				String, :allow_nil => true
 	property :field_notes,		Text
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
@@ -372,30 +372,37 @@ post '/create' do
 	category = Category.get(params[:category][:id])
 	property = Property.new(params[:property])
 	
+	# Adding all the associations for the property (belongs to)
 	location.propertys << property
 	type.propertys << property
 	state.propertys << property
 	category.propertys << property
 	
+	# Sanitising some of the properties for saving to DataMapper.
+	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
-	if params[:property][:area_built] == ''
-		property.area_built = nil
-	else
-		property.area_built = property.area_built.to_i
-	end	
 	
+	property.area_built = property.area_built.to_i
+	
+	# Sanitising BHK count. Checks if params has a "" (empty) string and sets the count to nil. Which then avoids the to_i declaration.
+	property.bhk_count = nil if property.bhk_count == ""
+	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
+	
+	# Sanitising Toilets attached
+	property.toil_attached = nil if property.toil_attached == ""
+	property.toil_attached = property.toil_attached.to_i unless property.toil_attached.nil?
+	
+	# Sanitizing toilets unattached
+	property.toil_nattached = nil if property.toil_nattached == ""
+	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	
 	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
 																	# We're just setting it to true if ON, else false.
-
-	if params[:category][:id] == "3"
-		property.bhk_count = 0
-	else
-		property.bhk_count = property.bhk_count.to_i
-	end
+		
+	
 	
 	
 	
