@@ -73,12 +73,6 @@
 				
 				<div class="clearfix"></div>
 			
-
-				<div class="form-group">
-					<label for="specs">Specifications</label>
-					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
-				</div>
-						
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-4">			
@@ -98,9 +92,124 @@
 						</div>
 					</div>
 				</div>
-				
-				
-				
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Bedrooms</label><br />
+						<input type="text" name="property[bedrooms]" id="bedrooms" class="form-control" value="<%= @property.bedrooms %>" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Attached)</label><br />
+						<input type="text" name="property[toilets_attached]" id="toilets_attached" class="form-control" value="<%= @property.toilets_attached %>" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Non Attached)</label><br />
+						<input type="text" name="property[toilets_nonattached]" id="toilets_nonattached" class="form-control" value="<%= @property.toilets_nonattached %>" />	
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Furnishing</label>
+						<select class="select2" name="property[furnishing_id]" id="furnishing_id">
+							<% @furnishings.each do |furnishing| %>
+							<% if furnishing.id == @property.furnishing.id %>
+									<option value="<%= furnishing.id %>" selected="selected"><%= furnishing.name %></option>
+								<% else %>
+									<option value="<%= furnishing.id %>"><%= furnishing.name %></option>
+								<% end %>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Water Supply</label><br />
+						<select class="select2" name="property[watersupply_id]" id="watersupply_id">
+							<% @watersupplies.each do |watersupply| %>
+								<% if watersupply.id == @property.watersupply.id %>
+									<option value="<%= watersupply.id %>" selected="selected"><%= watersupply.name %></option>
+								<% else %>
+									<option value="<%= watersupply.id %>"><%= watersupply.name %></option>
+								<% end %>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Zone</label><br />
+						<select class="select2" name="property[zone_id]" id="zone_id">
+							<% @zones.each do |zone| %>
+								<% if zone.id == @property.zone.id %>
+									<option value="<%= zone.id %>" selected="selected"><%= zone.name %></option>
+								<% else %>
+									<option value="<%= zone.id %>"><%= zone.name %></option>
+								<% end %>
+							<% end %>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Floor</label><br />
+						<input type="text" name="property[floor]" id="floor" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Lift</label><br />
+						<select class="select2" name="property[lift]" id="lift">
+							<% if @property.lift == false %>
+								<option value="false" selected="selected">No</option>
+								<option value="true">Yes</option>
+							<% else %>
+								<option value="false">No</option>
+								<option value="true" selected="selected">Yes</option>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Sanad</label><br />
+						<select class="select2" name="property[sanad]" id="sanad">
+							<% if @property.sanad == false %>
+								<option value="false" selected="selected">No</option>
+								<option value="true">Yes</option>
+							<% else %>
+								<option value="false">No</option>
+								<option value="true" selected="selected">Yes</option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Electricity</label><br />
+						<select class="select2" name="property[electricity]" id="electricity">
+							<option value="1">1 Phase</option>
+							<option value="2">2 Phase</option>
+							<option value="3">3 Phase</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>View</label><br />
+						<input type="text" name="property[view]" id="view" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>FSI</label><br />
+						<input type="text" name="property[fsi]" id="fsi" class="form-control" />	
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="specs">Other Specifications</label>
+					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
+				</div>
+						
 				<div class="form-group">
 					<label for="featured">Featured Image</label>
 					<div class="file-input-wrap">

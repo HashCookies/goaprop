@@ -47,7 +47,7 @@
 					</div>
 					
 					<div class="col-md-4">
-						<label>Price:</label><br />
+						<label>Price</label><br />
 						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." />
 					</div>
 				</div>
@@ -61,12 +61,12 @@
 				<div class="row form-group">
 				
 					<div class="col-md-4">			
-						<label>Area in Sq Mts:</label><br />
+						<label>Area in Sq Mts</label><br />
 						<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" />	
 					</div>
 					
 					<div class="col-md-4">
-						<label>Area built (Sq Mts):</label><br />
+						<label>Area built (Sq Mts)</label><br />
 						<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
 					</div>
 					
@@ -77,8 +77,98 @@
 					
 				</div>
 				
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Bedrooms</label><br />
+						<input type="text" name="property[bedrooms]" id="bedrooms" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Attached)</label><br />
+						<input type="text" name="property[toilets_attached]" id="toilets_attached" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Non Attached)</label><br />
+						<input type="text" name="property[toilets_nonattached]" id="toilets_nonattached" class="form-control" />	
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Furnishing</label>
+						<select class="select2" name="furnishing[id]" id="furnishing">
+							<% @furnishings.each do |furnishing| %>
+								<option value="<%= furnishing.id %>"><%= furnishing.name %></option>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Water Supply</label><br />
+						<select class="select2" name="watersupply[id]" id="watersupply">
+							<% @watersupplies.each do |watersupply| %>
+								<option value="<%= watersupply.id %>"><%= watersupply.name %></option>
+							<% end %>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Zone</label><br />
+						<select class="select2" name="zone[id]" id="zone">
+							<% @zones.each do |zone| %>
+								<option value="<%= zone.id %>"><%= zone.name %></option>
+							<% end %>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Floor</label><br />
+						<input type="text" name="property[floor]" id="floor" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Lift</label><br />
+						<select class="select2" name="property[lift]" id="lift">
+							<option value="false">No</option>
+							<option value="true">Yes</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Sanad</label><br />
+						<select class="select2" name="property[sanad]" id="sanad">
+							<option value="false">No</option>
+							<option value="true">Yes</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Electricity</label><br />
+						<select class="select2" name="property[electricity]" id="electricity">
+							<option value="1">1 Phase</option>
+							<option value="2">2 Phase</option>
+							<option value="3">3 Phase</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>View</label><br />
+						<input type="text" name="property[view]" id="view" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>FSI</label><br />
+						<input type="text" name="property[fsi]" id="fsi" class="form-control" />	
+					</div>
+				</div>
+
 				<div class="form-group">
-					<label for="specs">Specifications</label>
+					<label for="specs">Other Specifications</label>
 					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="Parking Space, Swimming Pool, Field view" />	
 				</div>
 				
