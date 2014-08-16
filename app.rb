@@ -366,17 +366,23 @@ end
 
 
 post '/create' do
+	newparams = params[:property]
+	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
+	
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])
 	state = State.get(params[:state][:id])
 	category = Category.get(params[:category][:id])
-	property = Property.new(params[:property])
+	property = Property.new(newparams)
 	
 	# Adding all the associations for the property (belongs to)
 	location.propertys << property
 	type.propertys << property
 	state.propertys << property
 	category.propertys << property
+	
+	
+	
 	
 	# Sanitising some of the properties for saving to DataMapper.
 	
@@ -387,17 +393,18 @@ post '/create' do
 	
 	property.area_built = property.area_built.to_i
 	
-	# Sanitising BHK count. Checks if params has a "" (empty) string and sets the count to nil. Which then avoids the to_i declaration.
-	property.bhk_count = nil if property.bhk_count == ""
+	
+	
+	
+	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	
 	# Sanitising Toilets attached
-	property.toil_attached = nil if property.toil_attached == ""
-	property.toil_attached = property.toil_attached.to_i unless property.toil_attached.nil?
+	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	
 	# Sanitizing toilets unattached
-	property.toil_nattached = nil if property.toil_nattached == ""
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
+	
 	
 	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
 																	# We're just setting it to true if ON, else false.
