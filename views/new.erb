@@ -71,8 +71,7 @@
 					</div>
 					
 					<div class="col-md-4">
-						<label>BHK</label><br />
-						<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" />	
+							
 					</div>
 					
 				</div>
@@ -80,45 +79,49 @@
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Bedrooms</label><br />
-						<input type="text" name="property[bedrooms]" id="bedrooms" class="form-control" />	
+						<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" />	
 					</div>
 					
 					<div class="col-md-4">
 						<label>Toilets (Attached)</label><br />
-						<input type="text" name="property[toilets_attached]" id="toilets_attached" class="form-control" />	
+						<input type="text" name="property[toil_attached]" id="toil_attached" class="form-control" />	
 					</div>
 					
 					<div class="col-md-4">
 						<label>Toilets (Non Attached)</label><br />
-						<input type="text" name="property[toilets_nonattached]" id="toilets_nonattached" class="form-control" />	
+						<input type="text" name="property[toil_nattached]" id="toil_nattached" class="form-control" />	
 					</div>
 				</div>
 
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Furnishing</label>
-						<select class="select2" name="furnishing[id]" id="furnishing">
-							<% @furnishings.each do |furnishing| %>
-								<option value="<%= furnishing.id %>"><%= furnishing.name %></option>
-							<% end %>
+						<select class="select2" name="property[furnishing]" id="furnishing">
+							<option value="">Not Applicable</option>
+							<option value="Unfurnished">Unfurnished</option>
+							<option value="Semi">Semi</option>
+							<option value="Basic">Basic</option>
+							<option value="Furnished">Furnished</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Water Supply</label><br />
-						<select class="select2" name="watersupply[id]" id="watersupply">
-							<% @watersupplies.each do |watersupply| %>
-								<option value="<%= watersupply.id %>"><%= watersupply.name %></option>
-							<% end %>
+						<select class="select2" name="property[water]" id="water">
+							<option value="">Not Applicable</option>
+							<option value="Well">Well</option>
+							<option value="Bore-Well">Bore-Well</option>
+							<option value="Municipality">Municipality</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Zone</label><br />
-						<select class="select2" name="zone[id]" id="zone">
-							<% @zones.each do |zone| %>
-								<option value="<%= zone.id %>"><%= zone.name %></option>
-							<% end %>
+						<select class="select2" name="property[zone]" id="zone">
+							<option value="">Not Applicable</option>
+							<option value="Settlement">Settlement</option>
+							<option value="Orchard">Orchard</option>
+							<option value="Agriculture">Agriculture</option>
 						</select>
 					</div>
 				</div>
@@ -150,9 +153,9 @@
 					<div class="col-md-4">			
 						<label>Electricity</label><br />
 						<select class="select2" name="property[electricity]" id="electricity">
-							<option value="1">1 Phase</option>
-							<option value="2">2 Phase</option>
-							<option value="3">3 Phase</option>
+							<option value="1 Phase">1 Phase</option>
+							<option value="2 Phase">2 Phase</option>
+							<option value="3 Phase">3 Phase</option>
 						</select>
 					</div>
 					

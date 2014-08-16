@@ -40,36 +40,6 @@ end
 class Property
 	include DataMapper::Resource
 	
-#<<<<<<< HEAD
-	# property :id,					Serial
-	# property :title,				String
-	
-	# property :area,					Integer	# Written in a standard unit like "2000" that can be then interpreted. 
-	# 										# This value will not be shown to the user. Used for sorting.
-	# property :area_built,			Integer, :default => 0	
-	# property :price,				Integer
-	# property :rate,					Integer
-	
-	# property :featured_img,			Integer
-	# property :slug,					String
-	# property :specs,				String
-	# property :bhk_count,			Integer
-
-	# # Property specifications
-	# property :bedrooms,				Integer
-	# property :toilets_attached,		Integer
-	# property :toilets_nonattached,	Integer
-	# property :floor,				Integer
-	# property :lift,					Boolean, :default => false
-	# property :sanad,				Boolean, :default => false
-	# property :electricity,			Integer
-	# property :view,					String
-	# property :fsi,					String
-	
-	# property :viewcount,			Integer # automatically incremented every time instance pulled from db.
-	# property :created_at,			DateTime
-	# property :updated_at,			DateTime
-#=======
 	property :id,				Serial
 	property :title,			String
 	
@@ -99,18 +69,13 @@ class Property
 	property :electricity,		String
 	property :zone,				String
 	property :view,				String
-	property :fsi,				Integer
+	property :fsi,				String
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
 	property :updated_at,		DateTime
-#>>>>>>> 0a05a5aec56600f09d5e39038d635d4d7fc93393
 	
 	has n, :images
-#	has n, :regions, :through => Resource
-	# belongs_to :furnishing
-	# belongs_to :watersupply, :required => false
-	# belongs_to :zone, :required => false
 	belongs_to :location
 	belongs_to :type
 	belongs_to :state
@@ -127,34 +92,6 @@ end
 def to_currency(price)
 	price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
 end
-
-# class Furnishing
-# 	include DataMapper::Resource
-
-# 	property :id,		Serial
-# 	property :name,		String
-
-# 	has n, :propertys
-# 	#belongs_to :property
-# end
-
-# class Watersupply
-# 	include DataMapper::Resource
-
-# 	property :id, 		Serial
-# 	property :name, 	String
-
-# 	has n, :propertys
-# end
-
-# class Zone
-# 	include DataMapper::Resource
-
-# 	property :id,		Serial
-# 	property :name,		String
-
-# 	has n, :propertys
-# end
 
 class Image
 	include DataMapper::Resource
@@ -257,49 +194,7 @@ get '/reset' do
 	cc = Category.create(:name => "Residential")
 	cc = Category.create(:name => "Commercial")
 	cc = Category.create(:name => "Land")
-
-	ff = Furnishing.first_or_create(:name => "Not Applicable")
-	ff = Furnishing.first_or_create(:name => "Unfurnished")
-	ff = Furnishing.first_or_create(:name => "Semi")
-	ff = Furnishing.first_or_create(:name => "Basic")
-	ff = Furnishing.first_or_create(:name => "Furnished")
-
-	zz = Zone.first_or_create(:name => "Not Applicable")
-	zz = Zone.first_or_create(:name => "Settlement")
-	zz = Zone.first_or_create(:name => "Orchard")
-	zz = Zone.first_or_create(:name => "Agriculture")
-
-	ww = Watersupply.first_or_create(:name => "Not Applicable")
-	ww = Watersupply.first_or_create(:name => "Well")
-	ww = Watersupply.first_or_create(:name => "Bore-Well")
-	ww = Watersupply.first_or_create(:name => "Municipality")
 end
-
-# get '/newcolumns' do
-# 	require_admin
-
-# 	ff = Furnishing.first_or_create(:name => "Not Applicable")
-# 	ff = Furnishing.first_or_create(:name => "Unfurnished")
-# 	ff = Furnishing.first_or_create(:name => "Semi")
-# 	ff = Furnishing.first_or_create(:name => "Basic")
-# 	ff = Furnishing.first_or_create(:name => "Furnished")
-
-# 	zz = Zone.first_or_create(:name => "Not Applicable")
-# 	zz = Zone.first_or_create(:name => "Settlement")
-# 	zz = Zone.first_or_create(:name => "Orchard")
-# 	zz = Zone.first_or_create(:name => "Agriculture")
-
-# 	ww = Watersupply.first_or_create(:name => "Not Applicable")
-# 	ww = Watersupply.first_or_create(:name => "Well")
-# 	ww = Watersupply.first_or_create(:name => "Bore-Well")
-# 	ww = Watersupply.first_or_create(:name => "Municipality")
-	
-# 	@properties = Property.all(:furnishing_id => nil, :watersupply_id => nil, :zone_id => nil)
-# 	@properties.each do |property|
-# 		property.update(:furnishing_id => 1, :watersupply_id => 1, :zone_id => 1, :sanad => 0)
-# 	end
-# 	redirect "/"
-# end
 
 get '/' do
 	@body_class += " home"
@@ -332,10 +227,7 @@ get '/property/new' do
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
-	# @categories = Category.all
-	# @furnishings = Furnishing.all
-	# @watersupplies = Watersupply.all
-	@zones = Zone.all
+	@categories = Category.all
 	@region = Region.first
 	@category = Category.get 1
 	@state = State.get 2
@@ -353,9 +245,7 @@ get '/property/:id/edit' do
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
-	# @furnishings = Furnishing.all
-	# @watersupplies = Watersupply.all
-	# @zones = Zone.all
+	@selected = 'selected="selected"'
 	@categories = Category.all
 	@page_title += " | Edit Property"
 	@body_class += " alt"
@@ -417,13 +307,8 @@ post '/update' do
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
 	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true
 	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true
-	# @update_params[:furnishing_id] = @update_params[:furnishing_id].to_i
-	# @update_params[:watersupply_id] = @update_params[:watersupply_id].to_i
-	# @update_params[:zone_id] = @update_params[:zone_id].to_i
-	# @update_params[:electricity] = @update_params[:electricity].to_i
-	# @update_params[:bedrooms] = @update_params[:bedrooms].to_i
-	# @update_params[:toilets_attached] = @update_params[:toilets_attached].to_i
-	# @update_params[:toilets_nonattached] = @update_params[:toilets_nonattached].to_i
+	@update_params[:toil_attached] = @update_params[:toil_attached].to_i
+	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i
 	# @update_params[:floor] = @update_params[:floor].to_i
 	
 	@featured = params[:featured_img]
@@ -501,9 +386,11 @@ post '/create' do
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
-	property.area_built = property.area_built.downcase.gsub(" sq mt", "")
-	property.area_built = property.area_built.downcase.gsub(" sq mts", "")
-	
+	@area_built = params[:property][:area_built]
+	@area_built = @area_built.downcase.gsub(" sq mt", "")
+	@area_built = @area_built.downcase.gsub(" sq mts", "")
+	property.area_built = @area_built.to_i
+
 	if params[:category][:id] == "3"
 		property.bhk_count = 0
 	else

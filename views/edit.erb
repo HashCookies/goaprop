@@ -14,25 +14,15 @@
 					<div class="col-md-8">					
 						<select class="select2 type-select" data-demo="#demo-type-name" name="property[type_id]" id="type_id">
 							<% @types.each do |type| %>
-								<% if type.id == @property.type.id %>
-									<option value="<%= type.id %>" selected="selected"><%= type.name %></option>
-								<% else %>
-									<option value="<%= type.id %>"><%= type.name %></option>
-							<% end %>
-
+								<option value="<%= type.id %>" <%= @selected unless type.id != @property.type.id %>><%= type.name %></option>
 							<% end %>
 						</select>
 						
 						<span class="mid-select">in</span>
 						
 						<select class="select2 location-select" data-demo="#demo-location" name="property[location_id]" id="location_id">
-							
 							<% @locations.each do |location| %>
-								<% if location.id == @property.location.id %>
-									<option value="<%= location.id %>" selected="selected"><%= location.name %></option>
-								<% else %>
-									<option value="<%= location.id %>"><%= location.name %></option>
-								<% end %>
+								<option value="<%= location.id %>" <%= @selected unless location.id != @property.location.id %>><%= location.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -43,11 +33,7 @@
 						<label>Mode</label>
 						<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id">
 							<% @states.each do |state| %>
-								<% if state.id == @property.state.id %>
-									<option value="<%= state.id %>" selected="selected"><%= state.name %></option>
-								<% else %>
-									<option value="<%= state.id %>"><%= state.name %></option>
-								<% end %>
+								<option value="<%= state.id %>" <%= @selected unless state.id != @property.state.id %>><%= state.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -56,11 +42,7 @@
 						<label>Property Type</label>
 						<select class="select2" name="property[category_id]" id="category_id">
 							<% @categories.each do |category| %>
-								<% if category.id == @property.category.id %>
-									<option value="<%= category.id %>" selected="selected"><%= category.name %></option>
-								<% else %>
-									<option value="<%= category.id %>"><%= category.name %></option>
-								<% end %>
+								<option value="<%= category.id %>" <%= @selected unless category.id != @property.category.id %>><%= category.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -87,8 +69,7 @@
 						</div>
 						
 						<div class="col-md-4">
-							<label>BHK</label><br />
-							<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" value="<%= @property.bhk_count %>" />	
+							
 						</div>
 					</div>
 				</div>
@@ -96,57 +77,49 @@
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Bedrooms</label><br />
-						<input type="text" name="property[bedrooms]" id="bedrooms" class="form-control" value="<%= @property.bedrooms %>" />	
+							<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" value="<%= @property.bhk_count %>" />	
 					</div>
 					
 					<div class="col-md-4">
 						<label>Toilets (Attached)</label><br />
-						<input type="text" name="property[toilets_attached]" id="toilets_attached" class="form-control" value="<%= @property.toilets_attached %>" />	
+						<input type="text" name="property[toil_attached]" id="toil_attached" class="form-control" value="<%= @property.toil_attached %>" />	
 					</div>
 					
 					<div class="col-md-4">
 						<label>Toilets (Non Attached)</label><br />
-						<input type="text" name="property[toilets_nonattached]" id="toilets_nonattached" class="form-control" value="<%= @property.toilets_nonattached %>" />	
+						<input type="text" name="property[toil_nattached]" id="toil_nattached" class="form-control" value="<%= @property.toil_nattached %>" />	
 					</div>
 				</div>
 
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Furnishing</label>
-						<select class="select2" name="property[furnishing_id]" id="furnishing_id">
-							<% @furnishings.each do |furnishing| %>
-							<% if furnishing.id == @property.furnishing.id %>
-									<option value="<%= furnishing.id %>" selected="selected"><%= furnishing.name %></option>
-								<% else %>
-									<option value="<%= furnishing.id %>"><%= furnishing.name %></option>
-								<% end %>
-							<% end %>
+						<select class="select2" name="property[furnishing]" id="furnishing">
+							<option value="" <%= @selected unless @property.furnishing != "" %>>Not Applicable</option>
+							<option value="Unfurnished" <%= @selected unless @property.furnishing != "Unfurnished" %>>Unfurnished</option>
+							<option value="Semi" <%= @selected unless @property.furnishing != "Semi" %>>Semi</option>
+							<option value="Basic" <%= @selected unless @property.furnishing != "Basic" %>>Basic</option>
+							<option value="Furnished" <%= @selected unless @property.furnishing != "Furnished" %>>Furnished</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Water Supply</label><br />
-						<select class="select2" name="property[watersupply_id]" id="watersupply_id">
-							<% @watersupplies.each do |watersupply| %>
-								<% if watersupply.id == @property.watersupply.id %>
-									<option value="<%= watersupply.id %>" selected="selected"><%= watersupply.name %></option>
-								<% else %>
-									<option value="<%= watersupply.id %>"><%= watersupply.name %></option>
-								<% end %>
-							<% end %>
+						<select class="select2" name="property[water]" id="water">
+							<option value="" <%= @selected unless @property.water != "" %>>Not Applicable</option>
+							<option value="Well" <%= @selected unless @property.water != "Well" %>>Well</option>
+							<option value="Bore-Well" <%= @selected unless @property.water != "Bore-Well" %>>Bore-Well</option>
+							<option value="Municipality" <%= @selected unless @property.water != "Municipality" %>>Municipality</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Zone</label><br />
-						<select class="select2" name="property[zone_id]" id="zone_id">
-							<% @zones.each do |zone| %>
-								<% if zone.id == @property.zone.id %>
-									<option value="<%= zone.id %>" selected="selected"><%= zone.name %></option>
-								<% else %>
-									<option value="<%= zone.id %>"><%= zone.name %></option>
-								<% end %>
-							<% end %>
+						<select class="select2" name="property[zone]" id="zone">
+							<option value="" <%= @selected unless @property.zone != "" %>>Not Applicable</option>
+							<option value="Settlement" <%= @selected unless @property.zone != "Settlement" %>>Settlement</option>
+							<option value="Orchard" <%= @selected unless @property.zone != "Orchard" %>>Orchard</option>
+							<option value="Agriculture" <%= @selected unless @property.zone != "Agriculture" %>>Agriculture</option>
 						</select>
 					</div>
 				</div>
@@ -160,26 +133,16 @@
 					<div class="col-md-4">
 						<label>Lift</label><br />
 						<select class="select2" name="property[lift]" id="lift">
-							<% if @property.lift == false %>
-								<option value="false" selected="selected">No</option>
-								<option value="true">Yes</option>
-							<% else %>
-								<option value="false">No</option>
-								<option value="true" selected="selected">Yes</option>
-							<% end %>
+							<option value="false" <%= @selected unless @property.lift != false %>>No</option>
+							<option value="true" <%= @selected unless @property.lift != true %>>Yes</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Sanad</label><br />
 						<select class="select2" name="property[sanad]" id="sanad">
-							<% if @property.sanad == false %>
-								<option value="false" selected="selected">No</option>
-								<option value="true">Yes</option>
-							<% else %>
-								<option value="false">No</option>
-								<option value="true" selected="selected">Yes</option>
-							<% end %>
+							<option value="false" <%= @selected unless @property.sanad != false %>>No</option>
+							<option value="true" <%= @selected unless @property.sanad != true %>>Yes</option>
 						</select>
 					</div>
 				</div>
@@ -188,9 +151,10 @@
 					<div class="col-md-4">			
 						<label>Electricity</label><br />
 						<select class="select2" name="property[electricity]" id="electricity">
-							<option value="1">1 Phase</option>
-							<option value="2">2 Phase</option>
-							<option value="3">3 Phase</option>
+							<option value="" <%= @selected unless @property.electricity != "" %>>Not Applicable</option>
+							<option value="1 Phase" <%= @selected unless @property.electricity != "1 Phase" %>>1 Phase</option>
+							<option value="2 Phase" <%= @selected unless @property.electricity != "2 Phase" %>>2 Phase</option>
+							<option value="3 Phase" <%= @selected unless @property.electricity != "3 Phase" %>>3 Phase</option>
 						</select>
 					</div>
 					
