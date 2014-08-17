@@ -47,7 +47,7 @@
 					</div>
 					
 					<div class="col-md-4">
-						<label>Price:</label><br />
+						<label>Price</label><br />
 						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." />
 					</div>
 				</div>
@@ -61,24 +61,117 @@
 				<div class="row form-group">
 				
 					<div class="col-md-4">			
-						<label>Area in Sq Mts:</label><br />
+						<label>Area in Sq Mts</label><br />
 						<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" />	
 					</div>
 					
 					<div class="col-md-4">
-						<label>Area built (Sq Mts):</label><br />
+						<label>Area built (Sq Mts)</label><br />
 						<input type="text" name="property[area_built]" id="area_built" class="form-control" />	
 					</div>
 					
 					<div class="col-md-4">
-						<label>BHK</label><br />
-						<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" />	
+							
 					</div>
 					
 				</div>
 				
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Bedrooms</label><br />
+						<input type="text" name="property[bhk_count]" id="bhk_count" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Attached)</label><br />
+						<input type="text" name="property[toil_attached]" id="toil_attached" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Toilets (Non Attached)</label><br />
+						<input type="text" name="property[toil_nattached]" id="toil_nattached" class="form-control" />	
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Furnishing</label>
+						<select class="select2" name="property[furnishing]" id="furnishing">
+							<option value="">Not Applicable</option>
+							<option value="Unfurnished">Unfurnished</option>
+							<option value="Semi">Semi</option>
+							<option value="Basic">Basic</option>
+							<option value="Furnished">Furnished</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Water Supply</label><br />
+						<select class="select2" name="property[water]" id="water">
+							<option value="">Not Applicable</option>
+							<option value="Well">Well</option>
+							<option value="Bore-Well">Bore-Well</option>
+							<option value="Municipality">Municipality</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Zone</label><br />
+						<select class="select2" name="property[zone]" id="zone">
+							<option value="">Not Applicable</option>
+							<option value="Settlement">Settlement</option>
+							<option value="Orchard">Orchard</option>
+							<option value="Agriculture">Agriculture</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Floor</label><br />
+						<input type="text" name="property[floor]" id="floor" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>Lift</label><br />
+						<select class="select2" name="property[lift]" id="lift">
+							<option value="false">No</option>
+							<option value="true">Yes</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Sanad</label><br />
+						<select class="select2" name="property[sanad]" id="sanad">
+							<option value="false">No</option>
+							<option value="true">Yes</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">			
+						<label>Electricity</label><br />
+						<select class="select2" name="property[electricity]" id="electricity">
+							<option value="1 Phase">1 Phase</option>
+							<option value="2 Phase">2 Phase</option>
+							<option value="3 Phase">3 Phase</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>View</label><br />
+						<input type="text" name="property[view]" id="view" class="form-control" />	
+					</div>
+					
+					<div class="col-md-4">
+						<label>FSI</label><br />
+						<input type="text" name="property[fsi]" id="fsi" class="form-control" />	
+					</div>
+				</div>
+
 				<div class="form-group">
-					<label for="specs">Specifications</label>
+					<label for="specs">Other Specifications</label>
 					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="Parking Space, Swimming Pool, Field view" />	
 				</div>
 				
@@ -96,6 +189,10 @@
 					</div>
 				</div>
 				
+				<div class="form-group">
+					<label for="field_notes">Property Notes (Internal)</label>
+					<textarea name="property[field_notes]" class="form-control" id="field_notes"></textarea>
+				</div>
 				
 		
 				<div class="form-group">
@@ -121,48 +218,12 @@
 							<span id="demo-area" class='smaller prop-string'> </span><span> Sq Mts</span>
 							<div class="prop-price">
 								<span id="demo-price" class="price sort-price"></span>
-									<%# if @property.state_id == 2 %>
-										<%#= to_currency(@property.price) + " / mo" %>
-									<%# else %>
-										<%#= to_currency(@property.price) %>
-									<%# end %>
 							</div>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-		
-		<!-- <div class="col-md-4">
-			<h3>Live Preview</h3>
-			<div id="demo-property">
-					<div class="img-block">
-						<span class="prop-price sort-price" id="demo-price"></span>
-						<img src="/properties/images/prop2.jpg" alt="" id="demo-img" />
-					</div>
-					<div class="data-block">
-						<h3 class="prop-title">
-								<span id="demo-title"></span>
-								<span id="demo-type-name"></span> in
-								<span id="demo-location"></span> for
-								<span id="demo-state"></span>
-						</h3>
-						<ul class="clearfix">
-							<li class="clearfix">
-								<div class="block"><span class="label">Area</span></div>
-								<div class="block sort-area">
-									<span id="demo-area"></span> Sq Mts
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="block"><span class="label">Facilities</span> </div>
-								<div class="block"><span id="demo-specs"></span></div>
-								
-							</li>
-						</ul>
-					</div>
-			</div>
-		</div> -->
 		
 	</div>
 	

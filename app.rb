@@ -43,20 +43,20 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	
-	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
+	property :area,				Integer, :default => 0	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_built,		Integer	
+	property :area_built,		Integer
 	property :price,			Integer
 	property :area_rate,		Integer
-	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
+	property :sanad,			Boolean # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
 	property :bhk_count,		Integer
 	
-	property :toil_attached,	Integer # form field
-	property :toil_nattached,	Integer #form field
+	property :toil_attached,	Integer
+	property :toil_nattached,	Integer
 	property :furnishing,		String	# Do a <select> dropdown menu for these multiple choice String of properties.
 										# Use the text string to add to database.
 										# Make it default to empty, so if they're not selected they're not entered in the db.
@@ -69,14 +69,14 @@ class Property
 	property :electricity,		String
 	property :zone,				String
 	property :view,				String
-	property :fsi,				Integer
+	property :fsi,				String, :allow_nil => true
+	property :field_notes,		Text
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
 	property :updated_at,		DateTime
 	
 	has n, :images
-#	has n, :regions, :through => Resource
 	belongs_to :location
 	belongs_to :type
 	belongs_to :state
@@ -162,6 +162,7 @@ end
 
 DataMapper.auto_upgrade!
 
+
 helpers do
 	include Sinatra::Authorization
 	def partial template
@@ -175,6 +176,7 @@ before do
 	@hide_link = false
 	session[:properties] ||= {}
 end
+
 
 get '/reset' do
 	DataMapper.auto_migrate!
@@ -244,6 +246,7 @@ get '/property/:id/edit' do
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
+	@selected = 'selected="selected"'
 	@categories = Category.all
 	@page_title += " | Edit Property"
 	@body_class += " alt"
@@ -303,6 +306,12 @@ post '/update' do
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "")
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "")
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
+	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true
+	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true
+	@update_params[:toil_attached] = @update_params[:toil_attached].to_i
+	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i
+	# @update_params[:floor] = @update_params[:floor].to_i
+	
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
@@ -343,48 +352,63 @@ post '/update' do
 		@property.handle_upload(@featured)
 	end
 
-	# begin
+	 begin
 		if @property.update(@update_params)
 			redirect "/property/#{@property.id}"
 		else
 			redirect "/property/#{@property.id}/edit"
 		end
-	# rescue DataMapper::SaveFailureError => e
-	# 	puts e.resource.errors.inspect
-	# end
+	 rescue DataMapper::SaveFailureError => e
+	 	puts e.resource.errors.inspect
+	 end
 end
 
+
+
 post '/create' do
+	newparams = params[:property]
+	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
+	
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])
 	state = State.get(params[:state][:id])
 	category = Category.get(params[:category][:id])
-	property = Property.new(params[:property])
+	property = Property.new(newparams)
 	
+	# Adding all the associations for the property (belongs to)
 	location.propertys << property
 	type.propertys << property
 	state.propertys << property
 	category.propertys << property
 	
 	
+	
+	
+	# Sanitising some of the properties for saving to DataMapper.
+	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
-	property.area_built = property.area_built.downcase.gsub(" sq mt", "")
-	property.area_built = property.area_built.downcase.gsub(" sq mts", "")
 	
-	if params[:category][:id] == "3"
-		property.bhk_count = 0
-	else
-		property.bhk_count = property.bhk_count.to_i
-	end
+	property.area_built = property.area_built.to_i
 	
-	if property.area_built == ''
-		property.area_built = 0
-	else
-		property.area_built = property.area_built.to_i
-	end	
+	
+	
+	
+	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
+	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
+	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
+	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
+	
+	
+	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
+																	# We're just setting it to true if ON, else false.
+		
+	
+	
+	
+	
 
 	if property.save			
 		if !params[:images].nil?
