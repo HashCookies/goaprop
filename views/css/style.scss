@@ -508,6 +508,7 @@ h2 {
 	border-top: 1px solid darken($light, 10%);
 	img {
 		width: 100%;
+		min-height: 100%;
 	}
 	.large {
 		width: 74.5%;
@@ -658,6 +659,13 @@ h2 {
 			margin-right: 5px;
 			color: $dark;
 		}
+	}
+	.prop-code {
+		font-family: $sans;
+		font-weight: bold;
+		color: #ccc;
+		font-style: normal;
+		font-size: 16px;
 	}
 }
 

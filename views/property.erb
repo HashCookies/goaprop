@@ -1,13 +1,13 @@
 <div class="property-image-grid">
 	<div class="container">
 		<ul id="slide-wrap">
-			<li class="large img-block anystretch" data-stretch="/properties/images/<%= @property.featured_img %>">
+			<li class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
 				<a href="/properties/images/<%= @property.featured_img %>">
 					<img src="/properties/images/<%= @property.featured_img %>" alt="" />
 				</a>
 			</li>
 			<% @image_grid.each do |image| %>
-				<li class="small img-block anystretch" data-stretch="/properties/images/<%= image.url %>">
+				<li class="small img-block" data-stretch="/properties/images/<%= image.url %>">
 					<a href="/properties/images/<%= image.url %>">
 						<img src="/properties/images/<%= image.url %>" alt="" />
 					</a>
@@ -31,7 +31,7 @@
 						<%= "<span class='prop-string'>#{@property.type.name}</span>" %>
 						<%= "in <span class='prop-string'>#{@property.location.name}</span>" %>
 						<%= "for <span class='prop-string'>#{@property.state.name}</span>" %>
-					</a>
+					</a> <span class="prop-code">GPC <%= @property.id %></span>
 				</h3>
 				<p class="prop-area">
 					<span class="label">Specs</span>

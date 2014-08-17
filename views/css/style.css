@@ -5680,7 +5680,8 @@ h2 {
   background: #f7f7e8;
   border-top: 1px solid #cdd8e1; }
   .property-image-grid img {
-    width: 100%; }
+    width: 100%;
+    min-height: 100%; }
   .property-image-grid .large {
     width: 74.5%;
     margin-right: 5px;
@@ -5800,6 +5801,12 @@ h2 {
       display: inline-block;
       margin-right: 5px;
       color: #4b322f; }
+  .property-data .prop-code {
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #ccc;
+    font-style: normal;
+    font-size: 16px; }
 
 #search-bar {
   font-weight: 100;
