@@ -329,16 +329,18 @@ $(document).ready(function() {
 		left: (winW - $('.info-intro .inner').width()) / 2
 	});
 	
-	var cookieVal = $.cookie('unit') || "metric";
-	
-	$b.addClass($.cookie('unit'));
+
+	$.cookie.defaults = { path: '/' };
+	console.log($.cookie('mode'));
+	$b.addClass($.cookie('mode'));
 	
 	$('#switch-unit').click(function() {
 		if ($('#switch-unit').hasClass('imperial')) {
-			$.cookie('unit', 'imperial');
+			$.cookie('mode', 'imperial');
 			$('.unit-area').each(function() {
-				var val = $(this).text();
-				$(this).text(val * 10.76);
+				var val = $(this).text() * 10.76;
+				val = val.toFixed(0);
+				$(this).text(val);
 			});
 			$('.unit-label').each(function() {
 				$(this).text("Sq Ft");
@@ -346,10 +348,11 @@ $(document).ready(function() {
 			$('#switch-unit .unit-label').text("Show in Sq Mts");
 			$('#switch-unit').removeClass('imperial').addClass('metric');
 		} else if ($('#switch-unit').hasClass('metric')) {
-			$.cookie('unit', 'metric');
+			$.cookie('mode', 'metric');
 			$('.unit-area').each(function() {
-				var val = $(this).text();
-				$(this).text(val / 10.76);
+				var val = $(this).text() / 10.76;
+				val = val.toFixed(0);
+				$(this).text(val);
 			});
 			$('.unit-label').each(function() {
 				$(this).text("Sq Mts");
@@ -357,15 +360,14 @@ $(document).ready(function() {
 			$('#switch-unit .unit-label').text("Show in Sq Ft");
 			$('#switch-unit').removeClass('metric').addClass('imperial');
 		}
-		
-		console.log($.cookie('unit'));
 		return false;
 	});
 	
-	if ($b.hasClass('imperial')) {
+	if ($b.hasClass('imperial')) { // if Body has class of Imperial, meaning show Sq Ft instead of Mts.
 		$('.unit-area').each(function() {
-			var val = $(this).text();
-			$(this).text(val * 10.76);
+			var val = $(this).text() * 10.76;
+			val = val.toFixed(0);
+			$(this).text(val);
 		});
 		$('.unit-label').each(function() {
 			$(this).text("Sq Ft");
