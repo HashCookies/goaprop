@@ -57,23 +57,23 @@
 <div class="container property-main">
 	<div class="row">
 		<div class="col-md-8 data-block">			
-			<h4>Property Details</h4>
+			<!--<h4>Property Details</h4>-->
 			<div class="prop-specs">
 				<ul class="clearfix row">
 					
 					
 					<li class="col-md-4">
 						<span class="label">Area</span>
-						<div class="block"><%= @property.area %> Sq Mts </div>
+						<div class="block"><span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span></div>
 					</li>
 					<% if !@property.area_built.nil? %>
 						<li class="col-md-4">
 							<span class="label">Built Area</span>
-							<div class="block"><%= @property.area_built %> Sq Mts</div>
+							<div class="block"><span class="unit-area"><%= @property.area_built %></span> <span class="unit-label">Sq Mts</span></div>
 						</li>
 					<% end %>
 					<li class="col-md-4">
-						<button class="btn">Show in Sq. Ft.</button>
+						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>
 					<div class="clearfix"></div>
 					<li class="col-md-12">

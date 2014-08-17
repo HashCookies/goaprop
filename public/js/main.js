@@ -257,8 +257,6 @@ $(document).ready(function() {
 			value = value.replace(/,/g, ''); // strip all the ',' from value
 			value = value.replace(/ \/ mo/, ''); // strip ' / mo' from value if it exists
 			
-			console.log(value);
-			
 			if (value.length == 8) {
 				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
@@ -330,5 +328,50 @@ $(document).ready(function() {
 	$('.info-intro .inner').css({
 		left: (winW - $('.info-intro .inner').width()) / 2
 	});
+	
+	var cookieVal = $.cookie('unit') || "metric";
+	
+	$b.addClass($.cookie('unit'));
+	
+	$('#switch-unit').click(function() {
+		if ($('#switch-unit').hasClass('imperial')) {
+			$.cookie('unit', 'imperial');
+			$('.unit-area').each(function() {
+				var val = $(this).text();
+				$(this).text(val * 10.76);
+			});
+			$('.unit-label').each(function() {
+				$(this).text("Sq Ft");
+			});
+			$('#switch-unit .unit-label').text("Show in Sq Mts");
+			$('#switch-unit').removeClass('imperial').addClass('metric');
+		} else if ($('#switch-unit').hasClass('metric')) {
+			$.cookie('unit', 'metric');
+			$('.unit-area').each(function() {
+				var val = $(this).text();
+				$(this).text(val / 10.76);
+			});
+			$('.unit-label').each(function() {
+				$(this).text("Sq Mts");
+			});
+			$('#switch-unit .unit-label').text("Show in Sq Ft");
+			$('#switch-unit').removeClass('metric').addClass('imperial');
+		}
+		
+		console.log($.cookie('unit'));
+		return false;
+	});
+	
+	if ($b.hasClass('imperial')) {
+		$('.unit-area').each(function() {
+			var val = $(this).text();
+			$(this).text(val * 10.76);
+		});
+		$('.unit-label').each(function() {
+			$(this).text("Sq Ft");
+		});
+		$('#switch-unit .unit-label').text("Show in Sq Mts");
+		$('#switch-unit').removeClass('imperial').addClass('metric');
+	}
 	
 });

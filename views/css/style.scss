@@ -495,6 +495,13 @@ h2 {
 	}
 }
 
+#switch-unit {
+	background: none;
+	font-weight: bold;
+	color: $vib;
+	margin-top: 6px;
+}
+
 .property-image-grid {
 	border-bottom: 1px solid darken($light, 10%);
 	background: desaturate(darken($offWhite, 3%), 0%);

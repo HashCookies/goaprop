@@ -5669,6 +5669,12 @@ h2 {
           color: #f66f61;
           border-color: #fbc7c2; }
 
+#switch-unit {
+  background: none;
+  font-weight: bold;
+  color: #f66f61;
+  margin-top: 6px; }
+
 .property-image-grid {
   border-bottom: 1px solid #cdd8e1;
   background: #f7f7e8;
