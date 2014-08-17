@@ -56,25 +56,7 @@
 
 <div class="container property-main">
 	<div class="row">
-		<div class="col-md-8 data-block">
-			<!--<div class="row">
-				<div class="col-md-12 gallery-block">
-					<!--<h4>Property Photos</h4>--*>
-					<ul class="row gallery-images">
-						<% @images.each do |image| %>
-							<li class="col-md-3">
-								<a href="/properties/images/<%= image.url %>">
-									<img src="/properties/images/<%= image.url %>" alt="" />
-								</a>
-							</li>
-						<% end %>
-						<li class="col-md-3 gallery-link">
-							<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> Slideshow</button>
-						</li>
-					</ul>
-				</div>
-			</div>-->
-			
+		<div class="col-md-8 data-block">			
 			<h4>Property Details</h4>
 			<div class="prop-specs">
 				<ul class="clearfix row">
@@ -87,12 +69,11 @@
 					<% if !@property.area_built.nil? %>
 						<li class="col-md-4">
 							<span class="label">Built Area</span>
-							<div class="block"><%= @property.area_built %></div>
+							<div class="block"><%= @property.area_built %> Sq Mts</div>
 						</li>
 					<% end %>
 					<li class="col-md-4">
-						<span class="label">Area in Sq Ft</span>
-						<div class="block"><%= (@property.area * 10.76).ceil %> Sq Ft</div>
+						<button class="btn">Show in Sq. Ft.</button>
 					</li>
 					<div class="clearfix"></div>
 					<li class="col-md-12">
@@ -103,6 +84,69 @@
 						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
+					
+					<% if !@property.furnishing.nil? %>
+						<li class="col-md-12">
+							<span class="label">Furnishing</span>
+							<div class="block"><%= @property.furnishing %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.floor.nil? %>
+						<li class="col-md-12">
+							<span class="label">Floor</span>
+							<div class="block"><%= @property.floor %></div>
+						</div>
+					<% end %>
+					
+					<% if !@property.lift.nil? %>
+						<li class="col-md-12">
+							<span class="label">Lift</span>
+							<div class="block">Yes</div>
+						</li>
+					<% end %>
+					
+					<% if !@property.water.nil? %>
+						<li class="col-md-12">
+							<span class="label">Water</span>
+							<div class="block"><%= @property.water %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.electricity.nil? %>
+						<li class="col-md-12">
+							<span class="label">Electricity</span>
+							<div class="block"><%= @property.electricity %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.zone.nil? %>
+						<li class="col-md-12">
+							<span class="label">Zone</span>
+							<div class="block"><%= @property.zone %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.view.nil? %>
+						<li class="col-md-12">
+							<span class="label">View</span>
+							<div class="block"><%= @property.view %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.fsi.nil? %>
+						<li class="col-md-12">
+							<span class="label">FSI</span>
+							<div class="block"><%= @property.fsi %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.sanad.nil? %>
+						<li class="col-md-12">
+							<span class="label">Sanad</span>
+							<div class="block">Yes</div>
+						</li>
+					<% end %>
 					
 				</ul>
 			</div>
