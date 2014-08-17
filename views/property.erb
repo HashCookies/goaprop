@@ -1,12 +1,22 @@
 <div class="property-image-grid">
 	<div class="container">
-		<div class="large img-block anystretch" data-stretch="/properties/images/<%= @property.featured_img %>">
-
-		</div>
-		<% @images.each do |image| %>
-			<div class="small img-block anystretch" data-stretch="/properties/images/<%= image.url %>">
-			</div>
-		<% end %>
+		<ul id="slide-wrap">
+			<li class="large img-block anystretch" data-stretch="/properties/images/<%= @property.featured_img %>">
+				<a href="/properties/images/<%= @property.featured_img %>">
+					<img src="/properties/images/<%= @property.featured_img %>" alt="" />
+				</a>
+			</li>
+			<% @image_grid.each do |image| %>
+				<li class="small img-block anystretch" data-stretch="/properties/images/<%= image.url %>">
+					<a href="/properties/images/<%= image.url %>">
+						<img src="/properties/images/<%= image.url %>" alt="" />
+					</a>
+				</li>
+			<% end %>
+			<li class="gallery-link">
+				<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images.count - 3 %> more…</button>
+			</li>
+		</ul>
 		
 	</div>
 </div>
@@ -47,9 +57,9 @@
 <div class="container property-main">
 	<div class="row">
 		<div class="col-md-8 data-block">
-			<div class="row">
+			<!--<div class="row">
 				<div class="col-md-12 gallery-block">
-					<!--<h4>Property Photos</h4>-->
+					<!--<h4>Property Photos</h4>--*>
 					<ul class="row gallery-images">
 						<% @images.each do |image| %>
 							<li class="col-md-3">
@@ -63,7 +73,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div>-->
 			
 			<h4>Property Details</h4>
 			<div class="prop-specs">

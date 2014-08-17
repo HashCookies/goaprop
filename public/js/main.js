@@ -286,7 +286,7 @@ $(document).ready(function() {
 		$b.addClass('loaded');
 	}, 800)
 	
-	$('.gallery-images').magnificPopup({ 
+	$('#slide-wrap').magnificPopup({ 
 		delegate: 'a',
 		gallery: {
 		    // options for gallery
@@ -311,7 +311,7 @@ $(document).ready(function() {
 		  }
 	});
 	$('.gallery-link button').click(function() {
-		$('.gallery-images').magnificPopup('open');
+		$('#slide-wrap').magnificPopup('open');
 		return false;
 	});
 	
