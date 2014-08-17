@@ -48,7 +48,7 @@ class Property
 	property :area_built,		Integer
 	property :price,			Integer
 	property :area_rate,		Integer
-	property :sanad,			Boolean # Some kind of status when dealing with unbuilt LAND type properties.
+	property :sanad,			Boolean, :allow_nil => true # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
 	property :slug,				String
@@ -64,7 +64,7 @@ class Property
 										# Even if we do we can catch them using the text search.
 										
 	property :floor,			String	
-	property :lift,				Boolean	
+	property :lift,				Boolean, :allow_nil => true	
 	property :water,			String
 	property :electricity,		String
 	property :zone,				String
@@ -403,9 +403,6 @@ post '/create' do
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	
 	
-	property.lift = params[:property][:lift] == 'on' ? true : false # Datamapper has some issues with the checkbox supplying "ON" instead of TRUE or 1. 
-																	# We're just setting it to true if ON, else false.
-		
 	
 	
 	
