@@ -320,10 +320,12 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('#search-link a').click(function() {
-		$('#hidden-form').slideToggle(500);
-		return false;
-	});
+	if (!$b.hasClass('home')) {
+		$('#search-link a').click(function() {
+			$('#hidden-form').slideToggle(500);
+			return false;
+		});
+	}
 	
 	$('.info-intro .inner').css({
 		left: (winW - $('.info-intro .inner').width()) / 2
