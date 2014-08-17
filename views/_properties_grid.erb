@@ -1,6 +1,6 @@
 <ul id="property-grid">
 	<% @properties.each do |property| %>
-		<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase %> bhk-<%= property.bhk_count %>" 
+		<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase.gsub(" ", "-") %> bhk-<%= property.bhk_count %>" 
 			data-price="<%= property.price %>" 
 			data-area="<%= property.area %>"
 			data-date="<%= property.updated_at %>">
