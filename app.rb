@@ -398,11 +398,7 @@ post '/create' do
 	
 	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
-	
-	# Sanitising Toilets attached
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
-	
-	# Sanitizing toilets unattached
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	
 	
