@@ -48,7 +48,7 @@
 					</div>
 					
 					<div class="col-md-4">
-						<label>Price:</label><br />
+						<label>Price</label><br />
 						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= to_currency(@property.price) %>" />
 					</div>
 				</div>
@@ -58,13 +58,13 @@
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-4">			
-							<label>Area (Sq Mts):</label><br />
+							<label>Area in Sq Mts:</label><br />
 							<input type="text" name="property[area]" id="area" class="form-control demo-control" data-demo="#demo-area" value="<%= @property.area %>"/>	
 						</div>
 						
 						
 						<div class="col-md-4">
-							<label>Built (Sq Mts):</label><br />
+							<label>Area built (Sq Mts):</label><br />
 							<input type="text" name="property[area_built]" id="area_built" class="form-control" value="<%= @property.area_built %>" />	
 						</div>
 						
@@ -127,12 +127,13 @@
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Floor</label><br />
-						<input type="text" name="property[floor]" id="floor" class="form-control" />	
+						<input type="text" name="property[floor]" id="floor" class="form-control" value="<%= @property.floor %>" />	
 					</div>
 					
 					<div class="col-md-4">
 						<label>Lift</label><br />
 						<select class="select2" name="property[lift]" id="lift">
+							<option value="" <%= @selected unless @property.lift != "" %>>Not Applicable</option>
 							<option value="false" <%= @selected unless @property.lift != false %>>No</option>
 							<option value="true" <%= @selected unless @property.lift != true %>>Yes</option>
 						</select>
@@ -141,6 +142,7 @@
 					<div class="col-md-4">
 						<label>Sanad</label><br />
 						<select class="select2" name="property[sanad]" id="sanad">
+							<option value="" <%= @selected unless @property.sanad != "" %>>Not Applicable</option>
 							<option value="false" <%= @selected unless @property.sanad != false %>>No</option>
 							<option value="true" <%= @selected unless @property.sanad != true %>>Yes</option>
 						</select>
@@ -160,7 +162,7 @@
 					
 					<div class="col-md-4">
 						<label>View</label><br />
-						<input type="text" name="property[view]" id="view" class="form-control" />	
+						<input type="text" name="property[view]" id="view" class="form-control" value="<%= @property.view %>" />	
 					</div>
 					
 					<div class="col-md-4">

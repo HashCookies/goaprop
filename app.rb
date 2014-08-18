@@ -304,32 +304,23 @@ post '/update' do
 	require_admin
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
-	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "")
-	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "")
+	@update_params.each_pair {|k,v| @update_params[k] = nil if v == ""}
+	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "") unless @update_params[:area_built].nil?
+	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "") unless @update_params[:area_built].nil?
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
-	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true
-	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true
-	@update_params[:toil_attached] = @update_params[:toil_attached].to_i
-	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i
+	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true unless @update_params[:sanad].nil?
+	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true unless @update_params[:lift].nil?
+	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
+	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
 	
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
 
-	if @update_params[:category_id] == "3"
-		@update_params[:bhk_count] = 0
-	else
-		@update_params[:bhk_count] = @update_params[:bhk_count].to_i
-	end
+	@update_params[:bhk_count] = @update_params[:bhk_count].to_i unless @update_params[:bhk_count].nil?
 
-	if @update_params[:area_built] == ''
-		@update_params[:area_built] = 0
-	else
-		@update_params[:area_built] = @update_params[:area_built].to_i
-	end
-
-	#raise params[:property][:area_built].to_s
+	@update_params[:area_built] = @update_params[:area_built].to_i
 
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
