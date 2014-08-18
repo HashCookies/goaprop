@@ -35,7 +35,7 @@
 				</h3>
 				<p class="prop-area">
 					<span class="label">Specs</span>
-					<%= @property.area %> Sq Mts • <%= @property.specs %>
+					<span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span> • <%= @property.specs %>
 				</p>
 			</div>
 			<div class="price-block">
@@ -75,7 +75,7 @@
 					<li class="col-md-4">
 						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>
-					<div class="clearfix"></div>
+					<li class="clearfix"></li>
 					<li class="col-md-12">
 						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>
@@ -85,41 +85,43 @@
 						<div class="block"><%= @property.specs %></div>
 					</li>
 					
-					<% if !@property.furnishing.nil? %>
-						<li class="col-md-12">
-							<span class="label">Furnishing</span>
-							<div class="block"><%= @property.furnishing %></div>
-						</li>
-					<% end %>
-					
 					<% if !@property.floor.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-4">
 							<span class="label">Floor</span>
 							<div class="block"><%= @property.floor %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.lift.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-4">
 							<span class="label">Lift</span>
 							<div class="block">Yes</div>
 						</li>
 					<% end %>
 					
+					<li class="clearfix"></li>
+					
+					<% if !@property.furnishing.nil? %>
+						<li class="col-md-4">
+							<span class="label">Furnishing</span>
+							<div class="block"><%= @property.furnishing %></div>
+						</li>
+					<% end %>
+					
 					<% if !@property.water.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-4">
 							<span class="label">Water</span>
 							<div class="block"><%= @property.water %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.electricity.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-4">
 							<span class="label">Electricity</span>
 							<div class="block"><%= @property.electricity %></div>
 						</li>
 					<% end %>
-					
+					<li class="clearfix"></li>
 					<% if !@property.zone.nil? %>
 						<li class="col-md-12">
 							<span class="label">Zone</span>

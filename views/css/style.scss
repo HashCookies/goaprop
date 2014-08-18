@@ -439,6 +439,12 @@ h2 {
 				line-height: 18px;
 			}
 		}
+		li.clearfix {
+			padding-bottom: 0;
+			padding-top: 0;
+			border-bottom: none;
+			height: 1px;
+		}
 		.label {
 			padding: 0;
 		}

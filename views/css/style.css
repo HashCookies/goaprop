@@ -5624,6 +5624,11 @@ h2 {
     .property-main .prop-specs li .block {
       font-weight: 100;
       line-height: 18px; }
+  .property-main .prop-specs li.clearfix {
+    padding-bottom: 0;
+    padding-top: 0;
+    border-bottom: none;
+    height: 1px; }
   .property-main .prop-specs .label {
     padding: 0; }
   .property-main .gallery-block {
