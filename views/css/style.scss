@@ -1287,10 +1287,18 @@ form#property {
 	}
 	li {
 		width: 100%;
-		margin-bottom: 5px;
+		margin-bottom: 7px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #ddd;
+		overflow: auto;
 	}
 	a {
 		color: $dark;
+	}
+	.recently-prop-title {
+		width: 250px;
+		display: block;
+		float: left;
 	}
 }
 

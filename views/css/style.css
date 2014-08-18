@@ -6259,9 +6259,16 @@ form#property {
     text-align: left; }
   .recently-viewed li {
     width: 100%;
-    margin-bottom: 5px; }
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    overflow: auto; }
   .recently-viewed a {
     color: #4b322f; }
+  .recently-viewed .recently-prop-title {
+    width: 250px;
+    display: block;
+    float: left; }
 
 .dynamic-string {
   font-family: "FreightText", Garamond, Georgia, serif;
