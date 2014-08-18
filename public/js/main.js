@@ -210,9 +210,16 @@ $(document).ready(function() {
 
 			$('#demo-price').text(value);
 		});
+
+		//captures change, blur & input event on Area textbox (edit and new)
+		$('#area').on('change blur input', function() {
+			var value = $(this).val();
+			var id = $(this).attr('data-demo');
+			$(id).html(value);
+		});
 		
-		//captures keyup event on price textbox in (edit and new)
-		$('#price').on('keyup', function() {
+		//captures keyup, change, blur & input event on price textbox in (edit and new)
+		$('#price').on('keyup change blur input', function() {
 			var value = $(this).val();
 			var id = $(this).attr('data-demo');
 			value = value.trim();
