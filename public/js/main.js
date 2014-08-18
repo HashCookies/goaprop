@@ -257,8 +257,6 @@ $(document).ready(function() {
 			value = value.replace(/,/g, ''); // strip all the ',' from value
 			value = value.replace(/ \/ mo/, ''); // strip ' / mo' from value if it exists
 			
-			console.log(value);
-			
 			if (value.length == 8) {
 				decValue = (value.substr(1, 1) != '0') ? '.' + value.substr(1, 1) : ''; //add decimal point and values if its non-zero
 				value = value.substring(0, 1);
@@ -286,7 +284,7 @@ $(document).ready(function() {
 		$b.addClass('loaded');
 	}, 800)
 	
-	$('.gallery-images').magnificPopup({ 
+	$('#slide-wrap').magnificPopup({ 
 		delegate: 'a',
 		gallery: {
 		    // options for gallery
@@ -311,7 +309,7 @@ $(document).ready(function() {
 		  }
 	});
 	$('.gallery-link button').click(function() {
-		$('.gallery-images').magnificPopup('open');
+		$('#slide-wrap').magnificPopup('open');
 		return false;
 	});
 	
@@ -320,13 +318,62 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('#search-link a').click(function() {
-		$('#hidden-form').slideToggle(500);
-		return false;
-	});
+	if (!$b.hasClass('home')) {
+		$('#search-link a').click(function() {
+			$('#hidden-form').slideToggle(500);
+			return false;
+		});
+	}
 	
 	$('.info-intro .inner').css({
 		left: (winW - $('.info-intro .inner').width()) / 2
 	});
+	
+
+	$.cookie.defaults = { path: '/' };
+	console.log($.cookie('mode'));
+	$b.addClass($.cookie('mode'));
+	
+	$('#switch-unit').click(function() {
+		if ($('#switch-unit').hasClass('imperial')) {
+			$.cookie('mode', 'imperial');
+			$('.unit-area').each(function() {
+				var val = $(this).text() * 10.76;
+				val = val.toFixed(0);
+				$(this).text(val);
+			});
+			$('.unit-label').each(function() {
+				$(this).text("Sq Ft");
+			});
+			$('#switch-unit .unit-label').text("Show in Sq Mts");
+			$('#switch-unit').removeClass('imperial').addClass('metric');
+		} else if ($('#switch-unit').hasClass('metric')) {
+			$.cookie('mode', 'metric');
+			$('.unit-area').each(function() {
+				var val = $(this).text() / 10.76;
+				val = val.toFixed(0);
+				$(this).text(val);
+			});
+			$('.unit-label').each(function() {
+				$(this).text("Sq Mts");
+			});
+			$('#switch-unit .unit-label').text("Show in Sq Ft");
+			$('#switch-unit').removeClass('metric').addClass('imperial');
+		}
+		return false;
+	});
+	
+	if ($b.hasClass('imperial')) { // if Body has class of Imperial, meaning show Sq Ft instead of Mts.
+		$('.unit-area').each(function() {
+			var val = $(this).text() * 10.76;
+			val = val.toFixed(0);
+			$(this).text(val);
+		});
+		$('.unit-label').each(function() {
+			$(this).text("Sq Ft");
+		});
+		$('#switch-unit .unit-label').text("Show in Sq Mts");
+		$('#switch-unit').removeClass('imperial').addClass('metric');
+	}
 	
 });

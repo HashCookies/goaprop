@@ -43,20 +43,20 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	
-	property :area,				Integer	# Written in a standard unit like "2000" that can be then interpreted. 
+	property :area,				Integer, :default => 0	# Written in a standard unit like "2000" that can be then interpreted. 
 										# This value will not be shown to the user. Used for sorting.
-	property :area_built,		Integer	
+	property :area_built,		Integer
 	property :price,			Integer
 	property :area_rate,		Integer
-	property :sanad,			Boolean # Unsure what this option is in the real world, but defaults to false
+	property :sanad,			Boolean, :allow_nil => true # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
 	property :bhk_count,		Integer
 	
-	property :toil_attached,	Integer # form field
-	property :toil_nattached,	Integer #form field
+	property :toil_attached,	Integer
+	property :toil_nattached,	Integer
 	property :furnishing,		String	# Do a <select> dropdown menu for these multiple choice String of properties.
 										# Use the text string to add to database.
 										# Make it default to empty, so if they're not selected they're not entered in the db.
@@ -64,12 +64,13 @@ class Property
 										# Even if we do we can catch them using the text search.
 										
 	property :floor,			String	
-	property :lift,				Boolean	
+	property :lift,				Boolean, :allow_nil => true	
 	property :water,			String
 	property :electricity,		String
 	property :zone,				String
 	property :view,				String
-	property :fsi,				String
+	property :fsi,				String, :allow_nil => true
+	property :field_notes,		Text
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
@@ -260,7 +261,8 @@ get '/property/:id' do
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
-	@images = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+	@images = @property.images.all
+	@image_grid = @images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 		
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
@@ -365,37 +367,46 @@ end
 
 
 post '/create' do
+	newparams = params[:property]
+	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
+	
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])
 	state = State.get(params[:state][:id])
 	category = Category.get(params[:category][:id])
-	property = Property.new(params[:property])
+	property = Property.new(newparams)
 	
+	# Adding all the associations for the property (belongs to)
 	location.propertys << property
 	type.propertys << property
 	state.propertys << property
 	category.propertys << property
 	
+	
+	
+	
+	# Sanitising some of the properties for saving to DataMapper.
+	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
-	@area_built = params[:property][:area_built]
-	@area_built = @area_built.downcase.gsub(" sq mt", "")
-	@area_built = @area_built.downcase.gsub(" sq mts", "")
-	property.area_built = @area_built.to_i
-
-	if params[:category][:id] == "3"
-		property.bhk_count = 0
-	else
-		property.bhk_count = property.bhk_count.to_i
-	end
 	
-	if property.area_built == ''
-		property.area_built = 0
-	else
-		property.area_built = property.area_built.to_i
-	end	
+	property.area_built = property.area_built.to_i
+	
+	
+	
+	
+	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
+	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
+	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
+	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
+	
+	
+	
+	
+	
+	
 
 	if property.save			
 		if !params[:images].nil?

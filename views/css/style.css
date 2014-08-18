@@ -5669,27 +5669,59 @@ h2 {
           color: #f66f61;
           border-color: #fbc7c2; }
 
+#switch-unit {
+  background: none;
+  font-weight: bold;
+  color: #f66f61;
+  margin-top: 6px; }
+
 .property-image-grid {
   border-bottom: 1px solid #cdd8e1;
   background: #f7f7e8;
   border-top: 1px solid #cdd8e1; }
   .property-image-grid img {
-    width: 100%; }
+    width: 100%;
+    min-height: 100%; }
   .property-image-grid .large {
     width: 74.5%;
     margin-right: 5px;
     height: 550px;
-    border-bottom: 0 !important; }
+    border-bottom: 0 !important;
+    overflow: hidden; }
+    .property-image-grid .large a {
+      height: 500px !important; }
   .property-image-grid .small {
     width: 25%;
     height: 180px;
     overflow: hidden;
     margin-bottom: 5px; }
-    .property-image-grid .small:last-child {
+    .property-image-grid .small:nth-child(4) {
       margin-bottom: 0;
       border-bottom: 0; }
   .property-image-grid .img-block {
     float: left; }
+
+#slide-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0; }
+  #slide-wrap a {
+    display: block;
+    width: 100%;
+    height: 180px;
+    position: relative;
+    z-index: 2; }
+  #slide-wrap .gallery-link {
+    position: absolute;
+    bottom: 60px;
+    right: 90px;
+    z-index: 3; }
+    #slide-wrap .gallery-link .btn {
+      background: none;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-transform: uppercase; }
 
 #property-content {
   margin-top: 95px;
@@ -5730,7 +5762,7 @@ h2 {
   background: rgba(255, 255, 255, 0.95);
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 150;
   text-shadow: 0px 1px #fff;
   margin-bottom: 25px; }
   .property-data .data-block {
@@ -5769,6 +5801,12 @@ h2 {
       display: inline-block;
       margin-right: 5px;
       color: #4b322f; }
+  .property-data .prop-code {
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #ccc;
+    font-style: normal;
+    font-size: 16px; }
 
 #search-bar {
   font-weight: 100;
