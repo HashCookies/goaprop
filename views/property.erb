@@ -76,14 +76,18 @@
 						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>
 					<li class="clearfix"></li>
-					<li class="col-md-12">
+					
+					<li class="col-md-4">
 						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>
 					</li>
-					<li class="col-md-12">
+					
+					<li class="col-md-8">
 						<span class="label">Facilities</span>
 						<div class="block"><%= @property.specs %></div>
 					</li>
+					
+					<li class="clearfix"></li>
 					
 					<% if !@property.floor.nil? %>
 						<li class="col-md-4">
@@ -94,7 +98,7 @@
 					
 					<% if !@property.lift.nil? %>
 						<li class="col-md-4">
-							<span class="label">Lift</span>
+							<span class="label">Lift Facility</span>
 							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
 					<% end %>
@@ -121,35 +125,37 @@
 							<div class="block"><%= @property.electricity %></div>
 						</li>
 					<% end %>
+					
 					<li class="clearfix"></li>
+					
 					<% if !@property.zone.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-3">
 							<span class="label">Zone</span>
 							<div class="block"><%= @property.zone %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.view.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-3">
 							<span class="label">View</span>
 							<div class="block"><%= @property.view %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.fsi.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-3">
 							<span class="label">FSI</span>
 							<div class="block"><%= @property.fsi %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.sanad.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-3">
 							<span class="label">Sanad</span>
 							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
 					<% end %>
-					
+					<li class="clearfix"></li>
 				</ul>
 			</div>
 		</div>
