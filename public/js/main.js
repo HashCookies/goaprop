@@ -315,7 +315,7 @@ $(document).ready(function() {
 		    }
 		  }
 	});
-	$('.gallery-link button').click(function() {
+	$('.gallery-link button, #main-img a').click(function() {
 		$('#slide-wrap').magnificPopup('open');
 		return false;
 	});
