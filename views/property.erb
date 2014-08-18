@@ -102,7 +102,7 @@
 					<% if !@property.lift.nil? %>
 						<li class="col-md-12">
 							<span class="label">Lift</span>
-							<div class="block">Yes</div>
+							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
 					<% end %>
 					
@@ -144,7 +144,7 @@
 					<% if !@property.sanad.nil? %>
 						<li class="col-md-12">
 							<span class="label">Sanad</span>
-							<div class="block">Yes</div>
+							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
 					<% end %>
 					
