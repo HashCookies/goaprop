@@ -308,6 +308,7 @@ post '/update' do
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "") unless @update_params[:area_built].nil?
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "") unless @update_params[:area_built].nil?
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "")
+	@update_params[:price] = @update_params[:price].to_i
 	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true unless @update_params[:sanad].nil?
 	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true unless @update_params[:lift].nil?
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
