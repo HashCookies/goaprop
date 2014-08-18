@@ -383,4 +383,11 @@ $(document).ready(function() {
 		$('#switch-unit').removeClass('imperial').addClass('metric');
 	}
 	
-});
+	setTimeout(function() {
+		$grid.isotope();
+	}, 5000)
+	
+	$(window).load(function() {
+		$grid.isotope();
+	});
+});	
