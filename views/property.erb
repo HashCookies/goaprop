@@ -1,23 +1,27 @@
 <div class="property-image-grid">
 	<div class="container">
-		<ul id="slide-wrap">
-			<li class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
+			<div class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
 				<a href="/properties/images/<%= @property.featured_img %>">
 					<img src="/properties/images/<%= @property.featured_img %>" alt="" />
 				</a>
-			</li>
-			<% @image_grid.each do |image| %>
-				<li class="small img-block" data-stretch="/properties/images/<%= image.url %>">
-					<a href="/properties/images/<%= image.url %>">
-						<img src="/properties/images/<%= image.url %>" alt="" />
+			</div>
+			<ul id="slide-wrap">
+				<li class="hidden">
+					<a href="/properties/images/<%= @property.featured_img %>">
+						<img src="/properties/images/<%= @property.featured_img %>" alt="" />
 					</a>
 				</li>
-			<% end %>
-			<li class="gallery-link">
-				<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
-			</li>
-		</ul>
-		
+				<% @image_grid.each do |image| %>
+					<li class="small img-block" data-stretch="/properties/images/<%= image.url %>">
+						<a href="/properties/images/<%= image.url %>">
+							<img src="/properties/images/<%= image.url %>" alt="" />
+						</a>
+					</li>
+				<% end %>
+				<li class="gallery-link">
+					<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
+				</li>
+			</ul>		
 	</div>
 </div>
 

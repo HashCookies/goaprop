@@ -5698,7 +5698,7 @@ h2 {
     .property-image-grid .large a {
       height: 500px !important; }
   .property-image-grid .small {
-    width: 25%;
+    width: 100%;
     height: 180px;
     overflow: hidden;
     margin-bottom: 5px; }
@@ -5720,15 +5720,25 @@ h2 {
     z-index: 2; }
   #slide-wrap .gallery-link {
     position: absolute;
-    bottom: 60px;
-    right: 90px;
-    z-index: 3; }
+    bottom: 0px;
+    right: 0;
+    height: 180px;
+    width: 100%;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    float: left; }
     #slide-wrap .gallery-link .btn {
-      background: rgba(75, 50, 47, 0.5);
+      background: none;
+      width: 100%;
+      height: 100%;
+      display: block;
       color: white;
       font-weight: bold;
       font-size: 18px;
       text-transform: uppercase; }
+      #slide-wrap .gallery-link .btn .glyphicon {
+        font-size: 24px; }
 
 #property-content {
   margin-top: 95px;
