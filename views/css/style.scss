@@ -487,7 +487,7 @@ h2 {
 				font-size: 12px;
 				font-weight: bold;
 				text-transform: uppercase;
-				background: none;
+				background: #000;
 				border: 1px solid $light;
 				.glyphicon {
 					font-size: 24px;
@@ -559,7 +559,7 @@ h2 {
 		right: 90px;
 		z-index: 3;
 		.btn {
-			background: none;
+			background: transparentize($dark, 0.5);
 			color: white;
 			font-weight: bold;
 			font-size: 18px;

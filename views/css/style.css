@@ -5666,7 +5666,7 @@ h2 {
         font-size: 12px;
         font-weight: bold;
         text-transform: uppercase;
-        background: none;
+        background: #000;
         border: 1px solid #edf1f4; }
         .property-main .gallery-block .gallery-link .btn .glyphicon {
           font-size: 24px;
@@ -5723,7 +5723,7 @@ h2 {
     right: 90px;
     z-index: 3; }
     #slide-wrap .gallery-link .btn {
-      background: none;
+      background: rgba(75, 50, 47, 0.5);
       color: white;
       font-weight: bold;
       font-size: 18px;

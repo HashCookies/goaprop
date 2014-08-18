@@ -263,6 +263,7 @@ get '/property/:id' do
 	@property = Property.get params[:id]
 	@images = @property.images.all
 	@image_grid = @images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+	@images_count = @images.count - 3 <= 0 ? nil : "#{@images.count - 3} more..."
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 		
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
