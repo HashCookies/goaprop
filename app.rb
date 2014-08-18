@@ -351,15 +351,15 @@ post '/update' do
 		@property.handle_upload(@featured)
 	end
 
-	 begin
+	 # begin
 		if @property.update(@update_params)
 			redirect "/property/#{@property.id}"
 		else
 			redirect "/property/#{@property.id}/edit"
 		end
-	 rescue DataMapper::SaveFailureError => e
-	 	puts e.resource.errors.inspect
-	 end
+	 # rescue DataMapper::SaveFailureError => e
+	 # 	puts e.resource.errors.inspect
+	 # end
 end
 
 
