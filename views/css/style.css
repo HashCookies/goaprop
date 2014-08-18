@@ -5458,7 +5458,7 @@ h2 {
   border-top: 1px solid #cdd8e1; }
 
 .prop-title {
-  font-size: 20px;
+  font-size: 18px;
   margin-top: 0;
   font-weight: 100 !important;
   font-family: "FreightText", Garamond, Georgia, serif;
@@ -5552,7 +5552,6 @@ h2 {
     border: 1px solid #dde5ea;
     border-bottom: none; }
     #property-grid .img-block img, #demo-property .img-block img {
-      height: 200px;
       border-radius: 3px;
       border: 10px solid #fff;
       border-bottom: 0;
