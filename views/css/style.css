@@ -5951,7 +5951,8 @@ h2 {
     display: inline-block; }
 
 .filters {
-  margin-top: -20px; }
+  margin-top: -20px;
+  position: absolute; }
   .filters .list-group-item .glyphicon {
     float: right; }
   .filters .list-group-item a {
@@ -5986,6 +5987,10 @@ h2 {
       border: 1px solid #35b6eb; }
   .filters .glyphicon {
     display: none; }
+
+#filters.stuck {
+  position: fixed;
+  bottom: 20px; }
 
 #footer {
   background: white;

@@ -74,6 +74,19 @@ $(document).ready(function() {
 		var $propD = $('.property-data');
 		
 		
+		$('#filters').waypoint(function(direction) {
+			if (direction == "down") {
+				$('#filters').addClass('stuck');
+			}
+			if (direction == "up") {
+				$('#filters').removeClass('stuck');
+			}
+		}, {
+		  offset: function() {
+		    return 20 - ($(this).height() - winH);
+		  }
+		});
+		
 		var propTop;
 		
 		if (winH < 760) {

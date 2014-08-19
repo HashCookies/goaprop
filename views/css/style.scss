@@ -897,6 +897,12 @@ h2 {
 	.glyphicon {
 		display: none;
 	}
+	position: absolute;
+}
+
+#filters.stuck {
+	position: fixed;
+	bottom: 20px;
 }
 
 #footer {
