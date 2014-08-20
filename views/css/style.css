@@ -5682,6 +5682,12 @@ h2 {
   color: #f66f61;
   margin-top: 6px; }
 
+.list-group #switch-unit {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  color: #159fd8; }
+
 .property-image-grid {
   border-bottom: 1px solid #cdd8e1;
   background: #f7f7e8;
@@ -5950,8 +5956,12 @@ h2 {
   .popover-content .state {
     display: inline-block; }
 
+#results-container {
+  min-height: 780px; }
+
 .filters {
   margin-top: -20px;
+  padding: 0 0 0 20px;
   position: absolute; }
   .filters .list-group-item .glyphicon {
     float: right; }

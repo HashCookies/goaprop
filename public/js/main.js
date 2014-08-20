@@ -87,6 +87,8 @@ $(document).ready(function() {
 		  }
 		});
 		
+		
+		
 		var propTop;
 		
 		if (winH < 760) {
@@ -351,7 +353,6 @@ $(document).ready(function() {
 	
 
 	$.cookie.defaults = { path: '/' };
-	console.log($.cookie('mode'));
 	$b.addClass($.cookie('mode'));
 	
 	$('#switch-unit').click(function() {
@@ -402,5 +403,8 @@ $(document).ready(function() {
 	
 	$(window).load(function() {
 		$grid.isotope();
+		$('#footer').waypoint(function() {
+			console.log('test');
+		}, { offset: 500 });
 	});
 });	
