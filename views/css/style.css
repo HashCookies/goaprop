@@ -6007,7 +6007,9 @@ h2 {
   border-top: 1px solid #cdd8e1;
   color: #444;
   padding-bottom: 0px;
-  padding-top: 10px; }
+  padding-top: 10px;
+  z-index: 2000;
+  position: relative; }
   #footer h3 {
     font-family: "Tisa OT";
     font-weight: bold;

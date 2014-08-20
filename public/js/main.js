@@ -74,19 +74,6 @@ $(document).ready(function() {
 		var $propD = $('.property-data');
 		
 		
-		$('#filters').waypoint(function(direction) {
-			if (direction == "down") {
-				$('#filters').addClass('stuck');
-			}
-			if (direction == "up") {
-				$('#filters').removeClass('stuck');
-			}
-		}, {
-		  offset: function() {
-		    return 20 - ($(this).height() - winH);
-		  }
-		});
-		
 		
 		
 		var propTop;
@@ -403,8 +390,22 @@ $(document).ready(function() {
 	
 	$(window).load(function() {
 		$grid.isotope();
+		
+		$('#filters').waypoint(function(direction) {
+			if (direction == "down") {
+				$('#filters').addClass('stuck');
+			}
+			if (direction == "up") {
+				$('#filters').removeClass('stuck');
+			}
+		}, {
+		  offset: function() {
+		    return 0 - ($(this).height() - (winH - 20));
+		  }
+		});
+		
 		$('#footer').waypoint(function() {
 			console.log('test');
-		}, { offset: 500 });
+		}, { offset: 1000 });
 	});
 });	
