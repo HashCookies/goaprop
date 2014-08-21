@@ -83,18 +83,18 @@ class Property
 	belongs_to :state
 	belongs_to :category
 	
-	def handle_upload(file)
-		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
+	def handle_upload(file, propertynumber)
+		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
 		File.open(path, "wb") do |f|
 			f.write(file[:tempfile].read)
 		end
 	end	
 	
-	def generate_thumb(file)
-		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
+	def generate_thumb(file, propertynumber)
+		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
 		image = MiniMagick::Image.open(path)
 		image.resize "350x500"
-		image.write Dir.pwd + "/public/properties/images/thumbs/" + file[:filename].downcase.gsub(" ", "-")
+		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
 	end
 end
 
@@ -106,7 +106,6 @@ class Image
 	include DataMapper::Resource
 	
 	property :id,			Serial
-	property :product_id,	Integer
 	property :url, 			String
 	
 	belongs_to :property
@@ -412,19 +411,19 @@ post '/create' do
 	if property.save			
 		if !params[:images].nil?
 			params[:images].each do |image|
-				property.images.create({ :property_id => property.id, :url => image[:filename].downcase.gsub(" ", "-") })
-				property.handle_upload(image)
+				property.images.create({ :property_id => property.id, :url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
+				property.handle_upload(image, property.id.to_s)
 			end
 		end
 		
 		if !params[:featured].nil?
-			@featured = property.images.create({ :property_id => property.id, :url => params[:featured][:filename].downcase.gsub(" ", "-") })
-			property.handle_upload(params[:featured])
+			@featured = property.images.create({ :property_id => property.id, :url => property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
+			property.handle_upload(params[:featured], property.id.to_s)
 			property.update({ :featured_img => @featured.id })
 		end
 		
 		if !params[:featured].nil?
-			property.generate_thumb(params[:featured])
+			property.generate_thumb(params[:featured], property.id.to_s)
 		end 
 		
 		redirect "/property/#{property.id}"
