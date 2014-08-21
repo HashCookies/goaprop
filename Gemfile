@@ -10,6 +10,7 @@ gem "pony"
 gem "carrierwave"
 gem "fog"
 gem 'carrierwave-datamapper'
+gem "mini_magick"
 
 group :development do
 	gem 'sqlite3'

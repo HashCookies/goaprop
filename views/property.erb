@@ -107,11 +107,9 @@
 						</li>
 					<% end %>
 					
-					<% if !@property.floor.nil? || !@property.lift.nil? %>
-					
-					<li class="clearfix"></li>
-					
-					<% end %>
+						<% if !@property.floor.nil? || !@property.lift.nil? %>
+							<li class="clearfix"></li>
+						<% end %>
 					
 					<% if !@property.furnishing.nil? %>
 						<li class="col-md-4">
@@ -134,11 +132,9 @@
 						</li>
 					<% end %>
 					
-					<% if !@property.furnishing.nil? || !@property.water.nil? || !@property.electricity.nil? %>
-					
-					<li class="clearfix"></li>
-					
-					<% end %>
+						<% if !@property.furnishing.nil? || !@property.water.nil? || !@property.electricity.nil? %>
+							<li class="clearfix"></li>
+						<% end %>
 					
 					<% if !@property.zone.nil? %>
 						<li class="col-md-3">
@@ -167,7 +163,11 @@
 							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
 					<% end %>
-					<li class="clearfix"></li>
+					
+						<% if !@property.zone.nil? || !@property.view.nil?  || 
+							  !@property.fsi.nil? || !@property.sanad.nil?  %>
+							<li class="clearfix"></li>				
+						<% end %>
 				</ul>
 			</div>
 		</div>
