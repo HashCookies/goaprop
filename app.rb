@@ -263,7 +263,7 @@ get '/property/:id/edit' do
 	erb :edit
 end
 
-get '/property/:id' do
+get '/property/:id/:slug' do
 	@body_class += " property"
 		
 	# Getting the Property from the params of ID and setting it up for the view
@@ -384,7 +384,7 @@ post '/create' do
 	
 	# Sanitising some of the properties for saving to DataMapper.
 	
-	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
+	property.slug = "#{property.title}-#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.to_i
@@ -414,7 +414,7 @@ post '/create' do
 			property.generate_thumb(params[:featured], property.id.to_s)
 		end 
 		
-		redirect "/property/#{property.id}"
+		redirect "/property/#{property.id}/#{property.slug}"
 	else
 		redirect '/properties'
 	end
