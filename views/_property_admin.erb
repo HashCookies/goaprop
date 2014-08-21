@@ -4,8 +4,9 @@
 			data-date="<%= property.updated_at %>">
 			
 				<div class="img-block">
-					
-					<a href="/property/<%= property.id %>"><img src="/properties/images/<%= property.featured_img %>" alt="" /></a>
+					<a href="/property/<%= property.id %>">
+						<img src="/properties/images/thumbs/<%= property.featured_img %>" alt="" />
+					</a>
 				</div>
 				<div class="data-block">
 					<h3 class="prop-title">
@@ -17,7 +18,7 @@
 						</a>
 						
 					</h3> 
-					<span class='smaller prop-string'><%= property.area %> <span>Sq Mts</span></span>
+					<span class='smaller prop-string'<span class="unit-area"><%= property.area %></span> <span class="unit-label">Sq Mts</span></span>
 					<div class="prop-price">
 						<span class="price sort-price">
 							<% if property.state_id == 2 %>
