@@ -93,7 +93,7 @@ class Property
 	def generate_thumb(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
 		image = MiniMagick::Image.open(path)
-		image.resize "350x500"
+		image.resize "500x800"
 		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
 	end
 end
@@ -411,13 +411,13 @@ post '/create' do
 	if property.save			
 		if !params[:images].nil?
 			params[:images].each do |image|
-				property.images.create({ :property_id => property.id, :url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
+				property.images.create({:url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
 				property.handle_upload(image, property.id.to_s)
 			end
 		end
 		
 		if !params[:featured].nil?
-			@featured = property.images.create({ :property_id => property.id, :url => property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
+			@featured = property.images.create({:url => property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
 			property.handle_upload(params[:featured], property.id.to_s)
 			property.update({ :featured_img => @featured.id })
 		end
