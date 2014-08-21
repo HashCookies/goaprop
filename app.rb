@@ -5,6 +5,7 @@ require 'sinatra/support'
 require 'sinatra/reloader'
 require 'lib/authorization'
 require 'data_mapper'
+require 'mini_magick'
 require 'sass'
 
 enable :sessions
@@ -88,6 +89,13 @@ class Property
 			f.write(file[:tempfile].read)
 		end
 	end	
+	
+	def generate_thumb(file)
+		path = File.join(Dir.pwd, "/public/properties/images", file[:filename].downcase.gsub(" ", "-"))
+		image = MiniMagick::Image.open(path)
+		image.resize "350x500"
+		image.write Dir.pwd + "/public/properties/images/thumbs/" + file[:filename].downcase.gsub(" ", "-")
+	end
 end
 
 def to_currency(price)
@@ -402,6 +410,10 @@ post '/create' do
 			property.handle_upload(params[:featured])
 			property.update({ :featured_img => @featured.id })
 		end
+		
+		if !params[:featured].nil?
+			property.generate_thumb(params[:featured])
+		end 
 		
 		redirect "/property/#{property.id}"
 	else

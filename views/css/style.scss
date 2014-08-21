@@ -514,6 +514,13 @@ h2 {
 	margin-top: 6px;
 }
 
+.list-group #switch-unit {
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	color: darken($blue, 10%);
+}
+
 .property-image-grid {
 	border-bottom: 1px solid darken($light, 10%);
 	background: desaturate(darken($offWhite, 3%), 0%);
@@ -853,8 +860,14 @@ h2 {
 	}	
 }
 
+#results-container {
+	min-height: 780px;
+	
+}
+
 .filters {
 	margin-top: -20px;
+	padding: 0 0 0 20px;
 	.list-group-item {
 		.glyphicon {
 			float: right;
@@ -901,6 +914,12 @@ h2 {
 	.glyphicon {
 		display: none;
 	}
+	position: absolute;
+}
+
+#filters.stuck {
+	position: fixed;
+	bottom: 20px;
 }
 
 #footer {
@@ -909,6 +928,8 @@ h2 {
 	color: #444;
 	padding-bottom: 0px;
 	padding-top: 10px;
+	z-index: 2000;
+	position: relative;
 	h3 {
 		font-family: "Tisa OT";
 		font-weight: bold;
