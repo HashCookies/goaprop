@@ -382,9 +382,6 @@ post '/create' do
 	state.propertys << property
 	category.propertys << property
 	
-	
-	
-	
 	# Sanitising some of the properties for saving to DataMapper.
 	
 	property.slug = "#{property.title}-#{property.type.name}-#{property.location.name}"
@@ -393,21 +390,12 @@ post '/create' do
 	property.price = property.price.to_i
 	
 	property.area_built = property.area_built.to_i
-	
-	
-	
-	
+		
 	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	
-	
-	
-	
-	
-	
-
 	if property.save			
 		if !params[:images].nil?
 			params[:images].each do |image|
@@ -478,10 +466,8 @@ get '/admin' do
 	@properties = Property.all
 	@regions = Region.all
 	@locations = Location.all
-	@locations.each do |location|
-		location.propertys.each do |property|
-			property.featured_img = property.images.get(property.featured_img).url unless property.images.get(property.featured_img).nil?
-		end
+	@properties.each do |property|
+		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 	@types = Type.all
 	@states = State.all

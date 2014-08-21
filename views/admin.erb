@@ -1,30 +1,89 @@
-<div class="container">
-	<div class="row section">
-		<div class="col-md-12">
-			<h2>Hi Goa Property Co</h2>
-			<p class="lead">You can change pretty much anything from this admin page.</p>
-		</div>
-		<div class="col-md-12">
-			<a href="/property/new" class="btn btn-large btn-primary">Create New Property</a>
-			<a href="/location/new" class="btn btn-large btn-primary">Create New Location</a>
-			<a href="/type/new" class="btn btn-large btn-primary">Create New Type</a>
+<div class="grid-wrap">
+	<div class="container">
+		<div class="row section">
+			<div class="col-md-12">
+				<h2>Hi Goa Property Co</h2>
+				<p class="lead">You can change pretty much anything from this admin page.</p>
+			</div>
+			<div class="col-md-12">
+				<a href="/property/new" class="btn btn-large btn-primary">Create New Property</a>
+				<a href="/location/new" class="btn btn-large btn-primary">Create New Location</a>
+				<a href="/type/new" class="btn btn-large btn-primary">Create New Type</a>
+			</div>
 		</div>
 	</div>
+	<div class="container-fluid admin-filters"  id="results-container">
+		<div class="row section">
 
-	<div class="row section">
-		<h3 class="title">Properties</h3>
-		<% @locations.each do |location| %>
-			<% unless location.propertys.count < 1 %>
-				<div class="col-md-2"><h3 class="title"><%= location.name %></h3></div>
-				<div class="col-md-10">
-					<ul id="property-grid" class="row">
-						<% location.propertys.each do |property| %>
-							<%= erb :_property_admin, :layout => false, :locals => {:property => property} %>
-						<% end %>
-					</ul>
-				</div>
-			<% end%>
-		<% end %>
+			<%# @locations.each do |location| %>
+				<%# unless location.propertys.count < 1 %>
+					<div class="col-md-2 col-sm-3 hidden-xs filters" id="filters">
+						<span class="label">Option</span>
+						<ul class="list-group filter-group" id="state-filter" data-filter-group="state">
+							<li class="list-group-item active">
+								<span class="badge"><%= @properties.count %></span>
+								<a href="#" data-filter="">All</a>
+							</li>
+							<% @states.each do |state| %>
+								<li class="list-group-item">
+									<span class="badge">
+										<%= state.propertys.count %>
+									</span>
+									<a href="#" data-filter=".<%= state.name.downcase %>"><%= state.name %></a>
+								</li>
+							<% end %>
+						</ul>
+						<span class="label">Type</span>
+						<ul class="list-group filter-group" id="type-filter" data-filter-group="type">
+							<li class="list-group-item active">
+								<span class="badge"><%= @properties.count %></span>
+								<a href="#" data-filter="">All</a>
+							</li>
+							<% @types.each do |type| %>
+								<li class="list-group-item">
+									<span class="badge">
+										<%= type.propertys.count %>
+									</span>
+									<a href="#" data-filter=".<%= type.name.downcase.gsub(" ", "-") %>"><%= type.name %></a>
+								</li>
+							<% end %>
+						</ul>	
+						<span class="label">Locations</span>
+						<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
+							<li class="list-group-item active">
+								<span class="badge"><%= @properties.count %></span>
+								<a href="#" data-filter="">All</a>
+							</li>
+							<% @locations.each do |location| %>
+								<li class="list-group-item">
+									<span class="badge"><%= location.propertys.count %></span>
+									<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+					<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3">
+						<!-- <%# unless location.propertys(:state_id => 1).count < 1 %>
+							<h3 class="title">Sale</h3>
+							<ul id="property-grid" class="row">
+								<%# location.propertys(:state_id => 1).each do |property| %>
+									<%#= erb :_property_admin, :layout => false, :locals => {:property => property} %>
+								<%# end %>
+							</ul>
+						<%# end %>
+						<%# unless location.propertys(:state_id => 2).count < 1 %>
+							<h3 class="title">Rent</h3>-->
+							<ul id="property-grid" class="row">
+								<!-- <%# location.propertys(:state_id => 2).each do |property| %> -->
+								<% @properties.each do |property| %>
+									<%= erb :_property_admin, :layout => false, :locals => {:property => property} %>
+								<% end %>
+							</ul>
+						<!--<%# end %> -->
+					</div>
+				<%# end%>
+			<%# end %>
+		</div>
 	</div>
 </div>
 <%= erb :_modal %>
