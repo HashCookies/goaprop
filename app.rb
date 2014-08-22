@@ -187,6 +187,7 @@ end
 
 
 get '/reset' do
+	require_admin
 	DataMapper.auto_migrate!
 	DataMapper.finalize
 	
@@ -232,6 +233,8 @@ get '/about' do
 end
 
 get '/property/new' do
+	require_admin
+	
 	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
@@ -368,6 +371,8 @@ end
 
 
 post '/create' do
+	require_admin
+	
 	newparams = params[:property]
 	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
 	
@@ -420,46 +425,6 @@ post '/create' do
 		redirect '/properties'
 	end
 end
-
-# post '/create/:newtype' do
-# 	require_admin
-
-# 	@create_type = params[:newtype]
-
-# 	@save_val = ""
-
-# 	case @create_type
-# 	when "location"
-# 		location = Location.create(params[:location])
-# 		if !params[:region].nil?
-# 			params[:region].each_value do |v|
-# 				region = Region.get(v)
-# 				location.regions << region
-# 			end
-# 		end
-# 		@save_val = location
-# 	when "region"
-# 		region = Region.create(params[:region])
-# 		if !params[:location].nil?
-# 			params[:location].each_value do |v|
-# 				location = Location.get(v)
-# 				region.locations << location
-# 			end
-# 		end
-# 		@save_val = region
-# 	when "type"
-# 		type = Type.create(params[:type])
-# 		@save_val = type
-# 	else
-# 		raise "property"
-# 	end
-	
-# 	if @save_val.save
-# 		redirect '/admin'
-# 	else
-# 		redirect '/'
-# 	end
-# end
 
 get '/admin' do
 	require_admin
