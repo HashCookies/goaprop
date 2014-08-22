@@ -269,6 +269,7 @@ end
 
 get '/property/:id/:slug' do
 	@body_class += " property"
+	
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
