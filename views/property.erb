@@ -1,29 +1,35 @@
-<div class="property-image-grid">
-	<div class="container">
-			<div id="main-img" class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
-				<a href="/properties/images/<%= @property.featured_img %>">
-					<img src="/properties/images/<%= @property.featured_img %>" alt="" />
-				</a>
-			</div>
-			<ul id="slide-wrap">
-				<li class="hidden">
-					<a href="/properties/images/<%= @property.featured_img %>">
-						<img src="/properties/images/<%= @property.featured_img %>" alt="" />
-					</a>
-				</li>
-				<% @image_grid.each do |image| %>
-					<li class="small img-block" data-stretch="/properties/images/<%= image.url %>">
-						<a href="/properties/images/<%= image.url %>">
-							<img src="/properties/images/<%= image.url %>" alt="" />
+<% if @property.featured_img %>
+	<div class="property-image-grid">
+		<div class="container">
+				
+					<div id="main-img" class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
+						<a href="/properties/images/<%= @property.featured_img %>">
+							<img src="/properties/images/<%= @property.featured_img %>" alt="" />
 						</a>
-					</li>
-				<% end %>
-				<li class="gallery-link">
-					<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
-				</li>
-			</ul>		
+					</div>
+					<ul id="slide-wrap">
+						<li class="hidden">
+							<a href="/properties/images/<%= @property.featured_img %>">
+								<img src="/properties/images/<%= @property.featured_img %>" alt="" />
+							</a>
+						</li>
+						<% @image_grid.each do |image| %>
+							<li class="small img-block" data-stretch="/properties/images/<%= image.url %>">
+								<a href="/properties/images/<%= image.url %>">
+									<img src="/properties/images/<%= image.url %>" alt="" />
+								</a>
+							</li>
+						<% end %>
+						<li class="gallery-link">
+							<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
+						</li>
+					</ul>	
+	
+		</div>
 	</div>
-</div>
+<% else %>
+	<hr style="margin-bottom: 0;" />
+<% end %>	
 
 <div class="property-data">
 	<div class="container">
@@ -191,7 +197,7 @@
 							  !@property.fsi.nil? || !@property.sanad.nil?  %>
 							<li class="clearfix"></li>				
 						<% end %>
-					<% if auth.provided? %>
+					<% if auth.provided? && !@property.field_notes.nil? %>
 						<li class="col-md-12">
 							<span class="label">Property Notes (Internal)</span>
 							<div class="block"><%= @property.field_notes.gsub(/^(.*)$/, '<p>\1</p>') %></div>

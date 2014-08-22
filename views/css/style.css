@@ -5716,6 +5716,8 @@ h2 {
       border-bottom: 0; }
   .property-image-grid .img-block {
     float: left; }
+  .property-image-grid #default-img {
+    width: 100%; }
 
 #slide-wrap {
   position: relative;

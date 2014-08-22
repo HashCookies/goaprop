@@ -469,7 +469,11 @@ get '/search' do
 	@types = @properties.types
 	
 	@properties.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		if !Image.get(property.featured_img).nil?
+			property.featured_img = Image.get(property.featured_img).url
+		else
+			property.featured_img = "gpc-default-thumb.jpg"
+		end
 		property.bhk_count ||= 3
 		if property.bhk_count < 3
 			property.bhk_count = property.bhk_count
