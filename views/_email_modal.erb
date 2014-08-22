@@ -20,9 +20,13 @@
             <label for="tomail" class="hidden">Friend's Email</label>
             <input type="text" name="friendmail[tomail]" placeholder="Friend's email" value="" class="form-control" />
           </div>
+          <div class="form-group">
+            <label for="tomail" class="hidden">Friend's Email</label>
+            <textarea type="text" name="friendmail[tomail]" rows="4" placeholder="Message (optional)" value="" class="form-control">Hey, check out this property I found on GoaPropertyCo: "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (http://goapropertyco.com/property/<%=@property.id %>/<%= @property.slug %>).</textarea>
+          </div>
           <input type="hidden" name="_method" value="email">
           <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Cancel</button>
-          <input type="submit" value="Send Property" class="btn btn-primary btn-large">
+          <input type="submit" value="Send Mail" class="btn btn-primary btn-large">
         </form>
       </div>
     </div><!-- /.modal-content -->
