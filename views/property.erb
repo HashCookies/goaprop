@@ -86,12 +86,39 @@
 						<div class="block"><%= @property.location.name %></div>
 					</li>
 					
-					<li class="col-md-8">
-						<span class="label">Facilities</span>
-						<div class="block"><%= @property.specs %></div>
-					</li>
+					<% if !@property.specs.nil? %>
+						<li class="col-md-8">
+							<span class="label">Facilities</span>
+							<div class="block"><%= @property.specs %></div>
+						</li>
+					<% end %>
 					
 					<li class="clearfix"></li>
+
+					<% if !@property.bhk_count.nil? %>
+						<li class="col-md-4">
+							<span class="label">Bedrooms</span>
+							<div class="block"><%= @property.bhk_count %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.toil_attached.nil? %>
+						<li class="col-md-4">
+							<span class="label">Toilets Attached</span>
+							<div class="block"><%= @property.toil_attached %></div>
+						</li>
+					<% end %>
+
+					<% if !@property.toil_nattached.nil? %>
+						<li class="col-md-4">
+							<span class="label">Toilets Non-Attached</span>
+							<div class="block"><%= @property.toil_nattached %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.bhk_count.nil? || !@property.toil_attached.nil? || !@property.toil_nattached.nil? %>
+						<li class="clearfix"></li>
+					<% end %>
 					
 					<% if !@property.floor.nil? %>
 						<li class="col-md-4">
@@ -107,9 +134,9 @@
 						</li>
 					<% end %>
 					
-						<% if !@property.floor.nil? || !@property.lift.nil? %>
-							<li class="clearfix"></li>
-						<% end %>
+					<% if !@property.floor.nil? || !@property.lift.nil? %>
+						<li class="clearfix"></li>
+					<% end %>
 					
 					<% if !@property.furnishing.nil? %>
 						<li class="col-md-4">

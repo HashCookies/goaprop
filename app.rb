@@ -99,7 +99,8 @@ class Property
 end
 
 def to_currency(price)
-	price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+	#price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+	price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,")
 end
 
 class Image
@@ -329,7 +330,7 @@ post '/update' do
 
 	@update_params[:bhk_count] = @update_params[:bhk_count].to_i unless @update_params[:bhk_count].nil?
 
-	@update_params[:area_built] = @update_params[:area_built].to_i
+	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
 
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
@@ -355,7 +356,7 @@ post '/update' do
 
 	 # begin
 		if @property.update(@update_params)
-			redirect "/property/#{@property.id}"
+			redirect "/property/#{@property.id}/#{@property.slug}"
 		else
 			redirect "/property/#{@property.id}/edit"
 		end

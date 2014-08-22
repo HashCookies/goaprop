@@ -1,12 +1,12 @@
 <ul id="property-grid">
 	<% @properties.each do |property| %>
-		<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase.gsub(" ", "-") %> bhk-<%= property.bhk_count %>" 
+		<li class="col-md-4 col-sm-6 col-xs-12 property-item <%= property.location.name.downcase %> <%= property.type.name.downcase.gsub(" ", "-") %> <%= property.zone.downcase unless property.zone.nil? %> bhk-<%= property.bhk_count %>" 
 			data-price="<%= property.price %>" 
 			data-area="<%= property.area %>"
 			data-date="<%= property.updated_at %>">
 			
 				<div class="img-block">
-					<a href="/property/<%= property.id %>">
+					<a href="/property/<%= property.id %>/<%= property.slug %>">
 						<img src="/properties/images/thumbs/<%= property.featured_img %>" alt="" />
 					</a>
 				</div>
