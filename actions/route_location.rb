@@ -1,10 +1,5 @@
 get '/location/new' do
-	@regions = Region.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
+	require_admin
 	erb :new_location
 end
 
@@ -23,12 +18,6 @@ post '/location/create' do
 end
 
 get '/location/:id' do
-	@regions = Region.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 	@location = Location.get(params[:id])
 	erb :location
 end
