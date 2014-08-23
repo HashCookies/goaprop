@@ -474,12 +474,6 @@ get '/search' do
 		else
 			property.featured_img = "gpc-default-thumb.jpg"
 		end
-		property.bhk_count ||= 3
-		if property.bhk_count < 3
-			property.bhk_count = property.bhk_count
-		else
-			property.bhk_count = 3
-		end
 	end
 	erb :search
 end
