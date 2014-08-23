@@ -21,3 +21,8 @@ group :production do
 	gem 'mysql'
 	gem 'dm-mysql-adapter'
 end
+
+group :test do
+	gem 'rspec'
+	gem 'capybara'
+end

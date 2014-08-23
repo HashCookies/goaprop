@@ -9,6 +9,7 @@ require 'mini_magick'
 require 'sass'
 
 enable :sessions
+set :session_secret, 'x*DhdsHD83X'
 
 get '/css/style.css' do
 	content_type 'text/css', :charset => 'utf-8'
@@ -33,6 +34,7 @@ end
 
 DataMapper::Property::String.length(255)
 DataMapper::Model.raise_on_save_failure = true 
+
 
 class Main < Sinatra::Base
   register Sinatra::Numeric
