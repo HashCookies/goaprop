@@ -99,8 +99,8 @@ class Property
 end
 
 def to_currency(price)
-	#price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
-	price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,")
+	#price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse # Creates 100,000,000
+	price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,") # Creates 10,00,00,000
 end
 
 class Image
@@ -199,7 +199,6 @@ helpers do
 	end
 end
 
-
 get '/reset' do
 	require_admin
 	DataMapper.auto_migrate!
@@ -223,7 +222,6 @@ end
 get '/' do
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
-	
 	
 	erb :home
 end
@@ -259,13 +257,12 @@ end
 
 get '/property/:id/:slug' do
 	@body_class += " property"
-	
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
 	@images = @property.images.all
 	@image_grid = @images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
-	@images_count = @images.count - 3 <= 0 ? nil : "#{@images.count - 3} more..."
+	@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
 	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 		
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
@@ -316,6 +313,9 @@ post '/update' do
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
 
+	@update_params[:slug] = (@update_params[:title].nil? ? "" : params[:property][:title] + "-") + Type.get(params[:property][:type_id]).name + "-in-" + Location.get(params[:property][:location_id]).name << "-for-" << State.get(params[:property][:state_id]).name
+	@update_params[:slug] = @update_params[:slug].downcase.gsub(" ", "-")
+	
 	@update_params[:bhk_count] = @update_params[:bhk_count].to_i unless @update_params[:bhk_count].nil?
 
 	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
@@ -327,7 +327,7 @@ post '/update' do
 	unless @gallUpload.nil?
 		params[:gallUploads].each do |image|
 			# begin
-				@property.images.create({ :property_id => @property.id, :url => image[:filename].downcase.gsub(" ", "-") })
+				@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
 				@property.handle_upload(image)	
 			# rescue Exception => e
 			# 	puts e.resource.errors.inspect
@@ -338,8 +338,9 @@ post '/update' do
 
 	unless @featured.nil?
 		@image = Image.get(@property.featured_img)
-		@image.update({ :url => @featured[:filename].downcase.gsub(" ", "-") })
-		@property.handle_upload(@featured)
+		@image.update({ :url => @property.id.to_s + "-" + @featured[:filename].downcase.gsub(" ", "-") })
+		@property.handle_upload(@featured, @property.id.to_s)
+		@property.generate_thumb(@featured, @property.id.to_s)
 	end
 
 	 # begin
@@ -357,7 +358,6 @@ end
 
 post '/create' do
 	require_admin
-	
 	newparams = params[:property]
 	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
 	
@@ -416,6 +416,7 @@ get '/admin' do
 	@body_class += " admin"
 	@properties = Property.all
 	@locations = Location.all
+	@types = Type.all
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
@@ -423,7 +424,7 @@ get '/admin' do
 	erb :admin
 end
 
-get '/search' do	
+get '/search' do
 	@category = Category.new(:name => "All")
 	
 	@region = Region.get(params[:search][:region_id])
@@ -494,7 +495,8 @@ post '/send-inquiry/:for' do
 		@mailFrom = params[:friendmail][:frommail]
 		@mailTo = params[:friendmail][:tomail]
 		@subject = params[:friendmail][:name] + " looked up a property for you"
-		@body = params[:friendmail][:name] << " has a property for you at Goa Property Co<br /> Please check the following link: " << request.base_url << "/property/" << params[:friendmail][:propID] << "<br />Regards,<br />Goa Property Co. "
+		@body = params[:friendmail][:mailbody] << "<br />Regards,<br />" << params[:friendmail][:name]
+		# @body = params[:friendmail][:name] << " has a property for you at Goa Property Co<br /> Please check the following link: " << request.base_url << "/property/" << params[:friendmail][:propID] << "<br />Regards,<br />Goa Property Co. "
   	else
   		@mailFrom = params[:callback][:name]
   		@subject = "Callback Request"

@@ -20,9 +20,11 @@
 								</a>
 							</li>
 						<% end %>
-						<li class="gallery-link">
-							<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
-						</li>
+						<% if !@images_count.nil? %>
+							<li class="gallery-link">
+								<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
+							</li>
+						<% end %>
 					</ul>	
 	
 		</div>
@@ -36,7 +38,7 @@
 		<div class="row">
 			<div class="col-md-8 data-block">
 				<h3 class="prop-title"><div></div>
-					<a href="/property/<%= @property.id %>">
+					<a href="/property/<%= @property.id %>/<%= @property.slug %>">
 						<span class='prop-string'><%= @property.title %> </span>
 						<%= "<span class='prop-string'>#{@property.type.name}</span>" %>
 						<%= "in <span class='prop-string'>#{@property.location.name}</span>" %>
@@ -239,7 +241,7 @@
 						<h5 class="label">Recently Viewed Properties</h5>
 						<% @viewed.each do |property| %>
 							<li>
-								<a href="/property/<%= property.id %>">
+								<a href="/property/<%= property.id %>/<%= property.slug %>">
 									<span class="recently-prop-title"><%= property.title %>
 									<%= property.type.name %> 
 									<%= "in " + property.location.name %>
