@@ -170,19 +170,33 @@ end
 
 DataMapper.auto_upgrade!
 
+# Method to look for the type of request
+set(:method) do |method|
+	method = method.to_s.upcase
+	condition { request.request_method == method }
+end
+
+# Based on previous method, this sniffs out the get methods and applies a :before filter
+# Because we don't want the before filters on POST requests.
+before :method => :get do
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	@region = Region.first
+	@category = Category.get 1
+	@state = State.get 2
+	
+	@page_title = "GoaPropertyCo"
+	@body_class = "page"
+	session[:properties] ||= {}
+end
+
 
 helpers do
 	include Sinatra::Authorization
 	def partial template
 		erb template, :layout => false
 	end
-end
-
-before do
-	@page_title = "GoaPropertyCo"
-	@body_class = "page"
-	@hide_link = false
-	session[:properties] ||= {}
 end
 
 
@@ -209,40 +223,21 @@ end
 get '/' do
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
-	@regions = Region.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
+	
 	
 	erb :home
 end
 
 get '/about' do
 	@body_class += " about"
-	@regions = Region.all
-	@locations = Location.all
-	@types = Type.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 	erb :about
 end
 
 get '/property/new' do
 	require_admin
-	
-	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 	@page_title += " | New Property"
 	@body_class += " alt"
 	erb :new
@@ -253,17 +248,12 @@ get '/property/:id/edit' do
 	@property = Property.get(params[:id])
 	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@images = @property.images.all(:id.not => @property.featured_img) # Gallery Images minus Featured Image
-	@regions = Region.all
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
 	@selected = 'selected="selected"'
-	@categories = Category.all
 	@page_title += " | Edit Property"
 	@body_class += " alt"
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 	erb :edit
 end
 
@@ -285,12 +275,9 @@ get '/property/:id/:slug' do
 	end
 	
 	# Variables for the search bar
-	@categories = Category.all
 	@category = Category.get(@property.category.id)
-	@states = State.all
 	@state = State.get(@property.state.id)
 	@region = Region.get(@property.location.regions.first.id)
-	@regions = Region.all # reset the regions to ALL which are at the top only of the current location's regions.
 	
 	# For the recently viewed items, pulling from the sessions cookie.
 	session[:properties][@property.id] = @property.title
@@ -306,10 +293,7 @@ end
 
 get '/resource/new' do
 	@locations = Location.all
-	@regions = Region.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
+
 	erb :new_resource
 end
 
@@ -431,26 +415,15 @@ get '/admin' do
 	require_admin
 	@body_class += " admin"
 	@properties = Property.all
-	@regions = Region.all
 	@locations = Location.all
 	@properties.each do |property|
 		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
-	@types = Type.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 
 	erb :admin
 end
 
-get '/search' do
-	@categories = Category.all
-	@states = State.all
-	@regions = Region.all	
-	
+get '/search' do	
 	@category = Category.new(:name => "All")
 	
 	@region = Region.get(params[:search][:region_id])
@@ -547,12 +520,6 @@ end
 
 get '/sell-lease' do
 	@body_class += " leasesell"
-	@regions = Region.all
-	@states = State.all
-	@categories = Category.all
-	@region = Region.first
-	@category = Category.get 1
-	@state = State.get 2
 	
 	erb :sell
 end
