@@ -30,4 +30,21 @@ describe "Searching for property" do
 	it "should load the search page" do
 		page.should have_content("Locations")
 	end
+	it "should have a property listing" do
+		page.should have_content("Renovated")
+	end
+end
+
+describe "Visit Sell/Lease" do
+	before { visit '/sell-lease' }
+	it "should have the required content" do
+		page.should have_title("GoaPropertyCo | Sell or Lease Your Property")
+	end
+end
+
+describe "Searching for Sale Property in North Goa" do
+	before {visit '/search?search%5Bcategory%5D=1&search%5Bstate%5D=1&search%5Bregion_id%5D=1&submit=' }
+	it "Should have a property for sale from Mapusa" do
+		page.should have_content("Blank")
+	end
 end

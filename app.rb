@@ -524,7 +524,7 @@ end
 
 get '/sell-lease' do
 	@body_class += " leasesell"
-	
+	@page_title += " | Sell or Lease Your Property"
 	erb :sell
 end
 
