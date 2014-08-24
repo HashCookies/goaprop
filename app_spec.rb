@@ -48,3 +48,13 @@ describe "Searching for Sale Property in North Goa" do
 		page.should have_content("Blank")
 	end
 end
+
+describe "Creating a new property" do
+	before do 
+		page.driver.browser.authorize 'hashcookies', 'iomega'
+		visit '/property/new' 
+	end
+	it "should have the required content" do
+		page.should have_content("Create A New Property")
+	end
+end
