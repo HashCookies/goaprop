@@ -187,7 +187,7 @@ before :method => :get do
 	@state = State.get 2
 	
 	@page_title = "GoaPropertyCo"
-	@body_class = "page"
+	@body_class = ""
 	session[:properties] ||= {}
 end
 
