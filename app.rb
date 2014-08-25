@@ -1,9 +1,8 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/support'
 require 'sinatra/reloader'
-require 'lib/authorization'
+require "#{Dir.pwd}/lib/authorization"
 require 'data_mapper'
 require 'mini_magick'
 require 'sass'

@@ -60,6 +60,8 @@ $(document).ready(function() {
 			}
 			$grid.isotope({filter: filterValue});
 			
+			$('#location-filter li, #type-filter li').not($this.parent()).not($('#filters').find($this.attr('data-filter'))).slideUp();
+			
 			return false;
 		});
 		

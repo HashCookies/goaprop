@@ -17,7 +17,9 @@
 						<a href="#" data-filter="">All</a>
 					</li>
 					<% @types.each do |type| %>
-						<li class="list-group-item">
+						<li class="list-group-item <% type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).each do |pr| %>
+							<%= pr.location.name.downcase %>
+						<% end %>">
 							<span class="badge">
 								<%= type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).count %>
 							</span>
@@ -33,13 +35,15 @@
 						<a href="#" data-filter="">All</a>
 					</li>
 					<% @locations.each do |location| %>
-						<li class="list-group-item">
+						<li class="list-group-item <% location.propertys(:state_id => @state.id, :category_id => @category.id).each do |pr| %>
+							<%= pr.type.name.downcase %>
+						<% end %>">
 							<span class="badge"><%= location.propertys(:state_id => @state.id, :category_id => @category.id).count %></span>
 							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
 						</li>
 					<% end %>
 				</ul>
-				
+
 				<% if @category.id == 3 %>
 					<span class="label">Zone</span>
 					<ul class="list-group filter-group" id="zone-filter" data-filter-group="zone">
