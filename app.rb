@@ -424,7 +424,12 @@ get '/admin' do
 	@locations = Location.all
 	@types = Type.all
 	@properties.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		if !Image.get(property.featured_img).nil?
+			property.featured_img = Image.get(property.featured_img).url
+		else
+			property.featured_img = "gpc-default-thumb.jpg"
+		end
+		# property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 
 	erb :admin
