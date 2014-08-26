@@ -6371,3 +6371,6 @@ form#property {
   .img-wrap img {
     height: 100%;
     width: auto; }
+
+#reset-filters {
+  display: none; }

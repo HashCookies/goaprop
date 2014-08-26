@@ -60,7 +60,29 @@ $(document).ready(function() {
 			}
 			$grid.isotope({filter: filterValue});
 			
-			$('#location-filter li, #type-filter li').not($this.parent()).not($('#filters').find($this.attr('data-filter'))).slideUp();
+			if (!$this.parent().hasClass('show-all')) {		
+				$('#location-filter li, #type-filter li').not($this.parent()).not($('#filters').find($this.attr('data-filter'))).slideUp(300);
+				$('#reset-filters').slideDown();
+			}
+			
+			
+			if ($this.parent().hasClass('show-all')) {
+				var parent = $this.parent().parent();
+				if (parent.attr('id') == 'location-filter') {
+					var activeClass = $('#type-filter .active a').attr('data-filter');
+					parent.find(activeClass).slideDown(300);
+				}
+				if (parent.attr('id') == 'type-filter') {
+					var activeClass = $('#location-filter .active a').attr('data-filter');
+					parent.find(activeClass).slideDown(300);
+				}
+			}
+			
+			if ($this.parent().parent().attr('id') == "reset-filters") {
+				$('#filters li').slideDown(400, function() {
+						$('#reset-filters').slideUp();
+				});
+			}
 			
 			return false;
 		});

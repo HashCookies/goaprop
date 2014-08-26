@@ -10,19 +10,19 @@
 	<div class="container-fluid" id="results-container">
 		<div class="row">
 			<div class="col-md-2 col-sm-3 hidden-xs filters" id="filters">
+				<ul class="list-group" id="reset-filters">
+					<li class="list-group-item"><a href="#" data-filter="">Reset Filters</a></li>
+				</ul>
 				<span class="label">Type</span>
 				<ul class="list-group filter-group" id="type-filter" data-filter-group="type">
-					<li class="list-group-item active">
+					<li class="list-group-item active show-all">
 						<span class="badge"><%= @properties.count %></span>
-						<a href="#" data-filter="">All</a>
+						<a href="#" data-filter="">Show All</a>
 					</li>
 					<% @types.each do |type| %>
 						<li class="list-group-item <% type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).each do |pr| %>
 							<%= pr.location.name.downcase %>
 						<% end %>">
-							<span class="badge">
-								<%= type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).count %>
-							</span>
 							<a href="#" data-filter=".<%= type.name.downcase.gsub(" ", "-") %>"><%= type.name %></a>
 						</li>
 					<% end %>
@@ -30,15 +30,14 @@
 						
 				<span class="label">Locations</span>
 				<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
-					<li class="list-group-item active">
-						<span class="badge"><%= @properties.count %></span>
-						<a href="#" data-filter="">All</a>
+					<li class="list-group-item active show-all">
+						<span class="badge"><%= @properties.locations.count %></span>
+						<a href="#" data-filter="">Show All</a>
 					</li>
 					<% @locations.each do |location| %>
 						<li class="list-group-item <% location.propertys(:state_id => @state.id, :category_id => @category.id).each do |pr| %>
 							<%= pr.type.name.downcase %>
 						<% end %>">
-							<span class="badge"><%= location.propertys(:state_id => @state.id, :category_id => @category.id).count %></span>
 							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
 						</li>
 					<% end %>
