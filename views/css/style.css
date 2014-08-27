@@ -5297,7 +5297,7 @@ button.close {
   box-sizing: border-box; }
 
 body {
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #4b322f; }
 
 ul {
@@ -5461,7 +5461,7 @@ h2 {
   font-size: 18px;
   margin-top: 0;
   font-weight: 100 !important;
-  font-family: "FreightText", Garamond, Georgia, serif;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
   font-style: italic;
   margin-bottom: 5px;
   line-height: 100%; }
@@ -5473,7 +5473,7 @@ h2 {
       text-decoration: none; }
   .prop-title .prop-string {
     font-weight: bold;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     display: inline-block;
     margin: 0px 2px; }
@@ -5544,7 +5544,7 @@ h2 {
         float: left;
         padding-top: 6px; }
     #property-grid ul .sort-area span, #demo-property ul .sort-area span {
-      font-family: "FreightText", Garamond, Georgia, serif;
+      font-family: "freight-text-pro", Garamond, Georgia, serif;
       font-style: italic; }
   #property-grid .img-block, #demo-property .img-block {
     margin-bottom: 0px;
@@ -5590,10 +5590,10 @@ h2 {
   font-weight: 100;
   display: block;
   margin-bottom: 25px;
-  font-family: "FreightText", Garamond, Georgia, serif;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
   font-style: italic; }
   .search-result-title span {
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-style: normal;
     display: inline-block;
     text-transform: uppercase;
@@ -5830,7 +5830,7 @@ h2 {
       margin-right: 5px;
       color: #4b322f; }
   .property-data .prop-code {
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     color: #ccc;
     font-style: normal;
@@ -5842,7 +5842,7 @@ h2 {
   padding: 50px;
   color: black;
   font-style: italic;
-  font-family: "FreightText", Garamond, Georgia, serif;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
   text-align: left; }
   .properties #search-bar {
     margin-bottom: 50px; }
@@ -5865,11 +5865,11 @@ h2 {
   #search-bar h3 {
     font-size: 60px;
     color: white;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     margin-bottom: 35px; }
     #search-bar h3 span {
-      font-family: "FreightText", Garamond, Georgia, serif;
+      font-family: "freight-text-pro", Garamond, Georgia, serif;
       font-style: italic; }
     .properties #search-bar h3 {
       color: #4b322f;
@@ -5887,7 +5887,7 @@ h2 {
     padding-left: 15px; }
   #search-bar input {
     color: #f66f61;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0 10px; }
   #search-bar .select-label-wrap {
     float: left;
@@ -5896,7 +5896,7 @@ h2 {
     padding-bottom: 10px; }
   #search-bar .select-label {
     text-decoration: none;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-style: normal;
     color: #f66f61;
@@ -5921,7 +5921,7 @@ h2 {
     font-style: normal;
     text-transform: uppercase;
     font-size: 22px;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     border: 1px solid #f66f61;
     padding: 15px 25px 13px;
     border-bottom-left-radius: 0;
@@ -5946,7 +5946,7 @@ h2 {
   padding: 10px 15px 15px; }
   .popover-content button {
     font-weight: bold;
-    font-family: "Tisa OT";
+    font-family: "ff-tisa-web-pro", Garamond, Georgia, serif;
     font-style: italic;
     background: none;
     border: none;
@@ -6020,32 +6020,32 @@ h2 {
   z-index: 2000;
   position: relative; }
   #footer h3 {
-    font-family: "Tisa OT";
+    font-family: "ff-tisa-web-pro", Garamond, Georgia, serif;
     font-weight: bold;
     font-style: italic;
     font-size: 30px;
     margin-bottom: 5px; }
   #footer p {
     font-size: 14px;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   #footer .phone-large {
     margin-top: 30px;
     margin-bottom: 20px; }
     #footer .phone-large p {
       font-size: 18px;
-      font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-style: normal;
       margin-bottom: 0; }
   #footer .subtitle {
     text-transform: uppercase;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-style: normal;
     margin-bottom: 0; }
   #footer .label {
     padding: 0;
     color: #f66f61;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   #footer address {
     font-size: 14px;
     /*margin-top: 20px;*/ }
@@ -6070,7 +6070,7 @@ h2 {
 #footer-form {
   margin-top: -35px;
   min-height: 400px;
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #fbfbf3;
   border: 1px solid #cdd8e1;
   color: #4b322f;
@@ -6092,7 +6092,7 @@ h2 {
     border-top: 1px solid #edf1f4;
     border-left: 1px solid #edf1f4;
     font-style: italic;
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     -webkit-transition-duration: 400ms; }
     #footer-form .form-control:focus {
       box-shadow: 1px 1px 0px #35b6eb; }
@@ -6105,7 +6105,7 @@ h2 {
     		}*/ }
   #footer-form .small {
     font-size: 14px;
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     font-style: italic;
     text-align: center;
     border-top: 1px solid #cdd8e1;
@@ -6117,14 +6117,13 @@ h2 {
   font-weight: bold;
   font-size: 48px;
   color: white;
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   margin-bottom: 15px;
   text-shadow: 0px 1px #333; }
 .info-intro p {
   font-size: 22px;
-  text-shadow: 0px 1px #000;
-  font-family: "Tisa OT", serif; }
+  text-shadow: 0px 1px #000; }
 .info-intro .inner {
   color: white;
   max-width: 700px;
@@ -6138,7 +6137,7 @@ h2 {
   margin-top: 30px; }
   #selllease p.lead {
     font-size: 18px;
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     font-style: italic;
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd; }
@@ -6159,7 +6158,7 @@ h2 {
     font-size: 16px; }
   .info-block p.lead {
     font-size: 18px;
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     font-style: italic;
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd; }
@@ -6175,7 +6174,7 @@ h2 {
     margin-top: 20px; }
   .info-block .review-quote {
     font-style: italic;
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 15px;
@@ -6193,7 +6192,7 @@ h2 {
       display: block;
       color: #35b6eb;
       text-align: right;
-      font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
       text-transform: uppercase;
       font-size: 14px;
       font-style: normal;
@@ -6234,7 +6233,7 @@ form#property {
   padding: 25px;
   border: 1px solid #cdd8e1; }
   form#property .mid-select {
-    font-family: "FreightText", Garamond, Georgia, serif;
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
     font-style: italic;
     display: inline-block;
     margin: 0 10px; }
@@ -6310,12 +6309,12 @@ form#property {
     float: left; }
 
 .dynamic-string {
-  font-family: "FreightText", Garamond, Georgia, serif;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
   font-style: italic; }
   .dynamic-string span, .dynamic-string strong {
     font-weight: bold;
     font-style: normal;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: inline-block;
     margin: 0px 2px; }
 
@@ -6380,7 +6379,7 @@ form#property {
   display: none; }
 
 #grid-wrap {
-  padding-top: 50px;
+  padding-top: 40px;
   background: #fbfbf3; }
 
 #sorting-bar {
@@ -6389,10 +6388,11 @@ form#property {
   border-top: 1px solid #f0f3f6;
   border-bottom: 1px solid #edf1f4;
   overflow: auto;
-  padding-top: 10px; }
+  padding-top: 8px; }
   #sorting-bar .sort-group {
     float: right;
-    margin-right: 15px; }
+    margin-right: 15px;
+    margin-top: 3px; }
   #sorting-bar .label {
     float: left;
     color: #beccd7;
@@ -6418,9 +6418,45 @@ form#property {
     font-weight: bold; }
   #sorting-bar .glyphicon {
     display: none; }
-  #sorting-bar .results-statement {
+
+#results-statement {
+  float: left;
+  padding-left: 5px;
+  width: 500px;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
+  font-style: italic; }
+  #results-statement .select-label-wrap {
+    float: left; }
+    #results-statement .select-label-wrap a {
+      font-weight: bold;
+      font-style: normal;
+      color: #4b322f;
+      font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      #results-statement .select-label-wrap a:hover {
+        text-decoration: none; }
+  #results-statement .select-label {
+    margin: 0 3px 0 3px; }
+    #results-statement .select-label:after {
+      display: inline-block;
+      content: " ";
+      width: 0;
+      height: 0;
+      margin-left: 5px;
+      vertical-align: middle;
+      border-top: 4px solid #aec0cd;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent; }
+  #results-statement .start-text {
     float: left;
-    padding-left: 5px; }
-    #sorting-bar .results-statement span {
-      font-size: 14px;
-      color: #4b322f; }
+    display: inline-block;
+    margin-right: 2px; }
+  #results-statement #find-prop {
+    float: left !important;
+    background: none;
+    padding: 0;
+    color: #f66f61;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-style: normal;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
