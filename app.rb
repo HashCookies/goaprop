@@ -25,16 +25,16 @@ configure :test do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/test.db")
 end
 
-configure :production do
-	require 'dm-sqlite-adapter'
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
-end
-
 # configure :production do
-# 	require 'mysql'
-# 	require 'dm-mysql-adapter'
-#   DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
+# 	require 'dm-sqlite-adapter'
+# 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
 # end
+
+configure :production do
+	require 'mysql'
+	require 'dm-mysql-adapter'
+	DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
+end
 
 DataMapper::Property::String.length(255)
 DataMapper::Model.raise_on_save_failure = true 
