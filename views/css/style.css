@@ -5946,7 +5946,7 @@ h2 {
   padding: 10px 15px 15px; }
   .popover-content button {
     font-weight: bold;
-    font-family: "Tisa OT";
+    font-family: "ff-tisa-web-pro", Garamond, Georgia, serif;
     font-style: italic;
     background: none;
     border: none;
@@ -6020,7 +6020,7 @@ h2 {
   z-index: 2000;
   position: relative; }
   #footer h3 {
-    font-family: "Tisa OT";
+    font-family: "ff-tisa-web-pro", Garamond, Georgia, serif;
     font-weight: bold;
     font-style: italic;
     font-size: 30px;
@@ -6379,7 +6379,7 @@ form#property {
   display: none; }
 
 #grid-wrap {
-  padding-top: 50px;
+  padding-top: 40px;
   background: #fbfbf3; }
 
 #sorting-bar {
@@ -6388,10 +6388,11 @@ form#property {
   border-top: 1px solid #f0f3f6;
   border-bottom: 1px solid #edf1f4;
   overflow: auto;
-  padding-top: 10px; }
+  padding-top: 8px; }
   #sorting-bar .sort-group {
     float: right;
-    margin-right: 15px; }
+    margin-right: 15px;
+    margin-top: 3px; }
   #sorting-bar .label {
     float: left;
     color: #beccd7;
@@ -6417,9 +6418,45 @@ form#property {
     font-weight: bold; }
   #sorting-bar .glyphicon {
     display: none; }
-  #sorting-bar .results-statement {
+
+#results-statement {
+  float: left;
+  padding-left: 5px;
+  width: 500px;
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
+  font-style: italic; }
+  #results-statement .select-label-wrap {
+    float: left; }
+    #results-statement .select-label-wrap a {
+      font-weight: bold;
+      font-style: normal;
+      color: #4b322f;
+      font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      #results-statement .select-label-wrap a:hover {
+        text-decoration: none; }
+  #results-statement .select-label {
+    margin: 0 3px 0 3px; }
+    #results-statement .select-label:after {
+      display: inline-block;
+      content: " ";
+      width: 0;
+      height: 0;
+      margin-left: 5px;
+      vertical-align: middle;
+      border-top: 4px solid #aec0cd;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent; }
+  #results-statement .start-text {
     float: left;
-    padding-left: 5px; }
-    #sorting-bar .results-statement span {
-      font-size: 14px;
-      color: #4b322f; }
+    display: inline-block;
+    margin-right: 2px; }
+  #results-statement #find-prop {
+    float: left !important;
+    background: none;
+    padding: 0;
+    color: #f66f61;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-style: normal;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }

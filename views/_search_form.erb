@@ -4,7 +4,7 @@
 			<% @categories.each do |obj| %>
 				<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
 			<% end %>
-		"><%= @category.name %></a> properties &nbsp;
+		"><%= @category.name %></a> properties&nbsp;
 		<input type="hidden" name="search[category]" value="<%= @category.id %>" id="input-category" class="hidden-field" />
 	</div>
 	
@@ -15,7 +15,7 @@
 				<% @states.each do |obj| %>
 					<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
 				<% end %>
-			"><%= @state.name %></a>
+			"><%= @state.name %></a>&nbsp;
 		<input type="hidden" name="search[state]" value="<%= @state.id %>" id="input-state" class="hidden-field" />
 	</div>
 	
