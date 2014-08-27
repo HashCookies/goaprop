@@ -6374,3 +6374,48 @@ form#property {
 
 #reset-filters {
   display: none; }
+
+#grid-wrap {
+  padding-top: 50px;
+  background: #fbfbf3; }
+
+#sorting-bar {
+  background: white;
+  width: 100%;
+  border-top: 1px solid #f0f3f6;
+  border-bottom: 1px solid #edf1f4;
+  overflow: auto;
+  padding-top: 10px; }
+  #sorting-bar .sort-group {
+    float: right;
+    margin-right: 25px; }
+  #sorting-bar .label {
+    float: left;
+    color: #cdd8e1;
+    margin-right: 5px; }
+  #sorting-bar ul {
+    overflow: auto;
+    float: left; }
+  #sorting-bar #switch-unit {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: #4b322f;
+    line-height: 12px; }
+  #sorting-bar li {
+    float: left;
+    text-transform: uppercase;
+    margin: 0 7px 0 0;
+    font-size: 12px; }
+    #sorting-bar li a {
+      color: #4b322f; }
+  #sorting-bar li.active {
+    font-weight: bold; }
+  #sorting-bar .glyphicon {
+    display: none; }
+  #sorting-bar .results-statement {
+    float: left; }
+    #sorting-bar .results-statement span {
+      font-size: 14px;
+      color: #4b322f; }
