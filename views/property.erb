@@ -20,6 +20,13 @@
 								</a>
 							</li>
 						<% end %>
+						<% @hidden_images.each do |image| %>
+							<li class="hidden" data-large="/properties/images/<%= image.url %>">
+								<a href="/properties/images/<%= image.url %>">
+									<img src="/properties/images/<%= image.url %>" alt="" />
+								</a>
+							</li>
+						<% end %>
 						<% if !@images_count.nil? %>
 							<li class="gallery-link">
 								<button class="btn"><span class="glyphicon glyphicon-resize-full"></span><br /> <%= @images_count %></button>
