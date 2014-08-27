@@ -4,21 +4,20 @@
 			<span>Showing <strong><%= @properties.count %> properties</strong> across <%= @properties.locations.count %> locations.</span>
 		</div>
 		<div class="sort-group">
-			<span class="label">Sort by</span>
-			<ul id="sort-filter">
-				<li class="active" data-sort-value="date"><a href="#">Newest</a> <span class="glyphicon glyphicon-ok-sign"></span></li>
-				<li data-sort-value="price"><a href="#">Price</a> <span class="glyphicon glyphicon-chevron-up"></span></li>
-				<li data-sort-value="area"><a href="#">Area</a> <span class="glyphicon glyphicon-chevron-down"></span></li>
-			</ul>
-		</div>
-		<div class="sort-group">
 			<span class="label">Units</span>
 			<ul>
 				<li>
 					<a href="#" class="imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></a>
 				</li>
 			</ul>
-			
+		</div>
+		<div class="sort-group">
+			<span class="label">Sort by</span>
+			<ul id="sort-filter">
+				<li class="active" data-sort-value="date"><a href="#">Newest</a> <span class="glyphicon glyphicon-ok-sign"></span></li>
+				<li data-sort-value="price"><a href="#">Price</a> <span class="glyphicon glyphicon-chevron-up"></span></li>
+				<li data-sort-value="area"><a href="#">Area</a> <span class="glyphicon glyphicon-chevron-down"></span></li>
+			</ul>
 		</div>
 	</div>
 </div>
