@@ -46,7 +46,7 @@ $(document).ready(function() {
 		
 		var filters = {};
 		
-		$('#filters').on('click', 'a', function() {
+		$('#filters, .sort-group').on('click', 'a', function() {
 			var $this = $(this);
 			
 			var $listGroup = $this.parents('.filter-group');
