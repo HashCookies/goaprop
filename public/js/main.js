@@ -61,7 +61,11 @@ $(document).ready(function() {
 			$grid.isotope({filter: filterValue});
 			
 			if (!$this.parent().hasClass('show-all')) {		
-				$('#location-filter li, #type-filter li').not($this.parent()).not($('#filters').find($this.attr('data-filter'))).slideUp(300);
+				$('#type-filter li, #location-filter li')
+					.not('.show-all')
+					.not($this.parent())
+					.not($('#filters').find($this.attr('data-filter')))
+					.slideUp(300);
 				$('#reset-filters').slideDown();
 			}
 			
@@ -70,17 +74,29 @@ $(document).ready(function() {
 				var parent = $this.parent().parent();
 				if (parent.attr('id') == 'location-filter') {
 					var activeClass = $('#type-filter .active a').attr('data-filter');
-					parent.find(activeClass).slideDown(300);
+					
+					if (activeClass == '') {
+						parent.find('li').add('#type-filter li').slideDown(300);
+					} else {
+						parent.find(activeClass).slideDown(300);
+					}
 				}
 				if (parent.attr('id') == 'type-filter') {
 					var activeClass = $('#location-filter .active a').attr('data-filter');
-					parent.find(activeClass).slideDown(300);
+					if (activeClass == '') {
+						parent.find('li').add('#location-filter li').slideDown(300);
+					} else {
+						parent.find(activeClass).slideDown(300);
+					}
 				}
 			}
 			
 			if ($this.parent().parent().attr('id') == "reset-filters") {
 				$('#filters li').slideDown(400, function() {
-						$('#reset-filters').slideUp();
+						$('#reset-filters').slideUp(400, function() {
+							$('#filters li.show-all a').click();
+						});
+						
 				});
 			}
 			

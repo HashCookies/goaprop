@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div id="search-bar" class="col-md-10 col-md-offset-1">
-				<%= erb :_search_form %>
+
 			</div>
 		</div>
 	</div>
@@ -10,29 +10,30 @@
 	<div class="container-fluid" id="results-container">
 		<div class="row">
 			<div class="col-md-2 col-sm-3 hidden-xs filters" id="filters">
+				<h3>Showing <%= @properties.count %> properties across <%= @properties.locations.count %> locations.</h3>
+				<hr />
 				<ul class="list-group" id="reset-filters">
 					<li class="list-group-item"><a href="#" data-filter="">Reset Filters</a></li>
 				</ul>
-				<span class="label">Type</span>
+				<span class="label">Property Types</span>
 				<ul class="list-group filter-group" id="type-filter" data-filter-group="type">
 					<li class="list-group-item active show-all">
 						<span class="badge"><%= @properties.count %></span>
-						<a href="#" data-filter="">Show All</a>
+						<a href="#" data-filter="">All</a>
 					</li>
 					<% @types.each do |type| %>
 						<li class="list-group-item <% type.propertys(:state_id => @state.id, :category_id => @category.id, :location_id => @location_ids).each do |pr| %>
 							<%= pr.location.name.downcase %>
 						<% end %>">
-							<a href="#" data-filter=".<%= type.name.downcase.gsub(" ", "-") %>"><%= type.name %></a>
+							<a href="#" data-filter=".<%= type.name.downcase.gsub(" ", "-") %>"><%= type.name %>s</a>
 						</li>
 					<% end %>
 				</ul>
 						
-				<span class="label">Locations</span>
+				<span class="label">In Locations</span>
 				<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
-					<li class="list-group-item active show-all">
-						<span class="badge"><%= @properties.locations.count %></span>
-						<a href="#" data-filter="">Show All</a>
+					<li class="list-group-item active show-all"> 
+						<a href="#" data-filter="">All Locations</a>
 					</li>
 					<% @locations.each do |location| %>
 						<li class="list-group-item <% location.propertys(:state_id => @state.id, :category_id => @category.id).each do |pr| %>
