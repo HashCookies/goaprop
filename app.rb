@@ -25,16 +25,16 @@ configure :test do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/test.db")
 end
 
-configure :production do
-	require 'dm-sqlite-adapter'
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
-end
-
 # configure :production do
-# 	require 'mysql'
-# 	require 'dm-mysql-adapter'
-#   DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
+# 	require 'dm-sqlite-adapter'
+# 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
 # end
+
+configure :production do
+	require 'mysql'
+	require 'dm-mysql-adapter'
+	DataMapper::setup(:default, "mysql://root:hash2014@127.0.0.1/goaprop")
+end
 
 DataMapper::Property::String.length(255)
 DataMapper::Model.raise_on_save_failure = true 
@@ -342,7 +342,7 @@ post '/update' do
 		params[:gallUploads].each do |image|
 			# begin
 				@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
-				@property.handle_upload(image)	
+				@property.handle_upload(image, @property.id.to_s)	
 			# rescue Exception => e
 			# 	puts e.resource.errors.inspect
 			# 	raise 'error raised'
@@ -394,7 +394,7 @@ post '/create' do
 	property.area = property.area.to_i
 	property.price = property.price.to_i
 	
-	property.area_built = property.area_built.to_i
+	property.area_built = property.area_built.to_i unless property.area_built.nil?
 		
 	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
