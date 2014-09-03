@@ -185,9 +185,6 @@ end
 # Based on previous method, this sniffs out the get methods and applies a :before filter
 # Because we don't want the before filters on POST requests.
 before :method => :get do
-	@regions = Region.all
-	@states = State.all
-	@categories = Category.all
 	@region = Region.first
 	@category = Category.get 1
 	@state = State.get 2
