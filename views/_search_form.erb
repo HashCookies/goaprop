@@ -1,9 +1,9 @@
 <form method="get" action="/search" id="search" role="search">
 	<div class="select-label-wrap select-category"> 
 		<a href="#" id="select-category-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-			<% @categories.each do |obj| %>
-				<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
-			<% end %>
+				<button class='popover-btn category' data-title='Residential' data-elem='.select-category' data-value='1'>Residential</button>
+				<button class='popover-btn category' data-title='Commercial' data-elem='.select-category' data-value='2'>Commercial</button>
+				<button class='popover-btn category' data-title='Land' data-elem='.select-category' data-value='3'>Land</button>
 		"><%= @category.name %></a> properties&nbsp;
 		<input type="hidden" name="search[category]" value="<%= @category.id %>" id="input-category" class="hidden-field" />
 	</div>
@@ -12,18 +12,16 @@
 	<div class="select-label-wrap select-state"> for 
 		<a href="#" id="select-state-label" class="select-label" data-container="body" data-toggle="popover" 
 			data-content="
-				<% @states.each do |obj| %>
-					<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
-				<% end %>
+					<button class='popover-btn state' data-title='Sale' data-elem='.select-state' data-value='1'>Sale</button>
+					<button class='popover-btn state' data-title='Rent' data-elem='.select-state' data-value='2'>Rent</button>
 			"><%= @state.name %></a>&nbsp;
 		<input type="hidden" name="search[state]" value="<%= @state.id %>" id="input-state" class="hidden-field" />
 	</div>
 	
 	<div class="select-label-wrap select-region"> in
 		<a href="#" id="select-region-label" class="select-label" data-container="body" data-toggle="popover" data-content="
-			<% @regions.each do |obj| %>
-				<%= erb :_search_item, :layout => false, :locals => {:obj => obj} %>
-			<% end %>
+				<button class='popover-btn region' data-title='North Goa' data-elem='.select-region' data-value='1'>North Goa</button>
+				<button class='popover-btn region' data-title='South Goa' data-elem='.select-region' data-value='2'>South Goa</button>
 		"><%= @region.name %></a>
 		
 		<input type="hidden" name="search[region_id]" value="<%= @region.id %>" class="hidden-field" />
