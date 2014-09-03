@@ -1,5 +1,7 @@
 get '/location/new' do
 	require_admin
+	
+	@regions = Region.all
 	erb :new_location
 end
 

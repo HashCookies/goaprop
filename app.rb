@@ -236,6 +236,10 @@ end
 
 get '/property/new' do
 	require_admin
+	
+	@regions = Region.all
+	@categories = Category.all
+	
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
@@ -246,12 +250,15 @@ end
 
 get '/property/:id/edit' do
 	require_admin
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	
 	@property = Property.get(params[:id])
 	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@images = @property.images.all(:id.not => @property.featured_img) # Gallery Images minus Featured Image
 	@locations = Location.all
 	@types = Type.all
-	@states = State.all
 	@selected = 'selected="selected"'
 	@page_title += " | Edit Property"
 	@body_class += " alt"
@@ -305,6 +312,9 @@ end
 
 get '/resource/new' do
 	@locations = Location.all
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
 
 	erb :new_resource
 end
@@ -426,8 +436,13 @@ post '/create' do
 	end
 end
 
-get '/admin' do
+get '/admin' do	
 	require_admin
+	
+	@regions = Region.all
+	@states = State.all
+	@categories = Category.all
+	
 	@body_class += " admin"
 	@properties = Property.all
 	@locations = Location.all
