@@ -268,8 +268,8 @@ get '/property/:id/:slug' do
 	@property = Property.get params[:id]
 	@images = @property.images.all
 	
-	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@image_grid = @images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+
+	@image_grid = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
 
 	# Required for the gallery fullscreen button
 	@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
@@ -277,6 +277,10 @@ get '/property/:id/:slug' do
 	# Get the rest of the images for the gallery
 	@hidden_images = @images.all(:id.not => @property.featured_img, :offset => 3, :limit => 15)
 	
+	# We've not changed the featured image url till now
+	# because we require it to spell out the ID for the 
+	# resources above.
+	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?	
 	
 		
 	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
