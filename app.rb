@@ -491,9 +491,14 @@ delete '/:delresource/destroy/:id' do
 	require_admin
 	@delresource = params[:delresource]
 	@delval = ""
+	@delvalimg = ""
 	case @delresource
 	when "property"
 		@delval = Property.get(params[:id])
+		@images = Image.all(:property_id => params[:id])
+		@images.each do |image|
+			image.destroy!
+		end
 	when "location"
 		@delval = Location.get(params[:id])
 	when "region"
