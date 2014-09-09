@@ -313,8 +313,9 @@ h2 {
 		text-align: right;
 		position: absolute;
 		right: 30px;
-		bottom: 11px;
+		bottom: 7px;
 		font-size: 11px;
+		color: #aaa;
 	}
 	ul {
 		margin-top: 0px;
@@ -1298,26 +1299,19 @@ form#property {
 
 .recently-viewed {
 	margin-top: 15px;
-	h5.label {
+	.section-title {
 		padding-left: 0;
 		margin-bottom: 10px;
 		display: block;
 		text-align: left;
+		font-weight: bold;
+		font-size: 18px;
+		padding-left: 20px;
 	}
-	li {
-		width: 100%;
-		margin-bottom: 7px;
-		padding-bottom: 5px;
-		border-bottom: 1px solid #ddd;
-		overflow: auto;
-	}
-	a {
-		color: $dark;
-	}
-	.recently-prop-title {
-		width: 250px;
-		display: block;
-		float: left;
+	#property-grid {
+		margin-top: 23px;
+		border-left: 1px solid #ddd;
+		padding-left: 20px;
 	}
 }
 

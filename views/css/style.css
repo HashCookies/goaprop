@@ -5525,8 +5525,9 @@ h2 {
     text-align: right;
     position: absolute;
     right: 30px;
-    bottom: 11px;
-    font-size: 11px; }
+    bottom: 7px;
+    font-size: 11px;
+    color: #aaa; }
   #property-grid ul, #demo-property ul {
     margin-top: 0px; }
     #property-grid ul li, #demo-property ul li {
@@ -6290,23 +6291,18 @@ form#property {
 
 .recently-viewed {
   margin-top: 15px; }
-  .recently-viewed h5.label {
+  .recently-viewed .section-title {
     padding-left: 0;
     margin-bottom: 10px;
     display: block;
-    text-align: left; }
-  .recently-viewed li {
-    width: 100%;
-    margin-bottom: 7px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ddd;
-    overflow: auto; }
-  .recently-viewed a {
-    color: #4b322f; }
-  .recently-viewed .recently-prop-title {
-    width: 250px;
-    display: block;
-    float: left; }
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 20px; }
+  .recently-viewed #property-grid, .recently-viewed #demo-property {
+    margin-top: 23px;
+    border-left: 1px solid #ddd;
+    padding-left: 20px; }
 
 .dynamic-string {
   font-family: "freight-text-pro", Garamond, Georgia, serif;
