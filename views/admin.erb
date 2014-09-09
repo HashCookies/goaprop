@@ -76,7 +76,7 @@
 							<ul id="property-grid" class="row">
 								<!-- <%# location.propertys(:state_id => 2).each do |property| %> -->
 								<% @properties.each do |property| %>
-									<%= erb :_property_admin, :layout => false, :locals => {:property => property} %>
+									<%= erb :_property_admin, :layout => false, :locals => {:property => property, :cols => "col-md-4 col-sm-6"} %>
 								<% end %>
 							</ul>
 						<!--<%# end %> -->
