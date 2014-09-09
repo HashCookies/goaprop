@@ -242,25 +242,6 @@
 			<div class="form-group email-friend-block text-center">
 				<a href="#" class="email-btn" data-property-id="<%= @property.id %>">Email this to a friend</a> | <a href="#">Share via Facebook</a>
 			</div>
-			
-			<% if !@viewed.empty? %>
-				<div class="recently-viewed">
-					<ul>
-						<h5 class="label">Recently Viewed Properties</h5>
-						<% @viewed.each do |property| %>
-							<li>
-								<a href="/property/<%= property.id %>/<%= property.slug %>">
-									<span class="recently-prop-title"><%= property.title %>
-									<%= property.type.name %> 
-									<%= "in " + property.location.name %>
-									<%= "for " + property.state.name %></span>
-									<span class="badge pull-right">Code: GPC <%= property.id %></span>
-								</a>
-							</li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
 		</div>	
 	</div>
 </div>
@@ -268,16 +249,30 @@
 
 <div class="offwhite-block">
 	<div class="container">
-		<div class="content">
+		<div class="content row">
+			<div class="<%= "col-md-8" if !@viewed.empty? %> <%= "col-md-12" if @viewed.empty? %>">
 			<% if @similar.count > 0 %>
 				<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
 				<ul id="property-grid" class="row">
 					<% @similar.each do |property| %>
-						<%= erb :_property, :layout => false, :locals => {:property => property} %>
+						<%= erb :_property, :layout => false, :locals => {
+							:property => property,  
+							:cols => @similar_cols} %>
 					<% end %>
 				</ul>
 				<hr />
 			<% end %>
+			</div>
+			<div class="col-md-4 recently-viewed">
+				<% if !@viewed.empty? %>
+					<h4 class="section-title">Recently Viewed Properties</h4>
+					<ul id="property-grid" class="row">
+						<% @viewed.each do |property| %>
+							<%= erb :_property, :layout => false, :locals => {:property => property, :cols => "col-xs-12"} %>
+						<% end %>
+					</ul>
+				<% end %>
+			</div>
 			
 			<div id="search-bar" class="col-md-10 col-md-offset-1">
 				<h3 class="section-title">Search Again</h3>
