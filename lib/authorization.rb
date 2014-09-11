@@ -19,7 +19,7 @@ module Sinatra
   end
  
   def authorize(username, password)
-    if (username=='hashcookies' && password=='iomega') then
+    if (username=='goaprop' && password=='inspiron15') then
       true
     else
       false
