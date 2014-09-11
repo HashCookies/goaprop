@@ -5448,6 +5448,10 @@ h2 {
   .cover .anystretch {
     z-index: -10 !important; }
 
+#home-bg {
+  height: 1000px;
+  background-color: #d9642b; }
+
 .content {
   margin-top: 50px; }
 
