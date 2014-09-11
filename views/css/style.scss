@@ -1297,7 +1297,7 @@ form#property {
 	}
 }
 
-.recently-viewed {
+#recently-viewed {
 	margin-top: 15px;
 	.section-title {
 		padding-left: 0;
@@ -1307,13 +1307,18 @@ form#property {
 		font-weight: bold;
 		font-size: 18px;
 		padding-left: 20px;
-	}
+	}	
+}
+
+#recently-viewed.border-left {
 	#property-grid {
 		margin-top: 23px;
 		border-left: 1px solid #ddd;
 		padding-left: 20px;
+		padding-right: 15px;
 	}
 }
+
 
 .dynamic-string {
 	font-family: $serif;

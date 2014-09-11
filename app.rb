@@ -315,6 +315,12 @@ get '/property/:id/:slug' do
 		@similar_cols = "col-md-4 col-sm-6"
 	end
 	
+	if !@similar.empty? 
+		@viewed_cols = "col-md-12" 
+	else 
+		@viewed_cols = "col-md-4 col-sm-6"
+	end
+	
 	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 	
 	erb :property

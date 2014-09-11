@@ -6289,9 +6289,9 @@ form#property {
   .inquiry-block .form-control {
     margin: 10px auto; }
 
-.recently-viewed {
+#recently-viewed {
   margin-top: 15px; }
-  .recently-viewed .section-title {
+  #recently-viewed .section-title {
     padding-left: 0;
     margin-bottom: 10px;
     display: block;
@@ -6299,10 +6299,12 @@ form#property {
     font-weight: bold;
     font-size: 18px;
     padding-left: 20px; }
-  .recently-viewed #property-grid, .recently-viewed #demo-property {
-    margin-top: 23px;
-    border-left: 1px solid #ddd;
-    padding-left: 20px; }
+
+#recently-viewed.border-left #property-grid, #recently-viewed.border-left #demo-property {
+  margin-top: 23px;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+  padding-right: 15px; }
 
 .dynamic-string {
   font-family: "freight-text-pro", Garamond, Georgia, serif;

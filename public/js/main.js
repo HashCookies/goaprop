@@ -446,16 +446,16 @@ $(document).ready(function() {
 	$(window).load(function() {
 		$grid.isotope();
 		
-		$('#filters').waypoint(function(direction) {
-			if (direction == "down") {
-				$('#filters').addClass(stuckClass);
-			}
-			if (direction == "up") {
-				$('#filters').removeClass(stuckClass);
-			}
-		}, {
-		  offset: 20
-		});
+//		$('#filters').waypoint(function(direction) {
+//			if (direction == "down") {
+//				$('#filters').addClass(stuckClass);
+//			}
+//			if (direction == "up") {
+//				$('#filters').removeClass(stuckClass);
+//			}
+//		}, {
+//		  offset: 20
+//		});
 //		
 //		$('#footer').waypoint(function(direction) {
 //			var st = $(window).scrollTop();

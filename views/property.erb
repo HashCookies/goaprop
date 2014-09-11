@@ -263,12 +263,12 @@
 				<hr />
 			<% end %>
 			</div>
-			<div class="col-md-4 recently-viewed">
+			<div class="<%= "col-md-4 border-left" if !@similar.empty? %> <%= "col-md-12" if @similar.empty? %>" id="recently-viewed">
 				<% if !@viewed.empty? %>
 					<h4 class="section-title">Recently Viewed Properties</h4>
 					<ul id="property-grid" class="row">
 						<% @viewed.each do |property| %>
-							<%= erb :_property, :layout => false, :locals => {:property => property, :cols => "col-xs-12"} %>
+							<%= erb :_property, :layout => false, :locals => {:property => property, :cols => @viewed_cols} %>
 						<% end %>
 					</ul>
 				<% end %>
