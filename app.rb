@@ -419,7 +419,7 @@ post '/create' do
 	property.slug = "#{property.title}-#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
-	property.price = property.price.to_i
+	property.price = property.price.downcase.gsub(",", "").to_i
 	
 	property.area_built = property.area_built.to_i unless property.area_built.nil?
 		
