@@ -71,9 +71,39 @@
 					</div>
 					
 					<div class="col-md-4">
-							
+						<label>Area rate</label><br />
+						<input type="text" name="property[area_rate]" id="area_rate" class="form-control" />	
 					</div>
 					
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">
+						<label>Status</label><br />
+						<select class="select2" name="property[status]" id="status">
+							<option value="" selected="selected">Not Applicable</option>
+							<option value="Ready Possession">Ready Possession</option>
+							<option value="Under Construction">Under Construction</option>
+							<option value="Re-Sale">Re-Sale</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Age</label><br />
+						<select class="select2" name="property[age]" id="age">
+							<option value="" selected="selected">Not Applicable</option>
+							<option value="Less than 1 Year">Less than 1 Year</option>
+							<option value="1 to 5 Years">1 to 5 Years</option>
+							<option value="5 to 10 Years">5 to 10 Years</option>
+							<option value="10 to 15 Years">10 to 15 Years</option>
+							<option value="15 Years +">15 Years +</option>
+						</select>
+					</div>
+
+					<div class="col-md-4">			
+						<label>Brokerage Fee</label><br />
+						<input type="text" name="property[brokerage]" id="brokerage" class="form-control" />	
+					</div>
 				</div>
 				
 				<div class="row form-group">
@@ -174,8 +204,13 @@
 				</div>
 
 				<div class="form-group">
-					<label for="specs">More Information</label>
+					<label for="specs">Facilities</label>
 					<input type="text" name="property[specs]" id="specs" class="form-control demo-control" data-demo="#demo-specs" placeholder="Parking Space, Swimming Pool, Field view, etc." value="" />	
+				</div>
+
+				<div class="form-group">
+					<label for="specs">More Information</label>
+					<textarea name="property[more_info]" id="more_info" class="form-control"></textarea>	
 				</div>
 				
 				<div class="form-group">

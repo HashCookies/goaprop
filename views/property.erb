@@ -92,14 +92,43 @@
 					</li>
 					<li class="clearfix"></li>
 					
-					<li class="col-md-12">
+					<li class="col-md-8">
 						<span class="label">Location</span>
 						<div class="block"><%= @property.location.name %></div>
 					</li>
 					
-					
-					
+					<% if !@property.area_rate.nil? %>
+						<li class="col-md-4">
+							<span class="label">Area rate</span>
+							<div class="block"><%= @property.area_rate %></div>
+						</li>
+					<% end %>
 					<li class="clearfix"></li>
+
+					<% if !@property.status.nil? %>
+						<li class="col-md-4">
+							<span class="label">Status</span>
+							<div class="block"><%= @property.status %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.age.nil? %>
+						<li class="col-md-4">
+							<span class="label">Age</span>
+							<div class="block"><%= @property.age %></div>
+						</li>
+					<% end %>
+
+					<% if !@property.brokerage.nil? %>
+						<li class="col-md-4">
+							<span class="label">Brokerage Fee</span>
+							<div class="block"><%= @property.brokerage %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.status.nil? || !@property.age.nil? || !@property.brokerage.nil? %>
+						<li class="clearfix"></li>
+					<% end %>
 
 					<% if !@property.bhk_count.nil? %>
 						<li class="col-md-4">
@@ -202,9 +231,20 @@
 						<li class="clearfix"></li>				
 					<% end %>
 
-					<% if !@property.specs.nil? %>
+					<% if !@property.more_info.nil? %>
 						<li class="col-md-12">
 							<span class="label">More Information</span>
+							<div class="block"><%= @property.more_info %></div>
+						</li>
+					<% end %>
+					
+					<% if !@property.more_info.nil?  %>
+						<li class="clearfix"></li>				
+					<% end %>
+
+					<% if !@property.specs.nil? %>
+						<li class="col-md-12">
+							<span class="label">Facilities</span>
 							<div class="block"><%= @property.specs %></div>
 						</li>
 					<% end %>

@@ -60,7 +60,12 @@ class Property
 	property :featured_img,		Integer
 	property :slug,				String
 	property :specs,			String
+	property :more_info,		Text
 	property :bhk_count,		Integer
+
+	property :status,			String
+	property :age,				String
+	property :brokerage,		String
 	
 	property :toil_attached,	Integer
 	property :toil_nattached,	Integer
@@ -344,6 +349,7 @@ post '/update' do
 	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "") unless @update_params[:area_built].nil?
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "").to_i
 	@update_params[:area] = @update_params[:area].to_i
+	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
 	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true unless @update_params[:sanad].nil?
 	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true unless @update_params[:lift].nil?
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
@@ -422,7 +428,8 @@ post '/create' do
 	property.price = property.price.downcase.gsub(",", "").to_i
 	
 	property.area_built = property.area_built.to_i unless property.area_built.nil?
-		
+	property.area_rate = property.area_rate.to_i unless property.area_rate.nil?
+
 	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?

@@ -69,8 +69,38 @@
 						</div>
 						
 						<div class="col-md-4">
-							
+							<label>Area rate</label><br />
+							<input type="text" name="property[area_rate]" id="area_rate" class="form-control" value="<%= @property.area_rate %>" />	
 						</div>
+					</div>
+				</div>
+
+				<div class="row form-group">
+					<div class="col-md-4">
+						<label>Status</label><br />
+						<select class="select2" name="property[status]" id="status">
+							<option value="" <%= @selected unless @property.status != "" %>>Not Applicable</option>
+							<option value="Ready Possession" <%= @selected unless @property.status != "Ready Possession" %>>Ready Possession</option>
+							<option value="Under Construction" <%= @selected unless @property.status != "Under Construction" %>>Under Construction</option>
+							<option value="Re-Sale" <%= @selected unless @property.status != "Re-Sale" %>>Re-Sale</option>
+						</select>
+					</div>
+					
+					<div class="col-md-4">
+						<label>Age</label><br />
+						<select class="select2" name="property[age]" id="age">
+							<option value="" <%= @selected unless @property.age != "" %>>Not Applicable</option>
+							<option value="Less than 1 Year" <%= @selected unless @property.age != "Less than 1 Year" %>>Less than 1 Year</option>
+							<option value="1 to 5 Years" <%= @selected unless @property.age != "1 to 5 Years" %>>1 to 5 Years</option>
+							<option value="5 to 10 Years" <%= @selected unless @property.age != "5 to 10 Years" %>>5 to 10 Years</option>
+							<option value="10 to 15 Years" <%= @selected unless @property.age != "10 to 15 Years" %>>10 to 15 Years</option>
+							<option value="15 Years +" <%= @selected unless @property.age != "15 Years +" %>>15 Years +</option>
+						</select>
+					</div>
+
+					<div class="col-md-4">			
+						<label>Brokerage Fee</label><br />
+						<input type="text" name="property[brokerage]" id="brokerage" class="form-control" value="<%= @property.brokerage %>" />	
 					</div>
 				</div>
 
@@ -172,8 +202,13 @@
 				</div>
 
 				<div class="form-group">
-					<label for="specs">More Information</label>
+					<label for="specs">Facilities</label>
 					<input type="text" name="property[specs]" id="specs" class="form-control" placeholder="Parking Space, Swimming Pool, Field view, etc." value="<%= @property.specs %>" />	
+				</div>
+
+				<div class="form-group">
+					<label for="specs">More Information</label>
+					<textarea name="property[more_info]" id="more_info" class="form-control"><%= @property.more_info %></textarea>	
 				</div>
 						
 				<div class="form-group">
