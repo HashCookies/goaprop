@@ -54,7 +54,10 @@
 				</h3>
 				<p class="prop-area">
 					<span class="label">Specs</span>
-					<span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span> • <%= @property.specs %>
+					<span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span> 
+					<% if !@property.specs.nil? %> 
+						• <%= @property.specs %>
+					<% end %>
 				</p>
 			</div>
 			<div class="price-block">
