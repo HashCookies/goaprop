@@ -443,7 +443,7 @@ post '/create' do
 	
 	# Sanitising some of the properties for saving to DataMapper.
 	
-	property.slug = "#{property.title}-#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
+	property.slug = (params[:property][:title].nil? ? "" : params[:property][:title] + "-") + "#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
 	property.price = property.price.downcase.gsub(",", "").to_i
