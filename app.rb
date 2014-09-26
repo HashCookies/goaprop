@@ -87,6 +87,7 @@ class Property
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
 	property :updated_at,		DateTime
+	property :is_active,		Boolean, :default => true
 	
 	has n, :images
 	belongs_to :location
@@ -275,60 +276,64 @@ get '/property/:id/:slug' do
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
-	@images = @property.images.all
-	
-
-	@image_grid = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
-
-	# Required for the gallery fullscreen button
-	@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
-
-	# Get the rest of the images for the gallery
-	@hidden_images = @images.all(:id.not => @property.featured_img, :offset => 3, :limit => 15)
-	
-	# We've not changed the featured image url till now
-	# because we require it to spell out the ID for the 
-	# resources above.
-	@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?	
-	
+	if (@property.is_active == true)
+		@images = @property.images.all
 		
-	# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
-	@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
-	@similar.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+
+		@image_grid = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+
+		# Required for the gallery fullscreen button
+		@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
+
+		# Get the rest of the images for the gallery
+		@hidden_images = @images.all(:id.not => @property.featured_img, :offset => 3, :limit => 15)
+		
+		# We've not changed the featured image url till now
+		# because we require it to spell out the ID for the 
+		# resources above.
+		@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?	
+		
+			
+		# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
+		@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
+		@similar.each do |property|
+			property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		end
+		
+		# Variables for the search bar
+		@category = Category.get(@property.category.id)
+		@state = State.get(@property.state.id)
+		@region = Region.get(@property.location.regions.first.id)
+		
+		# For the recently viewed items, pulling from the sessions cookie.
+		session[:properties][@property.id] = @property.title
+		viewed = []
+		session[:properties].each_key {|key| viewed << key }
+		@viewed = Property.all(:id => viewed)
+		@viewed = @viewed[1..3]
+		
+		@viewed.each do |property|
+			property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
+		end
+		
+		if !@viewed.empty? 
+			@similar_cols = "col-md-6" 
+		else 
+			@similar_cols = "col-md-4 col-sm-6"
+		end
+		
+		if !@similar.empty? 
+			@viewed_cols = "col-md-12" 
+		else 
+			@viewed_cols = "col-md-4 col-sm-6"
+		end
+		
+		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
+		
+		erb :property
+	else
+		redirect '/notfound'
 	end
-	
-	# Variables for the search bar
-	@category = Category.get(@property.category.id)
-	@state = State.get(@property.state.id)
-	@region = Region.get(@property.location.regions.first.id)
-	
-	# For the recently viewed items, pulling from the sessions cookie.
-	session[:properties][@property.id] = @property.title
-	viewed = []
-	session[:properties].each_key {|key| viewed << key }
-	@viewed = Property.all(:id => viewed)
-	@viewed = @viewed[1..3]
-	
-	@viewed.each do |property|
-		property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-	end
-	
-	if !@viewed.empty? 
-		@similar_cols = "col-md-6" 
-	else 
-		@similar_cols = "col-md-4 col-sm-6"
-	end
-	
-	if !@similar.empty? 
-		@viewed_cols = "col-md-12" 
-	else 
-		@viewed_cols = "col-md-4 col-sm-6"
-	end
-	
-	@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
-	
-	erb :property
 end
 
 get '/resource/new' do
@@ -338,6 +343,21 @@ get '/resource/new' do
 	@categories = Category.all
 
 	erb :new_resource
+end
+
+get '/notfound' do
+	erb :notfound
+end
+
+get '/viewable/:id/:switch' do
+	@switch = params[:switch]
+	@property = Property.get(params[:id])
+	@viewable = @switch == '1' ? true : false
+	if @property.update(:is_active => @viewable)
+		redirect "/admin"
+	else
+		redirect "/admin"
+	end
 end
 
 post '/update' do
@@ -352,6 +372,7 @@ post '/update' do
 	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
 	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true unless @update_params[:sanad].nil?
 	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true unless @update_params[:lift].nil?
+	@update_params[:is_active] = params[:property][:is_active] == 'false' ? false : true unless @update_params[:is_active].nil?
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
@@ -434,6 +455,7 @@ post '/create' do
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
+	property.is_active = params[:property][:is_active] == 'false' ? false : true unless property.is_active.nil?
 	
 	if property.save			
 		if !params[:images].nil?
@@ -476,6 +498,7 @@ get '/admin' do
 		else
 			property.featured_img = "gpc-default-thumb.jpg"
 		end
+
 		# property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 
@@ -490,7 +513,7 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations
-	@properties = @locations.propertys(:state_id => @state.id) # with a sell or rent flag
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true) # with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc

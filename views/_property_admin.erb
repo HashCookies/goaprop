@@ -30,12 +30,20 @@
 					</div>
 					<span class="prop-code">Code: GPC<%= property.id %></span>
 				<div>
-	<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
-	<span class="action">
-		<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= property.title.nil? ? "" : property.title + " " + property.type.name %><%= " in " + property.location.name %><%= " for " + property.state.name %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
-		  <span class="glyphicon glyphicon-remove"></span>  Delete
-		</button>
-	</span>
+					
+				<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
+				<span class="action">
+					<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= property.title.nil? ? "" : property.title + " " + property.type.name %><%= " in " + property.location.name %><%= " for " + property.state.name %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
+					  <span class="glyphicon glyphicon-remove"></span>  Delete
+					</button>
+				</span>
+				<span class="action">
+						<% if property.is_active %>
+	  						<a class="btn btn-primary btn-sm" href="/viewable/<%= property.id %>/0"><span class="glyphicon glyphicon-eye-close btn-md"></span> Hide</a> &nbsp;
+	  					<% else %>
+	  						<a class="btn btn-primary btn-sm" href="/viewable/<%= property.id %>/1"><span class="glyphicon glyphicon-eye-open btn-md"></span> Show</a> &nbsp;
+	  					<% end %>
+		  			</span>
 </div>
 				</div>
 
