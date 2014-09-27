@@ -135,7 +135,8 @@
 					
 					<div class="col-md-4">
 						<label>Water Supply</label><br />
-						<select class="select2" name="property[water]" id="water">
+						<!-- <input name="property[water]" id="water" type="hidden" value="<%= @property.water %>"> -->
+						<select class="select2" name="property[water]" id="water" > <!-- id="property_water" -->
 							<option value="" <%= @selected unless @property.water != "" %>>Not Applicable</option>
 							<option value="Well" <%= @selected unless @property.water != "Well" %>>Well</option>
 							<option value="Bore-Well" <%= @selected unless @property.water != "Bore-Well" %>>Bore-Well</option>

@@ -220,6 +220,15 @@ $(document).ready(function() {
 			var id = $(this).attr('data-demo');
 			$(id).html(value);
 		});
+
+		// $('#property_water').on("change", function(e) {
+		// 	var value = $(this).select2("val");
+		// 	$('#water').val(value);
+		// 	//var id = $('#water').text(value);
+			
+		// 	//alert(id.text());
+		// 	//$(id).html(value);
+		// });
 		
 		$('.select2').select2();
 		

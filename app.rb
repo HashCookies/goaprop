@@ -193,7 +193,7 @@ end
 before :method => :get do
 	@region = Region.first
 	@category = Category.get 1
-	@state = State.get 2
+	@state = State.get 1
 	
 	@page_title = "GoaPropertyCo"
 	@body_class = ""
@@ -362,6 +362,7 @@ end
 
 post '/update' do
 	require_admin
+	#raise params[:property][:water]
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
 	@update_params.each_pair {|k,v| @update_params[k] = nil if v == ""}
