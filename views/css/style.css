@@ -5462,7 +5462,7 @@ h2 {
   border-top: 1px solid #cdd8e1; }
 
 .prop-title {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 0;
   font-weight: 100 !important;
   font-family: "freight-text-pro", Garamond, Georgia, serif;
@@ -5480,7 +5480,7 @@ h2 {
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     display: inline-block;
-    margin: 0px 2px; }
+    margin: 0px 2px 3px; }
     .prop-title .prop-string:first-child {
       margin-left: 0;
       margin-right: 0; }
@@ -5555,11 +5555,13 @@ h2 {
     margin-bottom: 0px;
     position: relative;
     border: 1px solid #dde5ea;
-    border-bottom: none; }
+    border-bottom: none;
+    height: 180px;
+    overflow: hidden; }
     #property-grid .img-block img, #demo-property .img-block img {
       border-radius: 3px;
       border: 10px solid #fff;
-      min-height: 180px;
+      height: auto;
       border-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0; }
