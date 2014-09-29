@@ -256,6 +256,26 @@
 						<li class="clearfix"></li>				
 					<% end %>
 
+					<% if !@property.layout_plan.nil? %>
+						<li class="col-md-12">
+							<a target="_blank" href="/properties/images/plans/layout/<%= @property.layout_plan %>">Layout Plan</a>
+						</li>
+					<% end %>
+					
+					<% if !@property.layout_plan.nil?  %>
+						<li class="clearfix"></li>				
+					<% end %>
+
+					<% if !@property.master_plan.nil? %>
+						<li class="col-md-12">
+							<a target="_blank" href="/properties/images/plans/master/<%= @property.master_plan %>">Master Plan</a>
+						</li>
+					<% end %>
+					
+					<% if !@property.master_plan.nil?  %>
+						<li class="clearfix"></li>				
+					<% end %>
+
 				</ul>
 		</div>
 		
