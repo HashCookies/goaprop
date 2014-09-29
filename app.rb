@@ -502,12 +502,12 @@ post '/create' do
 
 		if !params[:layout_plan].nil?
 			property.handle_plan_upload(params[:layout_plan], property.id.to_s, "layout")
-			@property.update(:layout_plan => property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-"))
+			property.update(:layout_plan => property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-"))
 		end
 
 		if !params[:master_plan].nil?
 			property.handle_plan_upload(params[:master_plan], property.id.to_s, "master")
-			@property.update(:master_plan => property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-"))
+			property.update(:master_plan => property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-"))
 		end
 		
 		redirect "/property/#{property.id}/#{property.slug}"
