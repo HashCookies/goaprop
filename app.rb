@@ -83,6 +83,9 @@ class Property
 	property :view,				String
 	property :fsi,				String, :allow_nil => true
 	property :field_notes,		Text
+
+	property :layout_plan,		String
+	property :master_plan,		String
 		
 	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
@@ -100,7 +103,14 @@ class Property
 		File.open(path, "wb") do |f|
 			f.write(file[:tempfile].read)
 		end
-	end	
+	end
+
+	def handle_plan_upload(file, propertynumber, type)
+		path = File.join(Dir.pwd, "/public/properties/images/plans", type, propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
+		File.open(path, "wb") do |f|
+			f.write(file[:tempfile].read)
+		end
+	end
 	
 	def generate_thumb(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
@@ -377,10 +387,16 @@ post '/update' do
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
+
+	@update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename] unless params[:layout_plan].nil?
+	@update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename] unless params[:master_plan].nil?
 	
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
+	@layout_plan = params[:layout_plan]
+	@master_plan = params[:master_plan]
+	
 
 	@update_params[:slug] = (@update_params[:title].nil? ? "" : params[:property][:title] + "-") + Type.get(params[:property][:type_id]).name + "-in-" + Location.get(params[:property][:location_id]).name << "-for-" << State.get(params[:property][:state_id]).name
 	@update_params[:slug] = @update_params[:slug].downcase.gsub(" ", "-")
@@ -410,6 +426,14 @@ post '/update' do
 		@image.update({ :url => @property.id.to_s + "-" + @featured[:filename].downcase.gsub(" ", "-") })
 		@property.handle_upload(@featured, @property.id.to_s)
 		@property.generate_thumb(@featured, @property.id.to_s)
+	end
+
+	unless @layout_plan.nil?
+		@property.handle_plan_upload(@layout_plan, @property.id.to_s, "layout")
+	end
+
+	unless @master_plan.nil?
+		@property.handle_plan_upload(@master_plan, @property.id.to_s, "master")
 	end
 
 	 # begin
@@ -475,6 +499,16 @@ post '/create' do
 		if !params[:featured].nil?
 			property.generate_thumb(params[:featured], property.id.to_s)
 		end 
+
+		if !params[:layout_plan].nil?
+			property.handle_plan_upload(params[:layout_plan], property.id.to_s, "layout")
+			@property.update(:layout_plan => property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-"))
+		end
+
+		if !params[:master_plan].nil?
+			property.handle_plan_upload(params[:master_plan], property.id.to_s, "master")
+			@property.update(:master_plan => property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-"))
+		end
 		
 		redirect "/property/#{property.id}/#{property.slug}"
 	else
@@ -572,7 +606,7 @@ post '/send-inquiry/:for' do
 	when "inquiry"
 		@mailFrom = params[:inquiry][:name]
 		@subject = "Inquiry for property"
-		@body = params[:inquiry][:body] << "</br>Inquiry Sent by: " << params[:inquiry][:email]
+		@body = params[:inquiry][:body] << "<br />Inquiry Sent by: " << params[:inquiry][:name] << "<br />Phone: " << params[:inquiry][:phone] << "<br />Email: " << params[:inquiry][:email]
 	when "leasesell"
 		@mailFrom = params[:leasesell][:name]
 		@subject = "Property for " << params[:leasesell][:state]
