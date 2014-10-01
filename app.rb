@@ -130,6 +130,7 @@ class Image
 	
 	property :id,			Serial
 	property :url, 			String
+	property :order_id,		Integer
 	
 	belongs_to :property
 end
@@ -238,6 +239,23 @@ get '/reset' do
 	cc = Category.create(:name => "Land")
 end
 
+get '/setdefaultorder' do
+	require_admin
+	@properties = Property.all
+	@properties.each do |property|
+		order_id = 0
+		@images = property.images.all
+		@images.each do |image|
+			if (image.id == property.featured_img)
+				image.update(:order_id => nil)
+			else
+				image.update(:order_id => order_id.to_i)
+				order_id = order_id.to_i + 1
+			end
+		end
+	end
+end
+
 get '/' do
 	@body_class += " home"
 	@page_title += " | Hassle-free Real Estate in Goa"
@@ -272,7 +290,7 @@ get '/property/:id/edit' do
 	
 	@property = Property.get(params[:id])
 	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
-	@images = @property.images.all(:id.not => @property.featured_img) # Gallery Images minus Featured Image
+	@images = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ]) # Gallery Images minus Featured Image
 	@locations = Location.all
 	@types = Type.all
 	@selected = 'selected="selected"'
@@ -290,13 +308,13 @@ get '/property/:id/:slug' do
 		@images = @property.images.all
 		
 
-		@image_grid = @property.images.all(:id.not => @property.featured_img, :limit => 3) # Gallery Images minus Featured Image
+		@image_grid = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :limit => 3) # Gallery Images minus Featured Image
 
 		# Required for the gallery fullscreen button
 		@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
 
 		# Get the rest of the images for the gallery
-		@hidden_images = @images.all(:id.not => @property.featured_img, :offset => 3, :limit => 15)
+		@hidden_images = @images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :offset => 3, :limit => 15)
 		
 		# We've not changed the featured image url till now
 		# because we require it to spell out the ID for the 
@@ -370,6 +388,13 @@ get '/viewable/:id/:switch' do
 	end
 end
 
+# get '/test' do
+# 	require_admin
+# 	@property = Property.get(1);
+# 	@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
+# 	raise @neworderid.to_s
+# end
+
 post '/update' do
 	require_admin
 	#raise params[:property][:water]
@@ -394,6 +419,7 @@ post '/update' do
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
 	@gallUpload = params[:gallUploads]
+	@gallOrder = params[:gallOrder]
 	@layout_plan = params[:layout_plan]
 	@master_plan = params[:master_plan]
 	
@@ -405,6 +431,13 @@ post '/update' do
 
 	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
 
+	unless @gallOrder.nil?
+		@gallOrder.each_pair do |k, v|
+			@image = Image.get(k)
+			@image.update(:order_id => v.to_i)
+		end
+	end
+
 	unless @gallDelete.nil?
 		@gallDelete.each_key { |key| Image.get(key).destroy }
 	end
@@ -412,7 +445,8 @@ post '/update' do
 	unless @gallUpload.nil?
 		params[:gallUploads].each do |image|
 			# begin
-				@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
+				@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
+				@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
 				@property.handle_upload(image, @property.id.to_s)	
 			# rescue Exception => e
 			# 	puts e.resource.errors.inspect
@@ -484,9 +518,11 @@ post '/create' do
 	
 	if property.save			
 		if !params[:images].nil?
+			order_id = 0
 			params[:images].each do |image|
-				property.images.create({:url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-") })
+				property.images.create({:url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => order_id})
 				property.handle_upload(image, property.id.to_s)
+				order_id = order_id + 1 
 			end
 		end
 		

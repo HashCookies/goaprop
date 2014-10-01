@@ -221,21 +221,37 @@
 				</div>
 				
 				<div class="form-group">	
-					<label>Gallery Images</label>		
+					<label>Gallery Images</label> (Drag images to re-order)
 					<div class="file-input-wrap">
-						<ul class="gallery-block row">
-						<% @images.each do |image| %>
-							<li class="gallery-item col-md-4">
-									<div class="img-wrap">
-										<img src="/properties/images/<%= image.url %>" alt="" width="200" />
-									</div>
-									<label for="checkbox">Delete?</label>
-									<input type="checkbox" name="gallDels[<%= image.id %>]" />
-							</li>
-						<% end %>
+						<ul class="gallery-block">
+							<div class="edit-gallery">
+								<% @images.each do |image| %>
+								<div id="<%= image.id %>">
+									<input name="gallOrder[<%= image.id %>]" class="ord_<%= image.id %>" type="hidden" value="<%= image.order_id %>">
+									<li class="col-md-4 gallery-item">
+										<div class="img-wrap"><label for="checkbox">Delete?</label> <input type="checkbox" name="gallDels[<%= image.id %>]" />
+											<img src="/properties/images/<%= image.url %>" alt="" width="200" /></div>
+									</li>
+								</div>	
+								<% end %>
 						</ul>
 						<input type="file" name="gallUploads[]" title="+ Gallery Images" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 					</div>
+
+					<!-- <div class="file-input-wrap">
+						<ul class="gallery-block row">
+						<%# @images.each do |image| %>
+							<li class="gallery-item col-md-4">
+									<div class="img-wrap">
+										<img src="/properties/images/<%#= image.url %>" alt="" width="200" />
+									</div>
+									<label for="checkbox">Delete?</label>
+									<input type="checkbox" name="gallDels[<%#= image.id %>]" />
+							</li>
+						<%# end %>
+						</ul>
+						
+					</div> -->
 				</div>
 
 				<div class="form-group">

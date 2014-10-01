@@ -11,6 +11,8 @@ $(document).ready(function() {
 		
 		$('#home-bg').anystretch();
 
+		
+
 		var strUrl = $('.info-intro').attr('data-stretch');
 		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' });
 		
@@ -438,6 +440,7 @@ $(document).ready(function() {
 		$('#switch-unit .unit-label').text("Show in Sq Mts");
 		$('#switch-unit').removeClass('imperial').addClass('metric');
 	}
+
 	
 	setTimeout(function() {
 		$grid.isotope();
@@ -479,5 +482,17 @@ $(document).ready(function() {
 //				$('#filters').removeAttr('style');
 //			}
 //		}, { offset: 715 });
+	});
+
+	$('.edit-gallery').shapeshift(); //edit page - order images
+
+	$containers = $(".edit-gallery")
+
+	$containers.on("ss-arranged", function(e) {
+		$(this).children().each(function() {
+			//console.log($(this).attr("id") + "///" + $(this).index());// Returns the index position.
+			var $hbox = $(this).find(".ord_" + $(this).attr("id")); // get the hidden field of the current image
+			$hbox.val($(this).index()); //feeds the current order id in the hidden field
+		});
 	});
 });	

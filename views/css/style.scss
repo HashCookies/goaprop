@@ -1527,3 +1527,18 @@ form#property {
 		font-family: $sans;
 	}
 }
+
+.edit-gallery {
+	//border: 1px dashed #CCC;
+	position: relative;
+	div {
+		background: transparent;
+		position: absolute;
+		height: 200px;
+		width: 200px;
+	}
+	.ss-placeholder-child {
+		background: transparent;
+	 	border: 1px dashed blue;
+	}
+}
