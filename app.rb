@@ -239,7 +239,7 @@ get '/reset' do
 	cc = Category.create(:name => "Land")
 end
 
-get '/setdefaultorder' do
+get '/setdefaultorder' do # run initially to populate the order_id field in images model
 	require_admin
 	@properties = Property.all
 	@properties.each do |property|
