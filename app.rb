@@ -413,8 +413,8 @@ post '/update' do
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
 
-	@update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename] unless params[:layout_plan].nil?
-	@update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename] unless params[:master_plan].nil?
+	@update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
+	@update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
 	
 	@featured = params[:featured_img]
 	@gallDelete = params[:gallDels]
