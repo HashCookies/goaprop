@@ -327,7 +327,6 @@ get '/property/:id/edit' do
 	@images = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ]) # Gallery Images minus Featured Image
 	@locations = Location.all
 	@types = Type.all
-	@selected = 'selected="selected"'
 	@page_title += " | Edit Property"
 	@body_class += " alt"
 	erb :edit
