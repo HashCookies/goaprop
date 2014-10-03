@@ -131,9 +131,13 @@ class Property
 	end
 end
 
-def to_currency(price)
-	#price.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse # Creates 100,000,000
-	price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,") # Creates 10,00,00,000
+def to_currency(price, state)
+	price = price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,") # Creates 10,00,00,000
+	if state == 2
+		price + " / mo"
+	else
+		price
+	end	
 end
 
 def simple_format(text)

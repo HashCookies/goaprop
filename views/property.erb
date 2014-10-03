@@ -64,11 +64,8 @@
 				<span class="label">INR</span>
 				<span class="prop-price">
 					<span class="sort-price">
-						<% if @property.state_id == 2 %>
-							<%= to_currency(@property.price) + " / mo" %>
-						<% else %>
-							<%= to_currency(@property.price) %>
-						<% end %>
+
+							<%= to_currency(@property.price, @property.state_id) %>
 					</span>
 				</span>
 			</div>

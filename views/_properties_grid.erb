@@ -23,11 +23,7 @@
 					<span class='smaller prop-string'><span class="unit-area"><%= property.area %></span> <span class="unit-label">Sq Mts</span></span>
 					<div class="prop-price">
 						<span class="price sort-price">
-							<% if property.state_id == 2 %>
-								<%= to_currency(property.price) + " / mo" %>
-							<% else %>
-								<%= to_currency(property.price) %>
-							<% end %>
+							<%= to_currency(property.price, property.state_id) %>
 						</span>
 					</div>
 				</div>
