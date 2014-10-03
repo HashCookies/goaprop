@@ -535,7 +535,7 @@ post '/create' do
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
-	property.is_active = params[:property][:is_active] == 'true' ? true : false unless property.is_active.nil?
+	property.is_active = params[:property][:is_active] == 'on' ? true : false
 	
 	if property.save			
 		if !params[:images].nil?
