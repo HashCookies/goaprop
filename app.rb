@@ -418,9 +418,8 @@ post '/update' do
 	#raise params[:property][:water]
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
-	@update_params.each_pair {|k,v| @update_params[k] = nil if v == ""}
-	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mt", "") unless @update_params[:area_built].nil?
-	@update_params[:area_built] = @update_params[:area_built].downcase.gsub(" sq mts", "") unless @update_params[:area_built].nil?
+	@update_params.each_pair {|k,v| @update_params[k] = nil if v.empty? }
+	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "").to_i
 	@update_params[:area] = @update_params[:area].to_i
 	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
@@ -583,7 +582,6 @@ get '/admin' do
 		else
 			property.featured_img = "gpc-default-thumb.jpg"
 		end
-
 		# property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 
