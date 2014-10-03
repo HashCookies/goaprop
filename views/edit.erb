@@ -49,7 +49,7 @@
 					
 					<div class="col-md-4">
 						<label>Price</label><br />
-						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= to_currency(@property.price) %>" />
+						<input type="text" name="property[price]" id="price" class="form-control demo-control" data-demo="#demo-price" placeholder="in Rs." value="<%= to_currency(@property.price, 1) %>" />
 					</div>
 				</div>
 				
@@ -312,11 +312,7 @@
 							<span id="demo-area" class='smaller prop-string'><%= @property.area %></span><span> Sq Mts</span>
 							<div class="prop-price">
 								<span id="demo-price" class="price sort-price">
-									<% if @property.state_id == 2 %>
-										<%= to_currency(@property.price) + " / mo" %>
-									<% else %>
-										<%= to_currency(@property.price) %>
-									<% end %>
+									<%= to_currency(@property.price, @property.state_id) %>
 								</span>
 							</div>
 						</div>

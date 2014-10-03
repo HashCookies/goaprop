@@ -133,7 +133,7 @@ end
 
 def to_currency(price, state)
 	price = price.to_s.gsub(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/, "\\1,") # Creates 10,00,00,000
-	if state == 2
+	if state == 2 # for RENT
 		price + " / mo"
 	else
 		price
@@ -341,7 +341,7 @@ get '/property/:id/:slug' do
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
-#	if (@property.is_active == true)
+	if @property.is_active
 		@images = @property.images.all
 		
 
@@ -384,9 +384,9 @@ get '/property/:id/:slug' do
 		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 		
 		erb :property
-#	else
-#		redirect '/notfound'
-#	end
+	else
+		redirect '/notfound'
+	end
 end
 
 get '/resource/new' do
