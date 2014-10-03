@@ -6265,6 +6265,8 @@ form#property {
     width: 210px; }
   form#property .location-select {
     width: 200px; }
+  form#property textarea {
+    height: 200px; }
 
 #demo-property .prop-price {
   bottom: 65px; }

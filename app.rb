@@ -338,7 +338,7 @@ get '/property/:id/:slug' do
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
-	if (@property.is_active == true)
+#	if (@property.is_active == true)
 		@images = @property.images.all
 		
 
@@ -381,9 +381,9 @@ get '/property/:id/:slug' do
 		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 		
 		erb :property
-	else
-		redirect '/notfound'
-	end
+#	else
+#		redirect '/notfound'
+#	end
 end
 
 get '/resource/new' do
@@ -429,7 +429,7 @@ post '/update' do
 	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
 	@update_params[:sanad] = params[:property][:sanad] == 'true' ? true : false unless @update_params[:sanad].nil?
 	@update_params[:lift] = params[:property][:lift] == 'true' ? true : false unless @update_params[:lift].nil?
-	@update_params[:is_active] = params[:property][:is_active] == 'true' ? true : false unless @update_params[:is_active].nil?
+	@update_params[:is_active] = params[:property][:is_active] == 'on' ? true : false
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
@@ -489,11 +489,11 @@ post '/update' do
 	@property.handle_plan_upload(@master_plan, @property.id.to_s, "master") unless @master_plan.nil?
 
 	 # begin
-		if @property.update(@update_params)
-			redirect "/property/#{@property.id}/#{@property.slug}"
-		else
-			redirect "/property/#{@property.id}/edit"
-		end
+	if @property.update(@update_params)
+		redirect "/property/#{@property.id}/#{@property.slug}"
+	else
+		redirect "/property/#{@property.id}/edit"
+	end
 	 # rescue DataMapper::SaveFailureError => e
 	 # 	puts e.resource.errors.inspect
 	 # end
