@@ -5561,6 +5561,8 @@ h2 {
     #property-grid .img-block img, #demo-property .img-block img {
       border-radius: 3px;
       border: 10px solid #fff;
+      min-height: 100%;
+      width: auto;
       height: auto;
       border-bottom: 0;
       border-bottom-left-radius: 0;
@@ -6063,6 +6065,10 @@ h2 {
     font-weight: 100; }
   #footer .footer-info {
     margin-top: 25px; }
+  #footer .gpc-req-form p {
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: 55px; }
 
 #services-list li {
   float: left;
@@ -6464,3 +6470,14 @@ form#property {
     margin-left: 10px;
     font-style: normal;
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.edit-gallery {
+  position: relative; }
+  .edit-gallery div {
+    background: transparent;
+    position: absolute;
+    height: 200px;
+    width: 200px; }
+  .edit-gallery .ss-placeholder-child {
+    background: transparent;
+    border: 1px dashed blue; }

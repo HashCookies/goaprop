@@ -32,6 +32,9 @@ $(document).ready(function() {
 			}
 		});
 		
+		$('#property-grid .img-block').each(function() {
+			$(this).height($(this).width() * .75);
+		});
 		
 		
 		$('#sort-filter').on( 'click', 'a', function() {

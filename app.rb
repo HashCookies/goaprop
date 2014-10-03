@@ -91,6 +91,7 @@ class Property
 	property :created_at,		DateTime
 	property :updated_at,		DateTime
 	property :is_active,		Boolean, :default => true
+	property :is_premium,		Boolean, :default => false
 	
 	has n, :images
 	belongs_to :location
@@ -118,6 +119,7 @@ class Property
 		image.resize "500x800"
 		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
 	end
+	
 end
 
 def to_currency(price)
@@ -144,6 +146,16 @@ class Type
 	
 	has n, :propertys
 	
+	def classlist(state_id, category_id, location_ids)
+		classlist = []
+		self.propertys(:state_id => state_id, :category_id => category_id, :location_id => location_ids).each do |pr|
+			unless classlist.include? pr.location.name.downcase.gsub(" ", "-")
+				classlist << pr.location.name.downcase.gsub(" ", "-")
+			end
+		end
+		classlist.join(" ")
+	end
+	
 end
 
 # Location refers to places like Anjuna, Mapusa, Panjim. Locations have many properties and have many regions.
@@ -158,6 +170,15 @@ class Location
 	has n, :regions, :through => Resource
 	has n, :propertys
 	
+	def classlist(state_id, category_id)
+		classlist = []
+		self.propertys(:state_id => state_id, :category_id => category_id).each do |pr|
+			unless classlist.include? pr.type.name.downcase.gsub(" ", "-")
+				classlist << pr.type.name.downcase.gsub(" ", "-")
+			end
+		end
+		classlist.join(" ")
+	end
 end
 
 # Region is a broad category, like North Goa, Coastal Region, City, etc. Regions have many locations.
