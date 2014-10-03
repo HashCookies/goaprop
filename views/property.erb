@@ -234,28 +234,23 @@
 						<li class="clearfix"></li>				
 					<% end %>
 
-					<% if !@property.more_info.nil? %>
-						<li class="col-md-12">
-							<span class="label">More Information</span>
-							<div class="block"><%= @property.more_info %></div>
-						</li>
-					<% end %>
-					
-					<% if !@property.more_info.nil?  %>
-						<li class="clearfix"></li>				
-					<% end %>
 
 					<% if !@property.specs.nil? %>
 						<li class="col-md-12">
 							<span class="label">Facilities</span>
 							<div class="block"><%= @property.specs %></div>
 						</li>
+						<li class="clearfix"></li>
 					<% end %>
 					
-					<% if !@property.specs.nil?  %>
-						<li class="clearfix"></li>				
+					<% if !@property.more_info.nil? %>
+						<li class="col-md-12">
+							<span class="label">More Information</span>
+							<div class="block"><%= simple_format(@property.more_info) %></div>
+						</li>
+						<li class="clearfix"></li>	
 					<% end %>
-
+					
 					<% if !@property.layout_plan.nil? %>
 						<li class="col-md-12">
 							<a target="_blank" href="/properties/images/plans/layout/<%= @property.layout_plan %>">Layout Plan</a>
