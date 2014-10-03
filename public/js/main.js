@@ -235,7 +235,13 @@ $(document).ready(function() {
 		// 	//$(id).html(value);
 		// });
 		
-		$('.select2').select2();
+//		$('.select2').select2();
+		$('.select2').each(function() {
+			$(this).select2();
+			
+			$(this).select2("val", $(this).attr('data-selected'));
+
+		});
 		
 		$('.select2').on("change", function(e) {
 			var value = e.added['text']
@@ -254,7 +260,7 @@ $(document).ready(function() {
 		
 		$('div.select2').each(function() {
 			var value = $(this).find('.select2-chosen').text();
-			console.log(value);
+			
 			var id = $(this).next('select').attr('data-demo');
 			
 			$(id).text(value);

@@ -78,23 +78,23 @@
 				<div class="row form-group">
 					<div class="col-md-4">
 						<label>Status</label><br />
-						<select class="select2" name="property[status]" id="status">
-							<option value="" <%= @selected unless @property.status != "" %>>Not Applicable</option>
-							<option value="Ready Possession" <%= @selected unless @property.status != "Ready Possession" %>>Ready Possession</option>
-							<option value="Under Construction" <%= @selected unless @property.status != "Under Construction" %>>Under Construction</option>
-							<option value="Re-Sale" <%= @selected unless @property.status != "Re-Sale" %>>Re-Sale</option>
+						<select class="select2" name="property[status]" id="status" data-selected="<%= @property.status %>">
+							<option value="">Not Applicable</option>
+							<option value="Ready Possession">Ready Possession</option>
+							<option value="Under Construction">Under Construction</option>
+							<option value="Re-Sale">Re-Sale</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Age</label><br />
-						<select class="select2" name="property[age]" id="age">
-							<option value="" <%= @selected unless @property.age != "" %>>Not Applicable</option>
-							<option value="Less than 1 Year" <%= @selected unless @property.age != "Less than 1 Year" %>>Less than 1 Year</option>
-							<option value="1 to 5 Years" <%= @selected unless @property.age != "1 to 5 Years" %>>1 to 5 Years</option>
-							<option value="5 to 10 Years" <%= @selected unless @property.age != "5 to 10 Years" %>>5 to 10 Years</option>
-							<option value="10 to 15 Years" <%= @selected unless @property.age != "10 to 15 Years" %>>10 to 15 Years</option>
-							<option value="15 Years +" <%= @selected unless @property.age != "15 Years +" %>>15 Years +</option>
+						<select class="select2" name="property[age]" id="age" data-selected="<%= @property.age %>">
+							<option value="">Not Applicable</option>
+							<option value="Less than 1 Year">Less than 1 Year</option>
+							<option value="1 to 5 Years">1 to 5 Years</option>
+							<option value="5 to 10 Years">5 to 10 Years</option>
+							<option value="10 to 15 Years">10 to 15 Years</option>
+							<option value="15 Years +">15 Years +</option>
 						</select>
 					</div>
 
@@ -124,33 +124,33 @@
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Furnishing</label>
-						<select class="select2" name="property[furnishing]" id="furnishing">
-							<option value="" <%= @selected unless @property.furnishing != "" %>>Not Applicable</option>
-							<option value="Unfurnished" <%= @selected unless @property.furnishing != "Unfurnished" %>>Unfurnished</option>
-							<option value="Semi" <%= @selected unless @property.furnishing != "Semi" %>>Semi</option>
-							<option value="Basic" <%= @selected unless @property.furnishing != "Basic" %>>Basic</option>
-							<option value="Furnished" <%= @selected unless @property.furnishing != "Furnished" %>>Furnished</option>
+						<select class="select2" name="property[furnishing]" id="furnishing" data-selected="<% @property.furnishing %>">
+							<option value="">Not Applicable</option>
+							<option value="Unfurnished">Unfurnished</option>
+							<option value="Semi">Semi</option>
+							<option value="Basic">Basic</option>
+							<option value="Furnished">Furnished</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Water Supply</label><br />
 						<!-- <input name="property[water]" id="water" type="hidden" value="<%= @property.water %>"> -->
-						<select class="select2" name="property[water]" id="water" > <!-- id="property_water" -->
-							<option value="" <%= @selected unless @property.water != "" %>>Not Applicable</option>
-							<option value="Well" <%= @selected unless @property.water != "Well" %>>Well</option>
-							<option value="Bore-Well" <%= @selected unless @property.water != "Bore-Well" %>>Bore-Well</option>
-							<option value="Municipality" <%= @selected unless @property.water != "Municipality" %>>Municipality</option>
+						<select class="select2" name="property[water]" id="water" data-selected="<%= @property.water %>"> <!-- id="property_water" -->
+							<option value="">Not Applicable</option>
+							<option value="Well">Well</option>
+							<option value="Bore-Well">Bore-Well</option>
+							<option value="Municipality">Municipality</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Zone</label><br />
-						<select class="select2" name="property[zone]" id="zone">
-							<option value="" <%= @selected unless @property.zone != "" %>>Not Applicable</option>
-							<option value="Settlement" <%= @selected unless @property.zone != "Settlement" %>>Settlement</option>
-							<option value="Orchard" <%= @selected unless @property.zone != "Orchard" %>>Orchard</option>
-							<option value="Agriculture" <%= @selected unless @property.zone != "Agriculture" %>>Agriculture</option>
+						<select class="select2" name="property[zone]" id="zone" data-selected="<%= @property.zone %>">
+							<option value="">Not Applicable</option>
+							<option value="Settlement">Settlement</option>
+							<option value="Orchard">Orchard</option>
+							<option value="Agriculture">Agriculture</option>
 						</select>
 					</div>
 				</div>
@@ -163,19 +163,19 @@
 					
 					<div class="col-md-4">
 						<label>Lift</label><br />
-						<select class="select2" name="property[lift]" id="lift">
-							<option value="" <%= @selected unless @property.lift != "" %>>Not Applicable</option>
-							<option value="false" <%= @selected unless @property.lift != false %>>No</option>
-							<option value="true" <%= @selected unless @property.lift != true %>>Yes</option>
+						<select class="select2" name="property[lift]" id="lift" data-selected="<%= @property.lift %>">
+							<option value="">Not Applicable</option>
+							<option value="false">No</option>
+							<option value="true">Yes</option>
 						</select>
 					</div>
 					
 					<div class="col-md-4">
 						<label>Sanad</label><br />
-						<select class="select2" name="property[sanad]" id="sanad">
-							<option value="" <%= @selected unless @property.sanad != "" %>>Not Applicable</option>
-							<option value="false" <%= @selected unless @property.sanad != false %>>No</option>
-							<option value="true" <%= @selected unless @property.sanad != true %>>Yes</option>
+						<select class="select2" name="property[sanad]" id="sanad" data-selected="<%= @property.sanad %>">
+							<option value="">Not Applicable</option>
+							<option value="false">No</option>
+							<option value="true">Yes</option>
 						</select>
 					</div>
 				</div>
@@ -183,11 +183,11 @@
 				<div class="row form-group">
 					<div class="col-md-4">			
 						<label>Electricity</label><br />
-						<select class="select2" name="property[electricity]" id="electricity">
-							<option value="" <%= @selected unless @property.electricity != "" %>>Not Applicable</option>
-							<option value="1 Phase" <%= @selected unless @property.electricity != "1 Phase" %>>1 Phase</option>
-							<option value="2 Phase" <%= @selected unless @property.electricity != "2 Phase" %>>2 Phase</option>
-							<option value="3 Phase" <%= @selected unless @property.electricity != "3 Phase" %>>3 Phase</option>
+						<select class="select2" name="property[electricity]" id="electricity" data-selected="<%= @property.electricity %>">
+							<option value="">Not Applicable</option>
+							<option value="1 Phase">1 Phase</option>
+							<option value="2 Phase">2 Phase</option>
+							<option value="3 Phase">3 Phase</option>
 						</select>
 					</div>
 					
