@@ -419,12 +419,12 @@ post '/update' do
 	@property = Property.get(params[:property][:id])
 	@update_params = params[:property]
 	@update_params.each_pair {|k,v| @update_params[k] = nil if v.empty? }
-	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
+	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil? 
 	@update_params[:price] = @update_params[:price].downcase.gsub(",", "").to_i
 	@update_params[:area] = @update_params[:area].to_i
 	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
-	@update_params[:sanad] = params[:property][:sanad] == 'false' ? false : true unless @update_params[:sanad].nil?
-	@update_params[:lift] = params[:property][:lift] == 'false' ? false : true unless @update_params[:lift].nil?
+	@update_params[:sanad] = params[:property][:sanad] == 'true' ? true : false unless @update_params[:sanad].nil?
+	@update_params[:lift] = params[:property][:lift] == 'true' ? true : false unless @update_params[:lift].nil?
 	@update_params[:is_active] = params[:property][:is_active] == 'false' ? false : true unless @update_params[:is_active].nil?
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
