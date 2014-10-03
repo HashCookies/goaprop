@@ -320,29 +320,20 @@
 <div class="offwhite-block">
 	<div class="container">
 		<div class="content row">
-			<div class="<%= "col-md-8" if !@viewed.empty? %> <%= "col-md-12" if @viewed.empty? %>">
 			<% if @similar.count > 0 %>
-				<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
-				<ul id="property-grid" class="row">
-					<% @similar.each do |property| %>
-						<%= erb :_property, :layout => false, :locals => {
-							:property => property,  
-							:cols => @similar_cols} %>
-					<% end %>
-				</ul>
-				<hr />
-			<% end %>
-			</div>
-			<div class="<%= "col-md-4 border-left" if !@similar.empty? %> <%= "col-md-12" if @similar.empty? %>" id="recently-viewed">
-				<% if !@viewed.empty? %>
-					<h4 class="section-title">Recently Viewed Properties</h4>
+				<div class="col-md-12">
+					<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
 					<ul id="property-grid" class="row">
-						<% @viewed.each do |property| %>
-							<%= erb :_property, :layout => false, :locals => {:property => property, :cols => @viewed_cols} %>
+						<% @similar.each do |property| %>
+							<%= erb :_property, :layout => false, :locals => {
+								:property => property,  
+								:cols => "col-md-4"} %>
 						<% end %>
 					</ul>
-				<% end %>
-			</div>
+					<hr />
+				</div>
+			<% end %>
+			
 			
 			<div id="search-bar" class="col-md-10 col-md-offset-1">
 				<h3 class="section-title">Search Again</h3>

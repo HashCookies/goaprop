@@ -120,6 +120,15 @@ class Property
 		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
 	end
 	
+	def classlist
+		classlist = []
+		classlist << self.location.name.downcase
+		classlist << self.type.name.downcase.gsub(" ", "-")
+		classlist << self.zone.downcase unless self.zone.nil?
+		classlist << "bhk-#{self.bhk_count}" unless self.bhk_count.nil?
+		classlist << "is-premium" if self.is_premium?
+		classlist.join(" ")
+	end
 end
 
 def to_currency(price)
@@ -365,18 +374,6 @@ get '/property/:id/:slug' do
 			property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 		end
 		
-		if !@viewed.empty? 
-			@similar_cols = "col-md-6" 
-		else 
-			@similar_cols = "col-md-4 col-sm-6"
-		end
-		
-		if !@similar.empty? 
-			@viewed_cols = "col-md-12" 
-		else 
-			@viewed_cols = "col-md-4 col-sm-6"
-		end
-		
 		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 		
 		erb :property
@@ -483,13 +480,10 @@ post '/update' do
 		@property.generate_thumb(@featured, @property.id.to_s)
 	end
 
-	unless @layout_plan.nil?
-		@property.handle_plan_upload(@layout_plan, @property.id.to_s, "layout")
-	end
+	
+	@property.handle_plan_upload(@layout_plan, @property.id.to_s, "layout") unless @layout_plan.nil?
 
-	unless @master_plan.nil?
-		@property.handle_plan_upload(@master_plan, @property.id.to_s, "master")
-	end
+	@property.handle_plan_upload(@master_plan, @property.id.to_s, "master") unless @master_plan.nil?
 
 	 # begin
 		if @property.update(@update_params)
@@ -535,7 +529,7 @@ post '/create' do
 	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
-	property.is_active = params[:property][:is_active] == 'false' ? false : true unless property.is_active.nil?
+	property.is_active = params[:property][:is_active] == 'true' ? true : false unless property.is_active.nil?
 	
 	if property.save			
 		if !params[:images].nil?
@@ -551,11 +545,10 @@ post '/create' do
 			@featured = property.images.create({:url => property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
 			property.handle_upload(params[:featured], property.id.to_s)
 			property.update({ :featured_img => @featured.id })
+			
+			property.generate_thumb(params[:featured], property.id.to_s)
 		end
 		
-		if !params[:featured].nil?
-			property.generate_thumb(params[:featured], property.id.to_s)
-		end 
 
 		if !params[:layout_plan].nil?
 			property.handle_plan_upload(params[:layout_plan], property.id.to_s, "layout")
@@ -605,7 +598,7 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations
-	@properties = @locations.propertys(:state_id => @state.id, :is_active => true) # with a sell or rent flag
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:is_premium.desc]) # with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
