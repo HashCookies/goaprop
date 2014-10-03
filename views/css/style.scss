@@ -996,11 +996,18 @@ h2 {
 	.footer-info {
 		margin-top: 25px;
 	}
-	.gpc-req-form p {
-		font-size: 18px;
-		font-weight: 100;
-		margin-top: 55px;
-	}
+	.gpc-req-form {
+		h3 {
+			margin-top: 50px;
+			font-size: 24px;
+			color: $vib;
+		}
+		p {
+			font-size: 18px;
+			font-weight: 100;
+			margin-top: 15px;
+		}	
+	} 
 }
 
 #services-list {

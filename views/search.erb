@@ -39,19 +39,7 @@
 						</li>
 					<% end %>
 				</ul>
-						
-				<span class="label">In Locations</span>
-				<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
-					<li class="list-group-item active show-all"> 
-						<a href="#" data-filter="">All Locations</a>
-					</li>
-					<% @locations.each do |location| %>
-						<li class="list-group-item <%= location.classlist(@state.id, @category.id) %>">
-							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
-						</li>
-					<% end %>
-				</ul>
-
+				
 				<% if @category.id == 3 %>
 					<span class="label">Zone</span>
 					<ul class="list-group filter-group" id="zone-filter" data-filter-group="zone">
@@ -74,6 +62,21 @@
 					    <li><a href="#" data-filter=".property-item:not(.bhk-3, .bhk-2, .bhk-1, .bhk-)">4+ BHK</a></li>
 					</ul>
 				<% end %>
+				<div class="clearfix"></div>
+						
+				<span class="label">In Locations</span>
+				<ul class="list-group filter-group" id="location-filter" data-filter-group="location">
+					<li class="list-group-item active show-all"> 
+						<a href="#" data-filter="">All Locations</a>
+					</li>
+					<% @locations.each do |location| %>
+						<li class="list-group-item <%= location.classlist(@state.id, @category.id) %>">
+							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
+						</li>
+					<% end %>
+				</ul>
+
+				
 				<div class="clearfix"></div>
 				
 				<ul class="list-group" id="reset-filters">

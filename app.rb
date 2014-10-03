@@ -597,15 +597,14 @@ get '/search' do
 	@state = State.get(params[:search][:state])
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
-	@locations = @region.locations
+	@locations = @region.locations(:order => [:name.asc])
 	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:is_premium.desc]) # with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
 	end
 	
-	@locations = @properties.locations
-	@location_ids = @locations.map(&:id)
+	@location_ids = @locations.map(&:id) # For masonry filters
 	@types = @properties.types
 	
 	@properties.each do |property|
