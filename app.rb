@@ -63,7 +63,7 @@ class Property
 	property :more_info,		Text
 	property :bhk_count,		Integer
 
-	property :status,			String
+	property :status,			Integer # Ready Posession (1) , Under Construction (2), Resale (3)
 	property :age,				String
 	property :brokerage,		String
 	
@@ -128,6 +128,18 @@ class Property
 		classlist << "bhk-#{self.bhk_count}" unless self.bhk_count.nil?
 		classlist << "is-premium" if self.is_premium?
 		classlist.join(" ")
+	end
+	
+	def prop_status
+		if self.status == 1
+			"Ready Posession"
+		elsif self.status == 2
+			"Under Construction"
+		elsif self.status == 3
+			"Re-sale"
+		elsif self.status == 4
+			nil
+		end
 	end
 end
 
@@ -526,13 +538,13 @@ post '/create' do
 	property.slug = (params[:property][:title].nil? ? "" : params[:property][:title] + "-") + "#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
 	property.slug = property.slug.downcase.gsub(" ", "-")
 	property.area = property.area.to_i
-	property.price = property.price.downcase.gsub(",", "").to_i
-	
-	property.area_built = property.area_built.to_i unless property.area_built.nil?
-	property.area_rate = property.area_rate.to_i unless property.area_rate.nil?
+	property.price = params[:property][:price].gsub(",", "").to_i
+	property.status = property.status.to_i unless params[:property][:status].nil?
+	property.area_built = params[:property][:area_built].to_i unless property.area_built.nil?
+	property.area_rate = params[:property][:area_rate].to_i unless property.area_rate.nil?
 
 	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
-	property.bhk_count = property.bhk_count.to_i unless property.bhk_count.nil?
+	property.bhk_count = params[:property][:bhk_count].to_i unless params[:property][:bhk_count].nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	property.is_active = params[:property][:is_active] == 'on' ? true : false
@@ -603,7 +615,7 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations(:order => [:name.asc])
-	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:is_premium.desc]) # with a sell or rent flag
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc]) # with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
