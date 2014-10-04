@@ -50,8 +50,8 @@ class Property
 	property :id,				Serial
 	property :title,			String
 	
-	property :area,				Integer, :default => 0	# Written in a standard unit like "2000" that can be then interpreted. 
-										# This value will not be shown to the user. Used for sorting.
+	property :area,				Integer, :default => 0
+
 	property :area_built,		Integer
 	property :price,			Integer
 	property :area_rate,		Integer
@@ -548,20 +548,9 @@ post '/create' do
 	state.propertys << property
 	category.propertys << property
 	
-	# Sanitising some of the properties for saving to DataMapper.
-	
-	property.slug = (params[:property][:title].nil? ? "" : params[:property][:title] + "-") + "#{property.type.name}-in-#{property.location.name}-for-#{property.state.name}"
-	property.slug = property.slug.downcase.gsub(" ", "-")
-	property.area = property.area.to_i
-	property.price = params[:property][:price].gsub(",", "").to_i
-	property.status = property.status.to_i unless params[:property][:status].nil?
-	property.area_built = params[:property][:area_built].to_i unless property.area_built.nil?
-	property.area_rate = params[:property][:area_rate].to_i unless property.area_rate.nil?
+	# Generating Slug
+	property.slug = "#{property.title} #{property.type.name}-in-#{property.location.name}-for-#{property.state.name}".downcase.gsub(" ", "-")
 
-	# Sanitising BHK count. Checks if params has a "" (empty) string. If true, it's nil. Else, it's whatitis.to_i
-	property.bhk_count = params[:property][:bhk_count].to_i unless params[:property][:bhk_count].nil?
-	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
-	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
 	
 	if property.save			
 		if !params[:images].nil?
