@@ -279,6 +279,16 @@ h2 {
 	}
 	.property-item {
 		margin-bottom: 35px;
+		
+	}
+	.property-item-inner {
+		border: 1px solid darken($light, 5%);
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		-webkit-box-shadow: 0 1px 0px #a7adbb;
+		-moz-box-shadow: 0 1px 0px #a7adbb;
+		box-shadow: 0px 1px 0px #a7adbb;
+		overflow: hidden;
 	}
 	.prop-type, .prop-location  {
 		display: inline-block;
@@ -349,13 +359,13 @@ h2 {
 	.img-block {
 		margin-bottom: 0px;
 		position: relative;
-		border: 1px solid darken($light, 5%);
+		border: 10px solid #fff;
 		border-bottom: none;
 		height: 180px;
 		overflow: hidden;
+		width: 100%;
 		img {
 			border-radius: 3px;
-			border: 10px solid #fff;
 			min-height: 100%;
 			width: auto;
 			height: auto;
@@ -368,15 +378,9 @@ h2 {
 	}
 	.data-block {
 		background: #fefefe;
-		border: 1px solid darken($light, 5%);
-		border-top: 0;
 		padding: 10px 15px 15px;
 		min-height: 85px;
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-		-webkit-box-shadow: 0 1px 0px #a7adbb;
-		-moz-box-shadow: 0 1px 0px #a7adbb;
-		box-shadow: 0px 1px 0px #a7adbb;
+		
 	}
 	
 }
