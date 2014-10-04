@@ -148,6 +148,15 @@ class Property
 			"1 month"
 		end
 	end
+	
+	def is_active=(switch)
+		if switch == "on"
+			true
+		else
+			false
+		end
+	end
+	
 end
 
 def to_currency(price, state)
@@ -451,7 +460,6 @@ post '/update' do
 	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
 	@update_params[:sanad] = params[:property][:sanad] == 'true' ? true : false unless @update_params[:sanad].nil?
 	@update_params[:lift] = params[:property][:lift] == 'true' ? true : false unless @update_params[:lift].nil?
-	@update_params[:is_active] = params[:property][:is_active] == 'on' ? true : false
 	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
 	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
 	# @update_params[:floor] = @update_params[:floor].to_i
@@ -554,7 +562,6 @@ post '/create' do
 	property.bhk_count = params[:property][:bhk_count].to_i unless params[:property][:bhk_count].nil?
 	property.toil_attached =  property.toil_attached.to_i unless property.toil_attached.nil?
 	property.toil_nattached = property.toil_nattached.to_i unless property.toil_nattached.nil?
-	property.is_active = params[:property][:is_active] == 'on' ? true : false
 	
 	if property.save			
 		if !params[:images].nil?
