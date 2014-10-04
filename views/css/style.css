@@ -5569,9 +5569,8 @@ h2 {
     width: 100%; }
     #property-grid .img-block img, #demo-property .img-block img {
       border-radius: 3px;
-      min-height: 100%;
+      height: 100%;
       width: auto;
-      height: auto;
       border-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0; }
@@ -5708,7 +5707,7 @@ h2 {
   .property-image-grid img {
     min-width: 100%;
     width: auto;
-    min-height: 100%; }
+    height: 100%; }
   .property-image-grid .large {
     width: 74.5%;
     margin-right: 5px;
