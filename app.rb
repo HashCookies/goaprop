@@ -452,74 +452,57 @@ post '/update' do
 	require_admin
 	#raise params[:property][:water]
 	@property = Property.get(params[:property][:id])
-	@update_params = params[:property]
-	@update_params.each_pair {|k,v| @update_params[k] = nil if v.empty? }
-	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil? 
-	@update_params[:price] = @update_params[:price].downcase.gsub(",", "").to_i
-	@update_params[:area] = @update_params[:area].to_i
-	@update_params[:area_rate] = @update_params[:area_rate].to_i unless @update_params[:area_rate].nil?
-	@update_params[:sanad] = params[:property][:sanad] == 'true' ? true : false unless @update_params[:sanad].nil?
-	@update_params[:lift] = params[:property][:lift] == 'true' ? true : false unless @update_params[:lift].nil?
-	@update_params[:toil_attached] = @update_params[:toil_attached].to_i unless @update_params[:toil_attached].nil?
-	@update_params[:toil_nattached] = @update_params[:toil_nattached].to_i unless @update_params[:toil_nattached].nil?
-	# @update_params[:floor] = @update_params[:floor].to_i
-
-	@update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
-	@update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
+	update_params = params[:property]
+	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
 	
-	@featured = params[:featured_img]
-	@gallDelete = params[:gallDels]
-	@gallUpload = params[:gallUploads]
-	@gallOrder = params[:gallOrder]
-	@layout_plan = params[:layout_plan]
-	@master_plan = params[:master_plan]
+	update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
+	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
 	
-
-	@update_params[:slug] = (@update_params[:title].nil? ? "" : params[:property][:title] + "-") + Type.get(params[:property][:type_id]).name + "-in-" + Location.get(params[:property][:location_id]).name << "-for-" << State.get(params[:property][:state_id]).name
-	@update_params[:slug] = @update_params[:slug].downcase.gsub(" ", "-")
+	featured = params[:featured_img]
+	gallDelete = params[:gallDels]
+	gallUpload = params[:gallUploads]
+	gallOrder = params[:gallOrder]
+	layout_plan = params[:layout_plan]
+	master_plan = params[:master_plan]
 	
-	@update_params[:bhk_count] = @update_params[:bhk_count].to_i unless @update_params[:bhk_count].nil?
+	
+	update_params[:slug] = 
+		"#{update_params[:title]} #{Type.get(params[:property][:type_id]).name}-in-#{Location.get(params[:property][:location_id]).name}-for-#{State.get(params[:property][:state_id]).name}".downcase.gsub(" ", "-")
 
-	@update_params[:area_built] = @update_params[:area_built].to_i unless @update_params[:area_built].nil?
 
-	unless @gallOrder.nil?
-		@gallOrder.each_pair do |k, v|
+	unless gallOrder.nil?
+		gallOrder.each_pair do |k, v|
 			@image = Image.get(k)
 			@image.update(:order_id => v.to_i)
 		end
 	end
 
-	unless @gallDelete.nil?
-		@gallDelete.each_key { |key| Image.get(key).destroy }
+	unless gallDelete.nil?
+		gallDelete.each_key { |key| Image.get(key).destroy }
 	end
 	
-	unless @gallUpload.nil?
+	unless gallUpload.nil?
 		params[:gallUploads].each do |image|
-			# begin
-				@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
-				@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
-				@property.handle_upload(image, @property.id.to_s)	
-			# rescue Exception => e
-			# 	puts e.resource.errors.inspect
-			# 	raise 'error raised'
-			# end
+			@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
+			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
+			@property.handle_upload(image, @property.id.to_s)	
 		end
 	end
 
-	unless @featured.nil?
+	unless featured.nil?
 		@image = Image.get(@property.featured_img)
-		@image.update({ :url => @property.id.to_s + "-" + @featured[:filename].downcase.gsub(" ", "-") })
-		@property.handle_upload(@featured, @property.id.to_s)
-		@property.generate_thumb(@featured, @property.id.to_s)
+		@image.update({ :url => @property.id.to_s + "-" + featured[:filename].downcase.gsub(" ", "-") })
+		@property.handle_upload(featured, @property.id.to_s)
+		@property.generate_thumb(featured, @property.id.to_s)
 	end
 
 	
-	@property.handle_plan_upload(@layout_plan, @property.id.to_s, "layout") unless @layout_plan.nil?
+	@property.handle_plan_upload(layout_plan, @property.id.to_s, "layout") unless layout_plan.nil?
 
-	@property.handle_plan_upload(@master_plan, @property.id.to_s, "master") unless @master_plan.nil?
+	@property.handle_plan_upload(master_plan, @property.id.to_s, "master") unless master_plan.nil?
 
 	 # begin
-	if @property.update(@update_params)
+	if @property.update(update_params)
 		redirect "/property/#{@property.id}/#{@property.slug}"
 	else
 		redirect "/property/#{@property.id}/edit"
