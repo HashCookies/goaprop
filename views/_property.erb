@@ -3,6 +3,7 @@
 	data-area="<%= property.area %>"
 	data-date="<%= property.updated_at %>">
 	
+	<div class="property-item-inner">
 		<div class="img-block">
 			<a href="/property/<%= property.id %>/<%= property.slug %>">
 				<img src="/properties/images/thumbs/<%= property.featured_img %>" alt="<%= property.title %> <%= property.type.name %> in Goa" />
@@ -30,4 +31,5 @@
 			</ul>
 			<span class="prop-code">GPC<%= property.id %></span>
 		</div>
+	</div>
 </li>
