@@ -37,6 +37,6 @@ module Sinatra
   def admin?
     authorized?
   end
- 
+  
   end
 end

@@ -369,6 +369,9 @@ get '/property/:id/:slug' do
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
+	
+	
+	
 	if @property.is_active
 		@images = @property.images.all
 		
