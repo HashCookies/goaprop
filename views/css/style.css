@@ -5706,7 +5706,8 @@ h2 {
   background: #f7f7e8;
   border-top: 1px solid #cdd8e1; }
   .property-image-grid img {
-    width: 100%;
+    min-width: 100%;
+    width: auto;
     min-height: 100%; }
   .property-image-grid .large {
     width: 74.5%;

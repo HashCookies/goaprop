@@ -539,7 +539,8 @@ h2 {
 	background: desaturate(darken($offWhite, 3%), 0%);
 	border-top: 1px solid darken($light, 10%);
 	img {
-		width: 100%;
+		min-width: 100%;
+		width: auto;
 		min-height: 100%;
 	}
 	.large {

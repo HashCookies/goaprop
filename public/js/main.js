@@ -168,6 +168,11 @@ $(document).ready(function() {
 			$(elem).find('.hidden-field').val(value);
 			$(elem).find('.select-label').html(title).popover('hide');
 			
+			if ($(this).text() == "Land") {
+				
+				$('#search .select-state a').text("Sale").parent().find('#input-state').value("1");
+			}
+			
 			return false;
 			
 		});
