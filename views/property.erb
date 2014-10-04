@@ -119,16 +119,13 @@
 						</li>
 					<% end %>
 
-					<% if !@property.brokerage.nil? %>
-						<li class="col-md-4">
-							<span class="label">Brokerage Fee</span>
-							<div class="block"><%= @property.brokerage %></div>
-						</li>
-					<% end %>
-					
-					<% if !@property.status.nil? || !@property.age.nil? || !@property.brokerage.nil? %>
-						<li class="clearfix"></li>
-					<% end %>
+
+					<li class="col-md-4">
+						<span class="label">Brokerage Fee</span>
+						<div class="block"><%= @property.brokerage %></div>
+					</li>
+					<li class="clearfix"></li>
+
 
 					<% if !@property.bhk_count.nil? %>
 						<li class="col-md-4">
@@ -293,12 +290,12 @@
 					<div class="form-group">
 						<textarea name="inquiry[body]" class="form-control">I'm interested in "<%= @property.title %> <%= @property.type.name %> in <%= @property.location.name %> for <%= @property.state.name %>" (Code: GPC<%= @property.id %>).</textarea>
 					</div>
-					<% if !@property.brokerage.nil?  %>
-					<p class="text-center">Brokerage Fee: <%= @property.brokerage %></p>
-					<% end %>
+					
 					<div class="form-group text-center">
 						<input type="submit" name="submit" value="Send Inquiry" class="btn btn-large btn-primary" />
 					</div>
+					
+					<p class="text-center small">Brokerage Fee: <%= @property.brokerage %></p>
 				</form>
 			</div>
 			<div class="form-group email-friend-block text-center">

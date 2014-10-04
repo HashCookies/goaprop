@@ -65,7 +65,6 @@ class Property
 
 	property :status,			Integer # Ready Posession (1) , Under Construction (2), Resale (3)
 	property :age,				String
-	property :brokerage,		String
 	
 	property :toil_attached,	Integer
 	property :toil_nattached,	Integer
@@ -139,6 +138,14 @@ class Property
 			"Re-sale"
 		elsif self.status == 4
 			nil
+		end
+	end
+	
+	def brokerage
+		if self.state_id == 1
+			"2%"
+		elsif self.state_id == 2
+			"1 month"
 		end
 	end
 end
