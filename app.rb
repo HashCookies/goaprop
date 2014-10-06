@@ -131,7 +131,7 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Ready Posession"
+			"Ready Possession"
 		elsif self.status == 2
 			"Under Construction"
 		elsif self.status == 3
