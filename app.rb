@@ -100,23 +100,30 @@ class Property
 	
 	def handle_upload(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		File.open(path, "wb") do |f|
-			f.write(file[:tempfile].read)
+		if !File.exists?(path)
+			File.open(path, "wb") do |f|
+				f.write(file[:tempfile].read)
+			end
 		end
 	end
 
 	def handle_plan_upload(file, propertynumber, type)
 		path = File.join(Dir.pwd, "/public/properties/images/plans", type, propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		File.open(path, "wb") do |f|
-			f.write(file[:tempfile].read)
+		if !File.exists?(path)
+			File.open(path, "wb") do |f|
+				f.write(file[:tempfile].read)
+			end
 		end
 	end
 	
 	def generate_thumb(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		image = MiniMagick::Image.open(path)
-		image.resize "500x800"
-		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
+		thumbpath = File.join(Dir.pwd, "/public/properties/images/thumbs", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
+		if !File.exists?(thumbpath)
+			image = MiniMagick::Image.open(path)
+			image.resize "500x800"
+			image.write thumbpath #Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
+		end 
 	end
 	
 	def classlist
