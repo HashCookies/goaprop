@@ -31,9 +31,9 @@
 				<div class="row form-group">
 					<div class="col-md-4">
 						<label>Mode</label>
-						<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id">
+						<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id" data-selected="<%= @property.state.id %>">
 							<% @states.each do |state| %>
-								<option value="<%= state.id %>" <%= @selected unless state.id != @property.state.id %>><%= state.name %></option>
+								<option value="<%= state.id %>"><%= state.name %></option>
 							<% end %>
 						</select>
 					</div>
@@ -274,6 +274,10 @@
 					<div class="col-md-4">
 						<label for="is_active">Active?</label>
 						<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
+					</div>
+					<div class="col-md-4">
+						<label for="is_premium">Premium?</label>
+						<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
 					</div>
 				</div>
 		

@@ -100,23 +100,30 @@ class Property
 	
 	def handle_upload(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		File.open(path, "wb") do |f|
-			f.write(file[:tempfile].read)
+		if !File.exists?(path)
+			File.open(path, "wb") do |f|
+				f.write(file[:tempfile].read)
+			end
 		end
 	end
 
 	def handle_plan_upload(file, propertynumber, type)
 		path = File.join(Dir.pwd, "/public/properties/images/plans", type, propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		File.open(path, "wb") do |f|
-			f.write(file[:tempfile].read)
+		if !File.exists?(path)
+			File.open(path, "wb") do |f|
+				f.write(file[:tempfile].read)
+			end
 		end
 	end
 	
 	def generate_thumb(file, propertynumber)
 		path = File.join(Dir.pwd, "/public/properties/images", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
-		image = MiniMagick::Image.open(path)
-		image.resize "500x800"
-		image.write Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
+		thumbpath = File.join(Dir.pwd, "/public/properties/images/thumbs", propertynumber + "-" + file[:filename].downcase.gsub(" ", "-"))
+		if !File.exists?(thumbpath)
+			image = MiniMagick::Image.open(path)
+			image.resize "500x800"
+			image.write thumbpath #Dir.pwd + "/public/properties/images/thumbs/" + propertynumber + "-" + file[:filename].downcase.gsub(" ", "-")
+		end 
 	end
 	
 	def classlist
@@ -131,7 +138,7 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Ready Posession"
+			"Ready Possession"
 		elsif self.status == 2
 			"Under Construction"
 		elsif self.status == 3
@@ -151,9 +158,17 @@ class Property
 	
 	def is_active=(switch)
 		if switch == "on"
-			true
+			super true
 		else
-			false
+			super false
+		end
+	end
+
+	def is_premium=(switch)
+		if switch == "on"
+			super true
+		else
+			super false
 		end
 	end
 	
@@ -453,7 +468,7 @@ end
 
 post '/update' do
 	require_admin
-	#raise params[:property][:water]
+	
 	@property = Property.get(params[:property][:id])
 	update_params = params[:property]
 	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
@@ -472,6 +487,8 @@ post '/update' do
 	update_params[:slug] = 
 		"#{update_params[:title]} #{Type.get(params[:property][:type_id]).name}-in-#{Location.get(params[:property][:location_id]).name}-for-#{State.get(params[:property][:state_id]).name}".downcase.gsub(" ", "-")
 
+	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
+	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
 
 	unless gallOrder.nil?
 		gallOrder.each_pair do |k, v|
@@ -521,6 +538,9 @@ post '/create' do
 	require_admin
 	newparams = params[:property]
 	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
+
+	newparams[:is_premium] = "" unless !newparams[:is_premium].nil? # if no value is present for is_premium set false
+	newparams[:is_active] = "" unless !newparams[:is_active].nil? # if no value is present for is_active set false
 	
 	location = Location.get(params[:location][:id])
 	type = Type.get(params[:type][:id])

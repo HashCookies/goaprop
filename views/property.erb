@@ -113,18 +113,15 @@
 					<% end %>
 					
 					<% if !@property.age.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-8">
 							<span class="label">Age</span>
 							<div class="block"><%= @property.age %></div>
 						</li>
 					<% end %>
 
-
-					<li class="col-md-4">
-						<span class="label">Brokerage Fee</span>
-						<div class="block"><%= @property.brokerage %></div>
-					</li>
-					<li class="clearfix"></li>
+					<% if !@property.prop_status.nil? || !@property.age.nil? %>
+						<li class="clearfix"></li>
+					<% end %>
 
 
 					<% if !@property.bhk_count.nil? %>
