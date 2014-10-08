@@ -77,17 +77,29 @@
 	<div class="row">
 		<div class="col-md-8 data-block prop-specs">			
 			<ul class="clearfix row">
-					<li class="col-md-4">
+					<li class="col-md-3">
 						<span class="label">Area</span>
 						<div class="block"><span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span></div>
 					</li>
 					<% if !@property.area_built.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Built Area</span>
-							<div class="block"><span class="unit-area"><%= @property.area_built %></span> <span class="unit-label">Sq Mts</span></div>
+							<div class="block">
+								<span class="unit-area"><%= @property.area_built %></span> 
+								<span class="unit-label">Sq Mts</span>
+							</div>
 						</li>
 					<% end %>
-					<li class="col-md-4">
+					<% if !@property.area_rate.nil? %>
+						<li class="col-md-3">
+							<span class="label">Area rate</span>
+							<div class="block">
+								<span class="unit-area"><%= @property.area_rate %></span>
+								<span class="unit-label">Sq Mts</span>
+							</div>
+						</li>
+					<% end %>
+					<li class="col-md-3">
 						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>
 					<li class="clearfix"></li>
@@ -97,12 +109,7 @@
 						<div class="block"><%= @property.location.name %></div>
 					</li>
 					
-					<% if !@property.area_rate.nil? %>
-						<li class="col-md-4">
-							<span class="label">Area rate</span>
-							<div class="block"><%= @property.area_rate %></div>
-						</li>
-					<% end %>
+					
 					<li class="clearfix"></li>
 
 					<% if !@property.prop_status.nil? %>
