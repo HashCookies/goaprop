@@ -40,6 +40,12 @@
 					<% end %>
 				</ul>
 				
+				<ul class="list-group filter-group" id="is-premium-filter" data-filter-group="is-premium">
+					<li class="list-group-item">
+						<a href="#" data-filter=".is-premium">Premium</a>
+					</li>
+				</ul>
+				
 				<% if @category.id == 3 %>
 					<span class="label">Zone</span>
 					<ul class="list-group filter-group" id="zone-filter" data-filter-group="zone">
@@ -55,7 +61,7 @@
 					<span class="label">Specs (BHK)</span>
 					<div class="clearfix"></div>
 					<ul class="pagination filter-group" id="bhk-filter" data-filter-group="bhk">
-						<li class="active"><a href="#" data-filter="">All</a></li>
+						<li class="active show-all"><a href="#" data-filter="">All</a></li>
 						<li><a href="#" data-filter=".bhk-1">1</a></li>
 					    <li><a href="#" data-filter=".bhk-2">2</a></li>
 					    <li><a href="#" data-filter=".bhk-3">3</a></li>

@@ -54,7 +54,7 @@ class Property
 
 	property :area_built,		Integer
 	property :price,			Integer
-	property :area_rate,		Integer
+	property :area_rate,		Boolean
 	property :sanad,			Boolean, :allow_nil => true # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
@@ -170,6 +170,23 @@ class Property
 		else
 			super false
 		end
+	end
+	
+	def area_rate=(switch)
+		if switch == "on"
+			super true
+		else
+			super false
+		end
+	end
+	
+	def show_area_rate
+		self.price / self.area
+	end
+	
+	def show_price
+		return self.price if !self.price.nil?
+		"Price on Request"
 	end
 	
 end

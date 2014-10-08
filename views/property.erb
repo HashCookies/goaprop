@@ -65,7 +65,7 @@
 				<span class="prop-price">
 					<span class="sort-price">
 
-							<%= to_currency(@property.price, @property.state_id) %>
+							<%= to_currency(@property.show_price, @property.state_id) %>
 					</span>
 				</span>
 			</div>
@@ -90,15 +90,16 @@
 							</div>
 						</li>
 					<% end %>
-					<% if !@property.area_rate.nil? %>
+					<% if @property.area_rate == true %>
 						<li class="col-md-3">
 							<span class="label">Area rate</span>
 							<div class="block">
-								<span class="unit-area"><%= @property.area_rate %></span>
-								<span class="unit-label">Sq Mts</span>
+								<span class="unit-area"><%= @property.show_area_rate %></span>
+								<span class="unit-label">Rs / Sq Mt</span>
 							</div>
 						</li>
 					<% end %>
+
 					<li class="col-md-3">
 						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>

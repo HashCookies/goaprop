@@ -105,7 +105,11 @@ $(document).ready(function() {
 			if (parent.attr('id') == "reset-filters") {
 				$('#filters li').slideDown(400, function() {
 						$('#reset-filters').slideUp(400, function() {
-							$('#filters li.show-all a').click();
+							$grid.isotope({
+								filter: "*"
+							});
+							$('#filters li').not('.show-all').removeClass('active');
+							$('#filters li.show-all').addClass('active');
 						});
 						
 				});
