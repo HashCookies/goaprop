@@ -11,6 +11,7 @@ gem "carrierwave"
 gem "fog"
 gem 'carrierwave-datamapper'
 gem "mini_magick"
+gem 'sinatra-formhelpers-ng'
 
 group :development do
 	gem 'sqlite3'

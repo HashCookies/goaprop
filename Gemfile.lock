@@ -12,6 +12,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     backports (3.6.0)
+    bacon (1.2.0)
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
     bcrypt-ruby (3.1.5)
@@ -162,6 +163,9 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (~> 1.3)
+    sinatra-formhelpers-ng (1.9.0)
+      bacon
+      rack-test
     sinatra-support (1.2.2)
       sinatra (>= 1.0)
     sqlite3 (1.3.9)
@@ -199,5 +203,6 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-contrib
+  sinatra-formhelpers-ng
   sinatra-support
   sqlite3

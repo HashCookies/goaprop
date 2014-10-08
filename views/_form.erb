@@ -1,0 +1,25 @@
+<%= form('/create', :post) %>
+	<div class="row form-group">
+		<div class="col-md-4">
+			<input type="text" name="property[title]" id="title" class="demo-control form-control" data-demo="#demo-title" placeholder='Eg. "Old Portuguese", "3BHK"' />	
+		</div>
+		
+		<div class="col-md-8">					
+				<select class="select2 type-select" data-demo="#demo-type-name" name="type[id]" id="type_id">
+					<% @types.each do |type| %>
+						<option value="<%= type.id %>"><%= type.name %></option>
+					<% end %>
+				</select>
+				
+				<span class="mid-select">in</span>
+				
+				<select class="select2 location-select" data-demo="#demo-location" name="location[id]" id="location_id">
+				
+					<% @locations.each do |location| %>
+						<option value="<%= location.id %>"><%= location.name %></option>
+					<% end %>
+				</select>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+<%= submit %>

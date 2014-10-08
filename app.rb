@@ -6,6 +6,7 @@ require "#{Dir.pwd}/lib/authorization"
 require 'data_mapper'
 require 'mini_magick'
 require 'sass'
+require 'sinatra/form_helpers'
 
 enable :sessions
 set :session_secret, 'x*DhdsHD83X'
@@ -42,6 +43,7 @@ DataMapper::Model.raise_on_save_failure = true
 
 class Main < Sinatra::Base
   register Sinatra::Numeric
+  helpers Sinatra::FormHelpers
 end
 
 class Property
@@ -54,7 +56,7 @@ class Property
 
 	property :area_built,		Integer
 	property :price,			Integer
-	property :area_rate,		Integer
+	property :area_rate,		Boolean, :default => false
 	property :sanad,			Boolean, :allow_nil => true # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
@@ -171,7 +173,9 @@ class Property
 			super false
 		end
 	end
-	
+	def area_rate
+		return self.price / self.area if self.area_rate?
+	end
 end
 
 def to_currency(price, state)
