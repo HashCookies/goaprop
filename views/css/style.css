@@ -5490,8 +5490,6 @@ h2 {
 #property-grid, #demo-property {
   overflow: auto;
   width: 100%; }
-  #property-grid img, #demo-property img {
-    width: 100%; }
   #property-grid .prop-title, #demo-property .prop-title {
     border-bottom: 1px solid #cdd8e1;
     padding-bottom: 3px; }
@@ -5570,6 +5568,7 @@ h2 {
     #property-grid .img-block img, #demo-property .img-block img {
       border-radius: 3px;
       height: 100%;
+      min-width: 100%;
       width: auto;
       border-bottom: 0;
       border-bottom-left-radius: 0;
@@ -6261,6 +6260,8 @@ form#property {
   form#property textarea {
     height: 200px; }
 
+#demo-property .img-block {
+  height: 240px; }
 #demo-property .prop-price {
   bottom: 65px; }
 

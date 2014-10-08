@@ -36,6 +36,7 @@ $(document).ready(function() {
 			$(this).height($(this).width() * .75);
 		});
 		
+		$('#demo-property .img-block').height($('#demo-property .img-block').width() * 0.75);
 		
 		$('#sort-filter').on( 'click', 'a', function() {
 		  var sortValue = $(this).parent().attr('data-sort-value');
