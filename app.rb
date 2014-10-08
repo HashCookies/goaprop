@@ -63,7 +63,7 @@ class Property
 	property :more_info,		Text
 	property :bhk_count,		Integer
 
-	property :status,			Integer # Ready Posession (1) , Under Construction (2), Resale (3)
+	property :status,			Integer, :default => 4 # Re-sale (1) , Ready Possession (2), Under Construction (3)
 	property :age,				String
 	
 	property :toil_attached,	Integer
@@ -138,11 +138,11 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Ready Possession"
-		elsif self.status == 2
-			"Under Construction"
-		elsif self.status == 3
 			"Re-sale"
+		elsif self.status == 2
+			"Ready Possession"
+		elsif self.status == 3
+			"Under Construction"
 		elsif self.status == 4
 			nil
 		end
@@ -641,7 +641,8 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations(:order => [:name.asc])
-	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc]) # with a sell or rent flag
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc])
+	# with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
