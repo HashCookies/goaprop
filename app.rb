@@ -465,24 +465,6 @@ get '/notfound' do
 	erb :notfound
 end
 
-get '/viewable/:id/:switch' do
-	@switch = params[:switch]
-	@property = Property.get(params[:id])
-	@viewable = @switch == '1' ? true : false
-	if @property.update(:is_active => @viewable)
-		redirect "/admin"
-	else
-		redirect "/admin"
-	end
-end
-
-# get '/test' do
-# 	require_admin
-# 	@property = Property.get(1);
-# 	@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
-# 	raise @neworderid.to_s
-# end
-
 post '/update' do
 	require_admin
 	
