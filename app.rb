@@ -500,9 +500,13 @@ post '/update' do
 	layout_plan = params[:layout_plan]
 	master_plan = params[:master_plan]
 	
+	type_id = params[:property][:type_id] || @property.type.id
+	location_id = params[:property][:location_id] || @property.location.id
+	state_id = params[:property][:state_id] || @property.state.id
+	
 	
 	update_params[:slug] = 
-		"#{update_params[:title]} #{Type.get(params[:property][:type_id]).name}-in-#{Location.get(params[:property][:location_id]).name}-for-#{State.get(params[:property][:state_id]).name}".downcase.gsub(" ", "-")
+		"#{update_params[:title]} #{Type.get(type_id).name}-in-#{Location.get(location_id).name}-for-#{State.get(state_id).name}".downcase.gsub(" ", "-")
 
 	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
 	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
@@ -540,7 +544,7 @@ post '/update' do
 
 	 # begin
 	if @property.update(update_params)
-		redirect "/property/#{@property.id}/#{@property.slug}"
+		redirect "/property/#{@property.id}/edit"
 	else
 		redirect "/property/#{@property.id}/edit"
 	end
