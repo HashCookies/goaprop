@@ -69,8 +69,8 @@
 						</div>
 						
 						<div class="col-md-4">
-							<label>Area rate</label><br />
-							<input type="text" name="property[area_rate]" id="area_rate" class="form-control" value="<%= @property.area_rate %>" />	
+							<label>Show Area rate?</label><br />
+							<input type="checkbox" name="property[area_rate]" id="area_rate" class="form-control" <%= "checked" if @property.area_rate %> />
 						</div>
 					</div>
 				</div>
@@ -80,9 +80,9 @@
 						<label>Status</label><br />
 						<select class="select2" name="property[status]" id="status" data-selected="<%= @property.status %>">
 							<option value="4">Not Applicable</option>
-							<option value="1">Ready Possession</option>
-							<option value="2">Under Construction</option>
-							<option value="3">Re-Sale</option>
+							<option value="1">Re-Sale</option>
+							<option value="2">Ready Possession</option>
+							<option value="3">Under Construction</option>
 						</select>
 					</div>
 					
@@ -296,23 +296,25 @@
 			<h3>Live Preview</h3>
 			<div id="demo-property">
 				<ul>
-					<li class="property-item <%= @property.location.name.downcase %> <%= @property.type.name.downcase %>" data-price="<%= @property.price %>" data-area="<%= @property.area %>"	data-date="<%= @property.updated_at %>">
-						<div class="img-block">
-							<a href="/property/<%= @property.id %>"><img src="/properties/images/<%= @featured_img %>" alt="" id="demo-img"/></a>
-						</div>
-						<div class="data-block">
-							<h3 class="prop-title">
-								<a href="/property/<%= @property.id %>">
-									<%= "<span id='demo-title' class='prop-string'>#{@property.title}</span>" %>
-									<%= "<span id='demo-type-name' class='prop-string'>#{@property.type.name}</span>" %> <br />
-									<span class="smaller"><%= "in <span id='demo-location' class='prop-string'>#{@property.location.name}</span>" %></span> <br />
-								</a>
-							</h3> 
-							<span id="demo-area" class='smaller prop-string'><%= @property.area %></span><span> Sq Mts</span>
-							<div class="prop-price">
-								<span id="demo-price" class="price sort-price">
-									<%= to_currency(@property.price, @property.state_id) %>
-								</span>
+					<li class="property-item" data-price="<%= @property.price %>" data-area="<%= @property.area %>"	data-date="<%= @property.updated_at %>">
+						<div class="property-item-inner">
+							<div class="img-block">
+								<a href="/property/<%= @property.id %>"><img src="/properties/images/<%= @featured_img %>" alt="" id="demo-img"/></a>
+							</div>
+							<div class="data-block">
+								<h3 class="prop-title">
+									<a href="/property/<%= @property.id %>">
+										<%= "<span id='demo-title' class='prop-string'>#{@property.title}</span>" %>
+										<%= "<span id='demo-type-name' class='prop-string'>#{@property.type.name}</span>" %> <br />
+										<span class="smaller"><%= "in <span id='demo-location' class='prop-string'>#{@property.location.name}</span>" %></span> <br />
+									</a>
+								</h3> 
+								<span id="demo-area" class='smaller prop-string'><%= @property.area %></span><span> Sq Mts</span>
+								<div class="prop-price">
+									<span id="demo-price" class="price sort-price">
+										<%= to_currency(@property.price, @property.state_id) %>
+									</span>
+								</div>
 							</div>
 						</div>
 					</li>

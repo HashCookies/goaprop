@@ -56,7 +56,7 @@ class Property
 
 	property :area_built,		Integer
 	property :price,			Integer
-	property :area_rate,		Boolean, :default => false
+	property :area_rate,		Boolean
 	property :sanad,			Boolean, :allow_nil => true # Some kind of status when dealing with unbuilt LAND type properties.
 
 	property :featured_img,		Integer
@@ -65,7 +65,7 @@ class Property
 	property :more_info,		Text
 	property :bhk_count,		Integer
 
-	property :status,			Integer # Ready Posession (1) , Under Construction (2), Resale (3)
+	property :status,			Integer, :default => 4 # Re-sale (1) , Ready Possession (2), Under Construction (3)
 	property :age,				String
 	
 	property :toil_attached,	Integer
@@ -140,11 +140,11 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Ready Possession"
-		elsif self.status == 2
-			"Under Construction"
-		elsif self.status == 3
 			"Re-sale"
+		elsif self.status == 2
+			"Ready Possession"
+		elsif self.status == 3
+			"Under Construction"
 		elsif self.status == 4
 			nil
 		end
@@ -173,9 +173,30 @@ class Property
 			super false
 		end
 	end
+<<<<<<< HEAD
 	def area_rate
 		return self.price / self.area if self.area_rate?
 	end
+=======
+	
+	def area_rate=(switch)
+		if switch == "on"
+			super true
+		else
+			super false
+		end
+	end
+	
+	def show_area_rate
+		self.price / self.area
+	end
+	
+	def show_price
+		return self.price if !self.price.nil?
+		"Price on Request"
+	end
+	
+>>>>>>> master
 end
 
 def to_currency(price, state)
@@ -452,24 +473,6 @@ get '/notfound' do
 	erb :notfound
 end
 
-get '/viewable/:id/:switch' do
-	@switch = params[:switch]
-	@property = Property.get(params[:id])
-	@viewable = @switch == '1' ? true : false
-	if @property.update(:is_active => @viewable)
-		redirect "/admin"
-	else
-		redirect "/admin"
-	end
-end
-
-# get '/test' do
-# 	require_admin
-# 	@property = Property.get(1);
-# 	@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
-# 	raise @neworderid.to_s
-# end
-
 post '/update' do
 	require_admin
 	
@@ -487,9 +490,13 @@ post '/update' do
 	layout_plan = params[:layout_plan]
 	master_plan = params[:master_plan]
 	
+	type_id = params[:property][:type_id] || @property.type.id
+	location_id = params[:property][:location_id] || @property.location.id
+	state_id = params[:property][:state_id] || @property.state.id
+	
 	
 	update_params[:slug] = 
-		"#{update_params[:title]} #{Type.get(params[:property][:type_id]).name}-in-#{Location.get(params[:property][:location_id]).name}-for-#{State.get(params[:property][:state_id]).name}".downcase.gsub(" ", "-")
+		"#{update_params[:title]} #{Type.get(type_id).name}-in-#{Location.get(location_id).name}-for-#{State.get(state_id).name}".downcase.gsub(" ", "-")
 
 	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
 	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
@@ -527,7 +534,7 @@ post '/update' do
 
 	 # begin
 	if @property.update(update_params)
-		redirect "/property/#{@property.id}/#{@property.slug}"
+		redirect "/property/#{@property.id}/edit"
 	else
 		redirect "/property/#{@property.id}/edit"
 	end
@@ -628,7 +635,8 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations(:order => [:name.asc])
-	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc]) # with a sell or rent flag
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc])
+	# with a sell or rent flag
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc

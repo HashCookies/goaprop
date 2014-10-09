@@ -5490,8 +5490,6 @@ h2 {
 #property-grid, #demo-property {
   overflow: auto;
   width: 100%; }
-  #property-grid img, #demo-property img {
-    width: 100%; }
   #property-grid .prop-title, #demo-property .prop-title {
     border-bottom: 1px solid #cdd8e1;
     padding-bottom: 3px; }
@@ -5570,6 +5568,7 @@ h2 {
     #property-grid .img-block img, #demo-property .img-block img {
       border-radius: 3px;
       height: 100%;
+      min-width: 100%;
       width: auto;
       border-bottom: 0;
       border-bottom-left-radius: 0;
@@ -5725,7 +5724,8 @@ h2 {
       margin-bottom: 0;
       border-bottom: 0; }
   .property-image-grid .img-block {
-    float: left; }
+    float: left;
+    text-align: center; }
   .property-image-grid #default-img {
     width: 100%; }
 
@@ -5978,8 +5978,6 @@ h2 {
   margin-top: -20px;
   padding: 0 0 0 20px;
   position: absolute; }
-  .filters .list-group-item .glyphicon {
-    float: right; }
   .filters .list-group-item a {
     color: inherit;
     text-decoration: none;
@@ -5997,11 +5995,6 @@ h2 {
     border-color: #a9e0f6;
     font-weight: bold;
     color: #159fd8; }
-    .filters .active .glyphicon {
-      display: block;
-      position: absolute;
-      right: 10px;
-      top: 13px; }
     .filters .active:hover {
       background: #f8fcfe;
       border-color: #c0e8f9;
@@ -6010,8 +6003,6 @@ h2 {
       color: white;
       background: #35b6eb;
       border: 1px solid #35b6eb; }
-  .filters .glyphicon {
-    display: none; }
 
 #filters.stuckbottom {
   position: fixed;
@@ -6269,6 +6260,8 @@ form#property {
   form#property textarea {
     height: 200px; }
 
+#demo-property .img-block {
+  height: 240px; }
 #demo-property .prop-price {
   bottom: 65px; }
 
