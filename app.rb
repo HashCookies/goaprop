@@ -553,7 +553,6 @@ put '/properties' do
 	update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
 	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
 	
-	featured = params[:featured_img]
 	gallDelete = params[:gallDels]
 	gallUpload = params[:gallUploads]
 	gallOrder = params[:gallOrder]
@@ -585,11 +584,11 @@ put '/properties' do
 		end
 	end
 
-	unless featured.nil?
-		@image = Image.get(@property.featured_img)
-		@image.update({ :url => @property.id.to_s + "-" + featured[:filename].downcase.gsub(" ", "-") })
-		@property.handle_upload(featured, @property.id.to_s)
-		@property.generate_thumb(featured, @property.id.to_s)
+	unless params[:featured].nil?
+		featured = @property.images.create({:url => @property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
+		@property.handle_upload(params[:featured], @property.id.to_s)
+		@property.update({ :featured_img => featured.id })
+		@property.generate_thumb(params[:featured], @property.id.to_s)
 	end
 
 	

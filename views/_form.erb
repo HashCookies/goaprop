@@ -210,8 +210,7 @@
 		<div class="form-group">
 			<label for="featured">Featured Image</label>
 			<div class="file-input-wrap">
-				<img src="/properties/images/<%= @featured_img %>" alt="" width="250">
-				<input type="file" id="featured-img-picker" name="featured_img" class="file-picker file-inputs new-feature-file" data-demo="#demo-img" data-filename-placement="inside" title="Change Featured Image" />
+				<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-demo="#demo-img" data-filename-placement="inside" title="+ Featured Image" />
 			</div>
 		</div>
 		
@@ -234,21 +233,6 @@
 				</ul>
 				<input type="file" name="gallUploads[]" title="+ Gallery Images" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 			</div>
-
-			<!-- <div class="file-input-wrap">
-				<ul class="gallery-block row">
-				<%# @images.each do |image| %>
-					<li class="gallery-item col-md-4">
-							<div class="img-wrap">
-								<img src="/properties/images/<%#= image.url %>" alt="" width="200" />
-							</div>
-							<label for="checkbox">Delete?</label>
-							<input type="checkbox" name="gallDels[<%#= image.id %>]" />
-					</li>
-				<%# end %>
-				</ul>
-				
-			</div> -->
 		</div>
 
 		<div class="form-group">

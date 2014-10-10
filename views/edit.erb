@@ -5,12 +5,9 @@
 		
 		<div class="col-md-8">
 			<h3>Editing 
-				<a href="/property/<%= @property.id %>/<%= @property.slug %>">
-					<%= "<span id='demo-title' class='prop-string'>#{@property.title}</span>" %>
-					<%= "<span id='demo-type-name' class='prop-string'>#{@property.type.name}</span>" %> <br />
-					<span class="smaller"><%= "in <span id='demo-location' class='prop-string'>#{@property.location.name}</span>" %></span> <br />
-				</a></h3>
-			<%= form("/properties", :put, :id => "property") %>
+				<a href="/property/<%= @property.id %>/<%= @property.slug %>"><%= @property.full_title %></a></h3>
+				
+			<%= form("/properties", :put, :id => "property", :enctype => "multipart/form-data") %>
 				<%= erb :_form %>
 			</form>
 		</div>

@@ -2,7 +2,10 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h3 class="title">Create A New Property</h3>
-			<%= form('/properties', :post, :id => "property") %>			
+			
+			
+			
+			<%= form('/properties', :post, :id => "property", :enctype => "multipart/form-data") %>			
 				<%= erb :_form %>
 			</form>
 		</div>
