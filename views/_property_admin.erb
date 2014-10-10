@@ -30,23 +30,26 @@
 			<span class="prop-code">GPC<%= property.id %></span>
 		</div>
 		<div class="admin-controls">
-			<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
-			<span class="action">
-				<button class="delete-btn btn-primary btn-sm" 
-					data-resource-name="<%= property.full_title_text %>" 
-					data-resource-id="<%= property.id %>" 
-					data-target=".delete-modal" 
-					data-type="property">
-				  <span class="glyphicon glyphicon-remove"></span>  Delete
-				</button>
-			</span>
-			<span class="action">
-				<%= form('/properties', :put, :id => 'is_active_form') %>
-					<%= hidden :property, :id, :value => property.id %>
-					<%= hidden :property, :is_active, :value => !property.is_active %>
-					<input type="Submit" class="btn btn-primary btn-large submit-btn" value="<%= property.is_active ? "Deactivate" : "Activate" %>">
-				</form>
-			</span>
+			<ul>
+				<li>
+					<%= form('/properties', :put, :id => 'is_active_form') %>
+						<%= hidden :property, :id, :value => property.id %>
+						<%= hidden :property, :is_active, :value => !property.is_active %>
+						<input type="Submit" class="admin-control" value="<%= property.is_active ? "Deactivate" : "Activate" %>">
+					</form>
+				</li>
+				<li>
+					<a class="admin-control" href="/property/<%=property.id %>/edit">Edit</a>
+				</li>
+				<li>
+					<button class="delete-btn admin-control" 
+						data-resource-name="<%= property.full_title_text %>" 
+						data-resource-id="<%= property.id %>" 
+						data-target=".delete-modal" 
+						data-type="property">  Delete
+					</button>
+				</li>
+			</ul>
 		</div>
 	</div>
 </li>

@@ -1569,3 +1569,22 @@ form#property {
 	 	border: 1px dashed blue;
 	}
 }
+
+.admin-controls {
+	overflow: auto;
+	background-color: white;
+	padding: 0 10px 10px;
+	li {
+		float: left;
+		.admin-control {
+			background: none;
+			border: none;
+			color: $vib;
+			padding: 0;
+			margin: 0 5px;
+			font-size: 12px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+}

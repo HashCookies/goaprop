@@ -6496,3 +6496,19 @@ form#property {
   .edit-gallery .ss-placeholder-child {
     background: transparent;
     border: 1px dashed blue; }
+
+.admin-controls {
+  overflow: auto;
+  background-color: white;
+  padding: 0 10px 10px; }
+  .admin-controls li {
+    float: left; }
+    .admin-controls li .admin-control {
+      background: none;
+      border: none;
+      color: #f66f61;
+      padding: 0;
+      margin: 0 5px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase; }

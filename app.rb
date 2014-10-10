@@ -156,7 +156,7 @@ class Property
 	end
 	
 	def is_active=(switch)
-		if switch == "on" || true
+		if switch == "on" || switch == "true"
 			super true
 		else
 			super false
@@ -164,7 +164,7 @@ class Property
 	end
 
 	def is_premium=(switch)
-		if switch == "on"
+		if switch == "on" || switch == "true"
 			super true
 		else
 			super false
@@ -172,7 +172,7 @@ class Property
 	end
 	
 	def area_rate=(switch)
-		if switch == "on" || true
+		if switch == "on" || switch == "true"
 			super true
 		else
 			super false
@@ -190,9 +190,10 @@ class Property
 	end
 	
 	def full_title
-		"<span class='prop-string'>#{self.title}</span>
-		<span class='prop-string'>#{self.type.name}</span>
-		<span class='smaller'>in <span class='prop-string'>#{self.location.name}</span></span>"
+		full_title = ""
+		full_title = full_title + "<span class='prop-string'>#{self.title}</span>" if self.title
+		full_title = 
+			full_title + "<span class='prop-string'>#{self.type.name}</span><span class='smaller'>in <span class='prop-string'>#{self.location.name}</span></span>"
 	end
 	
 	def full_title_extended
@@ -211,6 +212,11 @@ class Property
 		end
 	end
 	
+	def slug
+		slug = ""
+		slug = slug + "#{self.title} " if self.title
+		slug = slug + "#{self.type.name} in #{self.location.name} for #{self.state.name}".downcase.gsub(" ", "-")
+	end	
 end
 
 def to_currency(price, state)
@@ -491,48 +497,44 @@ post '/properties' do
 	type = Type.get(params[:property][:type_id])
 	state = State.get(params[:property][:state_id])
 	category = Category.get(params[:property][:category_id])
-	property = Property.new(newparams)
+	@property = Property.new(newparams)
 	
 	# Adding all the associations for the property (belongs to)
-	location.propertys << property
-	type.propertys << property
-	state.propertys << property
-	category.propertys << property
+	location.propertys << @property
+	type.propertys << @property
+	state.propertys << @property
+	category.propertys << @property
 	
-	# Generating Slug
-	property.slug = "#{property.title} #{property.type.name}-in-#{property.location.name}-for-#{property.state.name}".downcase.gsub(" ", "-")
-
-	
-	if property.save			
+	if @property.save			
 		if !params[:images].nil?
 			order_id = 0
 			params[:images].each do |image|
-				property.images.create({:url => property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => order_id})
-				property.handle_upload(image, property.id.to_s)
+				@property.images.create({:url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => order_id})
+				@property.handle_upload(image, @property.id.to_s)
 				order_id = order_id + 1 
 			end
 		end
 		
 		if !params[:featured].nil?
-			@featured = property.images.create({:url => property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
-			property.handle_upload(params[:featured], property.id.to_s)
-			property.update({ :featured_img => @featured.id })
+			@featured = @property.images.create({:url => @property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
+			@property.handle_upload(params[:featured], @property.id.to_s)
+			@property.update({ :featured_img => @featured.id })
 			
-			property.generate_thumb(params[:featured], property.id.to_s)
+			@property.generate_thumb(params[:featured], @property.id.to_s)
 		end
 		
 
 		if !params[:layout_plan].nil?
-			property.handle_plan_upload(params[:layout_plan], property.id.to_s, "layout")
-			property.update(:layout_plan => property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-"))
+			@property.handle_plan_upload(params[:layout_plan], @property.id.to_s, "layout")
+			@property.update(:layout_plan => @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-"))
 		end
 
 		if !params[:master_plan].nil?
-			property.handle_plan_upload(params[:master_plan], property.id.to_s, "master")
-			property.update(:master_plan => property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-"))
+			@property.handle_plan_upload(params[:master_plan], @property.id.to_s, "master")
+			@property.update(:master_plan => @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-"))
 		end
 		
-		redirect "/property/#{property.id}/#{property.slug}"
+		redirect "/property/#{@property.id}/#{@property.slug}"
 	else
 		redirect '/properties'
 	end
@@ -558,16 +560,11 @@ put '/properties' do
 	layout_plan = params[:layout_plan]
 	master_plan = params[:master_plan]
 	
-	type_id = params[:property][:type_id] || @property.type.id
-	location_id = params[:property][:location_id] || @property.location.id
-	state_id = params[:property][:state_id] || @property.state.id
-	
-	
-	update_params[:slug] = 
-		"#{update_params[:title]} #{Type.get(type_id).name}-in-#{Location.get(location_id).name}-for-#{State.get(state_id).name}".downcase.gsub(" ", "-")
 
-	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
-	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
+	update_params[:area_rate] = false  if update_params[:area_rate].nil?
+	update_params[:is_active] = false  if update_params[:is_active].nil?
+	update_params[:is_premium] = false if update_params[:is_premium].nil?
+	
 
 	unless gallOrder.nil?
 		gallOrder.each_pair do |k, v|
