@@ -50,7 +50,7 @@ class Property
 	include DataMapper::Resource
 	
 	property :id,				Serial
-	property :title,			String
+	property :title,			String, :length => 500
 	
 	property :area,				Integer, :default => 0
 
@@ -88,7 +88,6 @@ class Property
 	property :layout_plan,		String
 	property :master_plan,		String
 		
-	property :viewcount,		Integer # automatically incremented every time instance pulled from db.
 	property :created_at,		DateTime
 	property :updated_at,		DateTime
 	property :is_active,		Boolean, :default => true
