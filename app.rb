@@ -190,9 +190,9 @@ class Property
 	
 	def full_title
 		full_title = ""
-		full_title = full_title + "<span class='prop-string'>#{self.title}</span>" if self.title
+		full_title = full_title + "<span class='prop-string'>#{self.title}</span> " if self.title
 		full_title = 
-			full_title + "<span class='prop-string'>#{self.type.name}</span><span class='smaller'>in <span class='prop-string'>#{self.location.name}</span></span>"
+			full_title + "<span class='prop-string'>#{self.type.name}</span> <span class='smaller'>in <span class='prop-string'>#{self.location.name}</span></span>"
 	end
 	
 	def full_title_extended
@@ -214,7 +214,8 @@ class Property
 	def slug
 		slug = ""
 		slug = slug + "#{self.title} " if self.title
-		slug = slug + "#{self.type.name} in #{self.location.name} for #{self.state.name}".downcase.gsub(" ", "-")
+		slug = slug + "#{self.type.name} in #{self.location.name} for #{self.state.name}"
+		slug.downcase.gsub(" ", "-")
 	end	
 end
 
