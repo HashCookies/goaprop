@@ -263,6 +263,11 @@ h2 {
 	}
 	.smaller {
 		font-size: 16px;
+		display: block;
+		.property-data & {
+			font-size: 20px;
+			display: inline;
+		}
 	}
 }
 

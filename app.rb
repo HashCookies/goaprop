@@ -180,7 +180,8 @@ class Property
 	end
 	
 	def show_area_rate
-		self.price / self.area
+		return self.price / self.area if self.price && self.area
+		"NA"
 	end
 	
 	def show_price
