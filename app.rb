@@ -188,6 +188,20 @@ class Property
 		"Price on Request"
 	end
 	
+	def full_title
+		"<span class='prop-string'>#{self.title}</span>
+		<span class='prop-string'>#{self.type.name}</span>
+		<span class='smaller'>in <span class='prop-string'>#{self.location.name}</span></span>"
+	end
+	
+	def full_title_extended
+		self.full_title + " <span class='smaller'>for <span class='prop-string'>#{self.state.name}</span></span>"
+	end
+	
+	def full_title_text
+		"#{self.title} #{self.type.name} in #{self.location.name} for #{self.state.name}"
+	end
+	
 end
 
 def to_currency(price, state)

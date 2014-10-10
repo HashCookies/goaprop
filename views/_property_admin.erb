@@ -12,9 +12,7 @@
 		<div class="data-block">
 			<h3 class="prop-title">
 				<a href="/property/<%= property.id %>/<%= property.slug %>">
-					<span class='prop-string'><%= property.title %> </span>
-					<%= "<span class='prop-string'>#{property.type.name}</span>" %> <br />
-					<span class="smaller"><%= "in <span class='prop-string'>#{property.location.name}</span>" %></span>
+					<%= property.full_title %>
 				</a>
 			</h3>
 			<div class="prop-price">
@@ -34,7 +32,11 @@
 		<div class="admin-controls">
 			<span class="action"><a class="btn btn-primary btn-sm" href="/property/<%=property.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> Edit</a></span>
 			<span class="action">
-				<button class="delete-btn btn-primary btn-sm" data-resource-name="<%= property.title.nil? ? "" : property.title + " " + property.type.name %><%= " in " + property.location.name %><%= " for " + property.state.name %>" data-resource-id="<%= property.id %>" data-target=".delete-modal" data-type="property">
+				<button class="delete-btn btn-primary btn-sm" 
+					data-resource-name="<%= property.full_title_text %>" 
+					data-resource-id="<%= property.id %>" 
+					data-target=".delete-modal" 
+					data-type="property">
 				  <span class="glyphicon glyphicon-remove"></span>  Delete
 				</button>
 			</span>

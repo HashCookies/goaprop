@@ -46,10 +46,7 @@
 			<div class="col-md-8 data-block">
 				<h3 class="prop-title"><div></div>
 					<a href="/property/<%= @property.id %>/<%= @property.slug %>">
-						<span class='prop-string'><%= @property.title %> </span>
-						<%= "<span class='prop-string'>#{@property.type.name}</span>" %>
-						<%= "in <span class='prop-string'>#{@property.location.name}</span>" %>
-						<%= "for <span class='prop-string'>#{@property.state.name}</span>" %>
+						<%= @property.full_title_extended %>
 					</a> <span class="prop-code">GPC <%= @property.id %></span>
 				</h3>
 				<p class="prop-area">

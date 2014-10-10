@@ -12,9 +12,7 @@
 		<div class="data-block">
 			<h3 class="prop-title">
 				<a href="/property/<%= property.id %>/<%= property.slug %>">
-					<span class='prop-string'><%= property.title %> </span>
-					<%= "<span class='prop-string'>#{property.type.name}</span>" %> <br />
-					<span class="smaller"><%= "in <span class='prop-string'>#{property.location.name}</span>" %></span>
+					<%= property.full_title %>
 				</a>
 			</h3>
 			<div class="prop-price">
