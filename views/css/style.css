@@ -6004,6 +6004,17 @@ h2 {
       background: #35b6eb;
       border: 1px solid #35b6eb; }
 
+#cancel-premium {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  display: none;
+  color: #333; }
+  #cancel-premium .glyphicon {
+    font-size: 12px; }
+  .active #cancel-premium {
+    display: block; }
+
 #filters.stuckbottom {
   position: fixed;
   bottom: 20px; }

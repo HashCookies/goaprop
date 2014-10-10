@@ -133,7 +133,7 @@ class Property
 		classlist << self.location.name.downcase
 		classlist << self.type.name.downcase.gsub(" ", "-")
 		classlist << self.zone.downcase unless self.zone.nil?
-		classlist << "bhk-#{self.bhk_count}" unless self.bhk_count.nil?
+		classlist << "bhk-#{self.bhk_count}"
 		classlist << "is-premium" if self.is_premium?
 		classlist.join(" ")
 	end
@@ -151,11 +151,8 @@ class Property
 	end
 	
 	def brokerage
-		if self.state_id == 1
-			"2%"
-		elsif self.state_id == 2
-			"1 month"
-		end
+		return "2%" 	 if self.state_id == 1 # sale
+		return "1 month" if self.state_id == 2 # rent
 	end
 	
 	def is_active=(switch)

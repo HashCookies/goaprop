@@ -918,6 +918,22 @@ h2 {
 			border: 1px solid $blue;
 		}
 	}
+
+}
+
+#cancel-premium {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	display: none;
+	color: #333;
+	
+	.glyphicon {
+		font-size: 12px;
+	}
+	.active & {
+		display: block;
+	}
 }
 
 #filters.stuckbottom {
