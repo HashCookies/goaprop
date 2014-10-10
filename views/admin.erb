@@ -63,18 +63,7 @@
 						</ul>
 					</div>
 					<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3">
-						<!-- <%# unless location.propertys(:state_id => 1).count < 1 %>
-							<h3 class="title">Sale</h3>
 							<ul id="property-grid" class="row">
-								<%# location.propertys(:state_id => 1).each do |property| %>
-									<%#= erb :_property_admin, :layout => false, :locals => {:property => property} %>
-								<%# end %>
-							</ul>
-						<%# end %>
-						<%# unless location.propertys(:state_id => 2).count < 1 %>
-							<h3 class="title">Rent</h3>-->
-							<ul id="property-grid" class="row">
-								<!-- <%# location.propertys(:state_id => 2).each do |property| %> -->
 								<% @properties.each do |property| %>
 									<%= erb :_property_admin, :layout => false, :locals => {:property => property, :cols => "col-md-4 col-sm-6"} %>
 								<% end %>

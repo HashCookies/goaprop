@@ -39,9 +39,9 @@
 				</button>
 			</span>
 			<span class="action">
-				<form role="form" action="/update" method="post" id="is_active_form" enctype="multipart/form-data">
-					<input type="hidden" name="property[id]" value="<%= property.id %>" />
-					<input type="hidden" name="property[is_active]" value="<%= !property.is_active %>" />
+				<%= form('/properties', :put, :id => 'is_active_form') %>
+					<%= hidden :property, :id, :value => property.id %>
+					<%= hidden :property, :is_active, :value => !property.is_active %>
 					<input type="Submit" class="btn btn-primary btn-large submit-btn" value="<%= property.is_active ? "Deactivate" : "Activate" %>">
 				</form>
 			</span>

@@ -159,7 +159,7 @@ class Property
 	end
 	
 	def is_active=(switch)
-		if switch == "on"
+		if switch == "on" || true
 			super true
 		else
 			super false
@@ -471,78 +471,6 @@ get '/notfound' do
 	erb :notfound
 end
 
-post '/update' do
-	require_admin
-	
-	@property = Property.get(params[:property][:id])
-	update_params = params[:property]
-	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
-	
-	update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
-	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
-	
-	featured = params[:featured_img]
-	gallDelete = params[:gallDels]
-	gallUpload = params[:gallUploads]
-	gallOrder = params[:gallOrder]
-	layout_plan = params[:layout_plan]
-	master_plan = params[:master_plan]
-	
-	type_id = params[:property][:type_id] || @property.type.id
-	location_id = params[:property][:location_id] || @property.location.id
-	state_id = params[:property][:state_id] || @property.state.id
-	
-	
-	update_params[:slug] = 
-		"#{update_params[:title]} #{Type.get(type_id).name}-in-#{Location.get(location_id).name}-for-#{State.get(state_id).name}".downcase.gsub(" ", "-")
-
-	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
-	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
-
-	unless gallOrder.nil?
-		gallOrder.each_pair do |k, v|
-			@image = Image.get(k)
-			@image.update(:order_id => v.to_i)
-		end
-	end
-
-	unless gallDelete.nil?
-		gallDelete.each_key { |key| Image.get(key).destroy }
-	end
-	
-	unless gallUpload.nil?
-		params[:gallUploads].each do |image|
-			@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
-			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
-			@property.handle_upload(image, @property.id.to_s)	
-		end
-	end
-
-	unless featured.nil?
-		@image = Image.get(@property.featured_img)
-		@image.update({ :url => @property.id.to_s + "-" + featured[:filename].downcase.gsub(" ", "-") })
-		@property.handle_upload(featured, @property.id.to_s)
-		@property.generate_thumb(featured, @property.id.to_s)
-	end
-
-	
-	@property.handle_plan_upload(layout_plan, @property.id.to_s, "layout") unless layout_plan.nil?
-
-	@property.handle_plan_upload(master_plan, @property.id.to_s, "master") unless master_plan.nil?
-
-	 # begin
-	if @property.update(update_params)
-		redirect "/property/#{@property.id}/edit"
-	else
-		redirect "/property/#{@property.id}/edit"
-	end
-	 # rescue DataMapper::SaveFailureError => e
-	 # 	puts e.resource.errors.inspect
-	 # end
-end
-
-
-
 post '/properties' do
 	require_admin
 	newparams = params[:property]
@@ -601,6 +529,77 @@ post '/properties' do
 		redirect '/properties'
 	end
 end
+
+# Update action
+put '/properties' do
+	require_admin
+	
+	session[:return_to] ||= request.referer
+	
+	@property = Property.get(params[:property][:id])
+	update_params = params[:property]
+	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
+	
+	update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
+	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
+	
+	featured = params[:featured_img]
+	gallDelete = params[:gallDels]
+	gallUpload = params[:gallUploads]
+	gallOrder = params[:gallOrder]
+	layout_plan = params[:layout_plan]
+	master_plan = params[:master_plan]
+	
+	type_id = params[:property][:type_id] || @property.type.id
+	location_id = params[:property][:location_id] || @property.location.id
+	state_id = params[:property][:state_id] || @property.state.id
+	
+	
+	update_params[:slug] = 
+		"#{update_params[:title]} #{Type.get(type_id).name}-in-#{Location.get(location_id).name}-for-#{State.get(state_id).name}".downcase.gsub(" ", "-")
+
+	update_params[:is_premium] = "" unless !update_params[:is_premium].nil? # if no value is present for is_premium set false
+	update_params[:is_active] = "" unless !update_params[:is_active].nil? # if no value is present for is_active set false
+
+	unless gallOrder.nil?
+		gallOrder.each_pair do |k, v|
+			@image = Image.get(k)
+			@image.update(:order_id => v.to_i)
+		end
+	end
+
+	unless gallDelete.nil?
+		gallDelete.each_key { |key| Image.get(key).destroy }
+	end
+	
+	unless gallUpload.nil?
+		params[:gallUploads].each do |image|
+			@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
+			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
+			@property.handle_upload(image, @property.id.to_s)	
+		end
+	end
+
+	unless featured.nil?
+		@image = Image.get(@property.featured_img)
+		@image.update({ :url => @property.id.to_s + "-" + featured[:filename].downcase.gsub(" ", "-") })
+		@property.handle_upload(featured, @property.id.to_s)
+		@property.generate_thumb(featured, @property.id.to_s)
+	end
+
+	
+	@property.handle_plan_upload(layout_plan, @property.id.to_s, "layout") unless layout_plan.nil?
+
+	@property.handle_plan_upload(master_plan, @property.id.to_s, "master") unless master_plan.nil?
+
+
+	if @property.update(update_params)
+		redirect "/property/#{session.delete(:return_to)}"
+	else
+		redirect "/property/#{@property.id}/edit"
+	end
+end
+
 
 get '/admin' do	
 	require_admin
