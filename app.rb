@@ -516,9 +516,9 @@ post '/properties' do
 		end
 		
 		if !params[:featured].nil?
-			@featured = @property.images.create({:url => @property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
+			featured = @property.images.create({:url => @property.id.to_s + "-" + params[:featured][:filename].downcase.gsub(" ", "-") })
 			@property.handle_upload(params[:featured], @property.id.to_s)
-			@property.update({ :featured_img => @featured.id })
+			@property.update({ :featured_img => featured.id })
 			
 			@property.generate_thumb(params[:featured], @property.id.to_s)
 		end
