@@ -594,7 +594,7 @@ put '/properties' do
 
 
 	if @property.update(update_params)
-		redirect "/property/#{session.delete(:return_to)}"
+		redirect session.delete(:return_to)
 	else
 		redirect "/property/#{@property.id}/edit"
 	end
@@ -618,7 +618,6 @@ get '/admin' do
 		else
 			property.featured_img = "gpc-default-thumb.jpg"
 		end
-		# property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
 	end
 
 	erb :admin
