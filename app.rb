@@ -202,6 +202,14 @@ class Property
 		"#{self.title} #{self.type.name} in #{self.location.name} for #{self.state.name}"
 	end
 	
+	def featured_img_url
+		if !self.featured_img.nil?
+			Image.get(self.featured_img).url
+		else
+			'gpc-default-thumb.jpg'
+		end
+	end
+	
 end
 
 def to_currency(price, state)
@@ -404,7 +412,6 @@ get '/property/:id/edit' do
 	@categories = Category.all
 	
 	@property = Property.get(params[:id])
-	@featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?
 	@images = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ]) # Gallery Images minus Featured Image
 	@locations = Location.all
 	@types = Type.all
@@ -433,17 +440,9 @@ get '/property/:id/:slug' do
 		# Get the rest of the images for the gallery
 		@hidden_images = @images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :offset => 3, :limit => 15)
 		
-		# We've not changed the featured image url till now
-		# because we require it to spell out the ID for the 
-		# resources above.
-		@property.featured_img = Image.get(@property.featured_img).url unless Image.get(@property.featured_img).nil?	
-		
 			
 		# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
 		@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
-		@similar.each do |property|
-			property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		end
 		
 		# Variables for the search bar
 		@category = Category.get(@property.category.id)
@@ -457,10 +456,7 @@ get '/property/:id/:slug' do
 		@viewed = Property.all(:id => viewed)
 		@viewed = @viewed[1..3]
 		
-		@viewed.each do |property|
-			property.featured_img = Image.get(property.featured_img).url unless Image.get(property.featured_img).nil?
-		end
-		
+	
 		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
 		
 		erb :property
@@ -623,13 +619,6 @@ get '/admin' do
 	@properties = Property.all
 	@locations = Location.all
 	@types = Type.all
-	@properties.each do |property|
-		if !Image.get(property.featured_img).nil?
-			property.featured_img = Image.get(property.featured_img).url
-		else
-			property.featured_img = "gpc-default-thumb.jpg"
-		end
-	end
 
 	erb :admin
 end
@@ -652,13 +641,6 @@ get '/search' do
 	@location_ids = @locations.map(&:id) # For masonry filters
 	@types = @properties.types
 	
-	@properties.each do |property|
-		if !Image.get(property.featured_img).nil?
-			property.featured_img = Image.get(property.featured_img).url
-		else
-			property.featured_img = "gpc-default-thumb.jpg"
-		end
-	end
 	erb :search
 end
 
