@@ -173,14 +173,9 @@ class Property
 			super false
 		end
 	end
-<<<<<<< HEAD
-	def area_rate
-		return self.price / self.area if self.area_rate?
-	end
-=======
 	
 	def area_rate=(switch)
-		if switch == "on"
+		if switch == "on" || true
 			super true
 		else
 			super false
@@ -196,7 +191,6 @@ class Property
 		"Price on Request"
 	end
 	
->>>>>>> master
 end
 
 def to_currency(price, state)
@@ -377,6 +371,10 @@ end
 get '/property/new' do
 	require_admin
 	
+	@property = Property.new
+	@property.area_rate = true
+	@images = @property.images
+	
 	@regions = Region.all
 	@categories = Category.all
 	
@@ -545,7 +543,7 @@ end
 
 
 
-post '/create' do
+post '/properties' do
 	require_admin
 	newparams = params[:property]
 	newparams.each_pair {|k,v| newparams[k] = nil if v == "" }
@@ -553,10 +551,10 @@ post '/create' do
 	newparams[:is_premium] = "" unless !newparams[:is_premium].nil? # if no value is present for is_premium set false
 	newparams[:is_active] = "" unless !newparams[:is_active].nil? # if no value is present for is_active set false
 	
-	location = Location.get(params[:location][:id])
-	type = Type.get(params[:type][:id])
-	state = State.get(params[:state][:id])
-	category = Category.get(params[:category][:id])
+	location = Location.get(params[:property][:location_id])
+	type = Type.get(params[:property][:type_id])
+	state = State.get(params[:property][:state_id])
+	category = Category.get(params[:property][:category_id])
 	property = Property.new(newparams)
 	
 	# Adding all the associations for the property (belongs to)
