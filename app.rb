@@ -552,8 +552,10 @@ put '/properties' do
 	update_params = params[:property]
 	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
 	
-	update_params[:layout_plan] = @property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
-	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
+	update_params[:layout_plan] = 
+		@property.id.to_s + "-" + params[:layout_plan][:filename].downcase.gsub(" ", "-") unless params[:layout_plan].nil?
+	update_params[:master_plan] = 
+		@property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
 	
 	gallDelete = params[:gallDels]
 	
@@ -583,7 +585,10 @@ put '/properties' do
 		params[:images].each do |image|
 			new_order_id = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ])
 			new_order_id = new_order_id + 1 if new_order_id
-			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => new_order_id.to_i })
+			@property.images.create({ 
+				:property_id => @property.id, 
+				:url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), 
+				:order_id => new_order_id.to_i })
 			@property.handle_upload(image, @property.id.to_s)	
 		end
 	end
