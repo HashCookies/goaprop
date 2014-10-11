@@ -329,7 +329,6 @@ before :method => :get do
 	@category = Category.get 1
 	@state = State.get 1
 
-	@body_class = ""
 	session[:properties] ||= {}
 end
 
