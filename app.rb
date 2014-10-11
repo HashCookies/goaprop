@@ -328,8 +328,7 @@ before :method => :get do
 	@region = Region.first
 	@category = Category.get 1
 	@state = State.get 1
-	
-	@page_title = "GoaPropertyCo"
+
 	@body_class = ""
 	session[:properties] ||= {}
 end
@@ -339,6 +338,14 @@ helpers do
 	include Sinatra::Authorization
 	def partial template
 		erb template, :layout => false
+	end
+	
+	def page_title(title="")
+		if title.nil?
+			"Goa Property Co"
+		else
+			"Goa Property Co | #{title}"
+		end
 	end
 end
 
@@ -382,13 +389,15 @@ end
 
 get '/' do
 	@body_class += " home"
-	@page_title += " | Hassle-free Real Estate in Goa"
+	@title = "Hassle-free Real Estate in Goa"
 	
 	erb :home
 end
 
 get '/about' do
 	@body_class += " about"
+	@title = "Our Services"
+	
 	erb :about
 end
 
@@ -405,7 +414,7 @@ get '/property/new' do
 	@locations = Location.all
 	@types = Type.all
 	@states = State.all
-	@page_title += " | New Property"
+	@title = "New Property"
 	@body_class += " alt"
 	erb :new
 end
@@ -420,7 +429,7 @@ get '/property/:id/edit' do
 	@images = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ]) # Gallery Images minus Featured Image
 	@locations = Location.all
 	@types = Type.all
-	@page_title += " | Edit Property"
+	@title = "Editing #{@property.full_title_text}"
 	@body_class += " alt"
 	erb :edit
 end
@@ -435,7 +444,6 @@ get '/property/:id/:slug' do
 	
 	if @property.is_active
 		@images = @property.images.all
-		
 
 		@image_grid = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :limit => 3) # Gallery Images minus Featured Image
 
@@ -462,7 +470,7 @@ get '/property/:id/:slug' do
 		@viewed = @viewed[1..3]
 		
 	
-		@page_title += " | #{@property.title} #{@property.type.name} in #{@property.location.name} for #{@property.state.name}"
+		@title = @property.full_title_text
 		
 		erb :property
 	else
@@ -612,6 +620,8 @@ get '/admin' do
 	@properties = Property.all
 	@locations = Location.all
 	@types = Type.all
+	
+	@title = "Admin"
 
 	erb :admin
 end
@@ -633,6 +643,8 @@ get '/search' do
 	
 	@location_ids = @locations.map(&:id) # For masonry filters
 	@types = @properties.types
+	
+	@title = "#{@category.name} Properties for #{@state.name} in #{@region.name}"
 	
 	erb :search
 end
@@ -712,7 +724,7 @@ end
 
 get '/sell-lease' do
 	@body_class += " leasesell"
-	@page_title += " | Sell or Lease Your Property"
+	@title = "Sell or Lease Your Property"
 	erb :sell
 end
 
