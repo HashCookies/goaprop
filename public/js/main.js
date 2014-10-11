@@ -36,6 +36,8 @@ $(document).ready(function() {
 			$(this).height($(this).width() * .75);
 		});
 		
+		$('.property-item img').lazyload();
+		
 		$('#demo-property .img-block').height($('#demo-property .img-block').width() * 0.75);
 		
 		$('#sort-filter').on( 'click', 'a', function() {
