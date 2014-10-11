@@ -440,7 +440,7 @@ get '/property/:id/edit' do
 end
 
 get '/property/:id/:slug' do
-	@classes += ['property']
+	@classes = ['property']
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]

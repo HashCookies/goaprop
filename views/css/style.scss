@@ -1600,5 +1600,8 @@ form#property {
 	text-align: center;
 	.btn {
 		background: white;
+		&:hover {
+			background: $vib;
+		}
 	}
 }
