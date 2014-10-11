@@ -541,10 +541,7 @@ end
 
 # Update action
 put '/properties' do
-	require_admin
-	
-	session[:return_to] ||= request.referer
-	
+	require_admin	
 	@property = Property.get(params[:property][:id])
 	update_params = params[:property]
 	update_params.each_pair {|k,v| update_params[k] = nil if v.empty? }
@@ -593,9 +590,13 @@ put '/properties' do
 
 
 	if @property.update(update_params)
-		redirect session.delete(:return_to)
+		if request.referer.include? "admin"
+			redirect request.referer
+		else
+			redirect "/property/#{@property.id}/#{@property.slug}"
+		end
 	else
-		redirect "/property/#{@property.id}/edit"
+		redirect "/admin"
 	end
 end
 
