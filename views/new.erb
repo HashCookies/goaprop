@@ -1,13 +1,17 @@
-<div class="container">
-	<div class="row">
-		
-		<div class="col-md-12">
-			<h3 class="title">Create A New Property</h3>
+<div class="offwhite-block">
+
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-12">
+				<h3 class="title">Create A New Property</h3>
+			</div>
+			
+			<%= form('/properties', :post, :id => "property", :enctype => "multipart/form-data") %>			
+				<%= erb :_form %>
+			</form>
+			
 		</div>
-		
-		<%= form('/properties', :post, :id => "property", :enctype => "multipart/form-data") %>			
-			<%= erb :_form %>
-		</form>
-		
 	</div>
+
 </div>

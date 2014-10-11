@@ -269,7 +269,7 @@
 	
 	<hr />
 
-	<h4>Gallery Images <small>(Drag images to re-order)</small></h4>
+	<h4>Gallery Images <% if @images.count > 1 %><small>(Drag images to re-order)</small><% end %></h4>
 	<div class="file-input-wrap">
 		<div class="gallery-block">
 			<% if @images %> 
