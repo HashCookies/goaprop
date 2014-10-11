@@ -588,8 +588,9 @@ put '/properties' do
 	
 	unless gallUpload.nil?
 		params[:images].each do |image|
-			@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
-			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
+			new_order_id = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ])
+			new_order_id = new_order_id + 1 if new_order_id
+			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => new_order_id.to_i })
 			@property.handle_upload(image, @property.id.to_s)	
 		end
 	end
