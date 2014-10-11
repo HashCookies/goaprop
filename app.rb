@@ -195,7 +195,9 @@ class Property
 	end
 	
 	def full_title_text
-		"#{self.title} #{self.type.name} in #{self.location.name} for #{self.state.name}"
+		full_title_text = ""
+		full_title_text = full_title_text + "#{self.title} " if self.title
+		full_title_text = full_title_text + "#{self.type.name} in #{self.location.name} for #{self.state.name}"
 	end
 	
 	def featured_img_url
