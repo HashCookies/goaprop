@@ -228,7 +228,10 @@
 	<% end %> <!--End Fieldset-->
 </div>
 
-<div class="col-md-4 col-sm-6 col-xs-12 ">
+<div class="col-md-4 col-sm-6 col-xs-12 image-fields">
+
+	<%= submit "Save Property", :class => "btn btn-primary", :id => "submit-form-btn" %>
+	
 	<div id="image-picker-blocks">
 		<div class="form-group">
 			<label for="featured">Featured Image</label>
@@ -239,7 +242,7 @@
 				<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-demo="#demo-img" data-filename-placement="inside" title="+ Featured Image" />
 			</div>
 		</div>
-		
+		<hr />
 		<div class="form-group">
 			<label for="layout">Layout Plan</label>
 			<div class="file-input-wrap">
@@ -249,7 +252,7 @@
 				<input type="file" id="layout-plan-picker" name="layout_plan" class="file-picker file-inputs new-file" data-filename-placement="inside" title="Change Layout Plan" />
 			</div>
 		</div>
-		
+		<hr />
 		<div class="form-group">
 			<label for="master">Master Plan</label>
 			<div class="file-input-wrap">
@@ -286,9 +289,4 @@
 	</div>
 	<input type="file" name="images[]" title="+ Gallery Images" id="gallery-items-picker" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
 	
-	<hr />
-	
-	<div class="col-md-12">
-		<%= submit "Save Property", :class => "btn btn-primary" %>
-	</div>
 </div>

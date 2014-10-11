@@ -1250,6 +1250,9 @@ form#property {
 		background: white;
 		padding: 25px;
 	}
+	.image-fields {
+		padding: 0 25px;
+	}
 	.mid-select {
 		font-family: $serif;
 		font-style: italic;
@@ -1276,6 +1279,21 @@ form#property {
 	}
 	textarea {
 		height: 200px;
+	}
+}
+
+#submit-form-btn {
+	width: 100%;
+	display: block;
+	padding: 20px 15px;
+	background: white;
+	border: 1px solid #ddd;
+	margin-bottom: 25px;
+	text-align: center;
+	font-size: 20px;
+	&:hover {
+		background: $vib;
+		color: white;
 	}
 }
 
