@@ -519,6 +519,11 @@ h2 {
 			}		
 		}
 	}
+	.unit-label, .unit-label-label {
+		font-family: $serif;
+		font-style: italic;
+		font-size: 12px;
+	}
 }
 
 #switch-unit {
@@ -1473,6 +1478,7 @@ form#property {
 		float: left;
 		color: darken($light, 15%);
 		margin-right: 5px;
+		margin-top: 1px;
 	}
 	ul {
 		overflow: auto;

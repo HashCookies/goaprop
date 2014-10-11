@@ -76,14 +76,14 @@
 			<ul class="clearfix row">
 					<li class="col-md-3">
 						<span class="label">Area</span>
-						<div class="block"><span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span></div>
+						<div class="block"><span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mt</span></div>
 					</li>
 					<% if !@property.area_built.nil? %>
 						<li class="col-md-3">
 							<span class="label">Built Area</span>
 							<div class="block">
 								<span class="unit-area"><%= @property.area_built %></span> 
-								<span class="unit-label">Sq Mts</span>
+								<span class="unit-label">Sq Mt</span>
 							</div>
 						</li>
 					<% end %>
@@ -92,7 +92,7 @@
 							<span class="label">Area rate</span>
 							<div class="block">
 								<span class="unit-area"><%= @property.show_area_rate %></span>
-								<span class="unit-label">Rs / Sq Mt</span>
+								<span class="unit-label-label">Rs / </span><span class="unit-label">Sq Mt</span>
 							</div>
 						</li>
 					<% end %>

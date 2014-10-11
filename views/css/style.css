@@ -5690,6 +5690,10 @@ h2 {
         .property-main .gallery-block .gallery-link .btn:hover {
           color: #f66f61;
           border-color: #fbc7c2; }
+  .property-main .unit-label, .property-main .unit-label-label {
+    font-family: "freight-text-pro", Garamond, Georgia, serif;
+    font-style: italic;
+    font-size: 12px; }
 
 #switch-unit {
   background: none;
@@ -6421,7 +6425,8 @@ form#property {
   #sorting-bar .label {
     float: left;
     color: #beccd7;
-    margin-right: 5px; }
+    margin-right: 5px;
+    margin-top: 1px; }
   #sorting-bar ul {
     overflow: auto;
     float: left; }

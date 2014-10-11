@@ -431,7 +431,7 @@ $(document).ready(function() {
 			$('.unit-label').each(function() {
 				$(this).text("Sq Ft");
 			});
-			$('#switch-unit .unit-label').text("Show in Sq Mts");
+			$('#switch-unit .unit-label').text("Show in Sq Mt");
 			$('#switch-unit').removeClass('imperial').addClass('metric');
 		} else if ($('#switch-unit').hasClass('metric')) {
 			$.cookie('mode', 'metric');
@@ -441,7 +441,7 @@ $(document).ready(function() {
 				$(this).text(val);
 			});
 			$('.unit-label').each(function() {
-				$(this).text("Sq Mts");
+				$(this).text("Sq Mt");
 			});
 			$('#switch-unit .unit-label').text("Show in Sq Ft");
 			$('#switch-unit').removeClass('metric').addClass('imperial');
