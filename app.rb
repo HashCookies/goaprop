@@ -26,11 +26,6 @@ configure :test do
 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/test.db")
 end
 
-# configure :production do
-# 	require 'dm-sqlite-adapter'
-# 	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db/db.db")
-# end
-
 configure :production do
 	require 'mysql'
 	require 'dm-mysql-adapter'
@@ -350,19 +345,20 @@ get '/reset' do
 	DataMapper.auto_migrate!
 	DataMapper.finalize
 	
-	tt = Type.first_or_create(:name => "Apartment")
-	tt = Type.first_or_create(:name => "House")
+	Type.first_or_create(:name => "Apartment")
+	Type.first_or_create(:name => "House")
 	#tt = Type.first_or_create(:name => "Land")
 
-	rr = Region.create(:name => "North Goa")
-	rr = Region.create(:name => "South Goa")
+	Region.create(:name => "North Goa")
+	Region.create(:name => "South Goa")
 
-	ss = State.first_or_create(:name => "Sale")
-	ss = State.first_or_create(:name => "Rent")
+	State.first_or_create(:name => "Sale")
+	State.first_or_create(:name => "Rent")
 	
-	cc = Category.create(:name => "Residential")
-	cc = Category.create(:name => "Commercial")
-	cc = Category.create(:name => "Land")
+	Category.create(:name => "Residential")
+	Category.create(:name => "Commercial")
+	Category.create(:name => "Land")
+	
 end
 
 get '/setdefaultorder' do # run initially to populate the order_id field in images model
@@ -497,6 +493,7 @@ post '/properties' do
 	type = Type.get(params[:property][:type_id])
 	state = State.get(params[:property][:state_id])
 	category = Category.get(params[:property][:category_id])
+	
 	@property = Property.new(newparams)
 	
 	# Adding all the associations for the property (belongs to)
