@@ -426,22 +426,34 @@ get '/property/:id/:slug' do
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
 	
-	
-	
 	if @property.is_active
 		@images = @property.images.all
 
-		@image_grid = @property.images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :limit => 3) # Gallery Images minus Featured Image
+		@image_grid = 
+			@property.images.all(
+				:id.not => @property.featured_img, 
+				:order => [ :order_id.asc ], 
+				:limit => 3) # Gallery Images minus Featured Image
 
 		# Required for the gallery fullscreen button
 		@images_count = @images.count - 4 <= 0 ? nil : "#{@images.count - 4} more..."
 
 		# Get the rest of the images for the gallery
-		@hidden_images = @images.all(:id.not => @property.featured_img, :order => [ :order_id.asc ], :offset => 3, :limit => 15)
+		@hidden_images = 
+			@images.all(
+				:id.not => @property.featured_img, 
+				:order => [ :order_id.asc ], 
+				:offset => 3, 
+				:limit => 15)
 		
 			
 		# Similar properties pulls all property models which have the same LOCATION, are of the same TYPE (House/Apartment), in the same STATE (Buy/Rent), in the same CATEGORY (Commercial/Residential), minus the current property.
-		@similar = @property.location.propertys(:type_id => @property.type_id, :state_id => @property.state_id, :category_id => @property.category_id, :id.not => @property.id)
+		@similar =
+			@property.location.propertys(
+				:type_id => @property.type_id, 
+				:state_id => @property.state_id, 
+				:category_id => @property.category_id, 
+				:id.not => @property.id)
 		
 		# Variables for the search bar
 		@category = Category.get(@property.category.id)
