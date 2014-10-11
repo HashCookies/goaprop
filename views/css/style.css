@@ -6517,3 +6517,9 @@ form#property {
       font-size: 12px;
       font-weight: bold;
       text-transform: uppercase; }
+
+#admin-main-controls {
+  margin-top: 50px;
+  text-align: center; }
+  #admin-main-controls .btn {
+    background: white; }
