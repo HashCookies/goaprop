@@ -6256,28 +6256,28 @@ h2 {
   background: #fbfbf3;
   border-top: 1px solid #edf1f4; }
 
-form#property {
+form#property #form-fields {
+  border: 1px solid #cdd8e1;
   background: white;
-  padding: 25px;
-  border: 1px solid #cdd8e1; }
-  form#property .mid-select {
-    font-family: "freight-text-pro", Garamond, Georgia, serif;
-    font-style: italic;
-    display: inline-block;
-    margin: 0 10px; }
-  form#property .select2 {
-    min-width: 150px; }
-    form#property .select2 .select2-choice {
-      padding: 3px 15px;
-      height: 33px; }
-  form#property .col-md-4 .select2 {
-    width: 100%; }
-  form#property .type-select {
-    width: 210px; }
-  form#property .location-select {
-    width: 200px; }
-  form#property textarea {
-    height: 200px; }
+  padding: 25px; }
+form#property .mid-select {
+  font-family: "freight-text-pro", Garamond, Georgia, serif;
+  font-style: italic;
+  display: inline-block;
+  margin: 0 10px; }
+form#property .select2 {
+  min-width: 150px; }
+  form#property .select2 .select2-choice {
+    padding: 3px 15px;
+    height: 33px; }
+form#property .col-md-4 .select2 {
+  width: 100%; }
+form#property .type-select {
+  width: 210px; }
+form#property .location-select {
+  width: 200px; }
+form#property textarea {
+  height: 200px; }
 
 #demo-property .img-block {
   height: 240px; }
@@ -6492,15 +6492,35 @@ form#property {
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 .edit-gallery {
-  position: relative; }
-  .edit-gallery div {
+  position: relative;
+  margin-bottom: 10px;
+  margin-left: -15px; }
+  .edit-gallery .gallery-item-checkbox {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px; }
+    .edit-gallery .gallery-item-checkbox button {
+      background: none;
+      border: none; }
+    .edit-gallery .gallery-item-checkbox .glyphicon {
+      color: #f66f61;
+      font-size: 16px;
+      text-shadow: 0px 1px #fff; }
+  .edit-gallery .gallery-item-wrap {
     background: transparent;
     position: absolute;
-    height: 200px;
-    width: 200px; }
-  .edit-gallery .ss-placeholder-child {
-    background: transparent;
-    border: 1px dashed blue; }
+    height: 100px;
+    width: 106px;
+    overflow: hidden; }
+    .edit-gallery .gallery-item-wrap img {
+      max-width: 150%;
+      min-height: 100%; }
+    .edit-gallery .gallery-item-wrap:hover .gallery-item-checkbox {
+      display: block; }
+
+#gallery-items-picker {
+  margin-left: 5px; }
 
 .admin-controls {
   overflow: auto;
@@ -6525,3 +6545,9 @@ form#property {
     background: white; }
     #admin-main-controls .btn:hover {
       background: #f66f61; }
+
+#image-picker-blocks img {
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 5px; }

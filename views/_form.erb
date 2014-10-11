@@ -1,4 +1,4 @@
-
+<div class="col-md-8" id="form-fields">
 	<% fieldset(:property) do |f| %>
 	<div class="row form-group">
 		<div class="col-md-4">
@@ -22,256 +22,273 @@
 				</select>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		<div class="row form-group">
-			<div class="col-md-4">
-				<%= f.label :state_id, "Mode" %>
-				<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id" data-selected="<%= @property.state.id if @property.state %>">
-					<% @states.each do |state| %>
-						<option value="<%= state.id %>"><%= state.name %></option>
-					<% end %>
-				</select>
-			</div>
-			
-			<div class="col-md-4">
-				<%= f.label :category_id, "Property Type" %>
-				<select class="select2" name="property[category_id]" id="category_id" data-selected="<%= @property.category.id if @property.category %>">
-					<% @categories.each do |category| %>
-						<option value="<%= category.id %>"><%= category.name %></option>
-					<% end %>
-				</select>
-			</div>
-			
-			<div class="col-md-4">
-				<%= f.label :price %>
-				<%= f.input :price, :value => @property.price, :id => "price", :class => "form-control demo-control" %>
-			</div>
+	<div class="clearfix"></div>
+	<div class="row form-group">
+		<div class="col-md-4">
+			<%= f.label :state_id, "Mode" %>
+			<select class="select2 state-select" data-demo="#demo-state" name="property[state_id]" id="state_id" data-selected="<%= @property.state.id if @property.state %>">
+				<% @states.each do |state| %>
+					<option value="<%= state.id %>"><%= state.name %></option>
+				<% end %>
+			</select>
 		</div>
 		
-		<div class="clearfix"></div>
+		<div class="col-md-4">
+			<%= f.label :category_id, "Property Type" %>
+			<select class="select2" name="property[category_id]" id="category_id" data-selected="<%= @property.category.id if @property.category %>">
+				<% @categories.each do |category| %>
+					<option value="<%= category.id %>"><%= category.name %></option>
+				<% end %>
+			</select>
+		</div>
+		
+		<div class="col-md-4">
+			<%= f.label :price %>
+			<%= f.input :price, :value => @property.price, :id => "price", :class => "form-control demo-control" %>
+		</div>
+	</div>
 	
-		<div class="form-group">
-			<div class="row">
-				<div class="col-md-4">			
-					<%= f.label :area %>
-					<%= f.input :area, :value => @property.area, :id => "area", :class => "form-control demo-control" %>
-				</div>
-				
-				
-				<div class="col-md-4">
-					<%= f.label :area_built, "Area Built" %>
-					<%= f.input :area_built, :value => @property.area_built, :id => "area_built", :class => "form-control" %>
-				</div>
-				
-				<div class="col-md-4">
-					<%= f.label :area_rate, "Show Area Rate?" %>		
-					<%= f.hidden :area_rate, :value => false %>			
-					<input type="checkbox" name="property[area_rate]" id="area_rate" class="form-control" <%= "checked" if @property.area_rate == true %> />
-				</div>
-			</div>
-		</div>
+	<div class="clearfix"></div>
 
-		<div class="row form-group">
-			<div class="col-md-4">
-				<label>Status</label><br />
-				<%= f.select :status, { 
-					"0" => "Not Applicable", 
-					"1" => "Resale", 
-					"2" => "Ready Possession", 
-					"3" => "Under Construction" }, 
-					:class => "select2", 
-					:data_selected => @property.status %>
-			</div>
-			
-			<div class="col-md-4">
-				<label>Age</label><br />
-				<%= f.select :age, {
-					"" 					=> "Not Applicable",
-					"Less than 1 Year" 	=> "Less than 1 Year",
-					"1 to 5 Years" 		=> "1 to 5 Years",
-					"5 to 10 Years" 	=> "5 to 10 Years",
-					"10 to 15 Years" 	=> "10 to 15 Years",
-					"15+ Years" 		=> "15+ Years"},
-					:class 			=> "select2",
-					:data_selected 	=> @property.age %>
-			</div>
-		</div>
-
-		<div class="row form-group">
+	<div class="form-group">
+		<div class="row">
 			<div class="col-md-4">			
-				<%= f.label :bhk_count, "Bedrooms" %>
-				<%= f.input :bhk_count, :value => @property.bhk_count, :class => "form-control" %>
-
+				<%= f.label :area %>
+				<%= f.input :area, :value => @property.area, :id => "area", :class => "form-control demo-control" %>
+			</div>
+			
+			
+			<div class="col-md-4">
+				<%= f.label :area_built, "Area Built" %>
+				<%= f.input :area_built, :value => @property.area_built, :id => "area_built", :class => "form-control" %>
 			</div>
 			
 			<div class="col-md-4">
-				<%= f.label :toil_attached, "Toilets (Attached)" %>
-				<%= f.input :toil_attached, :value => @property.toil_attached, :class => "form-control" %>
-			</div>
-			
-			<div class="col-md-4">
-				<%= f.label :toil_attached, "Toilets (Non Attached)" %>
-				<%= f.input :toil_nattached, :value => @property.toil_nattached, :class => "form-control" %>	
+				<%= f.label :area_rate, "Show Area Rate?" %>		
+				<%= f.hidden :area_rate, :value => false %>			
+				<input type="checkbox" name="property[area_rate]" id="area_rate" class="form-control" <%= "checked" if @property.area_rate == true %> />
 			</div>
 		</div>
+	</div>
 
-		<div class="row form-group">
-			<div class="col-md-4">			
-				<label>Furnishing</label>
-				<%= f.select :furnishing, {
-					"" 				=> "Not Applicable",
-					"Unfurnished" 	=> "Unfurnished",
-					"Semi" 			=> "Semi",
-					"Basic" 		=> "Basic",
-					"Furnished" 	=> "Furnished"},
-					:class 			=> "select2",
-					:data_selected 	=> @property.furnishing %>
-			</div>
-			
-			<div class="col-md-4">
-				<label>Water Supply</label><br />
-				<!-- <input name="property[water]" id="water" type="hidden" value="<%= @property.water %>"> -->
-				<select class="select2" name="property[water]" id="water" data-selected="<%= @property.water %>"> <!-- id="property_water" -->
-					<option value="">Not Applicable</option>
-					<option value="Well">Well</option>
-					<option value="Bore-Well">Bore-Well</option>
-					<option value="Municipality">Municipality</option>
-				</select>
-			</div>
-			
-			<div class="col-md-4">
-				<label>Zone</label><br />
-				<select class="select2" name="property[zone]" id="zone" data-selected="<%= @property.zone %>">
-					<option value="">Not Applicable</option>
-					<option value="Settlement">Settlement</option>
-					<option value="Orchard">Orchard</option>
-					<option value="Agriculture">Agriculture</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<div class="col-md-4">			
-				<label>Floor</label><br />
-				<input type="text" name="property[floor]" id="floor" class="form-control" value="<%= @property.floor %>" />	
-			</div>
-			
-			<div class="col-md-4">
-				<label>Lift</label><br />
-				<select class="select2" name="property[lift]" id="lift" data-selected="<%= @property.lift %>">
-					<option value="">Not Applicable</option>
-					<option value="false">No</option>
-					<option value="true">Yes</option>
-				</select>
-			</div>
-			
-			<div class="col-md-4">
-				<label>Sanad</label><br />
-				<select class="select2" name="property[sanad]" id="sanad" data-selected="<%= @property.sanad %>">
-					<option value="">Not Applicable</option>
-					<option value="false">No</option>
-					<option value="true">Yes</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<div class="col-md-4">			
-				<label>Electricity</label><br />
-				<select class="select2" name="property[electricity]" id="electricity" data-selected="<%= @property.electricity %>">
-					<option value="">Not Applicable</option>
-					<option value="1 Phase">1 Phase</option>
-					<option value="2 Phase">2 Phase</option>
-					<option value="3 Phase">3 Phase</option>
-				</select>
-			</div>
-			
-			<div class="col-md-4">
-				<%= f.label :view %>
-				<%= f.input :view, :value => @property.view, :class => "form-control" %>	
-			</div>
-			
-			<div class="col-md-4">
-				<%= f.label :FSI %>
-				<%= f.input :fsi, :value => @property.fsi, :class => "form-control" %>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<%= f.label :specs, "Facilities" %>
-			<%= f.input :specs, :value => @property.specs, :class => "form-control" %>
-		</div>
-
-		<div class="form-group">
-			<label for="specs">More Information</label>
-			<%= f.textarea :more_info, "#{@property.more_info}", { :class => "form-control" } %>
+	<div class="row form-group">
+		<div class="col-md-4">
+			<label>Status</label><br />
+			<%= f.select :status, { 
+				"0" => "Not Applicable", 
+				"1" => "Resale", 
+				"2" => "Ready Possession", 
+				"3" => "Under Construction" }, 
+				:class => "select2", 
+				:data_selected => @property.status %>
 		</div>
 		
-		<div class="form-group">
-			<label for="field_notes">Property Notes (Internal)</label>
-			<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
+		<div class="col-md-4">
+			<label>Age</label><br />
+			<%= f.select :age, {
+				"" 					=> "Not Applicable",
+				"Less than 1 Year" 	=> "Less than 1 Year",
+				"1 to 5 Years" 		=> "1 to 5 Years",
+				"5 to 10 Years" 	=> "5 to 10 Years",
+				"10 to 15 Years" 	=> "10 to 15 Years",
+				"15+ Years" 		=> "15+ Years"},
+				:class 			=> "select2",
+				:data_selected 	=> @property.age %>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-md-4">			
+			<%= f.label :bhk_count, "Bedrooms" %>
+			<%= f.input :bhk_count, :value => @property.bhk_count, :class => "form-control" %>
+
 		</div>
 		
-		<div class="row form-group">
-			<div class="col-md-4">
-				<label for="is_active">Active?</label>
-				<%= f.hidden :is_active, :value => false %>
-				<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
-			</div>
-			<div class="col-md-4">
-				<label for="is_premium">Premium?</label>
-				<%= f.hidden :is_premium, :value => false %>
-				<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
-			</div>
+		<div class="col-md-4">
+			<%= f.label :toil_attached, "Toilets (Attached)" %>
+			<%= f.input :toil_attached, :value => @property.toil_attached, :class => "form-control" %>
 		</div>
 		
-	<% end %>
-				
+		<div class="col-md-4">
+			<%= f.label :toil_attached, "Toilets (Non Attached)" %>
+			<%= f.input :toil_nattached, :value => @property.toil_nattached, :class => "form-control" %>	
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-md-4">			
+			<label>Furnishing</label>
+			<%= f.select :furnishing, {
+				"" 				=> "Not Applicable",
+				"Unfurnished" 	=> "Unfurnished",
+				"Semi" 			=> "Semi",
+				"Basic" 		=> "Basic",
+				"Furnished" 	=> "Furnished"},
+				:class 			=> "select2",
+				:data_selected 	=> @property.furnishing %>
+		</div>
+		
+		<div class="col-md-4">
+			<label>Water Supply</label><br />
+			<!-- <input name="property[water]" id="water" type="hidden" value="<%= @property.water %>"> -->
+			<select class="select2" name="property[water]" id="water" data-selected="<%= @property.water %>"> <!-- id="property_water" -->
+				<option value="">Not Applicable</option>
+				<option value="Well">Well</option>
+				<option value="Bore-Well">Bore-Well</option>
+				<option value="Municipality">Municipality</option>
+			</select>
+		</div>
+		
+		<div class="col-md-4">
+			<label>Zone</label><br />
+			<select class="select2" name="property[zone]" id="zone" data-selected="<%= @property.zone %>">
+				<option value="">Not Applicable</option>
+				<option value="Settlement">Settlement</option>
+				<option value="Orchard">Orchard</option>
+				<option value="Agriculture">Agriculture</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-md-4">			
+			<label>Floor</label><br />
+			<input type="text" name="property[floor]" id="floor" class="form-control" value="<%= @property.floor %>" />	
+		</div>
+		
+		<div class="col-md-4">
+			<label>Lift</label><br />
+			<select class="select2" name="property[lift]" id="lift" data-selected="<%= @property.lift %>">
+				<option value="">Not Applicable</option>
+				<option value="false">No</option>
+				<option value="true">Yes</option>
+			</select>
+		</div>
+		
+		<div class="col-md-4">
+			<label>Sanad</label><br />
+			<select class="select2" name="property[sanad]" id="sanad" data-selected="<%= @property.sanad %>">
+				<option value="">Not Applicable</option>
+				<option value="false">No</option>
+				<option value="true">Yes</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-md-4">			
+			<label>Electricity</label><br />
+			<select class="select2" name="property[electricity]" id="electricity" data-selected="<%= @property.electricity %>">
+				<option value="">Not Applicable</option>
+				<option value="1 Phase">1 Phase</option>
+				<option value="2 Phase">2 Phase</option>
+				<option value="3 Phase">3 Phase</option>
+			</select>
+		</div>
+		
+		<div class="col-md-4">
+			<%= f.label :view %>
+			<%= f.input :view, :value => @property.view, :class => "form-control" %>	
+		</div>
+		
+		<div class="col-md-4">
+			<%= f.label :FSI %>
+			<%= f.input :fsi, :value => @property.fsi, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :specs, "Facilities" %>
+		<%= f.input :specs, :value => @property.specs, :class => "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<label for="specs">More Information</label>
+		<%= f.textarea :more_info, "#{@property.more_info}", { :class => "form-control" } %>
+	</div>
+	
+	<div class="form-group">
+		<label for="field_notes">Property Notes (Internal)</label>
+		<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
+	</div>
+	
+	<div class="row form-group">
+		<div class="col-md-4">
+			<label for="is_active">Active?</label>
+			<%= f.hidden :is_active, :value => false %>
+			<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
+		</div>
+		<div class="col-md-4">
+			<label for="is_premium">Premium?</label>
+			<%= f.hidden :is_premium, :value => false %>
+			<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
+		</div>
+	</div>
+	
+	<% end %> <!--End Fieldset-->
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12 ">
+	<div id="image-picker-blocks">
 		<div class="form-group">
 			<label for="featured">Featured Image</label>
 			<div class="file-input-wrap">
+				<% if @property.featured_img %>
+					<img src="/properties/images/<%= @property.featured_img_url %>" alt="" width="250">
+				<% end %>
 				<input type="file" id="featured-img-picker" name="featured" class="file-picker file-inputs new-feature-file" data-demo="#demo-img" data-filename-placement="inside" title="+ Featured Image" />
 			</div>
 		</div>
 		
-		<div class="form-group">	
-			<label>Gallery Images</label> (Drag images to re-order)
-			<div class="file-input-wrap">
-				<ul class="gallery-block">
-					<div class="edit-gallery">
-						<% if @images %> 
-							<% @images.each do |image| %>
-							<div id="<%= image.id %>">
-								<input name="gallOrder[<%= image.id %>]" class="ord_<%= image.id %>" type="hidden" value="<%= image.order_id %>">
-								<li class="col-md-4 gallery-item">
-									<div class="img-wrap"><label for="checkbox">Delete?</label> <input type="checkbox" name="gallDels[<%= image.id %>]" />
-										<img src="/properties/images/<%= image.url %>" alt="" width="200" /></div>
-								</li>
-							</div>	
-							<% end %>
-						<% end %>
-				</ul>
-				<input type="file" name="gallUploads[]" title="+ Gallery Images" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
-			</div>
-		</div>
-
 		<div class="form-group">
 			<label for="layout">Layout Plan</label>
 			<div class="file-input-wrap">
-				<img src="/properties/images/plans/layout/<%= @property.layout_plan %>" alt="" width="250">
+				<% if @property.layout_plan %>
+					<img src="/properties/images/plans/layout/<%= @property.layout_plan %>" alt="" width="250">
+				<% end %>
 				<input type="file" id="layout-plan-picker" name="layout_plan" class="file-picker file-inputs new-file" data-filename-placement="inside" title="Change Layout Plan" />
 			</div>
 		</div>
-
+		
 		<div class="form-group">
 			<label for="master">Master Plan</label>
 			<div class="file-input-wrap">
-				<img src="/properties/images/plans/master/<%= @property.master_plan %>" alt="" width="250">
+				<% if @property.master_plan %>
+					<img src="/properties/images/plans/master/<%= @property.master_plan %>" alt="" width="250">
+				<% end %>
 				<input type="file" id="master-plan-picker" name="master_plan" class="file-picker file-inputs new-file" data-filename-placement="inside" title="Change Master Plan" />
 			</div>
 		</div>
-		
-
-	<div class="clearfix"></div>
+	</div>
 	
-	<%= submit %>
+	<hr />
+
+	<h4>Gallery Images <small>(Drag images to re-order)</small></h4>
+	<div class="file-input-wrap">
+		<div class="gallery-block">
+			<% if @images %> 
+				<ul class="edit-gallery">
+					<% @images.each do |image| %>
+						<li class="gallery-item-wrap" id="<%= image.id %>">
+							<input name="gallOrder[<%= image.id %>]" class="ord_<%= image.id %>" type="hidden" value="<%= image.order_id %>">
+							<div class="gallery-item">
+								<img src="/properties/images/<%= image.url %>" alt="" />
+							</div>
+							<div class="gallery-item-checkbox">
+								<input type="hidden" name="gallDels[<%= image.id %>]" value />
+								<button class="remove-item"><span class="glyphicon glyphicon-trash"></span></button>
+							</div>
+						</li>	
+					<% end %>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+	<input type="file" name="images[]" title="+ Gallery Images" id="gallery-items-picker" class="file-picker file-inputs new-file" data-filename-placement="inside"  multiple />
+	
+	<hr />
+	
+	<div class="col-md-12">
+		<%= submit "Save Property", :class => "btn btn-primary" %>
+	</div>
+</div>

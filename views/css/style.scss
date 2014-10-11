@@ -1245,9 +1245,11 @@ h2 {
 }
 
 form#property {
-	background: white;
-	padding: 25px;
-	border: 1px solid darken($light, 10%);
+	#form-fields {
+		border: 1px solid darken($light, 10%);
+		background: white;
+		padding: 25px;
+	}
 	.mid-select {
 		font-family: $serif;
 		font-style: italic;
@@ -1564,16 +1566,44 @@ form#property {
 .edit-gallery {
 	//border: 1px dashed #CCC;
 	position: relative;
-	div {
+	margin-bottom: 10px;
+	margin-left: -15px;
+	.gallery-item-checkbox {
+		display: none;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		button {
+			background: none;
+			border: none;
+		}
+		.glyphicon {
+			color: $vib;
+			font-size: 16px;
+			text-shadow: 0px 1px #fff;
+		}
+	}
+	.gallery-item-wrap {
 		background: transparent;
 		position: absolute;
-		height: 200px;
-		width: 200px;
+		height: 100px;
+		width: 106px;
+		overflow: hidden;
+		img {
+			max-width: 150%;
+			min-height: 100%;
+		}
+		&:hover {
+			.gallery-item-checkbox {
+				display: block;
+			}
+		}
 	}
-	.ss-placeholder-child {
-		background: transparent;
-	 	border: 1px dashed blue;
-	}
+	
+}
+
+#gallery-items-picker {
+	margin-left: 5px;
 }
 
 .admin-controls {
@@ -1603,5 +1633,14 @@ form#property {
 		&:hover {
 			background: $vib;
 		}
+	}
+}
+
+#image-picker-blocks {
+	img {
+		width: 100%;
+		margin: 10px 0;
+		border: 1px solid #333;
+		border-radius: 5px;
 	}
 }

@@ -478,31 +478,7 @@ $(document).ready(function() {
 	
 	$(window).load(function() {
 		$grid.isotope();
-		
-//		$('#filters').waypoint(function(direction) {
-//			if (direction == "down") {
-//				$('#filters').addClass(stuckClass);
-//			}
-//			if (direction == "up") {
-//				$('#filters').removeClass(stuckClass);
-//			}
-//		}, {
-//		  offset: 20
-//		});
-//		
-//		$('#footer').waypoint(function(direction) {
-//			var st = $(window).scrollTop();
-//			console.log(st);
-//			if (direction == "down") {
-//				$('#filters').css({
-//					top: st - 50,
-//					position: 'absolute'
-//				});
-//			}
-//			if (direction == "up") {
-//				$('#filters').removeAttr('style');
-//			}
-//		}, { offset: 715 });
+
 	});
 
 	$('.edit-gallery').shapeshift(); //edit page - order images
@@ -515,5 +491,15 @@ $(document).ready(function() {
 			var $hbox = $(this).find(".ord_" + $(this).attr("id")); // get the hidden field of the current image
 			$hbox.val($(this).index()); //feeds the current order id in the hidden field
 		});
+	});
+	
+	$('.edit-gallery .remove-item').click(function() {
+		$this = $(this);
+		$this.parent().find('input').val('1');
+		$this.parent().parent().fadeOut(400, function() {
+			$('.edit-gallery').shapeshift();
+		});
+		
+		return false;
 	});
 });	

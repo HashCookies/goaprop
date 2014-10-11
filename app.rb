@@ -47,7 +47,7 @@ class Property
 	property :id,				Serial
 	property :title,			String, :length => 500
 	
-	property :area,				Integer, :default => 0
+	property :area,				Integer
 
 	property :area_built,		Integer
 	property :price,			Integer
@@ -563,7 +563,8 @@ put '/properties' do
 	update_params[:master_plan] = @property.id.to_s + "-" + params[:master_plan][:filename].downcase.gsub(" ", "-") unless params[:master_plan].nil?
 	
 	gallDelete = params[:gallDels]
-	gallUpload = params[:gallUploads]
+	
+	gallUpload = params[:images]
 	gallOrder = params[:gallOrder]
 	layout_plan = params[:layout_plan]
 	master_plan = params[:master_plan]
@@ -578,11 +579,15 @@ put '/properties' do
 	end
 
 	unless gallDelete.nil?
-		gallDelete.each_key { |key| Image.get(key).destroy }
+		gallDelete.each_pair do |key, value| 
+			if !value.empty?
+				Image.get(key).destroy
+			end
+		end
 	end
 	
 	unless gallUpload.nil?
-		params[:gallUploads].each do |image|
+		params[:images].each do |image|
 			@neworderid = Image.max(:order_id, :conditions => [ 'property_id = ?', @property.id ]) + 1
 			@property.images.create({ :property_id => @property.id, :url => @property.id.to_s + "-" + image[:filename].downcase.gsub(" ", "-"), :order_id => @neworderid.to_i })
 			@property.handle_upload(image, @property.id.to_s)	
