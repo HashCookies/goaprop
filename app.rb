@@ -559,10 +559,6 @@ put '/properties' do
 	layout_plan = params[:layout_plan]
 	master_plan = params[:master_plan]
 	
-
-	update_params[:area_rate] = false  if update_params[:area_rate].nil?
-	update_params[:is_active] = false  if update_params[:is_active].nil?
-	update_params[:is_premium] = false if update_params[:is_premium].nil?
 	
 
 	unless gallOrder.nil?

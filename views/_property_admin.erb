@@ -34,6 +34,7 @@
 				<li>
 					<%= form('/properties', :put, :id => 'is_active_form') %>
 						<%= hidden :property, :id, :value => property.id %>
+						<%= hidden :property, :is_active, :value => false %>
 						<%= hidden :property, :is_active, :value => !property.is_active %>
 						<input type="Submit" class="admin-control" value="<%= property.is_active ? "Deactivate" : "Activate" %>">
 					</form>

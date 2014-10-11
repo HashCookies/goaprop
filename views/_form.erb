@@ -64,7 +64,8 @@
 				</div>
 				
 				<div class="col-md-4">
-					<%= f.label :area_rate, "Show Area Rate?" %>					
+					<%= f.label :area_rate, "Show Area Rate?" %>		
+					<%= f.hidden :area_rate, :value => false %>			
 					<input type="checkbox" name="property[area_rate]" id="area_rate" class="form-control" <%= "checked" if @property.area_rate == true %> />
 				</div>
 			</div>
@@ -205,6 +206,25 @@
 			<label for="specs">More Information</label>
 			<%= f.textarea :more_info, "#{@property.more_info}", { :class => "form-control" } %>
 		</div>
+		
+		<div class="form-group">
+			<label for="field_notes">Property Notes (Internal)</label>
+			<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
+		</div>
+		
+		<div class="row form-group">
+			<div class="col-md-4">
+				<label for="is_active">Active?</label>
+				<%= f.hidden :is_active, :value => false %>
+				<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
+			</div>
+			<div class="col-md-4">
+				<label for="is_premium">Premium?</label>
+				<%= f.hidden :is_premium, :value => false %>
+				<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
+			</div>
+		</div>
+		
 	<% end %>
 				
 		<div class="form-group">
@@ -251,21 +271,7 @@
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<label for="field_notes">Property Notes (Internal)</label>
-			<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
-		</div>
-		
-		<div class="row form-group">
-			<div class="col-md-4">
-				<label for="is_active">Active?</label>
-				<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
-			</div>
-			<div class="col-md-4">
-				<label for="is_premium">Premium?</label>
-				<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
-			</div>
-		</div>
+
 	<div class="clearfix"></div>
 	
 	<%= submit %>
