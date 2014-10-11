@@ -6526,7 +6526,7 @@ form#property textarea {
     background: transparent;
     position: absolute;
     height: 100px;
-    width: 106px;
+    width: 100px;
     overflow: hidden; }
     .edit-gallery .gallery-item-wrap img {
       max-width: 150%;

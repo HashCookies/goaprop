@@ -1,6 +1,20 @@
 <div class="col-md-8" id="form-fields">
 	<% fieldset(:property) do |f| %>
+	
 	<div class="row form-group">
+		<div class="col-md-4">
+			<label for="is_active">Active?</label>
+			<%= f.hidden :is_active, :value => false %>
+			<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
+		</div>
+		<div class="col-md-4">
+			<label for="is_premium">Premium?</label>
+			<%= f.hidden :is_premium, :value => false %>
+			<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
+		</div>
+	</div>
+	
+	<div class="row form-group">	
 		<div class="col-md-4">
 			<%= f.hidden :id, :value => @property.id %>
 			<%= f.input :title, :value => @property.title, :class => "form-control" %>
@@ -212,18 +226,7 @@
 		<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
 	</div>
 	
-	<div class="row form-group">
-		<div class="col-md-4">
-			<label for="is_active">Active?</label>
-			<%= f.hidden :is_active, :value => false %>
-			<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
-		</div>
-		<div class="col-md-4">
-			<label for="is_premium">Premium?</label>
-			<%= f.hidden :is_premium, :value => false %>
-			<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
-		</div>
-	</div>
+	
 	
 	<% end %> <!--End Fieldset-->
 </div>
@@ -234,7 +237,7 @@
 	
 	<div id="image-picker-blocks">
 		<div class="form-group">
-			<label for="featured">Featured Image</label>
+			<h4>Featured Image</h4>
 			<div class="file-input-wrap">
 				<% if @property.featured_img %>
 					<img src="/properties/images/<%= @property.featured_img_url %>" alt="" width="250">
@@ -244,7 +247,7 @@
 		</div>
 		<hr />
 		<div class="form-group">
-			<label for="layout">Layout Plan</label>
+			<h4>Layout Plan</h4>
 			<div class="file-input-wrap">
 				<% if @property.layout_plan %>
 					<img src="/properties/images/plans/layout/<%= @property.layout_plan %>" alt="" width="250">
@@ -254,7 +257,7 @@
 		</div>
 		<hr />
 		<div class="form-group">
-			<label for="master">Master Plan</label>
+			<h4>Master Plan</h4>
 			<div class="file-input-wrap">
 				<% if @property.master_plan %>
 					<img src="/properties/images/plans/master/<%= @property.master_plan %>" alt="" width="250">
