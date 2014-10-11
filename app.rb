@@ -411,7 +411,6 @@ get '/property/new' do
 	require_admin
 	
 	@property = Property.new
-	@property.area_rate = true
 	@images = @property.images
 	
 	@regions = Region.all
