@@ -347,6 +347,12 @@ helpers do
 			"Goa Property Co | #{title}"
 		end
 	end
+	
+	def body_class(class_array=[])
+		body_class = []
+		body_class << class_array
+		body_class.join(" ")
+	end
 end
 
 get '/reset' do
@@ -388,7 +394,7 @@ get '/setdefaultorder' do # run initially to populate the order_id field in imag
 end
 
 get '/' do
-	@body_class += " home"
+	@classes = ['home']
 	@title = "Hassle-free Real Estate in Goa"
 	
 	erb :home
@@ -430,12 +436,11 @@ get '/property/:id/edit' do
 	@locations = Location.all
 	@types = Type.all
 	@title = "Editing #{@property.full_title_text}"
-	@body_class += " alt"
 	erb :edit
 end
 
 get '/property/:id/:slug' do
-	@body_class += " property"
+	@classes += ['property']
 		
 	# Getting the Property from the params of ID and setting it up for the view
 	@property = Property.get params[:id]
@@ -616,7 +621,7 @@ get '/admin' do
 	@states = State.all
 	@categories = Category.all
 	
-	@body_class += " admin"
+	@classes = ['admin']
 	@properties = Property.all
 	@locations = Location.all
 	@types = Type.all
@@ -723,7 +728,7 @@ post '/send-inquiry/:for' do
 end
 
 get '/sell-lease' do
-	@body_class += " leasesell"
+	@classes = ['leasesell']
 	@title = "Sell or Lease Your Property"
 	erb :sell
 end
