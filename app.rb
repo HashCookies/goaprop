@@ -375,23 +375,6 @@ get '/reset' do
 	
 end
 
-get '/setdefaultorder' do # run initially to populate the order_id field in images model
-	require_admin
-	@properties = Property.all
-	@properties.each do |property|
-		order_id = 0
-		@images = property.images.all
-		@images.each do |image|
-			if (image.id == property.featured_img)
-				image.update(:order_id => nil)
-			else
-				image.update(:order_id => order_id.to_i)
-				order_id = order_id.to_i + 1
-			end
-		end
-	end
-end
-
 get '/' do
 	@classes = ['home']
 	@title = "Hassle-free Real Estate in Goa"
