@@ -251,7 +251,7 @@ $(document).ready(function() {
 		$('.select2').each(function() {
 			$(this).select2();
 			
-			$(this).select2("val", $(this).attr('data-selected'));
+			$(this).select2("val", $(this).attr('data_selected'));
 
 		});
 		
@@ -487,9 +487,7 @@ $(document).ready(function() {
 
 	$containers.on("ss-arranged", function(e) {
 		$(this).children().each(function() {
-			//console.log($(this).attr("id") + "///" + $(this).index());// Returns the index position.
-			var $hbox = $(this).find(".ord_" + $(this).attr("id")); // get the hidden field of the current image
-			$hbox.val($(this).index()); //feeds the current order id in the hidden field
+			$(this).find('.ord_' + $(this).attr('id')).val($(this).index()); //set the current index value in the hidden field 
 		});
 	});
 	

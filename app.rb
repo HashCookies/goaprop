@@ -378,7 +378,7 @@ get '/' do
 end
 
 get '/about' do
-	@body_class += " about"
+	@classes = ['about']
 	@title = "Our Services"
 	
 	erb :about
@@ -387,6 +387,8 @@ end
 get '/property/new' do
 	require_admin
 	
+	@classes = ['alt']
+
 	@property = Property.new
 	@images = @property.images
 	
@@ -397,7 +399,7 @@ get '/property/new' do
 	@types = Type.all
 	@states = State.all
 	@title = "New Property"
-	@body_class += " alt"
+
 	erb :new
 end
 

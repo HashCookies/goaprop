@@ -20,22 +20,22 @@
 			<%= f.input :title, :value => @property.title, :class => "form-control" %>
 		</div>
 		
-		<div class="col-md-8">					
-				<select class="select2 type-select" data-demo="#demo-type-name" name="property[type_id]" id="type_id" data-selected="<%= @property.type.id if @property.type %>">
-					<% @types.each do |type| %>
-						<option value="<%= type.id %>"><%= type.name %></option>
-					<% end %>
-				</select>
-				
-				<span class="mid-select">in</span>
-				
-				<select class="select2 location-select" data-demo="#demo-location" name="property[location_id]" id="location_id" data-selected="<%= @property.location.id if @property.location %>">
-					<% @locations.each do |location| %>
-						<option value="<%= location.id %>"><%= location.name %></option>
-					<% end %>
-				</select>
-			</div>
+		<div class="col-md-8">						
+			<select class="select2 type-select" data-demo="#demo-type-name" name="property[type_id]" id="type_id" data-selected="<%= @property.type.id if @property.type %>">
+				<% @types.each do |type| %>
+					<option value="<%= type.id %>"><%= type.name %></option>
+				<% end %>
+			</select>
+			
+			<span class="mid-select">in</span>
+			
+			<select class="select2 location-select" data-demo="#demo-location" name="property[location_id]" id="location_id" data-selected="<%= @property.location.id if @property.location %>">
+				<% @locations.each do |location| %>
+					<option value="<%= location.id %>"><%= location.name %></option>
+				<% end %>
+			</select>
 		</div>
+	</div>
 	<div class="clearfix"></div>
 	<div class="row form-group">
 		<div class="col-md-4">
@@ -87,7 +87,7 @@
 
 	<div class="row form-group">
 		<div class="col-md-4">
-			<label>Status</label><br />
+			<%= f.label :status, "Status" %>
 			<%= f.select :status, { 
 				"0" => "Not Applicable", 
 				"1" => "Resale", 
@@ -98,7 +98,7 @@
 		</div>
 		
 		<div class="col-md-4">
-			<label>Age</label><br />
+			<%= f.label :age, "Age" %>
 			<%= f.select :age, {
 				"" 					=> "Not Applicable",
 				"Less than 1 Year" 	=> "Less than 1 Year",
@@ -131,7 +131,7 @@
 
 	<div class="row form-group">
 		<div class="col-md-4">			
-			<label>Furnishing</label>
+			<%= f.label :furnishing, "Furnishing" %>
 			<%= f.select :furnishing, {
 				"" 				=> "Not Applicable",
 				"Unfurnished" 	=> "Unfurnished",
@@ -143,61 +143,65 @@
 		</div>
 		
 		<div class="col-md-4">
-			<label>Water Supply</label><br />
-			<!-- <input name="property[water]" id="water" type="hidden" value="<%= @property.water %>"> -->
-			<select class="select2" name="property[water]" id="water" data-selected="<%= @property.water %>"> <!-- id="property_water" -->
-				<option value="">Not Applicable</option>
-				<option value="Well">Well</option>
-				<option value="Bore-Well">Bore-Well</option>
-				<option value="Municipality">Municipality</option>
-			</select>
+			<%= f.label :water, "Water Supply" %>
+			<%= f.select :water, {
+				""				=> "Not Applicable",
+				"Well"			=> "Well",
+				"Bore-Well"		=> "Bore-Well",
+				"Municipality"	=> "Municipality"},
+				:class			=> "select2",
+				:data_selected	=> @property.water %>
 		</div>
 		
 		<div class="col-md-4">
-			<label>Zone</label><br />
-			<select class="select2" name="property[zone]" id="zone" data-selected="<%= @property.zone %>">
-				<option value="">Not Applicable</option>
-				<option value="Settlement">Settlement</option>
-				<option value="Orchard">Orchard</option>
-				<option value="Agriculture">Agriculture</option>
-			</select>
+			<%= f.label :zone, "Zone" %>
+			<%= f.select :zone, {
+				""				=> "Not Applicable",
+				"Settlement"	=> "Settlement",
+				"Orchard"		=> "Orchard",
+				"Agriculture"	=> "Agriculture"},
+				:class			=> "select2",
+				:data_selected	=> @property.zone %>
 		</div>
 	</div>
 
 	<div class="row form-group">
 		<div class="col-md-4">			
-			<label>Floor</label><br />
-			<input type="text" name="property[floor]" id="floor" class="form-control" value="<%= @property.floor %>" />	
+			<%= f.label :floor, "Floor" %>
+			<%= f.input :floor, :value => @property.floor, :class => "form-control" %>
 		</div>
 		
 		<div class="col-md-4">
-			<label>Lift</label><br />
-			<select class="select2" name="property[lift]" id="lift" data-selected="<%= @property.lift %>">
-				<option value="">Not Applicable</option>
-				<option value="false">No</option>
-				<option value="true">Yes</option>
-			</select>
+			<%= f.label :lift, "Lift" %>
+			<%= f.select :lift, {
+				""				=> "Not Applicable",
+				"false"			=> "No",
+				"true"			=> "Yes"},
+				:class			=> "select2",
+				:data_selected	=> @property.lift %>
 		</div>
 		
 		<div class="col-md-4">
-			<label>Sanad</label><br />
-			<select class="select2" name="property[sanad]" id="sanad" data-selected="<%= @property.sanad %>">
-				<option value="">Not Applicable</option>
-				<option value="false">No</option>
-				<option value="true">Yes</option>
-			</select>
+			<%= f.label :sanad, "Sanad" %>
+			<%= f.select :sanad, {
+				""				=> "Not Applicable",
+				"false"			=> "No",
+				"true"			=> "Yes"},
+				:class			=> "select2",
+				:data_selected	=> @property.sanad %>
 		</div>
 	</div>
 
 	<div class="row form-group">
 		<div class="col-md-4">			
-			<label>Electricity</label><br />
-			<select class="select2" name="property[electricity]" id="electricity" data-selected="<%= @property.electricity %>">
-				<option value="">Not Applicable</option>
-				<option value="1 Phase">1 Phase</option>
-				<option value="2 Phase">2 Phase</option>
-				<option value="3 Phase">3 Phase</option>
-			</select>
+			<%= f.label :electricity, "Electricity" %>
+			<%= f.select :electricity, {
+				""				=> "Not Applicable",
+				"1 Phase"		=> "1 Phase",
+				"2 Phase"		=> "2 Phase",
+				"3 Phase"		=> "3 Phase"},
+				:class			=> "select2",
+				:data_selected	=> @property.electricity %>
 		</div>
 		
 		<div class="col-md-4">
@@ -217,13 +221,15 @@
 	</div>
 
 	<div class="form-group">
-		<label for="specs">More Information</label>
-		<%= f.textarea :more_info, "#{@property.more_info}", { :class => "form-control" } %>
+		<%= f.label :more_info, "More Information" %>
+		<%= f.textarea :more_info, "#{@property.more_info}", { 
+			:class 			=> "form-control" } %>
 	</div>
 	
 	<div class="form-group">
-		<label for="field_notes">Property Notes (Internal)</label>
-		<textarea name="property[field_notes]" class="form-control" id="field_notes"><%= @property.field_notes %></textarea>
+		<%= f.label :field_notes, "Property Notes (Internal)" %>
+		<%= f.textarea :field_notes, "#{@property.field_notes}", {
+			:class			=> "form-control" } %>
 	</div>
 	
 	
