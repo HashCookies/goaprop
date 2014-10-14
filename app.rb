@@ -641,6 +641,7 @@ get '/search' do
 	
 	@locations = @region.locations(:order => [:name.asc])
 	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc])
+	@locations = @properties.loca
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
