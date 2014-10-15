@@ -61,8 +61,7 @@
 				<span class="label">INR</span>
 				<span class="prop-price">
 					<span class="sort-price">
-
-							<%= to_currency(@property.show_price, @property.state_id) %>
+						<%= to_currency(@property.show_price, @property.state_id) %>
 					</span>
 				</span>
 			</div>
@@ -274,7 +273,7 @@
 		<div class="col-md-4">
 			<div class="inquiry-block">
 				<h3>Interested? Let us show you around…</h3>
-				<form method="post" action="/send-inquiry/inquiry">
+				<form method="post" action="/send-inquiry">
 					<div class="form-group">
 						<label for="name" class="hidden">Your name</label>
 						<input type="text" name="inquiry[name]" placeholder="Your name" value="" class="form-control" />

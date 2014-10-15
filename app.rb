@@ -655,65 +655,68 @@ get '/search' do
 	erb :search
 end
 
-delete '/:delresource/destroy/:id' do
+delete '/property/:id' do
 	require_admin
-	@delresource = params[:delresource]
-	@delval = ""
-	@delvalimg = ""
-	case @delresource
-	when "property"
-		@delval = Property.get(params[:id])
-		@images = Image.all(:property_id => params[:id])
-		@images.each do |image|
-			image.destroy!
-		end
-	when "location"
-		@delval = Location.get(params[:id])
-	when "region"
-		@delval = Region.get(params[:id])
-	else
-		raise "Nothing planned yet"
+	@property = Property.get(params[:id])
+	@images = Image.all(:property_id => params[:id])
+	@images.each do |image|
+		image.destroy!
 	end
 
-	if @delval.destroy!
+	if @property.destroy!
 		redirect '/admin'
 	else
 		redirect '/'
-	end
+	end	
 end
 
-post '/send-inquiry/:for' do
+# delete '/location/:id' do
+# 	require_admin
+# 	@location = Location.get(params[:id])
+# 	if @location.destroy!
+# 		redirect '/admin'
+# 	else
+# 		redirect '/'
+# 	end
+# end
+
+# delete '/region/:id' do
+# 	require_admin
+# 	@region = Region.get(params[:id])
+# 	if @region.destroy!
+# 		redirect '/admin'
+# 	else
+# 		redirect '/'
+# 	end
+# end
+
+post '/send-friend' do
 	require 'pony'
-	@mailTo = "alistair.rodrigues@gmail.com"
-	@mailFor = params[:for]
-	@mailFrom = ""
-	@subject = ""
-	@body = ""
-	case @mailFor
-	when "inquiry"
-		@mailFrom = params[:inquiry][:name]
-		@subject = "Inquiry for property"
-		@body = params[:inquiry][:body] << "<br />Inquiry Sent by: " << params[:inquiry][:name] << "<br />Phone: " << params[:inquiry][:phone] << "<br />Email: " << params[:inquiry][:email]
-	when "leasesell"
-		@mailFrom = params[:leasesell][:name]
-		@subject = "Property for " << params[:leasesell][:state]
-		@description = params[:leasesell][:description] == "" ? "" : "<br />Property described as: " << params[:leasesell][:description]
-		@body = params[:leasesell][:name] << " has a property for " << params[:leasesell][:state] << "<br /> Who can be contacted on Phone: " << params[:leasesell][:phone] << " and Email: " << params[:leasesell][:email] << @description
-	when "friendmail"
-		@mailFrom = params[:friendmail][:frommail]
-		@mailTo = params[:friendmail][:tomail]
-		@subject = params[:friendmail][:name] + " looked up a property for you"
-		@body = params[:friendmail][:mailbody] << "<br />Regards,<br />" << params[:friendmail][:name]
-		# @body = params[:friendmail][:name] << " has a property for you at Goa Property Co<br /> Please check the following link: " << request.base_url << "/property/" << params[:friendmail][:propID] << "<br />Regards,<br />Goa Property Co. "
-  	else
-  		@mailFrom = params[:callback][:name]
-  		@subject = "Callback Request"
-		@body = "Callback Request Sent by: " << params[:callback][:name] << "<br />No: " << params[:callback][:phone] << "<br />Call Between: " << params[:callback][:timing]
-	end
 	Pony.mail(
-		:from => @mailFrom,
-		:to => @mailTo,
-		:subject => @subject,
+		:from => params[:friendmail][:frommail],
+		:to => params[:friendmail][:tomail],
+		:subject => params[:friendmail][:name] + " looked up a property for you",
+		:headers => { 'Content-Type' => 'text/html' },
+		:body => params[:friendmail][:mailbody] << "<br />Regards,<br />" << params[:friendmail][:name],
+		:via => :smtp,
+		:via_options => {
+			:address              => 'smtp.sendgrid.net', 
+	    	:port                 => '587', 
+	    	:user_name            => 'hashcookies', 
+	    	:password             => 'Nor1nderchqMudi', 
+	    	:authentication       => :plain
+		}
+	)
+	redirect request.referer
+end
+
+post '/send-inquiry' do
+	require 'pony'
+	@body = params[:inquiry][:body] + "<br />Inquiry Sent by: " + params[:inquiry][:name] + "<br />Phone: " + params[:inquiry][:phone] + "<br />Email: " + params[:inquiry][:email]
+	Pony.mail(
+		:from => params[:inquiry][:name],
+		:to => "alistair.rodrigues@gmail.com",
+		:subject => "Inquiry for property",
 		:headers => { 'Content-Type' => 'text/html' },
 		:body => @body,
 		:via => :smtp,
@@ -725,13 +728,44 @@ post '/send-inquiry/:for' do
 	    	:authentication       => :plain
 		}
 	)
-	redirect '/'
+	redirect request.referer
 end
 
 get '/sell-lease' do
 	@classes = ['leasesell']
 	@title = "Sell or Lease Your Property"
 	erb :sell
+end
+
+post '/mail-sell-lease' do
+	require 'pony'
+	name = params[:leasesell][:name]
+	state = params[:leasesell][:state]
+	description = "<br />Property described as: " + params[:leasesell][:description] unless params[:leasesell][:description].nil?
+	attachments = {}
+
+	unless params[:images].nil?
+		params[:images].each do |image|
+			attachments[image[:filename].downcase.gsub(" ","-")] = File.read(image[:tempfile], :binmode => true)
+		end
+	end
+
+	Pony.mail(
+		:from => name,
+		:to => "alistair.rodrigues@gmail.com",
+		:subject => "Property for " + state,
+		:html_body => name + " has a property for " + state + "<br />Property Type: " + params[:leasesell][:type] + "<br />Phone: " + params[:leasesell][:phone] + "<br />Email: " + params[:leasesell][:email] + description,
+		:attachments => attachments,
+		:via => :smtp,
+		:via_options => {
+			:address              => 'smtp.sendgrid.net', 
+	    	:port                 => '587', 
+	    	:user_name            => 'hashcookies', 
+	    	:password             => 'Nor1nderchqMudi', 
+	    	:authentication       => :plain
+		}
+	)
+	redirect '/sell-lease'
 end
 
 load 'actions/route_region.rb'

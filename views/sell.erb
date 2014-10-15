@@ -16,7 +16,7 @@
 					<p class="lead">Over the years, Goa Property Co has created a bond of trust and good service with its client base. When we represent your property, we make sure to tactfully present it to only those keenly interested. Our team conducts a thorough research, covers all groundwork and works transparently with both parties to make ends meet and smoothen the transition of the process. For our expertise in the field, we charge a small convenience fee but make certain that you breathe easy.</p>	
 				</div>
 				<div class="col-md-6">
-					<form method="post" action="/send-inquiry/leasesell">
+					<form method="post" action="/mail-sell-lease" enctype="multipart/form-data">
 						<div class="form-group btn-group" data-toggle="buttons">
 							<label class="btn btn-default active">
 								<input type="radio" name="leasesell[state]" id="sell" value="Sale" />Sell
@@ -48,9 +48,14 @@
 						
 						<div class="form-group">
 							<label for="description" class="hidden">Description</label>
-							<textarea name="leasesell[description]"  placeholder="Describe your property" class="form-control" ></textarea>
+							<textarea name="leasesell[description]" placeholder="Describe your property" class="form-control" ></textarea>
 						</div>
-						
+
+						<div class="form-group">
+							<h4>Upload Images:</h4>
+							<input type="file" name="images[]" title="+ Attach Images" id="images" class="file-picker file-inputs new-file" data-filename-placement="inside" multiple />
+						</div>
+
 						<div class="form-group text-center">
 							<input type="submit" name="submit" value="Submit Property" class="btn btn-large btn-primary" />
 						</div>

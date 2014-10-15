@@ -192,7 +192,7 @@ $(document).ready(function() {
 			var dataName = $(this).attr('data-resource-name');
 			var dataType = $(this).attr('data-type');
 
-			$delModal.find('form').attr('action', '/' + dataType + '/destroy/' + dataID);
+			$delModal.find('form').attr('action', '/property/' + dataID);
 			$delModal.find('h4.modal-title span').text(dataType + ": " +dataName);
 			
 			$delModal.modal();
