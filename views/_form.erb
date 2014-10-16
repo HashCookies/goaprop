@@ -1,18 +1,7 @@
 <div class="col-md-8" id="form-fields">
 	<% fieldset(:property) do |f| %>
 	
-	<div class="row form-group">
-		<div class="col-md-4">
-			<label for="is_active">Active?</label>
-			<%= f.hidden :is_active, :value => false %>
-			<input type="checkbox" name="property[is_active]" id="is_active" <%= "checked" if @property.is_active %> />
-		</div>
-		<div class="col-md-4">
-			<label for="is_premium">Premium?</label>
-			<%= f.hidden :is_premium, :value => false %>
-			<input type="checkbox" name="property[is_premium]" id="is_premium" <%= "checked" if @property.is_premium %> />
-		</div>
-	</div>
+	
 	
 	<div class="row form-group">	
 		<div class="col-md-4">
@@ -90,9 +79,9 @@
 			<%= f.label :status, "Status" %>
 			<%= f.select :status, { 
 				"0" => "Not Applicable", 
-				"1" => "Resale", 
+				"1" => "Under Construction", 
 				"2" => "Ready Possession", 
-				"3" => "Under Construction" }, 
+				"3" => "Re-sale" }, 
 				:class => "select2", 
 				:"data-selected" => @property.status %>
 		</div>
@@ -231,11 +220,55 @@
 		<%= f.textarea :field_notes, "#{@property.field_notes}", {:class => "form-control" } %>
 	</div>
 	
-	<% end %> <!--End Fieldset-->
+	
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12 image-fields">
 
+	
+	
+	<div class="form-group" id="property-state-controls">
+		
+		<% if @property.is_active %>
+			<%= f.hidden :is_active, :value => true %>
+			<button class="btn btn-primary btn-checkbox btn-active"><span class="glyphicon glyphicon-ok"></span> Active</button>
+		<% else %>
+			<%= f.hidden :is_active, :value => false %>
+			<button class="btn btn-primary btn-checkbox btn-disabled">Active</button>
+		<% end %>
+		
+		<% if @property.is_premium %>
+			<%= f.hidden :is_premium, :value => true, :id => "is_premium_field" %>
+			<button class="btn btn-primary btn-checkbox btn-active">
+				<span class="glyphicon glyphicon-ok"></span> Premium
+			</button>
+		<% else %>
+			<%= f.hidden :is_premium, :value => false, :id => "is_premium_field" %>
+			<button class="btn btn-primary btn-checkbox btn-disabled">
+				Premium
+			</button>
+		<% end %>
+		
+		<!-- Single button -->
+		<div class="btn-group pull-right">
+		  <button type="button" class="btn btn-primary btn-checkbox dropdown-toggle" data-toggle="dropdown">
+		    <span class="label">Priority</span> Medium <span class="caret"></span>
+		  </button>
+		  <% f.hidden :priority, :value => @property.priority %>
+		  <ul class="dropdown-menu" data-selected="<%= @property.priority %>">
+		    <li><a href="#">Low</a></li>
+		    <li><a href="#">...</a></li>
+		    <li><a href="#">Medium</a></li>
+			<li><a href="#">...</a></li>
+		    <li><a href="#">High</a></li>
+		  </ul>
+		</div>
+
+
+	</div>
+	
+	<% end %> <!--End Fieldset-->
+	
 	<%= submit "Save Property", :class => "btn btn-primary", :id => "submit-form-btn" %>
 	
 	<div id="image-picker-blocks">

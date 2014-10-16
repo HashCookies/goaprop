@@ -82,6 +82,7 @@ class Property
 	property :updated_at,		DateTime
 	property :is_active,		Boolean, :default => true
 	property :is_premium,		Boolean, :default => false
+	property :priority,			Integer, :default => 1
 	
 	has n, :images, :constraint => :destroy
 	belongs_to :location
@@ -129,12 +130,12 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Re-sale"
+			"Under Construction"
 		elsif self.status == 2
 			"Ready Possession"
 		elsif self.status == 3
-			"Under Construction"
-		elsif self.status == 4
+			"Resale"
+		elsif self.status == 0
 			nil
 		end
 	end
@@ -640,7 +641,7 @@ get '/search' do
 	@category = Category.get(params[:search][:category]) if params[:search][:category] != "All"
 	
 	@locations = @region.locations(:order => [:name.asc])
-	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:status.asc])
+	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:priority.desc])
 	@locations = @properties.locations
 	
 	if @category.name != "All"

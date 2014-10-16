@@ -5361,6 +5361,23 @@ h2 {
     border: 1px solid #f66f61;
     text-shadow: none; }
 
+.btn-checkbox {
+  background: white;
+  font-size: 13px;
+  text-transform: none;
+  padding: 3px 7px;
+  color: #35b6eb;
+  border-color: #35b6eb; }
+  .btn-checkbox .label {
+    color: #35b6eb; }
+
+.btn-active {
+  background: #35b6eb;
+  color: white; }
+
+.btn-disabled {
+  opacity: .6; }
+
 .badge {
   font-family: Helvetica, Arial, sans-serif;
   background: white;
@@ -6280,6 +6297,9 @@ form#property .location-select {
   width: 200px; }
 form#property textarea {
   height: 200px; }
+
+#property-state-controls {
+  margin-bottom: 25px; }
 
 #submit-form-btn {
   width: 100%;

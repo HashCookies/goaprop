@@ -105,6 +105,27 @@ h2 {
 	}
 }
 
+.btn-checkbox {
+	background: white;
+	font-size: 13px;
+	text-transform: none;
+	padding: 3px 7px;
+	color: $blue;
+	border-color: $blue;
+	.label {
+		color: $blue;
+	}
+}
+
+.btn-active {
+	background: $blue;
+	color: white;
+}
+
+.btn-disabled {
+	opacity: .6;
+}
+
 .badge {
 	font-family: Helvetica, Arial, sans-serif;
 	background: white;
@@ -1280,6 +1301,11 @@ form#property {
 	textarea {
 		height: 200px;
 	}
+}
+
+#property-state-controls {
+	margin-bottom: 25px;
+
 }
 
 #submit-form-btn {
