@@ -82,7 +82,7 @@ class Property
 	property :updated_at,		DateTime
 	property :is_active,		Boolean, :default => true
 	property :is_premium,		Boolean, :default => false
-	property :priority,			Integer, :default => 1
+	property :priority,			Integer, :default => 4
 	
 	has n, :images, :constraint => :destroy
 	belongs_to :location

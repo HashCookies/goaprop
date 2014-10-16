@@ -244,7 +244,6 @@ $(document).ready(function() {
 			$(this).select2();
 			
 			$(this).select2("val", val);
-			console.log($(this), val);
 
 		});
 		
@@ -494,12 +493,17 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	
 	$('#priority-select .dropdown-menu span').click(function() {
 		var $this = $(this);
 		var value = $this.attr('data-value');
-		
-		$this.parent().addClass('active');
+		$('#priority-select .selected').removeClass('selected');	
+		$this.parent().addClass('selected');
 		$('#priority-select input').val(value);
 		$('#priority-select .priority-tag').text($this.attr('data-tag'));
+		
 	});
+	
+	var $prioritySelected = parseInt($('#priority-select .dropdown-menu').attr('data-selected'));
+	$("#priority-select .dropdown-menu li").eq($prioritySelected).prev().addClass('selected');
 });	
