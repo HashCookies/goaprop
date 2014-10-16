@@ -84,7 +84,7 @@ class Property
 	property :is_premium,		Boolean, :default => false
 	property :priority,			Integer, :default => 4
 	
-	has n, :images, :constraint => :destroy
+	has n, 	   :images, :constraint => :destroy
 	belongs_to :location
 	belongs_to :type
 	belongs_to :state
