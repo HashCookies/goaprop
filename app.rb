@@ -130,11 +130,11 @@ class Property
 	
 	def prop_status
 		if self.status == 1
-			"Under Construction"
+			"Re-sale"
 		elsif self.status == 2
 			"Ready Possession"
 		elsif self.status == 3
-			"Resale"
+			"Under Construction"
 		elsif self.status == 0
 			nil
 		end
