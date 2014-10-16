@@ -6307,6 +6307,9 @@ form#property textarea {
 #property-state-controls {
   margin-bottom: 25px; }
 
+#show-area-rate {
+  margin-top: 30px; }
+
 #priority-select .dropdown-menu span {
   display: block;
   padding: 3px 15px;

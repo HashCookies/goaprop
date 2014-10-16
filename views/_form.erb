@@ -25,7 +25,9 @@
 			</select>
 		</div>
 	</div>
-	<div class="clearfix"></div>
+	
+	<hr />
+	
 	<div class="row form-group">
 		<div class="col-md-4">
 			<%= f.label :state_id, "Mode" %>
@@ -67,13 +69,21 @@
 			</div>
 			
 			<div class="col-md-4">
-				<%= f.label :area_rate, "Show Area Rate?" %>		
-				<%= f.hidden :area_rate, :value => false %>			
-				<input type="checkbox" name="property[area_rate]" id="area_rate" class="form-control" <%= "checked" if @property.area_rate == true %> />
+				<% if @property.is_premium %>
+					<%= f.hidden :area_rate, :value => true %>
+					<button class="btn btn-primary btn-checkbox btn-active" id="show-area-rate">
+						<span class="glyphicon glyphicon-ok"></span> Show Area Rate
+					</button>
+				<% else %>
+					<%= f.hidden :area_rate, :value => false %>
+					<button class="btn btn-primary btn-checkbox btn-disabled" id="show-area-rate">
+						<span class="glyphicon"></span> Show Area Rate
+					</button>
+				<% end %>
 			</div>
 		</div>
 	</div>
-
+	<hr />
 	<div class="row form-group">
 		<div class="col-md-4">
 			<%= f.label :status, "Status" %>
