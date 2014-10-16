@@ -231,7 +231,7 @@ class Image
 	property :url, 			String
 	property :order_id,		Integer
 	
-	belongs_to :property
+	belongs_to :property, constraint: :destroy
 end
 
 # Type class refers to "House", "Apartment", "Row Villa", etc.
