@@ -94,7 +94,7 @@
 				"2" => "Ready Possession", 
 				"3" => "Under Construction" }, 
 				:class => "select2", 
-				:data_selected => @property.status %>
+				:"data-selected" => @property.status %>
 		</div>
 		
 		<div class="col-md-4">
@@ -107,7 +107,7 @@
 				"10 to 15 Years" 	=> "10 to 15 Years",
 				"15+ Years" 		=> "15+ Years"},
 				:class 			=> "select2",
-				:data_selected 	=> @property.age %>
+				:"data-selected" 	=> @property.age %>
 		</div>
 	</div>
 
@@ -139,7 +139,7 @@
 				"Basic" 		=> "Basic",
 				"Furnished" 	=> "Furnished"},
 				:class 			=> "select2",
-				:data_selected 	=> @property.furnishing %>
+				:"data-selected" 	=> @property.furnishing %>
 		</div>
 		
 		<div class="col-md-4">
@@ -150,7 +150,7 @@
 				"Bore-Well"		=> "Bore-Well",
 				"Municipality"	=> "Municipality"},
 				:class			=> "select2",
-				:data_selected	=> @property.water %>
+				:"data-selected"	=> @property.water %>
 		</div>
 		
 		<div class="col-md-4">
@@ -161,7 +161,7 @@
 				"Orchard"		=> "Orchard",
 				"Agriculture"	=> "Agriculture"},
 				:class			=> "select2",
-				:data_selected	=> @property.zone %>
+				:"data-selected"	=> @property.zone %>
 		</div>
 	</div>
 
@@ -178,7 +178,7 @@
 				"false"			=> "No",
 				"true"			=> "Yes"},
 				:class			=> "select2",
-				:data_selected	=> @property.lift %>
+				:"data-selected"	=> @property.lift %>
 		</div>
 		
 		<div class="col-md-4">
@@ -188,7 +188,7 @@
 				"false"			=> "No",
 				"true"			=> "Yes"},
 				:class			=> "select2",
-				:data_selected	=> @property.sanad %>
+				:"data-selected"	=> @property.sanad %>
 		</div>
 	</div>
 
@@ -201,7 +201,7 @@
 				"2 Phase"		=> "2 Phase",
 				"3 Phase"		=> "3 Phase"},
 				:class			=> "select2",
-				:data_selected	=> @property.electricity %>
+				:"data-selected"	=> @property.electricity %>
 		</div>
 		
 		<div class="col-md-4">
@@ -228,11 +228,8 @@
 	
 	<div class="form-group">
 		<%= f.label :field_notes, "Property Notes (Internal)" %>
-		<%= f.textarea :field_notes, "#{@property.field_notes}", {
-			:class			=> "form-control" } %>
+		<%= f.textarea :field_notes, "#{@property.field_notes}", {:class => "form-control" } %>
 	</div>
-	
-	
 	
 	<% end %> <!--End Fieldset-->
 </div>

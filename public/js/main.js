@@ -238,20 +238,13 @@ $(document).ready(function() {
 			$(id).html(value);
 		});
 
-		// $('#property_water').on("change", function(e) {
-		// 	var value = $(this).select2("val");
-		// 	$('#water').val(value);
-		// 	//var id = $('#water').text(value);
-			
-		// 	//alert(id.text());
-		// 	//$(id).html(value);
-		// });
-		
-//		$('.select2').select2();
+
 		$('.select2').each(function() {
+			var val = $(this).attr('data-selected');
 			$(this).select2();
 			
-			$(this).select2("val", $(this).attr('data_selected'));
+			$(this).select2("val", val);
+			console.log($(this), val);
 
 		});
 		
