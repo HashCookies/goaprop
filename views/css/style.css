@@ -5361,20 +5361,20 @@ h2 {
     border: 1px solid #f66f61;
     text-shadow: none; }
 
-.btn-checkbox {
+.btn-checkbox, .dropdown-toggle {
   background: white;
   font-size: 13px;
   text-transform: none;
   padding: 3px 7px;
   color: #35b6eb;
   border-color: #35b6eb; }
-  .btn-checkbox .label {
+  .btn-checkbox .label, .dropdown-toggle .label {
     color: #35b6eb; }
-  .btn-checkbox:hover {
+  .btn-checkbox:hover, .dropdown-toggle:hover {
     background: #35b6eb;
     border-color: #35b6eb;
     color: white; }
-    .btn-checkbox:hover .label {
+    .btn-checkbox:hover .label, .dropdown-toggle:hover .label {
       color: white; }
 
 .btn-active {

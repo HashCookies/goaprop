@@ -234,7 +234,7 @@
 			<button class="btn btn-primary btn-checkbox btn-active"><span class="glyphicon glyphicon-ok"></span> Active</button>
 		<% else %>
 			<%= f.hidden :is_active, :value => false %>
-			<button class="btn btn-primary btn-checkbox btn-disabled">Active</button>
+			<button class="btn btn-primary btn-checkbox btn-disabled"><span class="glyphicon"></span> Active</button>
 		<% end %>
 		
 		<% if @property.is_premium %>
@@ -245,13 +245,13 @@
 		<% else %>
 			<%= f.hidden :is_premium, :value => false, :id => "is_premium_field" %>
 			<button class="btn btn-primary btn-checkbox btn-disabled">
-				Premium
+				<span class="glyphicon"></span> Premium
 			</button>
 		<% end %>
 		
 		<!-- Single button -->
 		<div class="btn-group pull-right" id="priority-select">
-		  <button type="button" class="btn btn-primary btn-checkbox dropdown-toggle" data-toggle="dropdown">
+		  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 		    <span class="label">Priority</span> <span class="priority-tag">Medium</span> <span class="caret"></span>
 		  </button>
 		  <%= f.hidden :priority, :value => @property.priority %>

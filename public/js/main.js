@@ -493,17 +493,35 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$prioritySelect = $('#priority-select');
 	
-	$('#priority-select .dropdown-menu span').click(function() {
+	$prioritySelect.find('.dropdown-menu span').click(function() {
 		var $this = $(this);
 		var value = $this.attr('data-value');
-		$('#priority-select .selected').removeClass('selected');	
+		$prioritySelect.find('.selected').removeClass('selected');	
 		$this.parent().addClass('selected');
-		$('#priority-select input').val(value);
-		$('#priority-select .priority-tag').text($this.attr('data-tag'));
+		$prioritySelect.find('input').val(value);
+		$prioritySelect.find('.priority-tag').text($this.attr('data-tag'));
 		
 	});
 	
-	var $prioritySelected = parseInt($('#priority-select .dropdown-menu').attr('data-selected'));
-	$("#priority-select .dropdown-menu li").eq($prioritySelected).prev().addClass('selected');
+	var $prioritySelected = parseInt($prioritySelect.find('.dropdown-menu').attr('data-selected'));
+	$prioritySelect.find('.dropdown-menu li').eq($prioritySelected).prev().addClass('selected');
+	
+	$('.btn-checkbox').click(function() {
+		
+		var $this = $(this);
+		
+		if ($this.hasClass('btn-active')) {
+			$this.removeClass('btn-active').addClass('btn-disabled');
+			$this.prev().val('false');
+			$this.find('.glyphicon').removeClass('glyphicon-ok');
+		} else {
+			$this.find('.glyphicon').addClass('glyphicon-ok');
+			$this.removeClass('btn-disabled').addClass('btn-active');
+			$this.prev().val('true');
+		}
+		
+		return false;
+	});
 });	
