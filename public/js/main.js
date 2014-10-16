@@ -460,25 +460,18 @@ $(document).ready(function() {
 	}, 5000)
 	
 	var filterHeight = $('#filters').height();
-	var stuckClass;
-	
-	if (filterHeight > winH) {
-		stuckClass = "stuckbottom"
-	} else {
-		stuckClass = "stucktop"
-	}
 	
 	$(window).load(function() {
 		$grid.isotope();
 
 	});
+	
+	var $editGallery = $('.edit-gallery');
 
-	$('.edit-gallery').shapeshift(); //edit page - order images
+	$editGallery.shapeshift(); //edit page - order images
 
-	$containers = $(".edit-gallery")
-
-	$containers.on("ss-arranged", function(e) {
-		$(this).children().each(function() {
+	$editGallery.on("ss-arranged", function(e) {
+		$editGallery.children().each(function() {
 			$(this).find('.ord_' + $(this).attr('id')).val($(this).index()); //set the current index value in the hidden field 
 		});
 	});
@@ -509,7 +502,6 @@ $(document).ready(function() {
 	$prioritySelect.find('.dropdown-menu li').eq($prioritySelected).prev().addClass('selected');
 	
 	$('.btn-checkbox').click(function() {
-		
 		var $this = $(this);
 		
 		if ($this.hasClass('btn-active')) {
