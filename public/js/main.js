@@ -266,6 +266,8 @@ $(document).ready(function() {
 			$(id).html(value);
 		});
 		
+		
+		
 		$('.demo-control').each(function() {
 			var value = $(this).val();
 			var id = $(this).attr('data-demo');
@@ -508,6 +510,26 @@ $(document).ready(function() {
 		
 	});
 	
+	$('#property_status').on("change", function(e) {
+		var value = 0;
+		if 		(e.val == '1') {
+			value = 6;
+		}
+		else if (e.val == '2') {
+			value = 4;
+		} 
+		else if (e.val == "3") {
+			value = 2;
+		}
+		
+		$prioritySelect.find('input').val(value);
+		var $this = $prioritySelect.find('.dropdown-menu li').eq(value).find('span');
+		console.log($this);
+		$prioritySelect.find('.selected').removeClass('selected');	
+		$this.parent().addClass('selected');
+		$prioritySelect.find('.priority-tag').text($this.attr('data-tag'));
+	});
+	
 	var $prioritySelected = parseInt($prioritySelect.find('.dropdown-menu').attr('data-selected'));
 	$prioritySelect.find('.dropdown-menu li').eq($prioritySelected).prev().addClass('selected');
 	
@@ -526,4 +548,6 @@ $(document).ready(function() {
 		
 		return false;
 	});
+	
+	
 });	
