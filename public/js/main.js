@@ -15,7 +15,7 @@ $(document).ready(function() {
 		var strUrl = $('.info-intro').attr('data-stretch');
 		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' });
 		
-		$('.property-image-grid .anystretch').anystretch();
+		/// PROPERTY IMAGE GRID ISOTOPE ///
 	
 		$grid = $('#property-grid');
 		
@@ -25,9 +25,9 @@ $(document).ready(function() {
 				price:	'[data-price] parseInt',
 				area:	'[data-area] parseInt',
 				date: function (itemElem) {
-							var date = $(itemElem).attr('data-date');
-				            return Date.parse(date);
-				        }
+					var date = $(itemElem).attr('data-date');
+		            return Date.parse(date);
+				}
 			}
 		});
 		
@@ -70,17 +70,22 @@ $(document).ready(function() {
 			var parent = $this.parent().parent();
 			
 			if ((parent.attr('id') == "location-filter") || (parent.attr('id') == "type-filter")) {
-				console.log(parent);
+
 				if (!$this.parent().hasClass('show-all')) {		
 					$('#type-filter li, #location-filter li')
 						.not('.show-all')
 						.not($this.parent())
 						.not($('#filters').find($this.attr('data-filter')))
 						.slideUp(300);
-					$('#reset-filters').slideDown();
+					$('#reset-filters').slideDown(400, function() {
+						if (parent.attr('id') == 'location-filter') {
+							setTimeout(function() {
+								$.scrollTo(0, 400);
+							}, 200)
+						}
+					});
+					
 				}
-				
-				
 				if ($this.parent().hasClass('show-all')) {
 					
 					if (parent.attr('id') == 'location-filter') {
@@ -91,6 +96,7 @@ $(document).ready(function() {
 						} else {
 							parent.find(activeClass).slideDown(300);
 						}
+						
 					}
 					if (parent.attr('id') == 'type-filter') {
 						var activeClass = $('#location-filter .active a').attr('data-filter');
@@ -127,12 +133,19 @@ $(document).ready(function() {
 		      $( this ).parent().addClass('active');
 		    });
 		});
+		
+		setTimeout(function() {
+			$grid.isotope();
+		}, 5000)
+		
+		$(window).load(function() {
+				$grid.isotope();
+		
+		});
+		
+		/// PROPERTY PAGE SCROLLING ///
 				
 		var $propD = $('.property-data');
-		
-		
-		
-		
 		var propTop;
 		
 		if (winH < 760) {
@@ -407,6 +420,9 @@ $(document).ready(function() {
 		left: (winW - $('.info-intro .inner').width()) / 2
 	});
 	
+	
+	///// UNIT SWITCHING FUNCTION ////
+	
 
 	$.cookie.defaults = { path: '/' };
 	$b.addClass($.cookie('mode'));
@@ -452,18 +468,13 @@ $(document).ready(function() {
 		$('#switch-unit .unit-label').text("Show in Sq Mts");
 		$('#switch-unit').removeClass('imperial').addClass('metric');
 	}
-
 	
-	setTimeout(function() {
-		$grid.isotope();
-	}, 5000)
+	
+	//// 
 	
 	var filterHeight = $('#filters').height();
 	
-	$(window).load(function() {
-		$grid.isotope();
-
-	});
+	
 	
 	var $editGallery = $('.edit-gallery');
 
