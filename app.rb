@@ -83,7 +83,7 @@ class Property
 	property :is_active,		Boolean, :default => true
 	property :is_premium,		Boolean, :default => false
 	
-	has n, :images
+	has n, :images, :constraint => :destroy
 	belongs_to :location
 	belongs_to :type
 	belongs_to :state
@@ -231,7 +231,7 @@ class Image
 	property :url, 			String
 	property :order_id,		Integer
 	
-	belongs_to :property, constraint: :destroy
+	belongs_to :property
 end
 
 # Type class refers to "House", "Apartment", "Row Villa", etc.
@@ -658,12 +658,8 @@ end
 delete '/property/:id' do
 	require_admin
 	@property = Property.get(params[:id])
-	@images = Image.all(:property_id => params[:id])
-	@images.each do |image|
-		image.destroy!
-	end
 
-	if @property.destroy!
+	if @property.destroy
 		redirect '/admin'
 	else
 		redirect '/'
