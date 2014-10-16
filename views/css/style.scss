@@ -1308,6 +1308,19 @@ form#property {
 
 }
 
+#priority-select {
+	.dropdown-menu {
+		span {
+			display: block;
+			padding: 3px 15px;
+			cursor: pointer;
+			&:hover {
+				background: #f5f5f5;
+			}
+		}
+	}
+}
+
 #submit-form-btn {
 	width: 100%;
 	display: block;

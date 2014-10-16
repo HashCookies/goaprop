@@ -6301,6 +6301,13 @@ form#property textarea {
 #property-state-controls {
   margin-bottom: 25px; }
 
+#priority-select .dropdown-menu span {
+  display: block;
+  padding: 3px 15px;
+  cursor: pointer; }
+  #priority-select .dropdown-menu span:hover {
+    background: #f5f5f5; }
+
 #submit-form-btn {
   width: 100%;
   display: block;

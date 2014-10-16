@@ -493,4 +493,13 @@ $(document).ready(function() {
 		
 		return false;
 	});
+	
+	$('#priority-select .dropdown-menu span').click(function() {
+		var $this = $(this);
+		var value = $this.attr('data-value');
+		
+		$this.parent().addClass('active');
+		$('#priority-select input').val(value);
+		$('#priority-select .priority-tag').text($this.attr('data-tag'));
+	});
 });	

@@ -250,17 +250,21 @@
 		<% end %>
 		
 		<!-- Single button -->
-		<div class="btn-group pull-right">
+		<div class="btn-group pull-right" id="priority-select">
 		  <button type="button" class="btn btn-primary btn-checkbox dropdown-toggle" data-toggle="dropdown">
-		    <span class="label">Priority</span> Medium <span class="caret"></span>
+		    <span class="label">Priority</span> <span class="priority-tag">Medium</span> <span class="caret"></span>
 		  </button>
-		  <% f.hidden :priority, :value => @property.priority %>
+		  <%= f.hidden :priority, :value => @property.priority %>
 		  <ul class="dropdown-menu" data-selected="<%= @property.priority %>">
-		    <li><a href="#">Low</a></li>
-		    <li><a href="#">...</a></li>
-		    <li><a href="#">Medium</a></li>
-			<li><a href="#">...</a></li>
-		    <li><a href="#">High</a></li>
+		    <li><span data-value="1" data-tag="Low">Low</span></li>
+		    <li><span data-value="2" data-tag="Low">...</span></li>
+		    <li><span data-value="3" data-tag="Low">...</span></li>
+		    <li><span data-value="4" data-tag="Medium">Medium</span></li>
+		    <li><span data-value="5" data-tag="Medium">...</span></li>
+		    <li><span data-value="6" data-tag="Medium">...</span></li>
+		    <li><span data-value="7" data-tag="Medium">...</span></li>
+		    <li><span data-value="8" data-tag="High">High</span></li>
+		    <li><span data-value="9" data-tag="Highest">Highest</span></li>
 		  </ul>
 		</div>
 
