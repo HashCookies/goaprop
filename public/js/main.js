@@ -6,7 +6,6 @@ var winW = $(window).width();
 $(document).ready(function() {
 		$('.cover').height(winH - 100).width(winW);
 		$('.info-intro').height(winH - 200).width(winW);
-		//$('.leasesell .info-intro').height(winH - 100).width(winW); //to increase the anystretch image in sell-lease
 		var $b = $('body');
 		
 		$('#home-bg').anystretch();
@@ -32,7 +31,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		$('#property-grid .img-block').each(function() {
+		$grid.find('.img-block').each(function() {
 			$(this).height($(this).width() * .75);
 		});
 		
