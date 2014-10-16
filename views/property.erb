@@ -101,35 +101,23 @@
 					</li>
 				
 					<li class="clearfix"></li>
-					
-					<% if !@property.age.nil? %>
-						<li class="col-md-8">
-							<span class="label">Age</span>
-							<div class="block"><%= @property.age %></div>
-						</li>
-					<% end %>
-
-					<% if !@property.age.nil? %>
-						<li class="clearfix"></li>
-					<% end %>
-
 
 					<% if !@property.bhk_count.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Bedrooms</span>
 							<div class="block"><%= @property.bhk_count %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.toil_attached.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Toilets Attached</span>
 							<div class="block"><%= @property.toil_attached %></div>
 						</li>
 					<% end %>
 
 					<% if !@property.toil_nattached.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Toilets Non-Attached</span>
 							<div class="block"><%= @property.toil_nattached %></div>
 						</li>
@@ -140,14 +128,14 @@
 					<% end %>
 					
 					<% if !@property.floor.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Floor</span>
 							<div class="block"><%= @property.floor %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.lift.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Lift Facility</span>
 							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
@@ -158,21 +146,21 @@
 					<% end %>
 					
 					<% if !@property.furnishing.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Furnishing</span>
 							<div class="block"><%= @property.furnishing %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.water.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Water</span>
 							<div class="block"><%= @property.water %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.electricity.nil? %>
-						<li class="col-md-4">
+						<li class="col-md-3">
 							<span class="label">Electricity</span>
 							<div class="block"><%= @property.electricity %></div>
 						</li>
@@ -216,6 +204,24 @@
 					<% end %>
 
 
+					<% if !@property.prop_status.nil? %>
+						<li class="col-md-3">
+							<span class="label">Status</span>
+							<div class="block"><%= @property.prop_status %></div>
+						</li>
+					<% end %>
+
+					<% if !@property.age.nil? %>
+						<li class="col-md-3">
+							<span class="label">Age</span>
+							<div class="block"><%= @property.age %></div>
+						</li>
+					<% end %>
+
+					<% if !@property.age.nil? %>
+						<li class="clearfix"></li>
+					<% end %>
+
 					<% if !@property.specs.nil? %>
 						<li class="col-md-12">
 							<span class="label">Facilities</span>
@@ -252,12 +258,6 @@
 						<li class="clearfix"></li>				
 					<% end %>
 
-					<% if !@property.prop_status.nil? %>
-						<li class="col-md-4">
-							<span class="label">Status</span>
-							<div class="block"><%= @property.prop_status %></div>
-						</li>
-					<% end %>
 				</ul>
 		</div>
 		
