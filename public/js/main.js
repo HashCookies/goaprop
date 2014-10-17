@@ -410,6 +410,11 @@ $(document).ready(function() {
 		$.scrollTo('#footer', 800);
 		return false;
 	});
+
+	$('#top a').click(function() {
+		$.scrollTo('#sorting-bar', 800);
+		return false;
+	});
 	
 	if (!$b.hasClass('home')) {
 		$('#search-link a').click(function() {

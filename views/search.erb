@@ -78,7 +78,7 @@
 					</li>
 					<% @locations.each do |location| %>
 						<li class="list-group-item <%= location.classlist(@state.id, @category.id) %>">
-							<a href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
+							<a id="top" href="#" data-filter=".<%= location.name.downcase %>"><%= location.name %></a>
 						</li>
 					<% end %>
 				</ul>
