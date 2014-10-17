@@ -6,6 +6,7 @@ var winW = $(window).width();
 $(document).ready(function() {
 		$('.cover').height(winH - 100).width(winW);
 		$('.info-intro').height(winH - 200).width(winW);
+		//$('.leasesell .info-intro').height(winH - 100).width(winW); //to increase the anystretch image in sell-lease
 		var $b = $('body');
 		
 		$('#home-bg').anystretch();
@@ -15,7 +16,7 @@ $(document).ready(function() {
 		var strUrl = $('.info-intro').attr('data-stretch');
 		$('.info-intro').anystretch(strUrl, { positionY: 'bottom' });
 		
-		/// PROPERTY IMAGE GRID ISOTOPE ///
+		$('.property-image-grid .anystretch').anystretch();
 	
 		$grid = $('#property-grid');
 		
@@ -25,13 +26,13 @@ $(document).ready(function() {
 				price:	'[data-price] parseInt',
 				area:	'[data-area] parseInt',
 				date: function (itemElem) {
-					var date = $(itemElem).attr('data-date');
-		            return Date.parse(date);
-				}
+							var date = $(itemElem).attr('data-date');
+				            return Date.parse(date);
+				        }
 			}
 		});
 		
-		$grid.find('.img-block').each(function() {
+		$('#property-grid .img-block').each(function() {
 			$(this).height($(this).width() * .75);
 		});
 		
@@ -70,22 +71,17 @@ $(document).ready(function() {
 			var parent = $this.parent().parent();
 			
 			if ((parent.attr('id') == "location-filter") || (parent.attr('id') == "type-filter")) {
-
+				console.log(parent);
 				if (!$this.parent().hasClass('show-all')) {		
 					$('#type-filter li, #location-filter li')
 						.not('.show-all')
 						.not($this.parent())
 						.not($('#filters').find($this.attr('data-filter')))
 						.slideUp(300);
-					$('#reset-filters').slideDown(400, function() {
-						if (parent.attr('id') == 'location-filter') {
-							setTimeout(function() {
-								$.scrollTo(0, 400);
-							}, 200)
-						}
-					});
-					
+					$('#reset-filters').slideDown();
 				}
+				
+				
 				if ($this.parent().hasClass('show-all')) {
 					
 					if (parent.attr('id') == 'location-filter') {
@@ -96,7 +92,6 @@ $(document).ready(function() {
 						} else {
 							parent.find(activeClass).slideDown(300);
 						}
-						
 					}
 					if (parent.attr('id') == 'type-filter') {
 						var activeClass = $('#location-filter .active a').attr('data-filter');
@@ -133,19 +128,12 @@ $(document).ready(function() {
 		      $( this ).parent().addClass('active');
 		    });
 		});
-		
-		setTimeout(function() {
-			$grid.isotope();
-		}, 5000)
-		
-		$(window).load(function() {
-				$grid.isotope();
-		
-		});
-		
-		/// PROPERTY PAGE SCROLLING ///
 				
 		var $propD = $('.property-data');
+		
+		
+		
+		
 		var propTop;
 		
 		if (winH < 760) {
@@ -250,12 +238,20 @@ $(document).ready(function() {
 			$(id).html(value);
 		});
 
-
+		// $('#property_water').on("change", function(e) {
+		// 	var value = $(this).select2("val");
+		// 	$('#water').val(value);
+		// 	//var id = $('#water').text(value);
+			
+		// 	//alert(id.text());
+		// 	//$(id).html(value);
+		// });
+		
+//		$('.select2').select2();
 		$('.select2').each(function() {
-			var val = $(this).attr('data-selected');
 			$(this).select2();
 			
-			$(this).select2("val", val);
+			$(this).select2("val", $(this).attr('data_selected'));
 
 		});
 		
@@ -265,8 +261,6 @@ $(document).ready(function() {
 			
 			$(id).html(value);
 		});
-		
-		
 		
 		$('.demo-control').each(function() {
 			var value = $(this).val();
@@ -410,11 +404,6 @@ $(document).ready(function() {
 		$.scrollTo('#footer', 800);
 		return false;
 	});
-
-	$('#top a').click(function() {
-		$.scrollTo('#sorting-bar', 800);
-		return false;
-	});
 	
 	if (!$b.hasClass('home')) {
 		$('#search-link a').click(function() {
@@ -426,9 +415,6 @@ $(document).ready(function() {
 	$('.info-intro .inner').css({
 		left: (winW - $('.info-intro .inner').width()) / 2
 	});
-	
-	
-	///// UNIT SWITCHING FUNCTION ////
 	
 
 	$.cookie.defaults = { path: '/' };
@@ -475,20 +461,32 @@ $(document).ready(function() {
 		$('#switch-unit .unit-label').text("Show in Sq Mts");
 		$('#switch-unit').removeClass('imperial').addClass('metric');
 	}
+
 	
-	
-	//// 
+	setTimeout(function() {
+		$grid.isotope();
+	}, 5000)
 	
 	var filterHeight = $('#filters').height();
+	var stuckClass;
 	
+	if (filterHeight > winH) {
+		stuckClass = "stuckbottom"
+	} else {
+		stuckClass = "stucktop"
+	}
 	
-	
-	var $editGallery = $('.edit-gallery');
+	$(window).load(function() {
+		$grid.isotope();
 
-	$editGallery.shapeshift(); //edit page - order images
+	});
 
-	$editGallery.on("ss-arranged", function(e) {
-		$editGallery.children().each(function() {
+	$('.edit-gallery').shapeshift(); //edit page - order images
+
+	$containers = $(".edit-gallery")
+
+	$containers.on("ss-arranged", function(e) {
+		$(this).children().each(function() {
 			$(this).find('.ord_' + $(this).attr('id')).val($(this).index()); //set the current index value in the hidden field 
 		});
 	});
@@ -502,57 +500,4 @@ $(document).ready(function() {
 		
 		return false;
 	});
-	
-	$prioritySelect = $('#priority-select');
-	
-	$prioritySelect.find('.dropdown-menu span').click(function() {
-		var $this = $(this);
-		var value = $this.attr('data-value');
-		$prioritySelect.find('.selected').removeClass('selected');	
-		$this.parent().addClass('selected');
-		$prioritySelect.find('input').val(value);
-		$prioritySelect.find('.priority-tag').text($this.attr('data-tag'));
-		
-	});
-	
-	$('#property_status').on("change", function(e) {
-		var value = 0;
-		if 		(e.val == '1') {
-			value = 6;
-		}
-		else if (e.val == '2') {
-			value = 4;
-		} 
-		else if (e.val == "3") {
-			value = 2;
-		}
-		
-		$prioritySelect.find('input').val(value);
-		var $this = $prioritySelect.find('.dropdown-menu li').eq(value).find('span');
-		console.log($this);
-		$prioritySelect.find('.selected').removeClass('selected');	
-		$this.parent().addClass('selected');
-		$prioritySelect.find('.priority-tag').text($this.attr('data-tag'));
-	});
-	
-	var $prioritySelected = parseInt($prioritySelect.find('.dropdown-menu').attr('data-selected'));
-	$prioritySelect.find('.dropdown-menu li').eq($prioritySelected).prev().addClass('selected');
-	
-	$('.btn-checkbox').click(function() {
-		var $this = $(this);
-		
-		if ($this.hasClass('btn-active')) {
-			$this.removeClass('btn-active').addClass('btn-disabled');
-			$this.prev().val('false');
-			$this.find('.glyphicon').removeClass('glyphicon-ok');
-		} else {
-			$this.find('.glyphicon').addClass('glyphicon-ok');
-			$this.removeClass('btn-disabled').addClass('btn-active');
-			$this.prev().val('true');
-		}
-		
-		return false;
-	});
-	
-	
 });	
