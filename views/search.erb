@@ -47,7 +47,9 @@
 					</li>
 				</ul>
 				
-				<% if @category.id == 3 %>
+				
+				
+				<% if @category.id == 3 %> <!-- Property is Land type -->
 					<span class="label">Zone</span>
 					<ul class="list-group filter-group" id="zone-filter" data-filter-group="zone">
 						<li class="list-group-item active">
@@ -58,7 +60,25 @@
 							<li class="list-group-item"><a href="#" data-filter=".orchard">Orchard</a></li>
 							<li class="list-group-item"><a href="#" data-filter=".agriculture">Agriculture</a></li>
 					</ul>
-				<% else %>
+					
+				<% else %> <!-- Property is Residential or Commercial -->
+				
+					<ul class="list-group filter-group" id="status-filter" data-filter-group="status">
+						<span class="label">Status</span>
+						<li class="list-group-item active show-all">
+							<a href="#" data-filter="">All</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#" data-filter=".ready-possession">Ready Possession</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#" data-filter=".re-sale">Re-sale</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#" data-filter=".under-contruction">Under Construction</a>
+						</li>
+					</ul>
+					
 					<span class="label">Specs (BHK)</span>
 					<div class="clearfix"></div>
 					<ul class="pagination filter-group" id="bhk-filter" data-filter-group="bhk">
