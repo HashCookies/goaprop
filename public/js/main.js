@@ -549,5 +549,8 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$('.disabled').click(function() {
+		return false;
+	});
 	
 });	
