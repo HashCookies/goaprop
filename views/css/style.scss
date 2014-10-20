@@ -1717,3 +1717,11 @@ form#property {
 		border-radius: 5px;
 	}
 }
+
+.disabled {
+	cursor: not-allowed;
+	&:hover {
+		text-decoration: none;
+		opacity: 0.5;
+	}
+}

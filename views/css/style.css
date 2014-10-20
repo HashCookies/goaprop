@@ -6604,3 +6604,9 @@ form#property textarea {
   margin: 10px 0;
   border: 1px solid #333;
   border-radius: 5px; }
+
+.disabled {
+  cursor: not-allowed; }
+  .disabled:hover {
+    text-decoration: none;
+    opacity: 0.5; }

@@ -122,9 +122,10 @@ class Property
 		classlist = []
 		classlist << self.location.name.downcase
 		classlist << self.type.name.downcase.gsub(" ", "-")
-		classlist << self.zone.downcase unless self.zone.nil?
+		classlist << self.zone.downcase 						unless self.zone.nil?
 		classlist << "bhk-#{self.bhk_count}"
-		classlist << "is-premium" if self.is_premium?
+		classlist << "is-premium" 								if self.is_premium?
+		classlist << self.prop_status.downcase.gsub(" ", "-")
 		classlist.join(" ")
 	end
 	
@@ -135,8 +136,8 @@ class Property
 			"Ready Possession"
 		elsif self.status == 3
 			"Under Construction"
-		elsif self.status == 0
-			nil
+		else
+			"na"
 		end
 	end
 	
@@ -625,7 +626,7 @@ get '/admin' do
 	
 	@classes = ['admin']
 	@properties = Property.all
-	@locations = Location.all
+	@locations = Location.all(:order => [:name.asc])
 	@types = Type.all
 	
 	@title = "Admin"
@@ -642,7 +643,7 @@ get '/search' do
 	
 	@locations = @region.locations(:order => [:name.asc])
 	@properties = @locations.propertys(:state_id => @state.id, :is_active => true, :order => [:priority.desc])
-	@locations = @properties.locations
+	@locations = @properties.locations(:order => [:name.asc])
 	
 	if @category.name != "All"
 		@properties = @properties.all(:category_id => @category.id) # selecting "Residential", "Commercial", etc
