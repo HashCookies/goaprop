@@ -712,7 +712,7 @@ post '/send-inquiry' do
 	@body = params[:inquiry][:body] + "<br />Inquiry Sent by: " + params[:inquiry][:name] + "<br />Phone: " + params[:inquiry][:phone] + "<br />Email: " + params[:inquiry][:email]
 	Pony.mail(
 		:from => params[:inquiry][:name],
-		:to => "alistair.rodrigues@gmail.com",
+		:to => "w@goapropertyco.com",
 		:subject => "Inquiry for property",
 		:headers => { 'Content-Type' => 'text/html' },
 		:body => @body,
@@ -749,7 +749,7 @@ post '/mail-sell-lease' do
 
 	Pony.mail(
 		:from => name,
-		:to => "alistair.rodrigues@gmail.com",
+		:to => "w@goapropertyco.com",
 		:subject => "Property for " + state,
 		:html_body => name + " has a property for " + state + "<br />Property Type: " + params[:leasesell][:type] + "<br />Phone: " + params[:leasesell][:phone] + "<br />Email: " + params[:leasesell][:email] + description,
 		:attachments => attachments,
