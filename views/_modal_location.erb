@@ -1,0 +1,24 @@
+<div class="modal fade delete-modal" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title title">Deleting <span class="name"></span>?</h4>
+        <p class="has-locations text-center text-uppercase"><strong>Properties exist in this location</strong></p>
+      </div>
+      
+      <div class="modal-footer">
+        <form action="/location/" method="post" class="delete-modal-form">
+          <div class="col-md-12 has-locations">
+            <input type="radio" class="optprops" name="optprops" value="change" checked> Change Property Locations
+            <input type="radio" class="optprops" name="optprops" value="delete"> Delete Associated Properties
+            <input type="hidden" name="action" value="">
+          </div>
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Location" class="btn btn-danger btn-large">
+            <button type="button" class="btn btn-primary btn-default" data-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

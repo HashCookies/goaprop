@@ -1,3 +1,25 @@
-<% @locations.each do |location| %>
-	<%= location.name %>
-<% end %>
+<div class="container">
+<div class="row">
+	<a href="/location/new" class="btn btn-large btn-primary">New Location</a>
+	<% @locations.each do |location| %>
+		<div class="col-md-12">
+			<h3><%= location.name %> <span class="small"><%= location.propertys.count == 0 ? "No" : location.propertys.count %> Properties</span>
+			<button class="delete-loc-btn btn btn-primary pull-right" 
+				data-resource-name="<%= location.name %>" 
+				data-resource-id="<%= location.id %>" 
+				data-target=".delete-modal"
+				data-count="<%= location.propertys.count %>" 
+				data-type="location">  Delete Location
+			</button></h3>
+			<div class="col-md-12">
+				<% location.propertys.each do |property| %>
+					<div class="col-md-4">
+						<%= property.id %> - <%= property.slug %>	
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>
+</div>
+<%= erb :_modal_location %>

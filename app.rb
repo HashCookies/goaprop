@@ -174,6 +174,10 @@ class Property
 		return self.price / self.area if self.price && self.area
 		"NA"
 	end
+
+	def price=(amount)
+		super amount.gsub(",", "")
+	end
 	
 	def show_price
 		return self.price if !self.price.nil?
@@ -667,16 +671,6 @@ delete '/property/:id' do
 		redirect '/'
 	end	
 end
-
-# delete '/location/:id' do
-# 	require_admin
-# 	@location = Location.get(params[:id])
-# 	if @location.destroy!
-# 		redirect '/admin'
-# 	else
-# 		redirect '/'
-# 	end
-# end
 
 # delete '/region/:id' do
 # 	require_admin

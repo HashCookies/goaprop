@@ -9,12 +9,19 @@
 			<span class="label">Regions:</span>
 			<ul>
 				<% @location.regions.each do |region| %>
-					<li>
-						<%= region.name %>
-					</li>
+					<li><%= region.name %></li>
 				<% end %>
 			</ul>
 		</div>
+		<div class="col-md-12">
+			<span class="label">Properties:</span>
+			<ul>
+				<% @properties.each do |property| %>
+					<li><%= property.id %>/<%= property.slug %></li>
+				<% end %>
+			</ul>
+		</div>
+
 		<% if !@authorised.nil? %>
 			<div class="col-md-4">
 				<a class="btn btn-primary btn-submit" href="/location/new">Add New Location</a>

@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<p>Properties</p>
+		<% @properties.each do |property| %>
+			<div class="col-md-4"><%= property.slug %></div>
+		<% end %>
+	</div>
+	<form role="form" action="/location/<%= @location.id %>" method="post" id="location" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="delete">
+		<input type="hidden" name="action" value="update">
+		<div class="form-group">
+		<label for="location_id">New Location</label>
+		<select class="select2 location-select" name="property[location_id]" id="location_id" >
+			<% @locations.each do |location| %>
+				<% if location != @location.id %>
+					<option value="<%= location.id %>"><%= location.name %></option>
+				<% end %>
+			<% end %>
+		</select>
+		</div>
+
+		<div class="form-group">
+			<input type="Submit" class="btn btn-primary btn-large submit-btn" value="Change Location">
+		</div>
+	</form>
+</div>

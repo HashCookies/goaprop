@@ -204,12 +204,49 @@ $(document).ready(function() {
 			var dataName = $(this).attr('data-resource-name');
 			var dataType = $(this).attr('data-type');
 
-			$delModal.find('form').attr('action', '/property/' + dataID);
-			$delModal.find('h4.modal-title span').text(dataType + ": " +dataName);
-			
+			$delModal.find('form').attr('action', '/' + dataType + '/' + dataID);
+			$delModal.find('h4.modal-title span').text(dataType.substr(0, 1).toUpperCase() + dataType.substr(1) + ": " +dataName);
+
 			$delModal.modal();
 			
 			return false;
+		});
+
+		//Delete Location modal
+		var $delLocBtn = $('.delete-loc-btn');
+		$delLocBtn.click(function() {
+			var dataID = $(this).attr('data-resource-id');
+			var dataName = $(this).attr('data-resource-name');
+			var dataType = $(this).attr('data-type');
+			var dataCount = $(this).attr('data-count');
+
+			if (dataCount > 0) {
+				$delModal.find('.has-locations').removeClass('hidden');
+			}
+			else {
+				$delModal.find('.has-locations').addClass('hidden');
+			}
+
+			$delModal.find('form').attr('action', '/' + dataType + '/' + dataID);
+			$delModal.find('h4.modal-title span').text(dataType.substr(0, 1).toUpperCase() + dataType.substr(1) + ": " +dataName);
+
+			$delModal.modal();
+			
+			return false;
+		});
+
+		//Radio Buttons in Delete Locations Modal
+		var $optDel = $('.optprops');
+		$optDel.change(function() {
+			$delForm = $delModal.find('form');
+			if ($(this).val() == "delete"){
+				$delModal.find('input[type=hidden][name=_method]').val('delete')
+				$delForm.attr('action', $delForm.attr('action').replace('/edit',''));
+			} 
+			else {
+				$delModal.find('input[type=hidden][name=_method]').val('get')
+				$delForm.attr('action', $delForm.attr('action') + '/edit');
+			}
 		});
 
 		// Email Modal
