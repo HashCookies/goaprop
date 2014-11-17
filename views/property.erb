@@ -264,15 +264,16 @@
 		<div class="col-md-4">
 			<div class="inquiry-block">
 				<h3>Interested? Let us show you around…</h3>
-				<form method="post" action="/send-inquiry">
+				<form id="prop-inquiry" method="post" action="/send-inquiry">
 					<div class="form-group">
 						<label for="name" class="hidden">Your name</label>
 						<input type="text" name="inquiry[name]" placeholder="Your name" value="" class="form-control" />
 					</div>
 
-					<div class="form-group">
+					<div id="phonegrp" class="form-group">
 						<label for="phone" class="hidden">Your phone</label>
-						<input type="text" name="inquiry[phone]" placeholder="Your phone" value="" class="form-control" />
+						<input type="text" id="phone" name="inquiry[phone]" placeholder="Your phone (Mandatory)" value="" class="form-control" />
+						<span id="phoneInfo" class="text-justified"></span>
 					</div>
 					
 					<div class="form-group">

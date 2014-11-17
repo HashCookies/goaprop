@@ -261,6 +261,62 @@ $(document).ready(function() {
 			
 			return false;
 		});
+
+		//Phone Validation
+		var form = $('#prop-inquiry');
+		var phone = $('#phone');
+		var phoneInfo = $('#phoneInfo');
+		var phonegrp = $('#phonegrp');
+
+		form.submit(function() {
+			if (validatePhone()) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+		function validatePhone() {
+        	//validation for empty phone
+	        if (phone.val() == '') {
+	        	return validator('Phone cannot be empty!');
+	        } else {
+	        	validator('');
+	        }
+	 
+	        
+	        var phoneval = phone.val();
+			
+			//validation for proper phone formats
+	        var filter = /^\+?\d{7,12}/;
+	        //Valid
+	        if (filter.test(phoneval)) {
+	        	return validator('');
+	        }
+	        //Invalid
+	        else {
+	            return validator('Invalid Phone Number!');
+	        }
+	    }
+
+	    function validator(text) {
+	    	if (text == "")
+	    	{
+	    		phone.removeClass('has-error');
+	            phonegrp.removeClass('has-error');
+				phoneInfo.removeClass('has-error');
+				phoneInfo.text('');
+				return true;
+	    	}
+	    	else{
+	    		phoneInfo.text(text);
+				phoneInfo.addClass('has-error');
+				phonegrp.addClass('has-error');
+				phone.addClass('has-error');
+				phone.focus();
+	            return false;
+	    	}
+	    }
 		
 		// file input display image
 		
