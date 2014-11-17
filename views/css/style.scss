@@ -908,7 +908,7 @@ h2 {
 #search {
 	@media (max-width: $screen-xs-max) {
 		width: 200px;
-		
+
 		.btn {
 		width: 250px;
 		}
@@ -1091,6 +1091,11 @@ h2 {
 		text-transform: uppercase;
 		margin: 0 15px;
 		color: $dark;
+
+		@media (max-width: $screen-xs-max) {
+			float: none;
+			font-size: 17px;
+		}
 		a {
 			color: inherit;
 		}
