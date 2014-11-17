@@ -761,6 +761,11 @@ h2 {
 	font-style: italic;
 	font-family: $serif;
 	text-align: left;
+
+	@media (max-width: $screen-xs-max) {
+		padding: 40px;
+	}
+
 	.properties & {
 		margin-bottom: 50px;
 	}
@@ -768,6 +773,11 @@ h2 {
 		position: absolute;	
 		left: 2.5%;
 		bottom: 100px;
+
+		@media (max-width: $screen-xs-max) {
+			bottom: 0px;
+		}
+
 		h3, form {
 			opacity: 0;
 			-webkit-transform: translateY(20px);
@@ -809,6 +819,11 @@ h2 {
 		.about & {
 			color: $dark;
 		}
+
+		@media (max-width: $screen-xs-max) {
+			font-size: 20px;
+			margin-bottom: 15px;
+		}
 	}
 	form {
 		background: white;
@@ -828,6 +843,7 @@ h2 {
 		font-size: 22px;
 		padding-top: 15px;
 		padding-bottom: 10px;
+
 	}
 	.select-label {
 		text-decoration: none;
@@ -886,6 +902,16 @@ h2 {
 			font-size: 18px;
 			padding: 15px 15px 13px;
 		}
+	}
+}
+
+#search {
+	@media (max-width: $screen-xs-max) {
+		width: 200px;
+	}
+
+	.btn {
+		width: 250px;
 	}
 }
 
