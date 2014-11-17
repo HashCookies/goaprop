@@ -908,11 +908,12 @@ h2 {
 #search {
 	@media (max-width: $screen-xs-max) {
 		width: 200px;
+		
+		.btn {
+		width: 250px;
+		}
 	}
 
-	.btn {
-		width: 250px;
-	}
 }
 
 .popover-content {
@@ -1751,3 +1752,11 @@ form#property {
 		opacity: 0.5;
 	}
 }
+
+@media (max-width: $screen-xs-max) {
+	.navbar-toggle {
+		margin-top: 35px;
+		margin-right: 0px;
+		padding: 5px 5px;
+	}
+}	
