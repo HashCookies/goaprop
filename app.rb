@@ -706,7 +706,7 @@ post '/send-inquiry' do
 	require 'pony'
 	@body = params[:inquiry][:body] + "<br />Inquiry Sent by: " + params[:inquiry][:name] + "<br />Phone: " + params[:inquiry][:phone] + "<br />Email: " + params[:inquiry][:eadd]
 	Pony.mail(
-		:from => "w@goapropertyco.com",
+		:from => params[:inquiry][:eadd],
 		:to => "w@goapropertyco.com",
 		:subject => "Inquiry for property",
 		:headers => { 'Content-Type' => 'text/html' },

@@ -262,59 +262,78 @@ $(document).ready(function() {
 			return false;
 		});
 
-		//Phone Validation
+		//Phone/Email Validation
 		var form = $('#prop-inquiry');
 		var phone = $('#phone');
-		var phoneInfo = $('#phoneInfo');
-		var phonegrp = $('#phonegrp');
-
+		var email = $('#eadd');
+		
 		form.submit(function() {
-			if (validatePhone()) {
+			if (validateForm()) {
 				return true;
 			} else {
 				return false;
 			}
 		});
 
-		function validatePhone() {
-        	//validation for empty phone
-	        if (phone.val() == '') {
-	        	return validator('Phone cannot be empty!');
+		function validateForm() {
+
+			var retval = false;
+
+			var phoneval = phone.val();
+	        var emailval = email.val();
+        	//validation for empty phone and email
+	        if (phoneval == '') {
+	        	validator('Phone cannot be empty!', 'p');
 	        } else {
-	        	validator('');
+	        	retval = validator('', 'p');
 	        }
-	 
-	        
-	        var phoneval = phone.val();
-			
-			//validation for proper phone formats
-	        var filter = /^\+?\d{7,12}/;
-	        //Valid
-	        if (filter.test(phoneval)) {
-	        	return validator('');
+	        if (emailval == '') {
+	        	retval = validator('Email cannot be empty!', 'e');
+			} else {
+	        	validator('', 'e');
 	        }
-	        //Invalid
-	        else {
-	            return validator('Invalid Phone Number!');
+
+	        if (!retval) {
+	        	return false;
 	        }
+
+			//validation for proper phone & email formats
+	        var phonefilter = /^\+?\d{7,12}$/;
+	        var emailfilter = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+
+	        if (phonefilter.test(phoneval)) {
+	        	retval = validator('', 'p');
+			} else {
+				retval = validator('Invalid Phone Number!', 'p');
+			}
+
+			if (emailfilter.test(emailval)) {
+				validator('', 'e');
+			} else {
+				retval = validator('Invalid Email Address!', 'e');
+			}
+
+			return retval;
 	    }
 
-	    function validator(text) {
-	    	if (text == "")
-	    	{
-	    		phone.removeClass('has-error');
-	            phonegrp.removeClass('has-error');
-				phoneInfo.removeClass('has-error');
-				phoneInfo.text('');
+	    function validator(text, type) {
+	    	item = (type == "p") ? phone : email;
+	    	itemgrp = (type == "p") ? $('#phonegrp') : $('#emailgrp');
+	    	itemInfo = (type == "p") ? $('#phoneInfo') : $('#emailInfo');
+
+	    	if (text == "") {
+	    		item.removeClass('has-error');
+				itemgrp.removeClass('has-error');
+				itemInfo.removeClass('has-error');
+				itemInfo.text('');
 				return true;
-	    	}
-	    	else{
-	    		phoneInfo.text(text);
-				phoneInfo.addClass('has-error');
-				phonegrp.addClass('has-error');
-				phone.addClass('has-error');
-				phone.focus();
-	            return false;
+	    	} else {
+	    		itemInfo.text(text);
+				itemInfo.addClass('has-error');
+				itemgrp.addClass('has-error');
+				item.addClass('has-error');
+				item.focus();
+				return false;
 	    	}
 	    }
 		
