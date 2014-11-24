@@ -5,9 +5,11 @@
 					<div id="main-img" class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
 						<a href="/properties/images/<%= @property.featured_img_url %>">
 							<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
+							<!-- <img class="gallery-link" src="/images/gallery-link.png"> -->
 						</a>
 					</div>
-					<ul id="slide-wrap">
+
+					<ul id="slide-wrap" class="hidden-xs">
 						<li class="hidden">
 							<a href="/properties/images/<%= @property.featured_img_url %>">
 								<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
