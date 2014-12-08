@@ -729,7 +729,7 @@ h2 {
 				margin-top: 10px;
 			}
 
-		@media (max-width: $screen-xs-max) {
+			@media (max-width: $screen-xs-max) {
 					text-align: center;
 					margin-right: 0px;
 					padding: 15px 20px 15px 50px;
@@ -737,9 +737,10 @@ h2 {
 					.prop-price {
 						margin-right: 70px;
 					}	
-				}	
+			}	
 
 		}
+
 		.prop-title {
 			margin-top: 12px;
 		}
@@ -796,9 +797,7 @@ h2 {
 		left: 2.5%;
 		bottom: 100px;
 
-		@media (max-width: $screen-xs-max) {
-			bottom: 0px;
-		}
+		
 
 		h3, form {
 			opacity: 0;
