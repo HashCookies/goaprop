@@ -584,9 +584,18 @@ h2 {
 		height: 550px;
 		border-bottom: 0 !important;
 		overflow: hidden;
+		z-index: 1;
+
+
+		@media (max-width: $screen-xs-max) {
+			width: 100%;
+
+		}
+
 		a {
 			height: 500px !important;
 		}
+
 	}
 	.small {
 		width: 100%;
@@ -671,7 +680,7 @@ h2 {
 		font-size: 36px;
 		color: white;
 		font-weight: 100;
-		padding: 5px 10px;
+		padding: 5px 5px;
 		border-radius: 5px;
 
 	}
@@ -684,6 +693,7 @@ h2 {
 		float: left;
 		margin-top: 14px;
 	}
+
 }
 
 
@@ -711,13 +721,26 @@ h2 {
 		}
 		.price-block {
 			padding: 15px 20px 12px 15px;
+
 			.prop-price {
 				font-size: 30px;
 			}
 			.label {
 				margin-top: 10px;
 			}
+
+			@media (max-width: $screen-xs-max) {
+					text-align: center;
+					margin-right: 0px;
+					padding: 15px 20px 15px 50px;
+					
+					.prop-price {
+						margin-right: 70px;
+					}	
+			}	
+
 		}
+
 		.prop-title {
 			margin-top: 12px;
 		}
@@ -761,6 +784,11 @@ h2 {
 	font-style: italic;
 	font-family: $serif;
 	text-align: left;
+
+	@media (max-width: $screen-xs-max) {
+		padding: 40px;
+	}
+
 	.properties & {
 		margin-bottom: 50px;
 	}
@@ -768,6 +796,9 @@ h2 {
 		position: absolute;	
 		left: 2.5%;
 		bottom: 100px;
+
+		
+
 		h3, form {
 			opacity: 0;
 			-webkit-transform: translateY(20px);
@@ -809,6 +840,11 @@ h2 {
 		.about & {
 			color: $dark;
 		}
+
+		@media (max-width: $screen-xs-max) {
+			font-size: 20px;
+			margin-bottom: 15px;
+		}
 	}
 	form {
 		background: white;
@@ -828,6 +864,7 @@ h2 {
 		font-size: 22px;
 		padding-top: 15px;
 		padding-bottom: 10px;
+
 	}
 	.select-label {
 		text-decoration: none;
@@ -887,6 +924,17 @@ h2 {
 			padding: 15px 15px 13px;
 		}
 	}
+}
+
+#search {
+	@media (max-width: $screen-xs-max) {
+		width: 200px;
+
+		.btn {
+		width: 250px;
+		}
+	}
+
 }
 
 .popover-content {
@@ -1064,6 +1112,11 @@ h2 {
 		text-transform: uppercase;
 		margin: 0 15px;
 		color: $dark;
+
+		@media (max-width: $screen-xs-max) {
+			float: none;
+			font-size: 17px;
+		}
 		a {
 			color: inherit;
 		}
@@ -1725,3 +1778,11 @@ form#property {
 		opacity: 0.5;
 	}
 }
+
+@media (max-width: $screen-xs-max) {
+	.navbar-toggle {
+		margin-top: 35px;
+		margin-right: 0px;
+		padding: 5px 5px;
+	}
+}	

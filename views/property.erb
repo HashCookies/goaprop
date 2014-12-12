@@ -5,9 +5,11 @@
 					<div id="main-img" class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
 						<a href="/properties/images/<%= @property.featured_img_url %>">
 							<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
+							<!-- <img class="gallery-link" src="/images/gallery-link.png"> -->
 						</a>
 					</div>
-					<ul id="slide-wrap">
+
+					<ul id="slide-wrap" class="hidden-xs">
 						<li class="hidden">
 							<a href="/properties/images/<%= @property.featured_img_url %>">
 								<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
@@ -43,7 +45,7 @@
 <div class="property-data">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 data-block">
+			<div class="col-md-8 col-xs-12 data-block">
 				<h3 class="prop-title"><div></div>
 					<a href="/property/<%= @property.id %>/<%= @property.slug %>">
 						<%= @property.full_title_extended %>
@@ -73,12 +75,12 @@
 	<div class="row">
 		<div class="col-md-8 data-block prop-specs">			
 			<ul class="clearfix row">
-					<li class="col-md-3">
+					<li class="col-md-3 col-xs-6">
 						<span class="label">Area</span>
 						<div class="block"><span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mt</span></div>
 					</li>
 					<% if !@property.area_built.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Built Area</span>
 							<div class="block">
 								<span class="unit-area"><%= @property.area_built %></span> 
@@ -87,7 +89,7 @@
 						</li>
 					<% end %>
 					<% if @property.area_rate == true %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Area rate</span>
 							<div class="block">
 								<span class="unit-area"><%= @property.show_area_rate %></span>
@@ -96,29 +98,29 @@
 						</li>
 					<% end %>
 
-					<li class="col-md-3">
+					<li class="col-md-3 col-xs-6">
 						<button class="btn imperial" id="switch-unit"><span class="glyphicon glyphicon-refresh"></span> <span class="unit-label">Show in Sq. Ft.</span></button>
 					</li>
 				
 					<li class="clearfix"></li>
 
 					<% if !@property.bhk_count.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-12">
 							<span class="label">Bedrooms</span>
 							<div class="block"><%= @property.bhk_count %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.toil_attached.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Toilets Attached</span>
 							<div class="block"><%= @property.toil_attached %></div>
 						</li>
 					<% end %>
 
 					<% if !@property.toil_nattached.nil? %>
-						<li class="col-md-3">
-							<span class="label">Toilets Non-Attached</span>
+						<li class="col-md-3 col-xs-6">
+							<span class="label">Non-Attached</span>
 							<div class="block"><%= @property.toil_nattached %></div>
 						</li>
 					<% end %>
@@ -128,14 +130,14 @@
 					<% end %>
 					
 					<% if !@property.floor.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Floor</span>
 							<div class="block"><%= @property.floor %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.lift.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Lift Facility</span>
 							<div class="block"><%= @property.lift == true ? "Yes" : "No" %></div>
 						</li>
@@ -146,21 +148,21 @@
 					<% end %>
 					
 					<% if !@property.furnishing.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-12">
 							<span class="label">Furnishing</span>
 							<div class="block"><%= @property.furnishing %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.water.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Water</span>
 							<div class="block"><%= @property.water %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.electricity.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Electricity</span>
 							<div class="block"><%= @property.electricity %></div>
 						</li>
@@ -171,28 +173,28 @@
 						<% end %>
 					
 					<% if !@property.zone.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Zone</span>
 							<div class="block"><%= @property.zone %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.view.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">View</span>
 							<div class="block"><%= @property.view %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.fsi.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">FSI</span>
 							<div class="block"><%= @property.fsi %></div>
 						</li>
 					<% end %>
 					
 					<% if !@property.sanad.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Sanad</span>
 							<div class="block"><%= @property.sanad == true ? "Yes" : "No" %></div>
 						</li>
@@ -205,14 +207,14 @@
 
 
 					<% if !@property.prop_status.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Status</span>
 							<div class="block"><%= @property.prop_status %></div>
 						</li>
 					<% end %>
 
 					<% if !@property.age.nil? %>
-						<li class="col-md-3">
+						<li class="col-md-3 col-xs-6">
 							<span class="label">Age</span>
 							<div class="block"><%= @property.age %></div>
 						</li>
@@ -223,7 +225,7 @@
 					<% end %>
 
 					<% if !@property.specs.nil? %>
-						<li class="col-md-12">
+						<li class="col-md-12 col-xs-12">
 							<span class="label">Facilities</span>
 							<div class="block"><%= @property.specs %></div>
 						</li>
