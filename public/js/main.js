@@ -8,8 +8,20 @@ $(document).ready(function() {
 		$('.info-intro').height(winH - 200).width(winW);
 		var $b = $('body');
 		
-		$('#home-bg').anystretch();
-
+		
+		
+		if (winW > 481) {
+			$('#home-bg').anystretch();
+		}
+		
+		if (winW < 481) {
+//			var homebg = $('#home-bg').attr('data-stretch');
+//			$('#home-bg').anystretch(homebg, { positionX: 'right'});
+			
+			$('.home #search-bar').css({
+				left: (winW - 250) / 2
+			});
+		}
 		
 
 		var strUrl = $('.info-intro').attr('data-stretch');

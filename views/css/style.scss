@@ -241,7 +241,9 @@ h2 {
 }
 
 .cover {
-	position: absolute;
+	@media (min-width: $screen-sm-min) {
+		position: absolute;
+	}
 	.anystretch {
 		z-index: -10 !important;
 	}
@@ -309,6 +311,10 @@ h2 {
 	}
 	.property-item {
 		margin-bottom: 35px;
+		@media (max-width: $screen-xs-max) {
+			padding-left: 0;
+			padding-right: 0;
+		}
 		
 	}
 	.property-item-inner {
@@ -402,8 +408,6 @@ h2 {
 			border-bottom: 0;
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
-			
-			
 		}
 	}
 	.data-block {
@@ -786,19 +790,20 @@ h2 {
 	text-align: left;
 
 	@media (max-width: $screen-xs-max) {
-		padding: 40px;
+		padding: 20px 40px;
 	}
 
 	.properties & {
 		margin-bottom: 50px;
 	}
 	.home & {
-		position: absolute;	
+			
 		left: 2.5%;
-		bottom: 100px;
-
-		
-
+		bottom: 10px;
+		@media (min-width: $screen-sm-max) {
+			bottom: 100px;
+			position: absolute;
+		}
 		h3, form {
 			opacity: 0;
 			-webkit-transform: translateY(20px);
@@ -842,8 +847,13 @@ h2 {
 		}
 
 		@media (max-width: $screen-xs-max) {
-			font-size: 20px;
+			font-size: 36px;
 			margin-bottom: 15px;
+			text-align: center;
+			margin-top: 0px;
+			span {
+				font-size: 30px;
+			}
 		}
 	}
 	form {
@@ -852,6 +862,9 @@ h2 {
 		overflow: auto;
 		-webkit-box-shadow: 0px 0px 5px transparentize(black, 0.8);
 		padding-left: 15px;
+		@media (max-width: $screen-xs-max) {
+			margin: 0 auto;
+		}
 	}
 	input {
 		color: $vib;
@@ -861,9 +874,10 @@ h2 {
 	}
 	.select-label-wrap {
 		float: left;
-		font-size: 22px;
+		font-size: 36px;
 		padding-top: 15px;
 		padding-bottom: 10px;
+		text-align: center;
 
 	}
 	.select-label {
@@ -913,6 +927,9 @@ h2 {
 		&:hover {
 			background: darken($vib, 10%);
 		}
+		@media (max-width: $screen-sm-min) {
+			margin-top: 15px;
+		}
 
 	}
 	@media (max-width: $screen-md-max) {
@@ -928,10 +945,18 @@ h2 {
 
 #search {
 	@media (max-width: $screen-xs-max) {
-		width: 200px;
-
+		width: 250px;
 		.btn {
 		width: 250px;
+		}
+		#select-category-label {
+			margin-left: 0px;
+		}
+		.select-label-wrap {
+			padding-bottom: px;
+		}
+		.select-category {
+			margin-top: 5px;
 		}
 	}
 
@@ -963,7 +988,6 @@ h2 {
 
 #results-container {
 	min-height: 780px;
-	
 }
 
 .filters {
@@ -1586,8 +1610,11 @@ form#property {
 }
 
 #grid-wrap {
-	padding-top: 40px;
+	padding-top: 15px;
 	background: $offWhite;
+	@media (min-width: $screen-sm-min) {
+		padding-top: 40px;
+	}
 }
 
 #sorting-bar {
