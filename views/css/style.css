@@ -5399,6 +5399,9 @@ h2 {
 .section-title {
   font-weight: 100;
   font-size: 32px; }
+  @media (max-width: 767px) {
+    .section-title {
+      font-size: 22px; } }
 
 .small-title {
   font-size: 18px;
@@ -5478,6 +5481,9 @@ h2 {
 
 .content {
   margin-top: 50px; }
+  @media (max-width: 767px) {
+    .content {
+      margin-top: 20px; } }
 
 .grid-wrap {
   background: #fbfbf3;
