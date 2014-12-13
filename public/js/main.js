@@ -9,18 +9,48 @@ $(document).ready(function() {
 		var $b = $('body');
 		
 		
+		// If Mobile
+		if((/Android|iPhone|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)){
+			$('.home #search-bar').css({
+				left: (winW - 250) / 2
+			});
+		}
 		
-		if (winW > 481) {
+		// If NOT Mobile
+		if(!(/Android|iPhone|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)){
+		
 			$('#home-bg').anystretch();
+			
+			var $propD = $('.property-data');
+			var propTop;
+			
+			if (winH < 760) {
+				propTop = winH - 97
+				$propD.css({ top: propTop });
+			} else {
+				propTop = 675;
+				$b.addClass('scrolled');
+			}
+			
+			$(window).scroll(function() {
+						var st  = $(window).scrollTop();
+						
+						if (st < (760 - winH)) {
+							$b.removeClass('scrolled');
+						}
+						
+						if (st > (760 - winH)) {
+							$b.addClass('scrolled');
+						}
+			
+					});
 		}
 		
 		if (winW < 481) {
 //			var homebg = $('#home-bg').attr('data-stretch');
 //			$('#home-bg').anystretch(homebg, { positionX: 'right'});
 			
-			$('.home #search-bar').css({
-				left: (winW - 250) / 2
-			});
+			
 		}
 		
 
@@ -157,31 +187,11 @@ $(document).ready(function() {
 		
 		/// PROPERTY PAGE SCROLLING ///
 				
-		var $propD = $('.property-data');
-		var propTop;
-		
-		if (winH < 760) {
-			propTop = winH - 97
-			$propD.css({ top: propTop });
-		} else {
-			propTop = 675;
-			$b.addClass('scrolled');
-		}
 		
 		
 		
-		$(window).scroll(function() {
-			var st  = $(window).scrollTop();
-			
-			if (st < (760 - winH)) {
-				$b.removeClass('scrolled');
-			}
-			
-			if (st > (760 - winH)) {
-				$b.addClass('scrolled');
-			}
-
-		});
+		
+		
 		
 		$('.select-label').popover({
 			placement: 'bottom',

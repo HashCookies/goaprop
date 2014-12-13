@@ -51,7 +51,7 @@
 						<%= @property.full_title_extended %>
 					</a> <span class="prop-code">GPC <%= @property.id %></span>
 				</h3>
-				<p class="prop-area">
+				<p class="prop-area hidden-xs">
 					<span class="label">Specs</span>
 					<span class="unit-area"><%= @property.area %></span> <span class="unit-label">Sq Mts</span> 
 					<% if !@property.specs.nil? %> 
@@ -303,7 +303,7 @@
 
 <div class="offwhite-block">
 	<div class="container">
-		<div class="content row">
+		<div class="content">
 			<% if @similar.count > 0 %>
 				<div class="col-md-12">
 					<h3 class="section-title dynamic-string">More <strong><%= @property.type.name %>s</strong> for <strong><%= @property.state.name %></strong> in <strong><%= @property.location.name %></strong></h3>
