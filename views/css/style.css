@@ -5399,6 +5399,9 @@ h2 {
 .section-title {
   font-weight: 100;
   font-size: 32px; }
+  @media (max-width: 767px) {
+    .section-title {
+      font-size: 22px; } }
 
 .small-title {
   font-size: 18px;
@@ -5466,10 +5469,11 @@ h2 {
       font-size: 12px;
       color: #f66f61; }
 
-.cover {
-  position: absolute; }
-  .cover .anystretch {
-    z-index: -10 !important; }
+@media (min-width: 768px) {
+  .cover {
+    position: absolute; } }
+.cover .anystretch {
+  z-index: -10 !important; }
 
 #home-bg {
   height: 1000px;
@@ -5477,6 +5481,9 @@ h2 {
 
 .content {
   margin-top: 50px; }
+  @media (max-width: 767px) {
+    .content {
+      margin-top: 20px; } }
 
 .grid-wrap {
   background: #fbfbf3;
@@ -5522,6 +5529,11 @@ h2 {
     padding-bottom: 3px; }
   #property-grid .property-item, #demo-property .property-item {
     margin-bottom: 35px; }
+    @media (max-width: 767px) {
+      #property-grid .property-item, #demo-property .property-item {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%; } }
   #property-grid .property-item-inner, #demo-property .property-item-inner {
     border: 1px solid #dde5ea;
     border-bottom-left-radius: 5px;
@@ -5743,7 +5755,12 @@ h2 {
     margin-right: 5px;
     height: 550px;
     border-bottom: 0 !important;
-    overflow: hidden; }
+    overflow: hidden;
+    z-index: 1; }
+    @media (max-width: 767px) {
+      .property-image-grid .large {
+        width: 100%;
+        height: 180px; } }
     .property-image-grid .large a {
       height: 500px !important; }
   .property-image-grid .small {
@@ -5815,7 +5832,7 @@ h2 {
     font-size: 36px;
     color: white;
     font-weight: 100;
-    padding: 5px 10px;
+    padding: 5px 5px;
     border-radius: 5px; }
   .price-block .label {
     text-transform: uppercase;
@@ -5825,15 +5842,25 @@ h2 {
     display: block;
     float: left;
     margin-top: 14px; }
+  @media (max-width: 767px) {
+    .price-block {
+      width: 100%;
+      margin-right: 0;
+      padding: 10px; }
+      .price-block .prop-price {
+        font-size: 30px; } }
 
 .property-data {
-  position: fixed;
+  position: relative;
   background: rgba(255, 255, 255, 0.95);
   left: 0;
   right: 0;
   z-index: 150;
   text-shadow: 0px 1px #fff;
   margin-bottom: 25px; }
+  @media (min-width: 768px) {
+    .property-data {
+      position: fixed; } }
   .property-data .data-block {
     padding-top: 10px;
     padding-bottom: 10px; }
@@ -5851,6 +5878,13 @@ h2 {
         font-size: 30px; }
       .scrolled .property-data .price-block .label {
         margin-top: 10px; }
+      @media (max-width: 767px) {
+        .scrolled .property-data .price-block {
+          text-align: center;
+          margin-right: 0px;
+          padding: 15px 20px 15px 50px; }
+          .scrolled .property-data .price-block .prop-price {
+            margin-right: 70px; } }
     .scrolled .property-data .prop-title {
       margin-top: 12px; }
   .property-data .prop-title {
@@ -5885,12 +5919,18 @@ h2 {
   font-style: italic;
   font-family: "freight-text-pro", Garamond, Georgia, serif;
   text-align: left; }
+  @media (max-width: 767px) {
+    #search-bar {
+      padding: 20px 40px; } }
   .properties #search-bar {
     margin-bottom: 50px; }
   .home #search-bar {
-    position: absolute;
     left: 2.5%;
-    bottom: 100px; }
+    bottom: 10px; }
+    @media (min-width: 991px) {
+      .home #search-bar {
+        bottom: 100px;
+        position: absolute; } }
     .home #search-bar h3, .home #search-bar form {
       opacity: 0;
       -webkit-transform: translateY(20px);
@@ -5920,21 +5960,33 @@ h2 {
       text-align: center; }
     .about #search-bar h3 {
       color: #4b322f; }
+    @media (max-width: 767px) {
+      #search-bar h3 {
+        font-size: 36px;
+        margin-bottom: 15px;
+        text-align: center;
+        margin-top: 0px; }
+        #search-bar h3 span {
+          font-size: 30px; } }
   #search-bar form {
     background: white;
     border-radius: 10px;
     overflow: auto;
     -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     padding-left: 15px; }
+    @media (max-width: 767px) {
+      #search-bar form {
+        margin: 0 auto; } }
   #search-bar input {
     color: #f66f61;
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0 10px; }
   #search-bar .select-label-wrap {
     float: left;
-    font-size: 22px;
+    font-size: 36px;
     padding-top: 15px;
-    padding-bottom: 10px; }
+    padding-bottom: 10px;
+    text-align: center; }
   #search-bar .select-label {
     text-decoration: none;
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -5976,12 +6028,27 @@ h2 {
       margin-right: 5px; }
     #search-bar #find-prop:hover {
       background: #f34331; }
+    @media (max-width: 768px) {
+      #search-bar #find-prop {
+        margin-top: 15px; } }
   @media (max-width: 1199px) {
     #search-bar .select-label-wrap {
       font-size: 18px; }
     #search-bar #find-prop {
       font-size: 18px;
       padding: 15px 15px 13px; } }
+
+@media (max-width: 767px) {
+  #search {
+    width: 250px; }
+    #search .btn {
+      width: 250px; }
+    #search #select-category-label {
+      margin-left: 0px; }
+    #search .select-label-wrap {
+      padding-bottom: px; }
+    #search .select-category {
+      margin-top: 5px; } }
 
 .popover-content {
   padding: 10px 15px 15px; }
@@ -6115,6 +6182,10 @@ h2 {
   text-transform: uppercase;
   margin: 0 15px;
   color: #4b322f; }
+  @media (max-width: 767px) {
+    #services-list li {
+      float: none;
+      font-size: 17px; } }
   #services-list li a {
     color: inherit; }
 
@@ -6461,8 +6532,11 @@ form#property textarea {
   display: none; }
 
 #grid-wrap {
-  padding-top: 40px;
+  padding-top: 15px;
   background: #fbfbf3; }
+  @media (min-width: 768px) {
+    #grid-wrap {
+      padding-top: 40px; } }
 
 #sorting-bar {
   background: white;
@@ -6610,3 +6684,9 @@ form#property textarea {
   .disabled:hover {
     text-decoration: none;
     opacity: 0.5; }
+
+@media (max-width: 767px) {
+  .navbar-toggle {
+    margin-top: 35px;
+    margin-right: 0px;
+    padding: 5px 5px; } }
