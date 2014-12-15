@@ -322,6 +322,7 @@ h2 {
 			padding-left: 0;
 			padding-right: 0;
 			width: 100%;
+			margin-bottom: 10px;
 		}
 		
 	}
@@ -339,31 +340,40 @@ h2 {
 		border-bottom: 1px solid #333;
 	}
 	.prop-price {
-		position: absolute;
-		right: 8px;
-		background: $green;
-		padding: 3px 10px 0;
-		color: white;
+		
 		font-weight: bold;
-		font-size: 18px;
-		text-shadow: 0px 1px darken($green, 20%);
-		border-top-left-radius: 4px;
-		border-bottom-left-radius: 4px;
-		bottom: 25px;
-		border: 1px solid darken($green, 7%);
-		border-right-color: darken($green, 5%);
-		-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);	
+		font-size: 15px;
+		
 		.admin & {
 			bottom: 60px;
 		}	
-		&:after {
-			content: " ";
-			width: 7px;
-			height: 6px;
-			display: block;
-			background: url('../images/green-triangle.png') no-repeat left top;
+		@media (min-width: $screen-sm-min) {
+			font-size: 18px;
 			position: absolute;
-			right: 0;
+			right: 8px;
+			background: $green;
+			padding: 3px 10px 0;
+			color: white;
+			text-shadow: 0px 1px darken($green, 20%);
+			border-top-left-radius: 4px;
+			border-bottom-left-radius: 4px;
+			bottom: 25px;
+			border: 1px solid darken($green, 7%);
+			border-right-color: darken($green, 5%);
+			-webkit-box-shadow: 0px 1px 2px transparentize(black, 0.6);	
+			&:after {
+				content: " ";
+				width: 7px;
+				height: 6px;
+				display: block;
+				background: url('../images/green-triangle.png') no-repeat left top;
+				position: absolute;
+				right: 0;
+			}
+		}
+		@media (max-width: $screen-xs-max) {
+			color: $green;
+			
 		}
 	}
 
@@ -417,12 +427,22 @@ h2 {
 			border-bottom-left-radius: 0;
 			border-bottom-right-radius: 0;
 		}
+		@media (max-width: $screen-xs-max) {
+			width: 35%;
+			float: left;
+			border: none;
+			height: 100px !important;
+		}
 	}
 	.data-block {
 		background: #fefefe;
 		padding: 10px 15px 15px;
 		min-height: 85px;
-		
+		@media (max-width: $screen-xs-max) {
+			width: 65%;
+			float: left;
+			padding: 5px 5px 5px 10px;
+		}
 	}
 	
 }
@@ -1046,6 +1066,20 @@ h2 {
 		}
 	}
 
+}
+
+@media (max-width: $screen-xs-max) {
+	.filters {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		background: white;
+		background: rgba(255,255,255, 0.9);
+		bottom: 0;
+		top: 120px;
+		padding-right: 20px;
+	}
 }
 
 #cancel-premium {
@@ -1829,3 +1863,7 @@ form#property {
 		padding: 5px 5px;
 	}
 }	
+
+#show-filters-btn {
+	margin-bottom: 15px;
+}

@@ -5533,7 +5533,8 @@ h2 {
       #property-grid .property-item, #demo-property .property-item {
         padding-left: 0;
         padding-right: 0;
-        width: 100%; } }
+        width: 100%;
+        margin-bottom: 10px; } }
   #property-grid .property-item-inner, #demo-property .property-item-inner {
     border: 1px solid #dde5ea;
     border-bottom-left-radius: 5px;
@@ -5546,30 +5547,36 @@ h2 {
     display: inline-block;
     border-bottom: 1px solid #333; }
   #property-grid .prop-price, #demo-property .prop-price {
-    position: absolute;
-    right: 8px;
-    background: #7bcb1d;
-    padding: 3px 10px 0;
-    color: white;
     font-weight: bold;
-    font-size: 18px;
-    text-shadow: 0px 1px #457210;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    bottom: 25px;
-    border: 1px solid #68ac19;
-    border-right-color: #6db51a;
-    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
+    font-size: 15px; }
     .admin #property-grid .prop-price, .admin #demo-property .prop-price {
       bottom: 60px; }
-    #property-grid .prop-price:after, #demo-property .prop-price:after {
-      content: " ";
-      width: 7px;
-      height: 6px;
-      display: block;
-      background: url("../images/green-triangle.png") no-repeat left top;
-      position: absolute;
-      right: 0; }
+    @media (min-width: 768px) {
+      #property-grid .prop-price, #demo-property .prop-price {
+        font-size: 18px;
+        position: absolute;
+        right: 8px;
+        background: #7bcb1d;
+        padding: 3px 10px 0;
+        color: white;
+        text-shadow: 0px 1px #457210;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        bottom: 25px;
+        border: 1px solid #68ac19;
+        border-right-color: #6db51a;
+        -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
+        #property-grid .prop-price:after, #demo-property .prop-price:after {
+          content: " ";
+          width: 7px;
+          height: 6px;
+          display: block;
+          background: url("../images/green-triangle.png") no-repeat left top;
+          position: absolute;
+          right: 0; } }
+    @media (max-width: 767px) {
+      #property-grid .prop-price, #demo-property .prop-price {
+        color: #7bcb1d; } }
   #property-grid .prop-code, #demo-property .prop-code {
     text-align: right;
     position: absolute;
@@ -5612,10 +5619,21 @@ h2 {
       border-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0; }
+    @media (max-width: 767px) {
+      #property-grid .img-block, #demo-property .img-block {
+        width: 35%;
+        float: left;
+        border: none;
+        height: 100px !important; } }
   #property-grid .data-block, #demo-property .data-block {
     background: #fefefe;
     padding: 10px 15px 15px;
     min-height: 85px; }
+    @media (max-width: 767px) {
+      #property-grid .data-block, #demo-property .data-block {
+        width: 65%;
+        float: left;
+        padding: 5px 5px 5px 10px; } }
 
 .admin-filters {
   margin-top: 50px; }
@@ -6102,6 +6120,17 @@ h2 {
       background: #35b6eb;
       border: 1px solid #35b6eb; }
 
+@media (max-width: 767px) {
+  .filters {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    bottom: 0;
+    top: 120px;
+    padding-right: 20px; } }
 #cancel-premium {
   position: absolute;
   right: 12px;
@@ -6690,3 +6719,5 @@ form#property textarea {
     margin-top: 35px;
     margin-right: 0px;
     padding: 5px 5px; } }
+#show-filters-btn {
+  margin-bottom: 15px; }

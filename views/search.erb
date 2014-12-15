@@ -25,8 +25,12 @@
 <div class="clearfix"></div>
 <div id="grid-wrap">
 	<div class="container-fluid" id="results-container">
+		<div class="visible-xs text-center">
+			<button id="show-filters-btn" class="btn btn-primary btn-checkbox">Show Filters</button>
+		</div>
 		<div class="row">
-			<div class="col-md-2 col-sm-3 hidden-xs filters" id="filters">
+			<div class="col-md-2 col-sm-3 filters hidden-xs" id="filters">
+				<h3 class="visible-xs text-center">Filters <button id="close-filters" class="btn btn-checkbox btn-primary">X</span></h3>
 				<span class="label">Property Types</span>
 				<ul class="list-group filter-group" id="type-filter" data-filter-group="type">
 					<li class="list-group-item active show-all">

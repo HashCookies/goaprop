@@ -14,6 +14,15 @@ $(document).ready(function() {
 			$('.home #search-bar').css({
 				left: (winW - 250) / 2
 			});
+			$('.filters').height($(document).height() - 120);
+			$('#show-filters-btn').click(function() {
+				console.log('test');
+				$('.filters').toggleClass('hidden-xs');
+			});
+			
+			$('#close-filters').click(function() {
+				$('.filters').addClass('hidden-xs');
+			});
 		}
 		
 		// If NOT Mobile

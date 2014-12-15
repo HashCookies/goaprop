@@ -15,19 +15,18 @@
 					<%= property.full_title %>
 				</a>
 			</h3>
+			<div class="clearfix"></div>
+			<div class="prop-area">
+				<div class="block sort-area" data-sort="<%= property.area %>">
+					<span class="unit-area"><%= property.area %></span> <span class="unit-label">Sq Mts</span>
+				</div>
+			</div>
 			<div class="prop-price">
 				<span class="price sort-price">
 					<%= to_currency(property.show_price, property.state_id) %>
 				</span>
 			</div>
-			<ul class="clearfix">
-				<li class="prop-area">
-					<div class="block sort-area" data-sort="<%= property.area %>">
-						<span class="unit-area"><%= property.area %></span> <span class="unit-label">Sq Mts</span>
-					</div>
-				</li>
-			</ul>
-			<span class="prop-code">GPC<%= property.id %></span>
+			<span class="prop-code hidden-xs">GPC<%= property.id %></span>
 		</div>
 	</div>
 </li>
