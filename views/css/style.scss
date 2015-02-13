@@ -446,6 +446,8 @@ h2 {
 			width: 35%;
 			float: left;
 			border: none;
+			padding:5px;
+			margin-top:10px;
 			height: 100px !important;
 		}
 	}
@@ -840,10 +842,13 @@ h2 {
 	font-family: $serif;
 	text-align: left;
 
-	@media (max-width: $screen-xs-max) {
-		padding: 20px 20px;
+	@media (max-width: 320px) {
+		padding: 20px 20px !important;
 	}
 
+	@media (max-width: $screen-xs) {
+		padding-top:100px;
+	}
 	.properties & {
 		margin-bottom: 50px;
 	}
@@ -1265,9 +1270,6 @@ h2 {
 		&:focus {
 			box-shadow: 1px 1px 0px darken($blue, 0%);
 		}
-		@media(max-width: $screen-xs) {
-			min-height:80px;
-		}
 	}
 	.btn {
 		margin-top: 10px;
@@ -1350,6 +1352,9 @@ h2 {
 		color: $blue;
 		font-size: 30px;
 		margin-bottom: 5px;
+	}
+	textarea {
+		min-height: 80px;
 	}
 }
 
@@ -1445,6 +1450,11 @@ h2 {
 	.service-icon {
 		margin: 15px auto 30px;
 		max-width: 275px;
+	}
+	textarea {
+		@media(max-width: $screen-xs ) {
+			min-height: 80px;
+		}
 	}
 }
 
@@ -1661,6 +1671,7 @@ form#property {
 .about {
 	#search-bar {
 		padding-bottom: 100px;
+
 	}
 }
 
