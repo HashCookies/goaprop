@@ -18,7 +18,7 @@ end
 
 configure :development do
 	require 'dm-sqlite-adapter'
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.db")
+	DataMapper::setup(:default, "sqlite3:db.db")
 end
 
 configure :test do
