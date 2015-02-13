@@ -4,8 +4,8 @@
 				
 					<div id="main-img" class="large img-block " data-stretch="/properties/images/<%= @property.featured_img %>">
 						<a href="/properties/images/<%= @property.featured_img_url %>">
-							<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
-							<!-- <img class="gallery-link" src="/images/gallery-link.png"> -->
+ 							<img src="/properties/images/<%= @property.featured_img_url %>" alt="" />
+ 							<!-- <img class="gallery-link" src="/images/gpc-default-thumb.jpg"> -->
 						</a>
 					</div>
 
@@ -35,12 +35,13 @@
 							</li>
 						<% end %>
 					</ul>	
-	
+					
 		</div>
 	</div>
 <% else %>
 	<hr style="margin-bottom: 0;" />
 <% end %>	
+<a class='btn-primary btn' id='view-more-images' href="/properties/images/<%= @property.featured_img_url %>" > View more images</a>
 
 <div class="property-data">
 	<div class="container">

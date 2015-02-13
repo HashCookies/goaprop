@@ -548,7 +548,10 @@ $(document).ready(function() {
 		$('#slide-wrap').magnificPopup('open');
 		return false;
 	});
-	
+	$('#view-more-images').click(function() {
+		$('#slide-wrap').magnificPopup('open');
+		return false; 
+	});
 	$('#contact-link a').click(function() {
 		$.scrollTo('#footer', 800);
 		return false;
