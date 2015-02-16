@@ -174,7 +174,8 @@ h2 {
 		font-size: 12px;
 		padding: 5px;
 		margin-top:10px;
-		margin-left: 15px;
+		margin-left: 80px;
+		margin-right: 80px;
 	}
 }
 
@@ -1636,8 +1637,8 @@ form#property {
 		margin-top: 10px;
 	}
 	textarea {
-		@media(max-width: $screen-xs) {
-			min-height:80px;
+		@media(max-width: $screen-md-max) {
+			min-height:90px;
 		}
 	}
 
@@ -1725,16 +1726,26 @@ form#property {
 
 .company-profile {
 	margin-top: 60px;
+	@media (max-width: $screen-xs ) {
+		margin-top:-180px;
+		margin-bottom: 200px !important;
+	} 
 	.outer-avatar-container {
 		@media (max-width: 320px) {
 			padding-left:0px;
 			padding-right: 0px;
+			position:relative;
+			top: 480px !important;
+		}
+		@media (max-width: $screen-xs) {
+			position:relative;
+			top: 420px;
 		}
 		/*select the second avatar*/
 		:nth-child(2) {
-		@media (max-width: $screen-xs) {
-			float:right;
-			}
+			@media (max-width: $screen-xs) {
+				float:right;
+				}
 		}
 	}
 
@@ -1746,6 +1757,9 @@ form#property {
 		@media (max-width: $screen-xs) {
 			margin:0px;
 			padding: 2px;
+			span {
+				float: none !important;
+			}
 		}
 	}
 	img {
@@ -1768,7 +1782,6 @@ form#property {
 		margin-bottom: 15px;
 	}
 }
-
 // Edit page stuff
 
 .img-wrap {
