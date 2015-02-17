@@ -12,6 +12,8 @@ gem "fog"
 gem 'carrierwave-datamapper'
 gem "mini_magick"
 gem 'sinatra-formhelpers-ng'
+gem 'oauth'
+gem 'tumblr_client'
 
 group :development do
 	gem 'sqlite3'

@@ -5529,7 +5529,7 @@ h2 {
         font-size: 14px; } }
 
 #property-grid, #demo-property {
-  overflow: auto;
+  overflow: inherit;
   width: 100%; }
   @media (max-width: 480px) {
     #property-grid, #demo-property {
@@ -6547,7 +6547,7 @@ form#property textarea {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px; }
-  @media (max-width: 1024px) {
+  @media (max-width: 1199px) {
     .inquiry-block textarea {
       min-height: 90px; } }
   .inquiry-block .form-control {
@@ -6832,5 +6832,53 @@ form#property textarea {
     padding: 5px 5px; } }
 #show-filters-btn {
   margin-bottom: 15px; }
+
+.blog-post {
+  border: 1px solid #EEEEEE;
+  padding: 5px; }
+
+.blog-title {
+  color: #f66f61;
+  text-transform: uppercase;
+  font-size: 42px;
+  font-weight: bold; }
+
+.blog-header {
+  border-top: 1px solid #cdd8e1;
+  border-bottom: 1px solid #cdd8e1;
+  width: 100%;
+  margin: 40px 0px 30px;
+  padding: 20px;
+  text-align: left; }
+
+.post-title {
+  color: #f66f61;
+  text-align: center;
+  font-size: 36px; }
+
+.post-image {
+  margin-left: 150px; }
+
+.post-content {
+  padding: 10px; }
+
+.blog-container #property-grid .property-item-inner .prop-price, .blog-container #demo-property .property-item-inner .prop-price {
+  font-size: 12px; }
+  .blog-container #property-grid .property-item-inner .prop-price .sort-price, .blog-container #demo-property .property-item-inner .prop-price .sort-price {
+    padding: 10px; }
+
+.archive {
+  float: right;
+  font-size: 16px; }
+  .archive li {
+    list-style: disc;
+    color: #f66f61; }
+  .archive a {
+    color: #f66f61; }
+  .archive :nth-child(n+2) {
+    margin-left: 30px; }
+
+.archive-title {
+  font-size: 28px; }
 
 /*# sourceMappingURL=style.css.map */

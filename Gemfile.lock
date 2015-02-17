@@ -93,6 +93,10 @@ GEM
     do_sqlite3 (0.10.14-x86-mingw32)
       data_objects (= 0.10.14)
     excon (0.33.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     fastercsv (1.5.5)
     fog (1.22.0)
       fog-brightbox
@@ -124,6 +128,7 @@ GEM
     mini_portile (0.6.0)
     minitest (5.3.4)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     mysql (2.9.1)
     mysql (2.9.1-x86-mingw32)
     net-scp (1.2.1)
@@ -133,6 +138,7 @@ GEM
       mini_portile (= 0.6.0)
     nokogiri (1.6.2.1-x86-mingw32)
       mini_portile (= 0.6.0)
+    oauth (0.4.7)
     polyglot (0.3.5)
     pony (1.8)
       mail (>= 2.0)
@@ -152,6 +158,7 @@ GEM
     sass (3.3.3)
     shotgun (0.9)
       rack (>= 1.0)
+    simple_oauth (0.3.1)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -177,6 +184,13 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    tumblr_client (0.8.5)
+      faraday (~> 0.9.0)
+      faraday_middleware (~> 0.9.0)
+      json
+      mime-types
+      oauth
+      simple_oauth
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uuidtools (2.1.4)
@@ -197,6 +211,7 @@ DEPENDENCIES
   fog
   mini_magick
   mysql
+  oauth
   pony
   rspec
   sass
@@ -206,3 +221,4 @@ DEPENDENCIES
   sinatra-formhelpers-ng
   sinatra-support
   sqlite3
+  tumblr_client

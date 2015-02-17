@@ -1,0 +1,30 @@
+
+<div class=" blog-header">	
+	
+	<h1  class="blog-title">
+		<img class="knowledge-blog-img" src="/images/knowledge.png">
+		Knowledge Blog
+	</h1>
+</div>
+
+<div class="row blog-container">
+	<div class="col-md-8 blog-post">	
+		<h3 class="post-title">Title</h3>
+		<p class="post-content">
+		GOA PROPERTY CO shelters all your real estate needs, from complicated paperwork to finding you the perfect place.
+
+		Our approach combines a thorough understanding of our clients' requirements along with a solid filtering process of real estate to provide you with an array of choices to pick from. 
+		</p>
+	</div>
+	<div class="col-md-4">
+	<ul id="property-grid">
+		<% @properties.each do |property| %>
+			<%= erb :_property, :layout => false, :locals => {
+				:property => property,  
+				:cols => " col-md-4 col-xs-12"} %>
+		<% end %>
+	</ul>
+	</div>
+</div>
+
+<% erb :_footer %>
