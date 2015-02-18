@@ -5291,6 +5291,10 @@ button.close {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+html {
+  overflow-y: auto;
+  overflow-x: hidden; }
+
 body {
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #4b322f; }
@@ -6833,52 +6837,38 @@ form#property textarea {
 #show-filters-btn {
   margin-bottom: 15px; }
 
-.blog-post {
-  border: 1px solid #EEEEEE;
-  padding: 5px; }
-
-.blog-title {
-  color: #f66f61;
-  text-transform: uppercase;
-  font-size: 42px;
-  font-weight: bold; }
-
-.blog-header {
-  border-top: 1px solid #cdd8e1;
-  border-bottom: 1px solid #cdd8e1;
-  width: 100%;
-  margin: 40px 0px 30px;
-  padding: 20px;
-  text-align: left; }
-
-.post-title {
-  color: #f66f61;
-  text-align: center;
-  font-size: 36px; }
-
-.post-image {
-  margin-left: 150px; }
-
-.post-content {
-  padding: 10px; }
-
-.blog-container #property-grid .property-item-inner .prop-price, .blog-container #demo-property .property-item-inner .prop-price {
-  font-size: 12px; }
-  .blog-container #property-grid .property-item-inner .prop-price .sort-price, .blog-container #demo-property .property-item-inner .prop-price .sort-price {
-    padding: 10px; }
-
-.archive {
-  float: right;
-  font-size: 16px; }
-  .archive li {
-    list-style: disc;
-    color: #f66f61; }
-  .archive a {
-    color: #f66f61; }
-  .archive :nth-child(n+2) {
-    margin-left: 30px; }
-
-.archive-title {
-  font-size: 28px; }
+.blog {
+  overflow: hidden; }
+  .blog .header {
+    border-bottom: 1px solid #e7e7e7; }
+  .blog .blog-title {
+    color: #f66f61;
+    text-transform: uppercase;
+    border-bottom: 0.1em solid #f66f61;
+    padding-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold; }
+  .blog .post-content {
+    margin-top: 30px; }
+    .blog .post-content .post-title {
+      font-size: 36px; }
+    .blog .post-content .post-img-block {
+      padding: 40px; }
+      .blog .post-content .post-img-block img {
+        width: 100%;
+        height: 100%; }
+  .blog #property-grid, .blog #demo-property {
+    height: auto;
+    min-height: 800px;
+    padding: 45px;
+    margin-top: 35px; }
+    .blog #property-grid h2, .blog #demo-property h2 {
+      text-align: center;
+      font-size: 22px;
+      padding-bottom: 5px; }
+    .blog #property-grid .prop-price, .blog #demo-property .prop-price {
+      font-size: 12px; }
+    .blog #property-grid .property-item-inner, .blog #demo-property .property-item-inner {
+      margin-top: 5px; }
 
 /*# sourceMappingURL=style.css.map */

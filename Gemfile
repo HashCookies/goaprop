@@ -14,6 +14,7 @@ gem "mini_magick"
 gem 'sinatra-formhelpers-ng'
 gem 'oauth'
 gem 'tumblr_client'
+gem 'json'
 
 group :development do
 	gem 'sqlite3'

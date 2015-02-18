@@ -12,12 +12,15 @@ $blue: #35b6eb;
 $vib: #f66f61;
 $label: #ccc;
 $offWhite: #fbfbf3;
-
+$bc: #e7e7e7;
 * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
+html {
+	overflow-y:auto;
+	overflow-x:hidden; 
+}
 body {
 	font-family: $sans;
 	color: $dark;
@@ -2010,59 +2013,51 @@ form#property {
 	margin-bottom: 15px;
 }
 
-.blog-post {
-	border:1px solid #EEEEEE;
-	padding: 5px;
-}
-.blog-title {
-	color: $vib;
-	text-transform: uppercase;
-	font-size: 42px;
-	font-weight: bold; 
-}
-.blog-header {
-	border-top: 1px solid darken($light, 10%);
-	border-bottom: 1px solid darken($light, 10%);
-	width: 100%;
-	margin: 40px 0px 30px;
-	padding: 20px;
-	text-align: left;
+.blog {
+	overflow: hidden;
+	.header {
+		border-bottom: 1px solid $bc;
+	}
 	
-}
-.post-title {
-	color:$vib;
-	text-align: center;
-	font-size: 36px;
-}
-.post-image { 
-	margin-left: 150px;
-}
-.post-content {
-	padding: 10px;
-}
-.blog-container {
+	.blog-title {
+			color: $vib;
+			text-transform: uppercase;
+			border-bottom: 0.1em solid $vib;
+			padding-bottom: 15px;
+			font-size: 24px;
+			font-weight: bold; 
+	}
+
+	.post-content {	
+		margin-top: 30px;
+		.post-title {
+			font-size: 36px;
+		}
+		.post-img-block {
+			padding: 40px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+	}
 	#property-grid {
+		height: auto;
+		min-height: 800px;
+		padding: 45px;
+		margin-top: 35px;
+		h2 {
+			text-align: center;
+			font-size: 22px;
+			padding-bottom: 5px;
+		}
 		.prop-price {
 			font-size: 12px;
+			
+		}
+		.property-item-inner {
+			margin-top: 5px;		 
 		}
 	}
-}
-.archive {
-	float: right;
-	font-size: 16px;
-	li {
-		list-style: disc;
-		color: $vib;
-	}
-
-	a {
-		color: $vib;
-	}
-	:nth-child(n+2) {
-		margin-left:30px;
-	}
-}
-
-.archive-title {
-	font-size:28px; 
 }

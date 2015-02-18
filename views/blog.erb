@@ -1,29 +1,45 @@
-
-<div class=" blog-header">	
+<div class="container">
+	<div class="row">
+			
+		<div class="col-md-8 blog-post">
 	
-	<h1  class="blog-title">
-		<img class="knowledge-blog-img" src="/images/knowledge.png">
-		Knowledge Blog
-	</h1>
-</div>
+			<h1  class="blog-title">
+			Knowledge Blog
+			</h1>
+				
+		<% @posts_count.to_i.times do %> 
+			<div class="post-content">
+				<h3 class="post-title"><%= @posts_title[@p_count] %></h3>
+				
+				<div class="post-img-block">
+					<img src="/images/gpc-default-thumb.jpg">
+				</div>
 
-<div class="row blog-container">
-	<div class="col-md-8 blog-post">	
-		<h3 class="post-title">Title</h3>
-		<p class="post-content">
-		GOA PROPERTY CO shelters all your real estate needs, from complicated paperwork to finding you the perfect place.
+				<div class="prop-specs">
 
-		Our approach combines a thorough understanding of our clients' requirements along with a solid filtering process of real estate to provide you with an array of choices to pick from. 
-		</p>
-	</div>
-	<div class="col-md-4">
-	<ul id="property-grid">
-		<% @properties.each do |property| %>
-			<%= erb :_property, :layout => false, :locals => {
-				:property => property,  
-				:cols => " col-md-4 col-xs-12"} %>
+				</div>
+				<p>
+				<%= @posts_body[@p_count] %>
+				GOA PROPERTY CO shelters all your real estate needs, from complicated paperwork to finding you the perfect place.
+
+				Our approach combines a thorough understanding of our clients' requirements along with a solid filtering process of real estate to provide you with an array of choices to pick from. 
+				</p>
+			</div>
+			<% @p_count += 1 %>
 		<% end %>
-	</ul>
+		</div>
+		
+		<div class="col-md-4">
+		
+		<ul id="property-grid">
+			<li><h2>Properties list</h2></li>
+			<% @properties.each do |property| %>
+				<%= erb :_property, :layout => false, :locals => {
+					:property => property,  
+					:cols => "col-xs-12"} %>
+			<% end %>
+		</ul>
+		</div>
 	</div>
 </div>
 

@@ -209,6 +209,7 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-sqlite-adapter
   fog
+  json
   mini_magick
   mysql
   oauth

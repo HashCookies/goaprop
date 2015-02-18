@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/support'
 require 'sinatra/reloader'
+require 'json'
 require "#{Dir.pwd}/lib/authorization"
 require 'data_mapper'
 require 'mini_magick'
@@ -763,22 +764,34 @@ post '/mail-sell-lease' do
 	redirect '/sell-lease'
 end
 
-#tumblr initialization
-# client = Tumblr::Client.new({
-#   :consumer_key => 'moZMu4SovZzDt48A5Pz3ChEgEdY92L7PDGfjZpm6XUeVZrfr3D',
-#   :consumer_secret => 'TOg2gXdJiwU0fiJMRsHfqqjxsW3G1qCPyKwLJoKKRhJunPQ8kE',
-#   :oauth_token => 'AQbfNJlRlCuSxCuGsIB9YrtDHmco7qtivLsUuQzZ00qzLP25mZ',
-#   :oauth_token_secret => 'FiD7w9cmqw706wRT4P9No7bUC4o8uAWVcwetRUa1iqsDnAvydh',
-#   :client => 'goaprop.tumblr.com'
-# })
+# tumblr initialization
+client = Tumblr::Client.new({
+  :consumer_key => 'moZMu4SovZzDt48A5Pz3ChEgEdY92L7PDGfjZpm6XUeVZrfr3D',
+  :consumer_secret => 'TOg2gXdJiwU0fiJMRsHfqqjxsW3G1qCPyKwLJoKKRhJunPQ8kE',
+  :oauth_token => 'AQbfNJlRlCuSxCuGsIB9YrtDHmco7qtivLsUuQzZ00qzLP25mZ',
+  :oauth_token_secret => 'FiD7w9cmqw706wRT4P9No7bUC4o8uAWVcwetRUa1iqsDnAvydh',
+})
 
 get '/blog' do
-	# avatar = client.avatar('goaprop.tumblr.com')
-	# info = client.info('goaprop.tumblr.com')
-	# posts = client.posts(client.posts('goaprop.tumblr.com'))
-	# post_title = json :posts('blog_name')
-	@properties = Property.all
-	
+	@posts_title = []
+	@posts_body = []
+	blog_name = 'goaprop.tumblr.com'
+	@posts = client.posts(blog_name)
+	@posts_count = @posts['blog']['posts']
+	count = 0
+	@p_count = count
+
+	@posts_count.to_i.times do
+
+		@posts_title[count] = @posts['posts'][count]['title']
+		@posts_body[count] = @posts['posts'][count]['body'] 
+		count += 1	
+
+	end	
+	@classes=['blog']
+	@properties = Property.all(:limit => 5)
+	@title ='Blog'
+
 	erb	:blog
 end
 load 'actions/route_region.rb'
