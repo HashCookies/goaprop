@@ -4,31 +4,56 @@
 		<div class="col-md-8 blog-post">
 	
 			<h1  class="blog-title">
-			Knowledge Blog
+			Goa Property Blog
+			<a href="/blog" class="blog-header-link" >All articles</a>
 			</h1>
 				
-		<% @posts_count.to_i.times do %> 
-			<div class="post-content">
-				<h3 class="post-title"><%= @posts_title[@p_count] %></h3>
+			
+			<div class="row categories">
 				
-				<div class="post-img-block">
-					<img src="/images/gpc-default-thumb.jpg">
+				<div class="col-md-4 col-xs-12" id="articles">
+					<h3>Articles</h3>
+					<ul class="links-list">
+						<% @posts_count.to_i.times do %> 	
+							<li>
+								<a class='post-link' href="/blog/<%= @p_count %>/<%= @posts_slug[@p_count] %>">
+
+								<%= @posts_title[@p_count]%></a>
+							</li>
+							<div class="count"><%= @p_count += 1 %></div>
+						<% end %>
+					</ul>
 				</div>
-
-				<div class="prop-specs">
-
+				
+				<div class="col-md-4 col-xs-12" id="knowledge">
+				<h3>Knowledge</h3>
+					<ul class="links-list">
+						<% @posts_count.to_i.times do %> 	
+							<li>
+								<a><%= @posts_title[@p_count]%></a>
+							</li>
+							<div class="count"><%= @p_count += 1 %></div>
+						<% end %>
+					</ul>
 				</div>
-				<p>
-				<%= @posts_body[@p_count] %>
-				GOA PROPERTY CO shelters all your real estate needs, from complicated paperwork to finding you the perfect place.
-
-				Our approach combines a thorough understanding of our clients' requirements along with a solid filtering process of real estate to provide you with an array of choices to pick from. 
-				</p>
+				
+				<div class="col-md-4 col-xs-12" id="news" >
+				<h3>News</h3>
+					<ul class="links-list">
+						<% @posts_count.to_i.times do %> 	
+							<li>
+								<a><%= @posts_title[@p_count]%></a>
+							</li>
+							<div class="count"><%= @p_count += 1 %></div>
+						<% end %>
+					</ul>
+				</div>
+			
 			</div>
-			<% @p_count += 1 %>
-		<% end %>
+			
+			
 		</div>
-		
+	
 		<div class="col-md-4">
 		
 		<ul id="property-grid">

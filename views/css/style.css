@@ -6848,6 +6848,30 @@ form#property textarea {
     padding-bottom: 15px;
     font-size: 24px;
     font-weight: bold; }
+    .blog .blog-title .blog-header-link {
+      float: right;
+      color: black;
+      text-decoration: none;
+      font-size: 18px;
+      margin-top: 15px; }
+      .blog .blog-title .blog-header-link:hover {
+        color: #4d4d4d; }
+  .blog .categories h3 {
+    text-align: center;
+    padding-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #e7e7e7; }
+  .blog .categories .count {
+    display: none; }
+  .blog .categories .links-list li {
+    padding-top: 15px;
+    list-style: disc;
+    color: #f66f61; }
+    .blog .categories .links-list li a {
+      color: #f66f61;
+      text-decoration: none; }
+      .blog .categories .links-list li a:hover {
+        color: #f99b91; }
   .blog .post-content {
     margin-top: 30px; }
     .blog .post-content .post-title {
@@ -6857,11 +6881,16 @@ form#property textarea {
       .blog .post-content .post-img-block img {
         width: 100%;
         height: 100%; }
+    .blog .post-content .post-nav .newPosts {
+      float: left; }
+    .blog .post-content .post-nav .oldPosts {
+      float: right; }
   .blog #property-grid, .blog #demo-property {
     height: auto;
     min-height: 800px;
-    padding: 45px;
     margin-top: 35px; }
+    .blog #property-grid .property-item, .blog #demo-property .property-item {
+      padding-left: 60px; }
     .blog #property-grid h2, .blog #demo-property h2 {
       text-align: center;
       font-size: 22px;
@@ -6869,6 +6898,6 @@ form#property textarea {
     .blog #property-grid .prop-price, .blog #demo-property .prop-price {
       font-size: 12px; }
     .blog #property-grid .property-item-inner, .blog #demo-property .property-item-inner {
-      margin-top: 5px; }
+      margin-top: 45px; }
 
 /*# sourceMappingURL=style.css.map */

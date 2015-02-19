@@ -764,36 +764,69 @@ post '/mail-sell-lease' do
 	redirect '/sell-lease'
 end
 
-# tumblr initialization
+# tumblr initialization 
 client = Tumblr::Client.new({
-  :consumer_key => 'moZMu4SovZzDt48A5Pz3ChEgEdY92L7PDGfjZpm6XUeVZrfr3D',
-  :consumer_secret => 'TOg2gXdJiwU0fiJMRsHfqqjxsW3G1qCPyKwLJoKKRhJunPQ8kE',
-  :oauth_token => 'AQbfNJlRlCuSxCuGsIB9YrtDHmco7qtivLsUuQzZ00qzLP25mZ',
-  :oauth_token_secret => 'FiD7w9cmqw706wRT4P9No7bUC4o8uAWVcwetRUa1iqsDnAvydh',
+  	:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
+  	:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
+  	:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
+  	:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
 })
 
+$blog_name = 'goapropco.tumblr.com'
+$posts_title = []
+$posts_body = []
+$posts_id = []
+$posts_slug = []
+$posts_categories = []
+$posts = client.posts($blog_name)
+$posts_count = $posts['blog']['posts']
+$count = 0
+
 get '/blog' do
-	@posts_title = []
-	@posts_body = []
-	blog_name = 'goaprop.tumblr.com'
-	@posts = client.posts(blog_name)
-	@posts_count = @posts['blog']['posts']
-	count = 0
+	
+	@classes=['blog']
+	@properties = Property.all(:limit => 5)
+	@title ='Blog'
+
+	@posts = $posts
+	@posts_count = $posts_count
+	@posts_title = $posts_title
+	@posts_body = $posts_body
+	@posts_slug = $posts_slug
+	@posts_categories = $posts_categories
+	count = 0 
 	@p_count = count
 
 	@posts_count.to_i.times do
 
 		@posts_title[count] = @posts['posts'][count]['title']
 		@posts_body[count] = @posts['posts'][count]['body'] 
+		@posts_slug[count] = @posts['posts'][count]['slug']
+		
+		@posts_categories[count] = @posts['posts'][count]['tags'][0]
+		
+		# if(@posts_categories[count] == 'news') 
+
+		# end
+
 		count += 1	
 
 	end	
-	@classes=['blog']
-	@properties = Property.all(:limit => 5)
-	@title ='Blog'
-
+	
 	erb	:blog
 end
+
+get '/blog/:id/:slug' do
+	@classes = ['blog']
+	@properties = Property.all(:limit => 5)
+	@p_count = params[:id].to_i
+	@posts_count = $posts['blog']['posts']
+	@posts_title = $posts_title[@p_count]
+	@posts_body = $posts_body[@p_count]
+
+	erb :_blog_post
+end
+
 load 'actions/route_region.rb'
 load 'actions/route_location.rb'
 load 'actions/route_type.rb'

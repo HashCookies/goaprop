@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+			
+		<div class="col-md-8 blog-post">
+	
+			<h1  class="blog-title">
+			Knowledge Blog
+			<a href="/blog" class="blog-header-link" >All articles</a>
+			</h1>
+			
+			<div id="content" class="post-content">
+				<h3 class="post-title"><%= @posts_title %></h3>
+
+					<div class="prop-specs">
+
+					</div>
+					<p>
+						<%= @posts_body %>
+					</p>
+			</div>
+		</div>		
+				
+		<div class="col-md-4">
+		
+		<ul id="property-grid">
+			<li><h2>Properties list</h2></li>
+			<% @properties.each do |property| %>
+				<%= erb :_property, :layout => false, :locals => {
+					:property => property,  
+					:cols => "col-xs-12"} %>
+			<% end %>
+		</ul>
+		</div>
+	</div>
+</div>
+
