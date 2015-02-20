@@ -4,20 +4,18 @@
 		<div class="col-md-8 blog-post">
 	
 			<h1  class="blog-title">
-			Knowledge Blog
+			<%= @post_tags %>
 			<a href="/blog" class="blog-header-link" >All articles</a>
 			</h1>
-			
+
 			<div id="content" class="post-content">
-				<h3 class="post-title"><%= @posts_title %></h3>
+					<h3 class="post-title"><%= @post_title %></h3>
 
-					<div class="prop-specs">
-
-					</div>
 					<p>
-						<%= @posts_body %>
+						<%= @post_body %>
 					</p>
 			</div>
+
 		</div>		
 				
 		<div class="col-md-4">

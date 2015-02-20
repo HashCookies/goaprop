@@ -4,67 +4,63 @@
 		<div class="col-md-8 blog-post">
 	
 			<h1  class="blog-title">
-			Goa Property Blog
-			<a href="/blog" class="blog-header-link" >All articles</a>
+				Goa Property Blog
 			</h1>
-				
-			
+					
 			<div class="row categories">
-				
-				<div class="col-md-4 col-xs-12" id="articles">
-					<h3>Articles</h3>
-					<ul class="links-list">
-						<% @posts_count.to_i.times do %> 	
-							<li>
-								<a class='post-link' href="/blog/<%= @p_count %>/<%= @posts_slug[@p_count] %>">
 
-								<%= @posts_title[@p_count]%></a>
-							</li>
-							<div class="count"><%= @p_count += 1 %></div>
-						<% end %>
-					</ul>
-				</div>
-				
-				<div class="col-md-4 col-xs-12" id="knowledge">
-				<h3>Knowledge</h3>
-					<ul class="links-list">
-						<% @posts_count.to_i.times do %> 	
-							<li>
-								<a><%= @posts_title[@p_count]%></a>
-							</li>
-							<div class="count"><%= @p_count += 1 %></div>
-						<% end %>
-					</ul>
-				</div>
-				
-				<div class="col-md-4 col-xs-12" id="news" >
-				<h3>News</h3>
-					<ul class="links-list">
-						<% @posts_count.to_i.times do %> 	
-							<li>
-								<a><%= @posts_title[@p_count]%></a>
-							</li>
-							<div class="count"><%= @p_count += 1 %></div>
-						<% end %>
-					</ul>
-				</div>
-			
+			<div class="col-md-4 col-xs-12" id="articles">	
+			<div class="blog-cat-img"><img src="/images/knowledge.png"></div>			
+				<h3>news</h3>
+				<% @news.each do |post| %>
+				<ul class="post-links">
+					<li>
+						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+					</li>
+				</ul>
+				<% end %>
 			</div>
-			
-			
+			<div class="col-md-4 col-xs-12" id="articles">	
+			<div class="blog-cat-img"><img src="/images/knowledge.png">	</div>
+				<h3>articles</h3>	
+				<% @articles.each do |post| %>
+				<ul class="post-links">
+					<li>
+						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+					</li>
+				</ul>
+				<% end %>
+			</div>
+				
+			<div class="col-md-4 col-xs-12" id="articles">
+			<div class="blog-cat-img"><img src="/images/knowledge.png">	</div>
+				<h3>knowledge</h3>
+				<% @knowledge.each do |post| %>
+				<ul class="post-links">
+					<li >
+					<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+					</li>
+				</ul>
+
+				<% end %>
+			<a href="/blog/<%= :knowledge %>">View more..</a>	
+			</div>
+
+			</div>	
 		</div>
-	
+
 		<div class="col-md-4">
 		
-		<ul id="property-grid">
-			<li><h2>Properties list</h2></li>
-			<% @properties.each do |property| %>
-				<%= erb :_property, :layout => false, :locals => {
-					:property => property,  
-					:cols => "col-xs-12"} %>
-			<% end %>
-		</ul>
+			<ul id="property-grid">
+				<li><h2>Properties list</h2></li>
+				<% @properties.each do |property| %>
+					<%= erb :_property, :layout => false, :locals => {
+						:property => property,  
+						:cols => "col-xs-12"} %>
+				<% end %>
+			</ul>
 		</div>
+
 	</div>
 </div>
 

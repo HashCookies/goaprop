@@ -2018,7 +2018,7 @@ form#property {
 	.header {
 		border-bottom: 1px solid $bc;
 	}
-	
+
 	.blog-title {
 			color: $vib;
 			text-transform: uppercase;
@@ -2031,7 +2031,7 @@ form#property {
 			float: right;
 			color: black;
 			text-decoration: none;
-			font-size: 18px;
+			font-size: 13px;
 			margin-top:15px; 
 			&:hover {
 				color:lighten(black,30%);
@@ -2044,20 +2044,26 @@ form#property {
 			padding-bottom: 15px;
 			font-weight: bold;
 			border-bottom: 1px solid $bc;
+			
 		}
-		.count {
-			display: none;
+		.blog-cat-img {
+			text-align: center;
 		}
-		.links-list {
+		#articles {	
+		
+		}
+		.post-links {
+			
 			li {
 				padding-top:15px; 
-				list-style: disc;
-				color: $vib;
+				padding-left:5px; 
+				font-size: 16px;
+
 				a {
 					color: $vib;
 					text-decoration: none;
 				&:hover {
-						color:lighten($vib,10%);
+					color:lighten($vib,10%);	
 					}
 				}
 			}
