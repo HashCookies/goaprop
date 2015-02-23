@@ -1,13 +1,13 @@
 <div class="container">
 	<div class="row">
 			
-		<div class="col-md-8 blog-post">
-	
-			<h1  class="blog-title">
-			<%= @post_tags %>
-			<a href="/blog" class="blog-header-link" >All articles</a>
-			</h1>
 
+		<div class="col-md-8 blog-post">
+			<h1  class="blog-title">
+				Goa Property Blog <span class="blog-category-header"> / <%= @post_tags %></span> 
+
+				<a href="/blog" class="blog-header-link" >View All Posts</a>
+			</h1>
 			<div id="content" class="post-content">
 					<h3 class="post-title"><%= @post_title %></h3>
 

@@ -1,13 +1,13 @@
 <div class="container">
 	<div class="row">
-			
+		
 		<div class="col-md-8 blog-post">
-	
+		
 			<h1  class="blog-title">
 				Goa Property Blog
 			</h1>
 					
-			<div class="row categories">
+		<div class="row categories">
 
 			<div class="col-md-4 col-xs-12" id="articles">	
 			<div class="blog-cat-img"><img src="/images/knowledge.png"></div>			
@@ -19,7 +19,7 @@
 					</li>
 				</ul>
 				<% end %>
-			</div>
+				</div>
 			<div class="col-md-4 col-xs-12" id="articles">	
 			<div class="blog-cat-img"><img src="/images/knowledge.png">	</div>
 				<h3>articles</h3>	
@@ -30,6 +30,7 @@
 					</li>
 				</ul>
 				<% end %>
+				
 			</div>
 				
 			<div class="col-md-4 col-xs-12" id="articles">
@@ -41,9 +42,8 @@
 					<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
 					</li>
 				</ul>
-
 				<% end %>
-			<a href="/blog/<%= :knowledge %>">View more..</a>	
+				
 			</div>
 
 			</div>	
@@ -52,16 +52,17 @@
 		<div class="col-md-4">
 		
 			<ul id="property-grid">
-				<li><h2>Properties list</h2></li>
-				<% @properties.each do |property| %>
-					<%= erb :_property, :layout => false, :locals => {
-						:property => property,  
-						:cols => "col-xs-12"} %>
-				<% end %>
-			</ul>
+			<% @properties.each do |property| %>
+			<%= erb :_property, :layout => false, :locals => {
+				:property => property,  
+				:cols => "col-xs-12"} %>
+			<% end %>
+		</ul>
+			
 		</div>
 
 	</div>
+
 </div>
 
 <% erb :_footer %>

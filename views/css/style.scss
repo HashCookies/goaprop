@@ -2019,6 +2019,10 @@ form#property {
 		border-bottom: 1px solid $bc;
 	}
 
+	.blog-navbar {
+		float: left;
+
+	}
 	.blog-title {
 			color: $vib;
 			text-transform: uppercase;
@@ -2036,6 +2040,10 @@ form#property {
 			&:hover {
 				color:lighten(black,30%);
 			}
+		}
+		.blog-category-header {
+			color: #777676;
+			font-size: 18px;
 		}
 	}
 	.categories {

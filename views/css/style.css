@@ -6841,6 +6841,8 @@ form#property textarea {
   overflow: hidden; }
   .blog .header {
     border-bottom: 1px solid #e7e7e7; }
+  .blog .blog-navbar {
+    float: left; }
   .blog .blog-title {
     color: #f66f61;
     text-transform: uppercase;

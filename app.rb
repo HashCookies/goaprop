@@ -764,70 +764,22 @@ post '/mail-sell-lease' do
 	redirect '/sell-lease'
 end
 
-# tumblr initialization 
-# client = Tumblr::Client.new({
-#   	:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
-#   	:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
-#   	:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
-#   	:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
-# })
-
-# $blog_name = 'goapropco.tumblr.com'
-
-# #list all posts from tumblr account
-# $posts_title = []
-# $posts_body = []
-# $posts_id = []
-# $posts_slug = []
-
-# #posts categories
-# $articles = []
-# $a_id = []
-
-# $knowledge = []
-# $k_id = []
-
-# $news = []
-# $n_id = []
-# #fetch posts from tumblr
-# $posts = client.posts($blog_name)
-# $posts_count = $posts['blog']['posts']
-# $count = 0
 helpers do 
+	def client 
+		# tumblr initialization 
+		client = Tumblr::Client.new({
+  			:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
+  			:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
+  			:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
+  			:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
+		})
+
+	end
+
 	def posts 
-		posts = [
-					{    
-						'id' => '0',
-						'title' => 'test',
-						'body' => 'something something',
-						'tags' => 'articles',
-						'slug' => 'first'
- 					},
-
-					{  	
-						'id' => '1',
-						'title' => 'test2',
-						'body' => 'something3 something2',
-						'tags' => 'news',
-						'slug' => 'second'
-					},
-
-					{    
-						'id' => '2',
-						'title' => 'test3',
-						'body' => 'something3 something3',
-						'tags' => 'knowledge',
-						'slug' => 'third'
-					},
-					{    
-						'id' => '3',
-						'title' => 'test4',
-						'body' => 'something3 something3',
-						'tags' => 'knowledge',
-						'slug' => 'fourth'
-					}
-
-			]
+		blog_name = 'goapropco.tumblr.com'
+		posts = client.posts(blog_name)['posts']
+		
 	end
 
 	def articles
@@ -851,55 +803,24 @@ get '/blog' do
 	@articles = articles
 	@knowledge = knowledge
 	@blog = posts
-			
+
 	@blog.each do |post|
 
-		if (post['tags'] == 'news')
+		post['tags'].each do |tag|
+			if (tag.downcase == 'news')
 			
-			@news << post
+				@news << post
 
-		elsif (post['tags'] == 'knowledge')
+			elsif (tag.downcase == 'knowledge')
 		
-			@knowledge << post
+				@knowledge << post
 
-		elsif (post['tags'] == 'articles')
-			@articles << post
+			elsif (tag.downcase == 'articles')
+			
+				@articles << post
+			end
 		end
 	end	
-	# @posts = $posts
-	# @posts_count = $posts_count
-	# @posts_title = $posts_title
-	# @posts_body = $posts_body
-	# @posts_slug = $posts_slug
-	# @posts_categories = $posts_categories
-	# @knowledge = $knowledge
-	# @articles = $articles
-	# @news = $news
-	# count = 0 
-	# @p_count = count
-
-	# @posts_count.to_i.times do
-
-	# 	@posts_title[count] = @posts['posts'][count]['title']
-	# 	@posts_body[count] = @posts['posts'][count]['body'] 
-	# 	@posts_slug[count] = @posts['posts'][count]['slug']
-		
-	# 	@posts_categories[count] = @posts['posts'][count]['tags'][0]
-	# 	if (@posts_categories[count] == 'articles')
-	# 		@articles[count] = @posts_title[count]
-	# 		# a_id[count] = count
-
-	# 	elsif (@posts_categories[count] == 'news') 
-	# 		@news[count] = @posts_title[count]
-
-	# 		# n_id[count] = count
-	# 	elsif (@posts_categories[count] == 'knowledge')
-	# 		@knowledge[count] = @posts_title[count]
-	# 	end
-
-	# 	count += 1	
-
-	# end	
 	
 	erb	:blog
 end
@@ -908,18 +829,23 @@ get '/blog/:id/:slug' do
 	
 	@classes = ['blog']
 	@properties = Property.all(:limit => 5) 
-	blog = posts
-	@post_title = blog[params[:id].to_i]['title']
-	@post_body = blog[params[:id].to_i]['body']
-	@post_tags = blog[params[:id].to_i]['tags']
-	@posts_categories = false
-	# @posts_count = $posts['blog']['posts']
-	# @posts_title = $posts_title[params[:id].to_i]
-	# @posts_body = $posts_body[params[:id].to_i]
 	
-	erb :_blog_post
+	@parameter = params[:id].to_i
+	@post = posts.find{|post| post['id'] == @parameter }
+	@post_title = @post['title']
+	@post_body = @post['body']
+	@post_tags = @post['tags'].first
+ 	erb :blog_post
 end
 
+get '/blog/category/:category' do
+	
+	@news = news
+	@articles = articles
+	@knowledge = knowledge
+
+
+end
 
 load 'actions/route_region.rb'
 load 'actions/route_location.rb'
