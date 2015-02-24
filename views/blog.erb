@@ -5,50 +5,24 @@
 		
 			<h1  class="blog-title">
 				Goa Property Blog
-			</h1>
-					
-		<div class="row categories">
-
-			<div class="col-md-4 col-xs-12" id="articles">	
-			<div class="blog-cat-img"><img src="/images/knowledge.png"></div>			
-				<h3>news</h3>
-				<% @news.each do |post| %>
-				<ul class="post-links">
-					<li>
-						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
-					</li>
-				</ul>
-				<% end %>
+				<div class='blog-header-link'>
+					<a href="/blog" >Recent posts</a>
+					<a href="/blog/category/<%= :news %>" >News</a>
+					<a href="/blog/category/<%= :articles %>" >Articles</a>
+					<a href="/blog/category/<%= :knowledge %>" >Knowledge</a>
 				</div>
-			<div class="col-md-4 col-xs-12" id="articles">	
-			<div class="blog-cat-img"><img src="/images/knowledge.png">	</div>
-				<h3>articles</h3>	
-				<% @articles.each do |post| %>
-				<ul class="post-links">
-					<li>
-						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
-					</li>
-				</ul>
-				<% end %>
-				
-			</div>
-				
-			<div class="col-md-4 col-xs-12" id="articles">
-			<div class="blog-cat-img"><img src="/images/knowledge.png">	</div>
-				<h3>knowledge</h3>
-				<% @knowledge.each do |post| %>
-				<ul class="post-links">
-					<li >
-					<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
-					</li>
-				</ul>
-				<% end %>
-				
-			</div>
+			</h1>
 
-			</div>	
+			<div class="row categories">
+				<div class="recent-posts"> 
+					<h3>Most recent posts</h3>
+					<% @blog.each do |post| %>	
+					<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class='post-recent-link'>  <span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> | <%= (post['tags'].first).downcase %></p></span><br/>		
+					<% end %>
+				</div>
+			</div>
 		</div>
-
+			
 		<div class="col-md-4">
 		
 			<ul id="property-grid">

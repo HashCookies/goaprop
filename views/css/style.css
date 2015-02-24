@@ -6841,8 +6841,6 @@ form#property textarea {
   overflow: hidden; }
   .blog .header {
     border-bottom: 1px solid #e7e7e7; }
-  .blog .blog-navbar {
-    float: left; }
   .blog .blog-title {
     color: #f66f61;
     text-transform: uppercase;
@@ -6852,17 +6850,31 @@ form#property textarea {
     font-weight: bold; }
     .blog .blog-title .blog-header-link {
       float: right;
-      color: black;
-      text-decoration: none;
-      font-size: 13px;
-      margin-top: 15px; }
-      .blog .blog-title .blog-header-link:hover {
-        color: #4d4d4d; }
+      font-size: 16px;
+      margin-top: 20px; }
+      .blog .blog-title .blog-header-link a {
+        text-decoration: none;
+        padding: 0px 5px;
+        color: black; }
+        .blog .blog-title .blog-header-link a:hover {
+          color: #4d4d4d; }
+        .blog .blog-title .blog-header-link a .active {
+          color: #cccccc; }
   .blog .categories h3 {
     text-align: center;
     padding-bottom: 15px;
     font-weight: bold;
     border-bottom: 1px solid #e7e7e7; }
+  .blog .categories .recent-posts a {
+    color: #f66f61;
+    font-size: 16px; }
+    .blog .categories .recent-posts a:hover {
+      text-decoration: none; }
+  .blog .categories .recent-posts .post-date {
+    font-size: 12px;
+    margin-left: 10px; }
+  .blog .categories .recent-posts .post-recent-link {
+    color: #777676; }
   .blog .categories .blog-cat-img {
     text-align: center; }
   .blog .categories .post-links li {

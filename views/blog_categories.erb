@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-8 blog-post">
+			<h1  class="blog-title">
+				Goa Property Blog 
+				
+				<div class='blog-header-link'>
+					<a href="/blog" >Recent posts</a>
+					<a href="/blog/category/<%= :news %>" >News</a>
+					<a href="/blog/category/<%= :articles %>" >Articles</a>
+					<a href="/blog/category/<%= :knowledge %>" >Knowledge</a>
+				</div>
+			
+			</h1>
+
+			<% if @knowledge %>
+				<div class="col-xs-12" id="articles">
+					<h3>knowledge</h3>
+					<% @knowledge.each do |post| %>
+					<ul class="post-links">
+						<li>
+						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+						</li>
+					</ul>
+					<% end %>
+				</div>
+
+			
+			<% elsif @news %>
+				<div class="col-xs-12" id="articles">				
+				<h3>news</h3>
+				<% @news.each do |post| %>
+					<ul class="post-links">
+						<li>
+						<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+						</li>
+					</ul>
+				<% end %>
+				</div>
+
+			<% elsif @articles %>
+				<div class="col-xs-12" id="articles">	
+				<h3>articles</h3>	
+				<% @articles.each do |post| %>
+					<ul class="post-links">
+						<li>
+							<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a>
+						</li>
+					</ul>
+				<% end %>
+				
+				</div>
+
+			<% end %>
+
+		</div>		
+				
+		<div class="col-md-4">
+		
+		<ul id="property-grid">
+			<li><h2>Properties list</h2></li>
+			<% @properties.each do |property| %>
+				<%= erb :_property, :layout => false, :locals => {
+					:property => property,  
+					:cols => "col-xs-12"} %>
+			<% end %>
+		</ul>
+		</div>
+	</div>
+</div>
+
+			
+
+
+

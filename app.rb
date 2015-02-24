@@ -794,6 +794,8 @@ helpers do
 		news = []
 	end
 end
+
+
 get '/blog' do
 	
 	@classes=['blog']
@@ -803,52 +805,60 @@ get '/blog' do
 	@articles = articles
 	@knowledge = knowledge
 	@blog = posts
-
+	
 	@blog.each do |post|
 
 		post['tags'].each do |tag|
 			if (tag.downcase == 'news')
 			
-				@news << post
+				news << post
 
 			elsif (tag.downcase == 'knowledge')
 		
-				@knowledge << post
+				knowledge << post
 
 			elsif (tag.downcase == 'articles')
 			
-				@articles << post
+				articles << post
 			end
 		end
 	end	
-	
+
 	erb	:blog
 end
 
 get '/blog/:id/:slug' do
+		@classes = ['blog']
+		@properties = Property.all(:limit => 5) 
 	
-	@classes = ['blog']
-	@properties = Property.all(:limit => 5) 
+		@parameter = params[:id].to_i
 	
-	@parameter = params[:id].to_i
-	@post = posts.find{|post| post['id'] == @parameter }
-	@post_title = @post['title']
-	@post_body = @post['body']
-	@post_tags = @post['tags'].first
- 	erb :blog_post
-end
+	if params[:id] == 'category'
 
-get '/blog/category/:category' do
-	
-	@news = news
-	@articles = articles
-	@knowledge = knowledge
+		if params[:slug] == 'news'
+			@news = posts.select{|post| post if (post['tags'][0]).downcase == 'news' } 
+		elsif params[:slug] == 'articles'
+			@articles = posts.select{|post| post if (post['tags'][0]).downcase == 'articles' } 
+		elsif params[:slug] == 'knowledge'
+			@knowledge = posts.select{|post| post if (post['tags'][0]).downcase == 'knowledge' }  
+		end
+		erb :blog_categories
 
+	else
+		@post = posts.find{|post| post['id'] == @parameter }
+		@post_title = @post['title']
+		@post_body = @post['body']
+		@post_tags = @post['tags'].first
 
+ 		erb :blog_post
+	end
+
+		
 end
 
 load 'actions/route_region.rb'
 load 'actions/route_location.rb'
 load 'actions/route_type.rb'
+
 
 

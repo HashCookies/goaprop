@@ -1,12 +1,15 @@
 <div class="container">
 	<div class="row">
-			
-
 		<div class="col-md-8 blog-post">
 			<h1  class="blog-title">
-				Goa Property Blog <span class="blog-category-header"> / <%= @post_tags %></span> 
+				Goa Property Blog  
+				<div class='blog-header-link'>
+					<a href="/blog" >Recent posts</a>
+					<a href="/blog/category/<%= :news %>" >News</a>
+					<a href="/blog/category/<%= :articles %>" >Articles</a>
+					<a href="/blog/category/<%= :knowledge %>" >Knowledge</a>
+				</div>
 
-				<a href="/blog" class="blog-header-link" >View All Posts</a>
 			</h1>
 			<div id="content" class="post-content">
 					<h3 class="post-title"><%= @post_title %></h3>
@@ -30,5 +33,12 @@
 		</ul>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+
+		$('.blog-header-link a').click(function() {
+			$('.blog-header-link a').addClass('.active');
+		});
+	</script
 </div>
 

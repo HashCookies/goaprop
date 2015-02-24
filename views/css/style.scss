@@ -2018,11 +2018,6 @@ form#property {
 	.header {
 		border-bottom: 1px solid $bc;
 	}
-
-	.blog-navbar {
-		float: left;
-
-	}
 	.blog-title {
 			color: $vib;
 			text-transform: uppercase;
@@ -2033,17 +2028,20 @@ form#property {
 		
 		.blog-header-link {
 			float: right;
-			color: black;
-			text-decoration: none;
-			font-size: 13px;
-			margin-top:15px; 
-			&:hover {
-				color:lighten(black,30%);
+			font-size: 16px;
+			margin-top: 20px;
+			a {
+
+				text-decoration: none;
+				padding: 0px 5px;
+				color: black;
+				&:hover {
+					color:lighten(black,30%);
+				}
+				.active {
+					color: lighten(black,80%);
+				}
 			}
-		}
-		.blog-category-header {
-			color: #777676;
-			font-size: 18px;
 		}
 	}
 	.categories {
@@ -2054,11 +2052,26 @@ form#property {
 			border-bottom: 1px solid $bc;
 			
 		}
+		.recent-posts {
+			a {
+				color: $vib;
+				font-size: 16px;
+				&:hover{
+					text-decoration: none;
+				}
+			}
+			.post-date {
+				font-size: 12px;
+				margin-left: 10px;
+			}
+
+			.post-recent-link {
+			color: #777676;
+
+			}
+		}
 		.blog-cat-img {
 			text-align: center;
-		}
-		#articles {	
-		
 		}
 		.post-links {
 			
