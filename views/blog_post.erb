@@ -1,24 +1,48 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 blog-post">
-			<h1  class="blog-title">
-				Goa Property Blog  
-				<div class='blog-header-link'>
-					<a href="/blog" >Recent posts</a>
-					<a href="/blog/category/<%= :news %>" >News</a>
-					<a href="/blog/category/<%= :articles %>" >Articles</a>
-					<a href="/blog/category/<%= :knowledge %>" >Knowledge</a>
-				</div>
-
-			</h1>
+			<%= partial :_blog_header %>
+			
 			<div id="content" class="post-content">
-					<h3 class="post-title"><%= @post_title %></h3>
 
+					<h3 class="post-title"><%= @post_title %><br/>
+					<span class="post-tags"> # <%= @post_tags %> </span>
+					</h3>
 					<p>
 						<%= @post_body %>
 					</p>
 			</div>
-
+			<div class='blog-footer'> 	
+			<div class="row recent-posts ">
+				<h3>Most recent posts in <%= @post_tags %> </h3>
+				<% if @post_tags == 'articles' %>
+					<div> 
+							<% @articles.each do |post| %>	
+								<% if post['title'] != @post_title %>
+								<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+								<% end %>
+							<% end %>
+					</div>
+					
+				<% elsif @post_tags == 'news' %>
+					<div> 
+							<% @news.each do |post| %>	
+								<% if post['title'] != @post_title %>
+									<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+								<% end %>
+							<% end %>
+					</div>
+				<% elsif @post_tags == 'knowledge' %>
+					<div> 
+							<% @knowledge.each do |post| %>	
+							<% if post['title'] != @post_title %>
+								<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+								<% end %>
+							<% end %>
+					</div>
+				<% end %>
+			</div>
+			</div>
 		</div>		
 				
 		<div class="col-md-4">
@@ -33,12 +57,5 @@
 		</ul>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-
-		$('.blog-header-link a').click(function() {
-			$('.blog-header-link a').addClass('.active');
-		});
-	</script
 </div>
 

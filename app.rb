@@ -764,96 +764,82 @@ post '/mail-sell-lease' do
 	redirect '/sell-lease'
 end
 
-helpers do 
-	def client 
-		# tumblr initialization 
-		client = Tumblr::Client.new({
-  			:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
-  			:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
-  			:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
-  			:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
-		})
-
-	end
-
-	def posts 
-		blog_name = 'goapropco.tumblr.com'
-		posts = client.posts(blog_name)['posts']
+configure do
 		
-	end
-
-	def articles
-		articles = []
-	end
+		$blog_name = 'goapropco.tumblr.com'
+		def posts
+			return client.posts($blog_name)['posts']
+		end
 	
-	def knowledge
-		knowledge = []
-	end
+		def client 
+		# 	# tumblr initialization 
+			client = Tumblr::Client.new({
+  				:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
+  				:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
+  				:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
+  				:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
+			})
+		end
 
-	def news
-		news = []
-	end
+		$knowledge = []
+		$news = []
+		$articles = []
+		
+		posts.each do |post|
+				post['tags'].each do |tag|
+					if (tag.downcase == 'news')
+			
+						$news << post
+
+					elsif (tag.downcase == 'knowledge')
+			
+						$knowledge << post
+
+					elsif (tag.downcase == 'articles')
+			
+						$articles << post
+					end
+				end
+		end
 end
 
-
 get '/blog' do
-	
 	@classes=['blog']
 	@properties = Property.all(:limit => 5)
-	@title ='Blog'
-	@news = news
-	@articles = articles
-	@knowledge = knowledge
-	@blog = posts
+	@title ='Blog'	
 	
-	@blog.each do |post|
-
-		post['tags'].each do |tag|
-			if (tag.downcase == 'news')
-			
-				news << post
-
-			elsif (tag.downcase == 'knowledge')
-		
-				knowledge << post
-
-			elsif (tag.downcase == 'articles')
-			
-				articles << post
-			end
-		end
-	end	
-
 	erb	:blog
 end
 
-get '/blog/:id/:slug' do
+get '/blog/:category/:id/:slug' do
 		@classes = ['blog']
 		@properties = Property.all(:limit => 5) 
-	
 		@parameter = params[:id].to_i
-	
-	if params[:id] == 'category'
+		@news = $news 
+		@articles = $articles
+		@knowledge = $knowledge  
 
-		if params[:slug] == 'news'
-			@news = posts.select{|post| post if (post['tags'][0]).downcase == 'news' } 
-		elsif params[:slug] == 'articles'
-			@articles = posts.select{|post| post if (post['tags'][0]).downcase == 'articles' } 
-		elsif params[:slug] == 'knowledge'
-			@knowledge = posts.select{|post| post if (post['tags'][0]).downcase == 'knowledge' }  
-		end
-		erb :blog_categories
-
-	else
-		@post = posts.find{|post| post['id'] == @parameter }
-		@post_title = @post['title']
-		@post_body = @post['body']
-		@post_tags = @post['tags'].first
+		post = posts.find{|post| post['id'] == @parameter }
+		@post_title = post['title']
+		@post_body = post['body']
+		@post_tags = (post['tags'].first).downcase
 
  		erb :blog_post
-	end
-
 		
+end
+get '/blog/:category/:type' do 
+	@classes = ['blog']
+	@properties = Property.all(:limit => 5)
+	if params[:type] == 'news'
+			@news = $news 
+		elsif params[:type] == 'articles'
+			@articles = $articles
+		elsif params[:type] == 'knowledge'
+			@knowledge = $knowledge  
+	end
+	
+	erb :blog_categories
+
 end
 
 load 'actions/route_region.rb'

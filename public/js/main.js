@@ -698,5 +698,9 @@ $(document).ready(function() {
 	$('.disabled').click(function() {
 		return false;
 	});
-	
+
+	$('.blog-header-link a').filter(function(){
+		return $(this).attr('href').toLowerCase() === window.location.pathname.toLowerCase();	
+	}).addClass('active').siblings().removeClass('active')
+	// window.clicked.addClass('active')
 });	

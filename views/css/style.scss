@@ -2034,66 +2034,66 @@ form#property {
 
 				text-decoration: none;
 				padding: 0px 5px;
-				color: black;
+				color: #a5a5a5;
 				&:hover {
 					color:lighten(black,30%);
 				}
-				.active {
-					color: lighten(black,80%);
-				}
 			}
+			
+			.active {
+					color: black;
+			}
+			
 		}
 	}
 	.categories {
-		h3 {
-			text-align: center;
-			padding-bottom: 15px;
-			font-weight: bold;
-			border-bottom: 1px solid $bc;
+		margin-top: 40px;
+		
+		.post-links {
+			margin-top: 10px;
+			padding: 5px;
 			
-		}
-		.recent-posts {
 			a {
 				color: $vib;
 				font-size: 16px;
-				&:hover{
-					text-decoration: none;
+				text-decoration:none;
+				&:hover {
+					color:darken($vib,10%);
 				}
 			}
-			.post-date {
+		}
+		.post-date {
+			margin-left: 10px;
+		}
+	}
+	.recent-posts {
+		h3 {
+			padding-bottom: 15px;
+			font-size: 18px;
+		}
+		a {
+				color: $vib;
+				text-decoration: none;
+				font-size: 14px;
+				&:hover {
+					color:darken($vib,10%);
+				}
+		}
+		.post-date {
 				font-size: 12px;
 				margin-left: 10px;
-			}
-
-			.post-recent-link {
+		}
+		.post-recent-link {
 			color: #777676;
-
-			}
 		}
-		.blog-cat-img {
-			text-align: center;
-		}
-		.post-links {
-			
-			li {
-				padding-top:15px; 
-				padding-left:5px; 
-				font-size: 16px;
-
-				a {
-					color: $vib;
-					text-decoration: none;
-				&:hover {
-					color:lighten($vib,10%);	
-					}
-				}
-			}
-		}
+		
 	}
 	.post-content {	
 		margin-top: 30px;
+		padding-bottom: 20px;
 		.post-title {
-			font-size: 36px;
+			font-size: 32px;
+			border-bottom: 1px solid $bc;
 		}
 		.post-img-block {
 			padding: 40px;
@@ -2110,6 +2110,13 @@ form#property {
 			.oldPosts {
 				float: right;
 			}
+		}
+		.post-tags {
+			color: lighten($vib,10%);
+			font-size: 18px;
+		}
+		.post-img {
+			text-align: center;
 		}
 	}
 	#property-grid {
@@ -2131,5 +2138,10 @@ form#property {
 		.property-item-inner {
 			margin-top: 45px;
 		}
+	}
+	.blog-footer {
+		border-top: 1px solid $bc;
+		margin: auto 0px;
+		padding: 15px;
 	}
 }

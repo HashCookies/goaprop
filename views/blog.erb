@@ -2,25 +2,10 @@
 	<div class="row">
 		
 		<div class="col-md-8 blog-post">
-		
-			<h1  class="blog-title">
-				Goa Property Blog
-				<div class='blog-header-link'>
-					<a href="/blog" >Recent posts</a>
-					<a href="/blog/category/<%= :news %>" >News</a>
-					<a href="/blog/category/<%= :articles %>" >Articles</a>
-					<a href="/blog/category/<%= :knowledge %>" >Knowledge</a>
-				</div>
-			</h1>
 
-			<div class="row categories">
-				<div class="recent-posts"> 
-					<h3>Most recent posts</h3>
-					<% @blog.each do |post| %>	
-					<a href="/blog/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class='post-recent-link'>  <span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> | <%= (post['tags'].first).downcase %></p></span><br/>		
-					<% end %>
-				</div>
-			</div>
+			<%= partial :_blog_header %>
+			<%= partial :_recent_posts %>
+		
 		</div>
 			
 		<div class="col-md-4">
