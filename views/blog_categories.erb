@@ -5,22 +5,17 @@
 			
 			<%= partial :_blog_header %>
 
-			<div class="row categories">
+			<div class="post-content" >
 			<% if @knowledge %>
-				<div class="col-xs-12" id="articles">
-					
-					<% @knowledge.each do |post| %>
+				<% @knowledge.each do |post| %>
 					<ul >
 						<li class="post-links">
 						<a href="/blog/<%= (post['tags'].first).downcase %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span>
 						</li>
 					</ul>
 					<% end %>
-				</div>
-
 			
 			<% elsif @news %>
-				<div class="col-xs-12" id="articles">				
 				
 				<% @news.each do |post| %>
 					<ul >
@@ -29,11 +24,10 @@
 						</li>
 					</ul>
 				<% end %>
-				</div>
+				
 
 			<% elsif @articles %>
-				<div class="col-xs-12" id="articles">	
-					
+				
 				<% @articles.each do |post| %>
 					<ul >
 						<li class="post-links">
@@ -41,8 +35,6 @@
 						</li>
 					</ul>
 				<% end %>
-				
-				</div>
 
 			<% end %>
 
@@ -51,7 +43,7 @@
 		<div class="col-md-4">
 		
 		<ul id="property-grid">
-			<li><h2>Properties list</h2></li>
+			<h2>Properties list</h2>
 			<% @properties.each do |property| %>
 				<%= erb :_property, :layout => false, :locals => {
 					:property => property,  

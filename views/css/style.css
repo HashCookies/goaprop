@@ -5330,6 +5330,9 @@ h2 {
 
 .email-btn {
   padding: 15px; }
+  @media (max-width: 767px) {
+    .email-btn {
+      padding: 0px; } }
 
 .email-modal .modal-footer {
   margin-top: 0;
@@ -6848,50 +6851,63 @@ form#property textarea {
     padding-bottom: 15px;
     font-size: 24px;
     font-weight: bold; }
+    @media (max-width: 767px) {
+      .blog .blog-title {
+        text-align: center;
+        margin-top: 30px; } }
     .blog .blog-title .blog-header-link {
       float: right;
-      font-size: 16px;
+      font-size: 15px;
       margin-top: 20px; }
+      @media (max-width: 767px) {
+        .blog .blog-title .blog-header-link {
+          float: none;
+          text-align: center; } }
       .blog .blog-title .blog-header-link a {
         text-decoration: none;
-        padding: 0px 5px;
-        color: #a5a5a5; }
+        padding: 5px 7px;
+        color: #999999;
+        font-weight: 100; }
         .blog .blog-title .blog-header-link a:hover {
-          color: #4d4d4d; }
+          color: #4d4d4d;
+          border-bottom: 3px solid #f78579; }
+          @media (max-width: 767px) {
+            .blog .blog-title .blog-header-link a:hover {
+              border-bottom: none; } }
       .blog .blog-title .blog-header-link .active {
-        color: black; }
-  .blog .categories {
-    margin-top: 40px; }
-    .blog .categories .post-links {
-      margin-top: 10px;
-      padding: 5px; }
-      .blog .categories .post-links a {
-        color: #f66f61;
-        font-size: 16px;
-        text-decoration: none; }
-        .blog .categories .post-links a:hover {
-          color: #f34331; }
-    .blog .categories .post-date {
-      margin-left: 10px; }
-  .blog .recent-posts h3 {
-    padding-bottom: 15px;
-    font-size: 18px; }
-  .blog .recent-posts a {
-    color: #f66f61;
-    text-decoration: none;
-    font-size: 14px; }
-    .blog .recent-posts a:hover {
-      color: #f34331; }
-  .blog .recent-posts .post-date {
-    font-size: 12px;
-    margin-left: 10px; }
-  .blog .recent-posts .post-recent-link {
-    color: #777676; }
-  .blog .recent-posts .post-cat-img {
-    text-align: center; }
+        color: black;
+        border-bottom: 3px solid #f7786b; }
+        @media (max-width: 767px) {
+          .blog .blog-title .blog-header-link .active {
+            border-bottom: none; } }
   .blog .post-content {
     margin-top: 30px;
     padding-bottom: 20px; }
+    .blog .post-content .post-links {
+      margin-top: 10px;
+      padding: 5px; }
+      .blog .post-content .post-links a {
+        color: #f66f61;
+        font-size: 16px;
+        text-decoration: none; }
+        .blog .post-content .post-links a:hover {
+          color: #f34331; }
+    .blog .post-content .post-date {
+      margin-left: 10px; }
+    .blog .post-content h3 {
+      padding-bottom: 15px;
+      font-size: 18px; }
+    .blog .post-content a {
+      color: #f66f61;
+      text-decoration: none;
+      font-size: 14px; }
+      .blog .post-content a:hover {
+        color: #f34331; }
+    .blog .post-content .post-date {
+      font-size: 12px;
+      margin-left: 10px; }
+    .blog .post-content .post-recent-link {
+      color: #777676; }
     .blog .post-content .post-title {
       font-size: 32px;
       border-bottom: 1px solid #e7e7e7; }
@@ -6907,20 +6923,31 @@ form#property textarea {
     .blog .post-content .post-tags {
       color: #f99b91;
       font-size: 18px; }
+    .blog .post-content .post-img {
+      text-align: center; }
   .blog #property-grid, .blog #demo-property {
     height: auto;
     min-height: 800px;
     margin-top: 35px; }
+    @media (max-width: 767px) {
+      .blog #property-grid, .blog #demo-property {
+        border-top: 1px solid #e7e7e7; } }
     .blog #property-grid .property-item, .blog #demo-property .property-item {
       padding-left: 60px; }
+      @media (max-width: 767px) {
+        .blog #property-grid .property-item, .blog #demo-property .property-item {
+          padding-left: 0px; } }
     .blog #property-grid h2, .blog #demo-property h2 {
       text-align: center;
-      font-size: 22px;
-      padding-bottom: 5px; }
+      font-size: 18px;
+      padding-bottom: 15px; }
     .blog #property-grid .prop-price, .blog #demo-property .prop-price {
       font-size: 12px; }
     .blog #property-grid .property-item-inner, .blog #demo-property .property-item-inner {
       margin-top: 45px; }
+      @media (max-width: 767px) {
+        .blog #property-grid .property-item-inner, .blog #demo-property .property-item-inner {
+          margin-top: 65px; } }
   .blog .blog-footer {
     border-top: 1px solid #e7e7e7;
     margin: auto 0px;

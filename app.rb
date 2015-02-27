@@ -768,7 +768,7 @@ configure do
 		
 		$blog_name = 'goapropco.tumblr.com'
 		def posts
-			return client.posts($blog_name)['posts']
+			return true
 		end
 	
 		def client 
@@ -801,13 +801,17 @@ configure do
 					end
 				end
 		end
+		
 end
 
+before '/blog' do
+		session[:posts] = posts
+end
 get '/blog' do
 	@classes=['blog']
 	@properties = Property.all(:limit => 5)
 	@title ='Blog'	
-	
+	@posts = session[:posts]
 	erb	:blog
 end
 
@@ -829,6 +833,7 @@ get '/blog/:category/:id/:slug' do
 end
 get '/blog/:category/:type' do 
 	@classes = ['blog']
+	@title = params[:type]	
 	@properties = Property.all(:limit => 5)
 	if params[:type] == 'news'
 			@news = $news 

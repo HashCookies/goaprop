@@ -1,16 +1,20 @@
 <div class="container">
 	<div class="row">
-		
+		<%= @posts %>
 		<div class="col-md-8 blog-post">
-
 			<%= partial :_blog_header %>
-			<%= partial :_recent_posts %>
+			<div class="post-content">
+				<%= partial :_recent_posts %>
+				
+			</div>
+			
 		
 		</div>
 			
 		<div class="col-md-4">
-		
+			
 			<ul id="property-grid">
+			<h2>Properties list </h2>
 			<% @properties.each do |property| %>
 			<%= erb :_property, :layout => false, :locals => {
 				:property => property,  
