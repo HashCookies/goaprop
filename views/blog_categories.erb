@@ -9,7 +9,7 @@
 			<% if @knowledge %>
 				<% @knowledge.each do |post| %>
 					<ul >
-						<li class="post-links">
+						<li class="post-link">
 						<a href="/blog/<%= (post['tags'].first).downcase %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span>
 						</li>
 					</ul>
@@ -18,8 +18,8 @@
 			<% elsif @news %>
 				
 				<% @news.each do |post| %>
-					<ul >
-						<li class="post-links">
+					<ul>
+						<li class="post-link">
 						<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span>
 						</li>
 					</ul>
@@ -30,7 +30,7 @@
 				
 				<% @articles.each do |post| %>
 					<ul >
-						<li class="post-links">
+						<li class="post-link">
 							<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span>
 						</li>
 					</ul>

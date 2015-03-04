@@ -1,5 +1,8 @@
-<div> 
-					<% posts.each do |post| %>	
-					<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %> <p class="post-category"> # <%= (post['tags'].first).downcase %></p></span><br/>		
-					<% end %>
+<div class='recent-posts'> 
+		<ul>
+		<% posts.each do |post| %>	
+			<li class="post-link" ><a  href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %> </span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
+			</li>
+		<% end %>
+		</ul>
 </div>

@@ -2021,6 +2021,7 @@ form#property {
 	.header {
 		border-bottom: 1px solid $bc;
 	}
+	
 	.blog-title {
 			color: $vib;
 			text-transform: uppercase;
@@ -2066,46 +2067,38 @@ form#property {
 			
 		}
 	}
+	.post-category {
+			color: $vib;
+			font-size: 13px;
+			text-align: center;
+			margin-left: 10px;
+			padding: 2px;
+			border:1px solid $vib;
+			border-radius: 4px;
+	}
 	.recent-posts {
-		a {
-			color: darken($vib,10%);
-			&:hover{
+		.post-link {
+			margin-top: 15px;
+			font-size: 15px;
+			a {
+				&:hover{
 				color:lighten($vib,10%);
+				}
 			}
 		}
 		.post-date {
 			margin-left: 10px;
 		}
-	}
+	}	
 	.post-content {	
 		margin-top: 30px;
 		padding-bottom: 20px;
-		.post-links {
-			margin-top: 10px;
-			padding: 5px;
-			a {
-				color: darken($vib,10%);
-				font-size: 16px;
-				text-decoration:none;
-					&:hover {
-						color:lighten($vib,10%);
-					}
-			}
-		}
 		.post-date {
 			margin-left: 10px;
 		}
 		h3 {
 			padding-bottom: 15px;
 			font-size: 18px;
-		}
-		a {
-				color: darken($vib,10%);
-				text-decoration: none;
-				font-size: 14px;
-				&:hover {
-					color:darken($vib,10%);
-				}
 		}
 		.post-date {
 				font-size: 12px;
@@ -2125,6 +2118,7 @@ form#property {
 				height: 100%;
 			}
 		}
+
 		.post-nav {
 			.newPosts {
 				float: left;
@@ -2134,12 +2128,13 @@ form#property {
 				float: right;
 			}
 		}
-		.post-tags {
-			color: lighten($vib,10%);
-			font-size: 18px;
-		}
 		.post-img {
 			text-align: center;
+		}
+		.post-category {
+			font-size: 16px;
+			padding: 4px;
+			margin-left: 0px;
 		}
 	}
 	#property-grid {

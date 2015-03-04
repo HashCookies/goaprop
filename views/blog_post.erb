@@ -3,10 +3,10 @@
 		<div class="col-md-8 blog-post">
 			<%= partial :_blog_header %>
 			
-			<div class="post-content" >
+			<div class ="post-content" >
 
 					<h3 class="post-title"><%= @post_title %><br/>
-					<span class="post-tags"> # <%= @post_tags %> </span>
+					<span class="post-category"> # <%= @post_tags %> </span>
 					</h3>
 					<p>
 						<%= @post_body %>
@@ -15,31 +15,36 @@
 			<div class='blog-footer'> 	
 			<div class="row recent-posts ">
 				<h3>Most recent posts in <%= @post_tags %> </h3>
-				<% if @post_tags == 'articles' %>
-					<div> 
-							<% @articles.each do |post| %>	
+				<% if @post_tags == 'articles' || @post_tags == 'article' %>				
+					<ul>
+							<% @articles.each do |post| %>		
 								<% if post['title'] != @post_title %>
-								<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+									<li class="post-link">	
+										<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
+									</li>
 								<% end %>
 							<% end %>
-					</div>
-					
+					</ul>
 				<% elsif @post_tags == 'news' %>
-					<div> 
+					<ul>
 							<% @news.each do |post| %>	
 								<% if post['title'] != @post_title %>
-									<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+									<li class="post-link">	
+										<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
+									</li>
 								<% end %>
 							<% end %>
-					</div>
+					</ul>
 				<% elsif @post_tags == 'knowledge' %>
-					<div> 
+					<ul>
 							<% @knowledge.each do |post| %>	
-							<% if post['title'] != @post_title %>
-								<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a> <span class="post-date"><%= post['date'].split(' ').first %></span> <p class="post-category"> # <%= (post['tags'].first).downcase %></p><br/>		
+								<% if post['title'] != @post_title %>
+									<li class="post-link">	
+										<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %></span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
+									</li>
+									<% end %>
 								<% end %>
-							<% end %>
-					</div>
+					</ul>
 				<% end %>
 			</div>
 			</div>
