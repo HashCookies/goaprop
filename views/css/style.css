@@ -6880,6 +6880,12 @@ form#property textarea {
         @media (max-width: 767px) {
           .blog .blog-title .blog-header-link .active {
             border-bottom: none; } }
+  .blog .recent-posts a {
+    color: #f34331; }
+    .blog .recent-posts a:hover {
+      color: #f99b91; }
+  .blog .recent-posts .post-date {
+    margin-left: 10px; }
   .blog .post-content {
     margin-top: 30px;
     padding-bottom: 20px; }
@@ -6887,18 +6893,18 @@ form#property textarea {
       margin-top: 10px;
       padding: 5px; }
       .blog .post-content .post-links a {
-        color: #f66f61;
+        color: #841307;
         font-size: 16px;
         text-decoration: none; }
         .blog .post-content .post-links a:hover {
-          color: #f34331; }
+          color: #f99b91; }
     .blog .post-content .post-date {
       margin-left: 10px; }
     .blog .post-content h3 {
       padding-bottom: 15px;
       font-size: 18px; }
     .blog .post-content a {
-      color: #f66f61;
+      color: #841307;
       text-decoration: none;
       font-size: 14px; }
       .blog .post-content a:hover {

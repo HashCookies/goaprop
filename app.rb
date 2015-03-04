@@ -767,18 +767,19 @@ end
 configure do
 		
 		$blog_name = 'goapropco.tumblr.com'
-		def posts
-			return true
-		end
-	
+
 		def client 
 		# 	# tumblr initialization 
-			client = Tumblr::Client.new({
+			return Tumblr::Client.new({
   				:consumer_key => 'pQzvSIuaXKfGAfHo86uBIKCnw1rapysNYOgGFj6FL5xTmXpV0H',
   				:consumer_secret => 'coTHJmyXvoqu4ypJ0JkYVa9aSpsT5HLm4lcQnRYa2IwKTzGRjw',
-  				:oauth_token => '8MmIIh1UkSe7soTPpNtzzXiI546q8evN2WHTgwICgAMWA6BmFM',
-  				:oauth_token_secret => 'JMeH1w98lWHhlLTDPuBWHtLG1eEJzbGr1sSMvIUTX1Z6SWJhQv'
+  				:oauth_token => 'BX3N9U51enQTLbZJSk5YUs0pZe8o0RzhoQbmZW1KEFcCMJLJio',
+  				:oauth_token_secret => 'ZFEgnLrRrLJ2ZXx1moMdIn4dksFWBLKrHFmzWr78pXmoF3LkQ0'
 			})
+		end
+
+		def posts 
+			return client.posts($blog_name)['posts']
 		end
 
 		$knowledge = []
@@ -795,7 +796,7 @@ configure do
 			
 						$knowledge << post
 
-					elsif (tag.downcase == 'articles')
+					elsif (tag.downcase == 'articles' || tag.downcase == 'article')
 			
 						$articles << post
 					end
@@ -805,8 +806,9 @@ configure do
 end
 
 before '/blog' do
-		session[:posts] = posts
+	session[:posts] = posts
 end
+
 get '/blog' do
 	@classes=['blog']
 	@properties = Property.all(:limit => 5)

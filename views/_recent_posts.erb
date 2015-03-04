@@ -1,5 +1,4 @@
 <div> 
-			<h3>Most recent posts</h3>
 					<% posts.each do |post| %>	
 					<a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %> <p class="post-category"> # <%= (post['tags'].first).downcase %></p></span><br/>		
 					<% end %>
