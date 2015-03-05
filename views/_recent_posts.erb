@@ -1,7 +1,7 @@
-<div class='recent-posts'> 
-		<ul>
+<div class='post-links'> 
+		<ul >
 		<% posts.each do |post| %>	
-			<li class="post-link" ><a  href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %> </span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
+			<li class="post-link" ><a href="/blog/<%= (post['tags'].first).downcase  %>/<%= post['id'] %>/<%= post['slug'] %>"><%= post['title'] %></a><span class="post-date"><%= post['date'].split(' ').first %> </span> <span class="post-category"> # <%= (post['tags'].first).downcase %></span><br/>		
 			</li>
 		<% end %>
 		</ul>
