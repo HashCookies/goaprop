@@ -6921,16 +6921,17 @@ form#property textarea {
       .blog .post-category {
         font-size: 12px;
         margin-left: 5px;
-        padding: 1px; } }
+        padding: 2px; } }
   .blog .post-content {
     margin-top: 30px;
     padding-bottom: 20px; }
-    .blog .post-content h3 {
-      padding-bottom: 15px;
-      font-size: 18px; }
     .blog .post-content .post-title {
       font-size: 32px;
+      padding-bottom: 10px;
       border-bottom: 1px solid #e7e7e7; }
+      @media (max-width: 767px) {
+        .blog .post-content .post-title {
+          font-size: 28px; } }
   .blog #property-grid, .blog #demo-property {
     height: auto;
     min-height: 800px;
